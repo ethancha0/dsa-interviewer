@@ -1,6 +1,10 @@
+"use client";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Overlay from "@/components/ui/pip-overlay/overlay";
+import { useState } from "react";
 
 const featureCards = [
   {
@@ -23,6 +27,8 @@ const featureCards = [
 ];
 
 export default function Home() {
+  const [isPracticeOpen, setIsPracticeOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-[#1f1f1d] px-4 py-5 text-zinc-50 sm:px-6 lg:px-10">
       <div className="mx-auto flex min-h-[calc(100vh-2.5rem)] w-full max-w-[1240px] flex-col">
@@ -61,6 +67,7 @@ export default function Home() {
 
           <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
             <Button
+              onClick={() => setIsPracticeOpen(true)}
               variant="secondary"
               className="h-11 rounded-lg border-white/15 bg-transparent px-5 text-[15px] font-bold text-white hover:bg-white/10"
             >
@@ -118,7 +125,10 @@ export default function Home() {
                 </div>
               </div>
 
-              <Button className="h-12 rounded-xl px-7 text-[15px] font-bold">
+              <Button
+                className="h-12 rounded-xl px-7 text-[15px] font-bold"
+                onClick={() => setIsPracticeOpen(true)}
+              >
                 <PlayIcon />
                 Start interview
               </Button>
@@ -126,7 +136,52 @@ export default function Home() {
           </Card>
         </section>
       </div>
+
+      {isPracticeOpen ? (
+        <PracticeWorkspace onClose={() => setIsPracticeOpen(false)} />
+      ) : null}
     </main>
+  );
+}
+
+function PracticeWorkspace({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 bg-[#0b0b0b] text-zinc-50">
+      <div className="relative z-30 flex h-12 items-center justify-between border-b border-white/10 bg-[#181817]/95 px-4 backdrop-blur">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex size-7 items-center justify-center rounded-lg bg-black text-[11px] font-bold">
+            AI
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-bold leading-none">Two Sum Interview</p>
+            <p className="mt-1 truncate text-xs font-medium text-zinc-500">
+              leetcode.com/problems/two-sum
+            </p>
+          </div>
+        </div>
+
+        <Button
+          variant="secondary"
+          className="h-8 rounded-lg border-white/15 bg-transparent px-3 text-xs text-white"
+          onClick={onClose}
+        >
+          Exit
+        </Button>
+      </div>
+
+      <iframe
+        className="absolute inset-x-0 bottom-0 top-12 size-full h-[calc(100%-3rem)] border-0 bg-white"
+        src="https://leetcode.com/problems/two-sum/"
+        title="LeetCode Two Sum"
+      />
+
+      <div
+        className="absolute right-5 top-20 z-40 animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_420ms_both]"
+        aria-label="DSA interviewer overlay"
+      >
+        <Overlay onClose={onClose} />
+      </div>
+    </div>
   );
 }
 

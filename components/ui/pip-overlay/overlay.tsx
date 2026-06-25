@@ -2,12 +2,9 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function Overlay(){
-
-    return(
-        <main className="min-h-screen bg-[#151515] text-zinc-50">
-        <section className="flex min-h-screen items-center justify-center bg-[radial-gradient(circle_at_center,#242424_0,#151515_55%,#080808_100%)] p-4">
-          <div className="w-[352px] rounded-[1.45rem] border border-white/10 bg-[#171717] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
+export default function Overlay({ onClose }: { onClose?: () => void }) {
+    return (
+          <div className="w-[352px] rounded-[1.45rem] border border-white/10 bg-[#171717] p-3 text-zinc-50 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
             <div className="mb-3 flex items-center gap-3 px-1">
               <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500">
                 Pip Overlay
@@ -59,7 +56,7 @@ export default function Overlay(){
                     <BulbIcon />
                     Hint
                   </Button>
-                  <Button>
+                  <Button onClick={onClose}>
                     <StopIcon />
                     End
                   </Button>
@@ -67,8 +64,6 @@ export default function Overlay(){
               </CardContent>
             </Card>
           </div>
-        </section>
-      </main>
     );
   }
   
