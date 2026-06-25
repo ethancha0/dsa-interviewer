@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Overlay from "@/components/ui/pip-overlay/overlay";
-import { useState } from "react";
+import { type PointerEvent, useRef, useState } from "react";
 
 const featureCards = [
   {
@@ -25,6 +25,11 @@ const featureCards = [
     icon: ChartIcon,
   },
 ];
+
+type DragPosition = {
+  x: number;
+  y: number;
+};
 
 export default function Home() {
   const [isPracticeOpen, setIsPracticeOpen] = useState(false);
@@ -145,39 +150,95 @@ export default function Home() {
 }
 
 function PracticeWorkspace({ onClose }: { onClose: () => void }) {
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+  const dragOffsetRef = useRef<DragPosition>({ x: 0, y: 0 });
+  const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
+    null,
+  );
+
+  function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
+    if ((event.target as HTMLElement).closest("button")) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+
+    dragOffsetRef.current = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    };
+
+    setOverlayPosition({ x: rect.left, y: rect.top });
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function handleOverlayPointerMove(event: PointerEvent<HTMLDivElement>) {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const margin = 16;
+    const maxX = window.innerWidth - rect.width - margin;
+    const maxY = window.innerHeight - rect.height - margin;
+
+    setOverlayPosition({
+      x: Math.min(Math.max(event.clientX - dragOffsetRef.current.x, margin), maxX),
+      y: Math.min(Math.max(event.clientY - dragOffsetRef.current.y, margin), maxY),
+    });
+  }
+
+  function handleOverlayPointerUp(event: PointerEvent<HTMLDivElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  }
+
   return (
-    <div className="fixed inset-0 z-50 bg-[#0b0b0b] text-zinc-50">
-      <div className="relative z-30 flex h-12 items-center justify-between border-b border-white/10 bg-[#181817]/95 px-4 backdrop-blur">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="flex size-7 items-center justify-center rounded-lg bg-black text-[11px] font-bold">
-            AI
+    <div className="fixed inset-0 z-50 bg-zinc-500/35 p-3 text-zinc-50 backdrop-blur-[2px] sm:p-6 lg:p-8">
+      <div className="relative h-full overflow-hidden rounded-[1.35rem] border border-white/15 bg-[#0b0b0b] shadow-[0_32px_120px_rgba(0,0,0,0.55)]">
+        <div className="relative z-30 flex h-12 items-center justify-between border-b border-white/10 bg-[#181817]/95 px-4 backdrop-blur">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex size-7 items-center justify-center rounded-lg bg-black text-[11px] font-bold">
+              AI
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-bold leading-none">Two Sum Interview</p>
+              <p className="mt-1 truncate text-xs font-medium text-zinc-500">
+                leetcode.com/problems/two-sum
+              </p>
+            </div>
           </div>
-          <div className="min-w-0">
-            <p className="text-sm font-bold leading-none">Two Sum Interview</p>
-            <p className="mt-1 truncate text-xs font-medium text-zinc-500">
-              leetcode.com/problems/two-sum
-            </p>
-          </div>
+
+          <Button
+            variant="secondary"
+            className="h-8 rounded-lg border-white/15 bg-transparent px-3 text-xs text-white"
+            onClick={onClose}
+          >
+            Exit
+          </Button>
         </div>
 
-        <Button
-          variant="secondary"
-          className="h-8 rounded-lg border-white/15 bg-transparent px-3 text-xs text-white"
-          onClick={onClose}
-        >
-          Exit
-        </Button>
+        <iframe
+          className="absolute inset-x-0 bottom-0 top-12 h-[calc(100%-3rem)] w-full border-0 bg-white"
+          src="https://leetcode.com/problems/two-sum/"
+          title="LeetCode Two Sum"
+        />
       </div>
 
-      <iframe
-        className="absolute inset-x-0 bottom-0 top-12 size-full h-[calc(100%-3rem)] border-0 bg-white"
-        src="https://leetcode.com/problems/two-sum/"
-        title="LeetCode Two Sum"
-      />
-
       <div
-        className="absolute right-5 top-20 z-40 animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_420ms_both]"
+        ref={overlayRef}
+        className="absolute z-40 touch-none cursor-grab animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_420ms_both] active:cursor-grabbing"
+        style={
+          overlayPosition
+            ? { left: overlayPosition.x, top: overlayPosition.y }
+            : { right: "2rem", top: "6rem" }
+        }
         aria-label="DSA interviewer overlay"
+        onPointerDown={handleOverlayPointerDown}
+        onPointerMove={handleOverlayPointerMove}
+        onPointerUp={handleOverlayPointerUp}
+        onPointerCancel={handleOverlayPointerUp}
       >
         <Overlay onClose={onClose} />
       </div>
@@ -186,6 +247,70 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
 }
 
 function DemoWindow() {
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const dragOffsetRef = useRef<DragPosition>({ x: 0, y: 0 });
+  const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
+    null,
+  );
+
+  function handleDemoOverlayPointerDown(event: PointerEvent<HTMLElement>) {
+    if ((event.target as HTMLElement).closest("button")) {
+      return;
+    }
+
+    const stageRect = stageRef.current?.getBoundingClientRect();
+    const overlayRect = event.currentTarget.getBoundingClientRect();
+
+    if (!stageRect) {
+      return;
+    }
+
+    dragOffsetRef.current = {
+      x: event.clientX - overlayRect.left,
+      y: event.clientY - overlayRect.top,
+    };
+
+    setOverlayPosition({
+      x: overlayRect.left - stageRect.left,
+      y: overlayRect.top - stageRect.top,
+    });
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function handleDemoOverlayPointerMove(event: PointerEvent<HTMLElement>) {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
+      return;
+    }
+
+    const stageRect = stageRef.current?.getBoundingClientRect();
+    const overlayRect = event.currentTarget.getBoundingClientRect();
+
+    if (!stageRect) {
+      return;
+    }
+
+    const margin = 12;
+    const maxX = stageRect.width - overlayRect.width - margin;
+    const maxY = stageRect.height - overlayRect.height - margin;
+
+    setOverlayPosition({
+      x: Math.min(
+        Math.max(event.clientX - stageRect.left - dragOffsetRef.current.x, margin),
+        maxX,
+      ),
+      y: Math.min(
+        Math.max(event.clientY - stageRect.top - dragOffsetRef.current.y, margin),
+        maxY,
+      ),
+    });
+  }
+
+  function handleDemoOverlayPointerUp(event: PointerEvent<HTMLElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  }
+
   return (
     <Card
       className="mt-5 w-full overflow-hidden rounded-2xl border-white/15 bg-[#282826] shadow-[0_28px_90px_rgba(0,0,0,0.35)]"
@@ -200,6 +325,7 @@ function DemoWindow() {
       </div>
 
       <div
+        ref={stageRef}
         className="relative min-h-[360px] overflow-hidden bg-[#0b0b0b] text-left sm:min-h-[520px]"
         style={{
           animation: "demo-stage-enter 820ms cubic-bezier(.16,1,.3,1) both",
@@ -218,11 +344,23 @@ function DemoWindow() {
         <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 
         <aside
-          className="absolute bottom-5 left-5 right-5 z-20 rounded-2xl border border-white/10 bg-[#10100f]/95 p-5 text-left shadow-[0_24px_70px_rgba(0,0,0,0.55)] backdrop-blur md:left-auto md:top-7 md:right-7 md:bottom-auto md:w-[350px] md:p-6"
+          className="absolute bottom-5 left-5 right-5 z-20 w-[calc(100%-2.5rem)] touch-none cursor-grab rounded-2xl border border-white/10 bg-[#10100f]/95 p-5 text-left shadow-[0_24px_70px_rgba(0,0,0,0.55)] backdrop-blur active:cursor-grabbing md:left-auto md:top-7 md:right-7 md:bottom-auto md:w-[350px] md:p-6"
           style={{
             animation:
               "interviewer-overlay-enter 760ms cubic-bezier(.16,1,.3,1) 620ms both",
+            ...(overlayPosition
+              ? {
+                  bottom: "auto",
+                  left: overlayPosition.x,
+                  right: "auto",
+                  top: overlayPosition.y,
+                }
+              : null),
           }}
+          onPointerDown={handleDemoOverlayPointerDown}
+          onPointerMove={handleDemoOverlayPointerMove}
+          onPointerUp={handleDemoOverlayPointerUp}
+          onPointerCancel={handleDemoOverlayPointerUp}
         >
           <div className="mb-5 flex items-start justify-between">
             <div className="flex items-center gap-3">
