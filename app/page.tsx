@@ -132,57 +132,43 @@ export default function Home() {
 
 function DemoWindow() {
   return (
-    <Card className="mt-5 w-full overflow-hidden rounded-2xl border-white/15 bg-[#282826] shadow-none">
-      <div className="flex h-9 items-center gap-2 border-b border-white/10 px-5">
+    <Card
+      className="mt-5 w-full overflow-hidden rounded-2xl border-white/15 bg-[#282826] shadow-[0_28px_90px_rgba(0,0,0,0.35)]"
+    >
+      <div className="relative z-30 flex h-9 items-center gap-2 border-b border-white/10 bg-[#282826] px-5">
         <span className="size-3 rounded-full bg-[#ff7b7b]" />
         <span className="size-3 rounded-full bg-[#ffd36b]" />
         <span className="size-3 rounded-full bg-[#a7e079]" />
         <div className="ml-2 flex-1 rounded-md border border-white/10 bg-[#33332f] px-4 py-1 text-left font-mono text-[12px] text-zinc-500">
-          dsa-interviewer.vercel.app/interview/two-sum
+          leetcode.com/problems/two-sum
         </div>
       </div>
 
-      <div className="grid min-h-[325px] lg:grid-cols-[1fr_410px]">
-        <div className="p-6 text-left">
-          <div className="mb-6 flex items-center justify-between gap-3">
-            <h2 className="text-lg font-bold text-white">Two Sum</h2>
-            <div className="flex rounded-full bg-[#111110] p-1 text-[11px] font-bold">
-              <span className="rounded-full bg-white px-4 py-1.5 text-black">
-                Understand
-              </span>
-              <span className="px-4 py-1.5 text-zinc-300">Code</span>
-              <span className="px-4 py-1.5 text-zinc-600">Optimize</span>
-            </div>
-          </div>
+      <div
+        className="relative min-h-[360px] overflow-hidden bg-[#0b0b0b] text-left sm:min-h-[520px]"
+        style={{
+          animation: "demo-stage-enter 820ms cubic-bezier(.16,1,.3,1) both",
+        }}
+      >
+        <video
+          autoPlay
+          className="absolute inset-0 size-full object-cover object-[50%_18%]"
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          src="/two-sum-demo.mov"
+        />
+        <div className="absolute inset-0 bg-linear-to-r from-black/5 via-transparent to-black/45" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 
-          <div className="rounded-xl bg-[#1c1c1b] p-4 text-sm font-medium leading-6 text-zinc-100">
-            Given an array <InlineCode>nums</InlineCode> and integer{" "}
-            <InlineCode>target</InlineCode>, return indices of two numbers that
-            add up to <InlineCode>target</InlineCode>. Each input has exactly one
-            solution.
-          </div>
-
-          <pre className="mt-4 overflow-hidden rounded-xl bg-[#10100f] p-5 text-left font-mono text-sm leading-6 text-zinc-100">
-            <code>
-              <span className="text-lime-500">
-                # Two Sum — hash map approach
-              </span>
-              {"\n"}
-              <span className="text-violet-300">def</span>{" "}
-              <span className="text-white">twoSum</span>(nums, target):
-              {"\n"}
-              {"  "}seen = {"{}"}{" "}
-              <span className="text-lime-500"># for i, n in enumerate(nums):</span>
-              {"\n"}
-              {"  "}diff = target - n{" "}
-              <span className="text-lime-500"># diff in seen: return</span>
-              {"\n"}
-              {"  "}[seen[diff], i] seen[n] = i
-            </code>
-          </pre>
-        </div>
-
-        <aside className="border-t border-white/10 bg-[#10100f] p-6 text-left lg:border-l lg:border-t-0">
+        <aside
+          className="absolute bottom-5 left-5 right-5 z-20 rounded-2xl border border-white/10 bg-[#10100f]/95 p-5 text-left shadow-[0_24px_70px_rgba(0,0,0,0.55)] backdrop-blur md:left-auto md:top-7 md:right-7 md:bottom-auto md:w-[350px] md:p-6"
+          style={{
+            animation:
+              "interviewer-overlay-enter 760ms cubic-bezier(.16,1,.3,1) 620ms both",
+          }}
+        >
           <div className="mb-5 flex items-start justify-between">
             <div className="flex items-center gap-3">
               <Avatar className="size-11">
@@ -201,8 +187,8 @@ function DemoWindow() {
           </div>
 
           <blockquote className="rounded-xl bg-[#1c1c1b] p-4 text-sm font-semibold leading-6 text-zinc-200">
-            “Walk me through what you’re storing in{" "}
-            <InlineCode>seen</InlineCode> and why.”
+            “I can see you’re working through Two Sum. Walk me through what
+            you’re storing in <InlineCode>seen</InlineCode> and why.”
           </blockquote>
 
           <p className="mt-5 text-sm font-medium italic leading-6 text-zinc-500">
