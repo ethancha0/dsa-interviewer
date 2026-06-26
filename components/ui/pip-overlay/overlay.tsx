@@ -2,7 +2,23 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function Overlay({ onClose }: { onClose?: () => void }) {
+type OverlayProps = {
+  isListening?: boolean;
+  onClose?: () => void;
+  onStartListening?: () => void;
+  onStopListening?: () => void;
+  transcript?: string;
+  transcriptStatus?: string;
+};
+
+export default function Overlay({
+  isListening = false,
+  onClose,
+  onStartListening,
+  onStopListening,
+  transcript,
+  transcriptStatus = "Mic off",
+}: OverlayProps) {
     return (
           <div className="w-[352px] rounded-[1.45rem] border border-white/10 bg-[#171717] p-3 text-zinc-50 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
             <div className="mb-3 flex items-center gap-3 px-1">
@@ -39,7 +55,19 @@ export default function Overlay({ onClose }: { onClose?: () => void }) {
                   </time>
                 </div>
   
-                <AudioBars />
+                <div className="mt-6 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-xs font-medium text-zinc-500">
+                    <AudioBars isActive={isListening} />
+                    {transcriptStatus}
+                  </div>
+                  <Button
+                    variant="secondary"
+                    className="h-8 rounded-lg px-3 text-xs"
+                    onClick={isListening ? onStopListening : onStartListening}
+                  >
+                    {isListening ? "Stop mic" : "Start mic"}
+                  </Button>
+                </div>
   
                 <blockquote className="mt-4 rounded-xl bg-[#202020] px-4 py-3 text-[15px] font-semibold leading-6 text-zinc-200 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]">
                   “I can see you’re iterating through the array. Can you walk me
@@ -47,8 +75,7 @@ export default function Overlay({ onClose }: { onClose?: () => void }) {
                 </blockquote>
   
                 <p className="mt-4 text-[14px] font-medium italic leading-6 text-zinc-500">
-                  You: “I&apos;m using a hash map to store values I&apos;ve already seen
-                  so I can look up the complement in O(1)...”
+                  You: “{transcript || "Click Start mic and answer out loud."}”
                 </p>
   
                 <div className="mt-4 grid grid-cols-2 gap-3">
@@ -67,14 +94,17 @@ export default function Overlay({ onClose }: { onClose?: () => void }) {
     );
   }
   
-  function AudioBars() {
+  function AudioBars({ isActive }: { isActive: boolean }) {
     const bars = [10, 10, 10, 10, 10, 10, 10, 10];
   
     return (
-      <div className="mt-6 flex h-3 items-center gap-1" aria-label="Speaking">
+      <div className="flex h-3 items-center gap-1" aria-label="Speaking">
         {bars.map((height, index) => (
           <span
-            className="w-1 rounded-full bg-lime-500 shadow-[0_0_10px_rgba(132,204,22,0.25)]"
+            className={[
+              "w-1 rounded-full shadow-[0_0_10px_rgba(132,204,22,0.25)]",
+              isActive ? "bg-lime-500" : "bg-zinc-700",
+            ].join(" ")}
             style={{ height }}
             key={index}
           />

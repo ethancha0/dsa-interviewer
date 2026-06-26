@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Overlay from "@/components/ui/pip-overlay/overlay";
-import { type PointerEvent, useRef, useState } from "react";
+import { type PointerEvent, useEffect, useRef, useState } from "react";
 
 const featureCards = [
   {
@@ -155,6 +155,7 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
     null,
   );
+  const transcript = useElevenLabsTranscript();
 
   function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
     if ((event.target as HTMLElement).closest("button")) {
@@ -240,7 +241,14 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
         onPointerUp={handleOverlayPointerUp}
         onPointerCancel={handleOverlayPointerUp}
       >
-        <Overlay onClose={onClose} />
+        <Overlay
+          onClose={onClose}
+          transcript={transcript.text}
+          transcriptStatus={transcript.status}
+          isListening={transcript.isListening}
+          onStartListening={transcript.start}
+          onStopListening={transcript.stop}
+        />
       </div>
     </div>
   );
@@ -252,6 +260,7 @@ function DemoWindow() {
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
     null,
   );
+  const transcript = useElevenLabsTranscript();
 
   function handleDemoOverlayPointerDown(event: PointerEvent<HTMLElement>) {
     if ((event.target as HTMLElement).closest("button")) {
@@ -385,13 +394,24 @@ function DemoWindow() {
           </blockquote>
 
           <p className="mt-5 text-sm font-medium italic leading-6 text-zinc-500">
-            You: “I’m storing each value I’ve seen so I can check if the
-            complement already exists in O(1)...”
+            You: “{transcript.text || "Click Start mic and answer out loud."}”
           </p>
 
-          <div className="mt-5 flex items-center gap-2 text-xs font-medium text-zinc-500">
-            <AudioBars />
-            listening...
+          <div className="mt-5 flex items-center justify-between gap-3 text-xs font-medium text-zinc-500">
+            <div className="flex items-center gap-2">
+              <AudioBars isActive={transcript.isListening} />
+              {transcript.status}
+            </div>
+            <Button
+              variant="secondary"
+              className="h-8 rounded-lg border-white/10 bg-[#191917] px-3 text-xs text-zinc-400"
+              onClick={
+                transcript.isListening ? transcript.stop : transcript.start
+              }
+            >
+              <MicIcon />
+              {transcript.isListening ? "Stop mic" : "Start mic"}
+            </Button>
           </div>
 
           <div className="mt-20 grid grid-cols-2 gap-3">
@@ -411,6 +431,148 @@ function DemoWindow() {
       </div>
     </Card>
   );
+}
+
+function useElevenLabsTranscript() {
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const segmentTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const shouldContinueRecordingRef = useRef(false);
+  const streamRef = useRef<MediaStream | null>(null);
+  const [text, setText] = useState("");
+  const [status, setStatus] = useState("Mic off");
+  const [isListening, setIsListening] = useState(false);
+
+  async function transcribeAudio(audio: Blob) {
+    const formData = new FormData();
+
+    formData.append("audio", audio, "speech.webm");
+    setStatus("Transcribing...");
+
+    const response = await fetch("/api/transcribe", {
+      method: "POST",
+      body: formData,
+    });
+    const payload = await response.json();
+
+    if (!response.ok) {
+      throw new Error(payload.error ?? "Transcription failed.");
+    }
+
+    const nextText = String(payload.text ?? "").trim();
+
+    if (nextText) {
+      setText((currentText) =>
+        currentText ? `${currentText} ${nextText}` : nextText,
+      );
+    }
+
+    setStatus(shouldContinueRecordingRef.current ? "Listening..." : "Mic off");
+  }
+
+  function startRecordingSegment(stream: MediaStream, mimeType: string) {
+    const chunks: Blob[] = [];
+    const mediaRecorder = new MediaRecorder(stream, { mimeType });
+
+    mediaRecorderRef.current = mediaRecorder;
+
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      if (event.data.size > 0) {
+        chunks.push(event.data);
+      }
+    });
+
+    mediaRecorder.addEventListener(
+      "stop",
+      () => {
+        if (segmentTimeoutRef.current) {
+          clearTimeout(segmentTimeoutRef.current);
+          segmentTimeoutRef.current = null;
+        }
+
+        const blob = new Blob(chunks, { type: mimeType });
+
+        if (blob.size > 0) {
+          transcribeAudio(blob).catch((error) => {
+            setStatus(error instanceof Error ? error.message : "Mic error");
+          });
+        }
+
+        if (shouldContinueRecordingRef.current && stream.active) {
+          startRecordingSegment(stream, mimeType);
+          return;
+        }
+
+        stream.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+        mediaRecorderRef.current = null;
+        setIsListening(false);
+      },
+      { once: true },
+    );
+
+    mediaRecorder.start();
+    segmentTimeoutRef.current = setTimeout(() => {
+      if (mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+      }
+    }, 4000);
+  }
+
+  async function start() {
+    if (shouldContinueRecordingRef.current) {
+      return;
+    }
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+        ? "audio/webm;codecs=opus"
+        : "audio/webm";
+
+      streamRef.current = stream;
+      shouldContinueRecordingRef.current = true;
+      setIsListening(true);
+      setStatus("Listening...");
+
+      startRecordingSegment(stream, mimeType);
+    } catch (error) {
+      setStatus(
+        error instanceof Error ? error.message : "Unable to access microphone.",
+      );
+      setIsListening(false);
+    }
+  }
+
+  function stop() {
+    shouldContinueRecordingRef.current = false;
+
+    if (segmentTimeoutRef.current) {
+      clearTimeout(segmentTimeoutRef.current);
+      segmentTimeoutRef.current = null;
+    }
+
+    if (mediaRecorderRef.current?.state === "recording") {
+      mediaRecorderRef.current.stop();
+    } else {
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+      mediaRecorderRef.current = null;
+      setIsListening(false);
+    }
+
+    setIsListening(false);
+    setStatus("Mic off");
+  }
+
+  useEffect(() => stop, []);
+
+  return {
+    isListening,
+    start,
+    status,
+    stop,
+    text,
+  };
 }
 
 function Badge({
@@ -438,13 +600,16 @@ function InlineCode({ children }: { children: React.ReactNode }) {
   );
 }
 
-function AudioBars() {
+function AudioBars({ isActive = true }: { isActive?: boolean }) {
   return (
     <div className="flex h-3 items-center gap-1" aria-label="Listening">
       {[8, 11, 6, 12, 9].map((height, index) => (
         <span
           key={index}
-          className="w-1 rounded-full bg-lime-500 shadow-[0_0_10px_rgba(132,204,22,0.3)]"
+          className={[
+            "w-1 rounded-full shadow-[0_0_10px_rgba(132,204,22,0.3)]",
+            isActive ? "bg-lime-500" : "bg-zinc-700",
+          ].join(" ")}
           style={{ height }}
         />
       ))}
