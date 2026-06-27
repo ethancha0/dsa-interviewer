@@ -243,6 +243,7 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
         onPointerCancel={handleOverlayPointerUp}
       >
         <Overlay
+          audioLevel={transcript.audioLevel}
           interviewerResponse={interviewer.text}
           interviewerStatus={interviewer.status}
           onClose={onClose}
@@ -437,10 +438,16 @@ function DemoWindow() {
 }
 
 function useElevenLabsTranscript() {
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const audioSourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
+  const frequencyDataRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const meterAnimationRef = useRef<number | null>(null);
   const segmentTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldContinueRecordingRef = useRef(false);
   const streamRef = useRef<MediaStream | null>(null);
+  const [audioLevel, setAudioLevel] = useState(0);
   const [text, setText] = useState("");
   const [status, setStatus] = useState("Mic off");
   const [isListening, setIsListening] = useState(false);
@@ -521,6 +528,76 @@ function useElevenLabsTranscript() {
     }, 4000);
   }
 
+  function startAudioMeter(stream: MediaStream) {
+    const AudioContextConstructor =
+      window.AudioContext ||
+      (window as typeof window & {
+        webkitAudioContext?: typeof AudioContext;
+      }).webkitAudioContext;
+
+    if (!AudioContextConstructor) {
+      return;
+    }
+
+    const audioContext = new AudioContextConstructor();
+    const analyser = audioContext.createAnalyser();
+    const audioSource = audioContext.createMediaStreamSource(stream);
+
+    analyser.fftSize = 256;
+    analyser.smoothingTimeConstant = 0.75;
+    audioSource.connect(analyser);
+
+    audioContextRef.current = audioContext;
+    analyserRef.current = analyser;
+    audioSourceRef.current = audioSource;
+    frequencyDataRef.current = new Uint8Array(analyser.frequencyBinCount);
+
+    updateAudioMeter();
+  }
+
+  function updateAudioMeter() {
+    const analyser = analyserRef.current;
+    const frequencyData = frequencyDataRef.current;
+
+    if (!analyser || !frequencyData) {
+      return;
+    }
+
+    analyser.getByteFrequencyData(frequencyData);
+
+    const lowBinCount = Math.max(1, Math.floor(frequencyData.length * 0.35));
+    const totalEnergy =
+      frequencyData.reduce((total, value) => total + value, 0) /
+      frequencyData.length;
+    const higherFrequencyEnergy =
+      frequencyData
+        .slice(lowBinCount)
+        .reduce((total, value) => total + value, 0) /
+      (frequencyData.length - lowBinCount);
+    const normalizedLevel = Math.min(
+      1,
+      Math.max(0, (totalEnergy * 0.7 + higherFrequencyEnergy * 0.3) / 95),
+    );
+
+    setAudioLevel(normalizedLevel);
+    meterAnimationRef.current = requestAnimationFrame(updateAudioMeter);
+  }
+
+  function stopAudioMeter() {
+    if (meterAnimationRef.current) {
+      cancelAnimationFrame(meterAnimationRef.current);
+      meterAnimationRef.current = null;
+    }
+
+    audioSourceRef.current?.disconnect();
+    audioContextRef.current?.close().catch(() => null);
+    audioSourceRef.current = null;
+    audioContextRef.current = null;
+    analyserRef.current = null;
+    frequencyDataRef.current = null;
+    setAudioLevel(0);
+  }
+
   async function start() {
     if (shouldContinueRecordingRef.current) {
       return;
@@ -537,12 +614,14 @@ function useElevenLabsTranscript() {
       setIsListening(true);
       setStatus("Listening...");
 
+      startAudioMeter(stream);
       startRecordingSegment(stream, mimeType);
     } catch (error) {
       setStatus(
         error instanceof Error ? error.message : "Unable to access microphone.",
       );
       setIsListening(false);
+      stopAudioMeter();
     }
   }
 
@@ -563,13 +642,44 @@ function useElevenLabsTranscript() {
       setIsListening(false);
     }
 
+    stopAudioMeter();
     setIsListening(false);
     setStatus("Mic off");
   }
 
-  useEffect(() => stop, []);
+  useEffect(() => {
+    return () => {
+      shouldContinueRecordingRef.current = false;
+
+      if (segmentTimeoutRef.current) {
+        clearTimeout(segmentTimeoutRef.current);
+        segmentTimeoutRef.current = null;
+      }
+
+      if (mediaRecorderRef.current?.state === "recording") {
+        mediaRecorderRef.current.stop();
+      } else {
+        streamRef.current?.getTracks().forEach((track) => track.stop());
+      }
+
+      if (meterAnimationRef.current) {
+        cancelAnimationFrame(meterAnimationRef.current);
+        meterAnimationRef.current = null;
+      }
+
+      audioSourceRef.current?.disconnect();
+      audioContextRef.current?.close().catch(() => null);
+      streamRef.current = null;
+      mediaRecorderRef.current = null;
+      audioSourceRef.current = null;
+      audioContextRef.current = null;
+      analyserRef.current = null;
+      frequencyDataRef.current = null;
+    };
+  }, []);
 
   return {
+    audioLevel,
     isListening,
     start,
     status,

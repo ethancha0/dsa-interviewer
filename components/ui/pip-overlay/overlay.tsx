@@ -1,8 +1,10 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 type OverlayProps = {
+  audioLevel?: number;
   interviewerResponse?: string;
   interviewerStatus?: string;
   isListening?: boolean;
@@ -14,6 +16,7 @@ type OverlayProps = {
 };
 
 export default function Overlay({
+  audioLevel = 0,
   interviewerResponse = "I can see you’re iterating through the array. Can you walk me through what you’re storing in that dictionary and why?",
   interviewerStatus = "Ready",
   isListening = false,
@@ -23,6 +26,8 @@ export default function Overlay({
   transcript,
   transcriptStatus = "Mic off",
 }: OverlayProps) {
+    const elapsedTime = useElapsedTime();
+
     return (
           <div className="w-[352px] rounded-[1.45rem] border border-white/10 bg-[#171717] p-3 text-zinc-50 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
             <div className="mb-3 flex items-center gap-3 px-1">
@@ -55,13 +60,13 @@ export default function Overlay({
                   </div>
   
                   <time className="pt-2 text-base font-bold text-zinc-400">
-                    32:14
+                    {elapsedTime}
                   </time>
                 </div>
   
                 <div className="mt-6 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2 text-xs font-medium text-zinc-500">
-                    <AudioBars isActive={isListening} />
+                    <AudioBars isActive={isListening} level={audioLevel} />
                     {transcriptStatus}
                   </div>
                   <Button
@@ -97,8 +102,34 @@ export default function Overlay({
     );
   }
   
-  function AudioBars({ isActive }: { isActive: boolean }) {
-    const bars = [10, 10, 10, 10, 10, 10, 10, 10];
+  function useElapsedTime() {
+    const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setElapsedSeconds((seconds) => seconds + 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }, []);
+
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+  
+  function AudioBars({
+    isActive,
+    level,
+  }: {
+    isActive: boolean;
+    level: number;
+  }) {
+    const bars = [5, 7, 9, 11, 12, 10, 8, 6];
+    const activeBars = isActive
+      ? Math.min(bars.length, Math.max(1, Math.ceil(level * bars.length)))
+      : 0;
   
     return (
       <div className="flex h-3 items-center gap-1" aria-label="Speaking">
@@ -106,7 +137,7 @@ export default function Overlay({
           <span
             className={[
               "w-1 rounded-full shadow-[0_0_10px_rgba(132,204,22,0.25)]",
-              isActive ? "bg-lime-500" : "bg-zinc-700",
+              index < activeBars ? "bg-lime-500" : "bg-zinc-700",
             ].join(" ")}
             style={{ height }}
             key={index}
