@@ -31,6 +31,9 @@ type DragPosition = {
   y: number;
 };
 
+const INITIAL_INTERVIEWER_RESPONSE =
+  "Start talking through your approach and I’ll ask follow-up questions.";
+
 export default function Home() {
   const [isPracticeOpen, setIsPracticeOpen] = useState(false);
 
@@ -155,8 +158,7 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
     null,
   );
-  const transcript = useElevenLabsTranscript();
-  const interviewer = useOpenAIInterviewResponse(transcript.text);
+  const interview = useRealtimeInterviewSession();
 
   function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
     if ((event.target as HTMLElement).closest("button")) {
@@ -243,15 +245,15 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
         onPointerCancel={handleOverlayPointerUp}
       >
         <Overlay
-          audioLevel={transcript.audioLevel}
-          interviewerResponse={interviewer.text}
-          interviewerStatus={interviewer.status}
+          audioLevel={interview.audioLevel}
+          interviewerResponse={interview.interviewerResponse}
+          interviewerStatus={interview.interviewerStatus}
           onClose={onClose}
-          transcript={transcript.text}
-          transcriptStatus={transcript.status}
-          isListening={transcript.isListening}
-          onStartListening={transcript.start}
-          onStopListening={transcript.stop}
+          transcript={interview.text}
+          transcriptStatus={interview.status}
+          isListening={interview.isListening}
+          onStartListening={interview.start}
+          onStopListening={interview.stop}
         />
       </div>
     </div>
@@ -264,7 +266,7 @@ function DemoWindow() {
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
     null,
   );
-  const transcript = useElevenLabsTranscript();
+  const transcript = useRealtimeInterviewSession();
 
   function handleDemoOverlayPointerDown(event: PointerEvent<HTMLElement>) {
     if ((event.target as HTMLElement).closest("button")) {
@@ -437,96 +439,27 @@ function DemoWindow() {
   );
 }
 
-function useElevenLabsTranscript() {
+function useRealtimeInterviewSession() {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioSourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
+  const dataChannelRef = useRef<RTCDataChannel | null>(null);
   const frequencyDataRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const meterAnimationRef = useRef<number | null>(null);
-  const segmentTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const shouldContinueRecordingRef = useRef(false);
+  const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
+  const remoteAudioRef = useRef<HTMLAudioElement | null>(null);
+  const committedTranscriptRef = useRef("");
+  const inputTranscriptRef = useRef("");
+  const responseTranscriptRef = useRef("");
   const streamRef = useRef<MediaStream | null>(null);
   const [audioLevel, setAudioLevel] = useState(0);
+  const [interviewerResponse, setInterviewerResponse] = useState(
+    INITIAL_INTERVIEWER_RESPONSE,
+  );
+  const [interviewerStatus, setInterviewerStatus] = useState("Ready");
   const [text, setText] = useState("");
   const [status, setStatus] = useState("Mic off");
   const [isListening, setIsListening] = useState(false);
-
-  async function transcribeAudio(audio: Blob) {
-    const formData = new FormData();
-
-    formData.append("audio", audio, "speech.webm");
-    setStatus("Transcribing...");
-
-    const response = await fetch("/api/transcribe", {
-      method: "POST",
-      body: formData,
-    });
-    const payload = await response.json();
-
-    if (!response.ok) {
-      throw new Error(payload.error ?? "Transcription failed.");
-    }
-
-    const nextText = String(payload.text ?? "").trim();
-
-    if (nextText) {
-      setText((currentText) =>
-        currentText ? `${currentText} ${nextText}` : nextText,
-      );
-    }
-
-    setStatus(shouldContinueRecordingRef.current ? "Listening..." : "Mic off");
-  }
-
-  function startRecordingSegment(stream: MediaStream, mimeType: string) {
-    const chunks: Blob[] = [];
-    const mediaRecorder = new MediaRecorder(stream, { mimeType });
-
-    mediaRecorderRef.current = mediaRecorder;
-
-    mediaRecorder.addEventListener("dataavailable", (event) => {
-      if (event.data.size > 0) {
-        chunks.push(event.data);
-      }
-    });
-
-    mediaRecorder.addEventListener(
-      "stop",
-      () => {
-        if (segmentTimeoutRef.current) {
-          clearTimeout(segmentTimeoutRef.current);
-          segmentTimeoutRef.current = null;
-        }
-
-        const blob = new Blob(chunks, { type: mimeType });
-
-        if (blob.size > 0) {
-          transcribeAudio(blob).catch((error) => {
-            setStatus(error instanceof Error ? error.message : "Mic error");
-          });
-        }
-
-        if (shouldContinueRecordingRef.current && stream.active) {
-          startRecordingSegment(stream, mimeType);
-          return;
-        }
-
-        stream.getTracks().forEach((track) => track.stop());
-        streamRef.current = null;
-        mediaRecorderRef.current = null;
-        setIsListening(false);
-      },
-      { once: true },
-    );
-
-    mediaRecorder.start();
-    segmentTimeoutRef.current = setTimeout(() => {
-      if (mediaRecorder.state === "recording") {
-        mediaRecorder.stop();
-      }
-    }, 4000);
-  }
 
   function startAudioMeter(stream: MediaStream) {
     const AudioContextConstructor =
@@ -598,69 +531,269 @@ function useElevenLabsTranscript() {
     setAudioLevel(0);
   }
 
+  function cleanupConnection() {
+    dataChannelRef.current?.close();
+    peerConnectionRef.current?.close();
+    remoteAudioRef.current?.pause();
+    streamRef.current?.getTracks().forEach((track) => track.stop());
+    stopAudioMeter();
+
+    dataChannelRef.current = null;
+    peerConnectionRef.current = null;
+    remoteAudioRef.current = null;
+    committedTranscriptRef.current = "";
+    inputTranscriptRef.current = "";
+    responseTranscriptRef.current = "";
+    streamRef.current = null;
+  }
+
+  function handleRealtimeEvent(event: unknown) {
+    if (!event || typeof event !== "object") {
+      return;
+    }
+
+    const eventType = getStringPayloadValue(event, "type");
+
+    if (!eventType) {
+      return;
+    }
+
+    if (eventType === "input_audio_buffer.speech_started") {
+      setStatus("Listening...");
+      setInterviewerStatus("Listening");
+      return;
+    }
+
+    if (eventType === "input_audio_buffer.speech_stopped") {
+      setStatus("Thinking...");
+      setInterviewerStatus("Thinking");
+      return;
+    }
+
+    if (eventType === "response.created") {
+      responseTranscriptRef.current = "";
+      setInterviewerStatus("Thinking");
+      return;
+    }
+
+    if (eventType === "response.audio_transcript.delta") {
+      const delta = getStringPayloadValue(event, "delta");
+
+      if (delta) {
+        responseTranscriptRef.current += delta;
+        setInterviewerResponse(responseTranscriptRef.current.trim());
+      }
+
+      setInterviewerStatus("Speaking");
+      return;
+    }
+
+    if (eventType === "response.audio_transcript.done") {
+      const transcript = getStringPayloadValue(event, "transcript");
+
+      if (transcript) {
+        responseTranscriptRef.current = transcript;
+        setInterviewerResponse(transcript);
+      }
+
+      setInterviewerStatus("Listening");
+      setStatus("Listening...");
+      return;
+    }
+
+    if (eventType === "response.output_text.delta") {
+      const delta = getStringPayloadValue(event, "delta");
+
+      if (delta) {
+        responseTranscriptRef.current += delta;
+        setInterviewerResponse(responseTranscriptRef.current.trim());
+      }
+
+      return;
+    }
+
+    if (eventType === "conversation.item.input_audio_transcription.delta") {
+      const delta = getStringPayloadValue(event, "delta");
+
+      if (delta) {
+        inputTranscriptRef.current += delta;
+        setText(
+          [committedTranscriptRef.current, inputTranscriptRef.current]
+            .filter(Boolean)
+            .join(" "),
+        );
+      }
+
+      return;
+    }
+
+    if (
+      eventType === "conversation.item.input_audio_transcription.completed" ||
+      eventType === "conversation.item.input_audio_transcription.done"
+    ) {
+      const transcript = getStringPayloadValue(event, "transcript");
+
+      if (transcript) {
+        committedTranscriptRef.current = committedTranscriptRef.current
+          ? `${committedTranscriptRef.current} ${transcript}`
+          : transcript;
+        inputTranscriptRef.current = "";
+        setText(committedTranscriptRef.current);
+      }
+
+      return;
+    }
+
+    if (eventType === "response.done") {
+      setInterviewerStatus("Listening");
+      setStatus("Listening...");
+      return;
+    }
+
+    if (eventType === "error") {
+      const error = "error" in event ? event.error : null;
+      const message =
+        error && typeof error === "object"
+          ? getStringPayloadValue(error, "message")
+          : null;
+
+      setStatus(message ?? "Realtime error");
+      setInterviewerStatus("Error");
+    }
+  }
+
   async function start() {
-    if (shouldContinueRecordingRef.current) {
+    if (peerConnectionRef.current) {
       return;
     }
 
     try {
+      setStatus("Connecting...");
+      setInterviewerStatus("Connecting");
+
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
-        ? "audio/webm;codecs=opus"
-        : "audio/webm";
+      const audioTrack = stream.getAudioTracks()[0];
+
+      if (!audioTrack) {
+        throw new Error("No microphone audio track was available.");
+      }
+
+      const sessionResponse = await fetch("/api/realtime/session", {
+        method: "POST",
+      });
+      const sessionPayload = await parseJsonResponse(sessionResponse);
+
+      if (!sessionResponse.ok) {
+        throw new Error(
+          getStringPayloadValue(sessionPayload, "error") ??
+            "Realtime session request failed.",
+        );
+      }
+
+      const clientSecret = getRealtimeClientSecret(sessionPayload);
+
+      if (!clientSecret) {
+        throw new Error("Realtime session response did not include a client secret.");
+      }
+
+      const peerConnection = new RTCPeerConnection();
+      const remoteAudio = new Audio();
+      const dataChannel = peerConnection.createDataChannel("oai-events");
+
+      remoteAudio.autoplay = true;
+      peerConnection.addTrack(audioTrack, stream);
+      peerConnection.addEventListener("track", (event) => {
+        remoteAudio.srcObject = event.streams[0];
+        remoteAudio.play().catch(() => null);
+      });
+
+      dataChannel.addEventListener("open", () => {
+        setStatus("Listening...");
+        setInterviewerStatus("Listening");
+        dataChannel.send(
+          JSON.stringify({
+            type: "response.create",
+            response: {
+              instructions:
+                "Briefly greet the candidate and ask them to start by explaining their Two Sum approach.",
+            },
+          }),
+        );
+      });
+
+      dataChannel.addEventListener("message", (messageEvent) => {
+        const realtimeEvent = parseRealtimeEvent(messageEvent.data);
+
+        if (realtimeEvent) {
+          handleRealtimeEvent(realtimeEvent);
+        }
+      });
+
+      dataChannel.addEventListener("close", () => {
+        setIsListening(false);
+        setStatus("Mic off");
+        setInterviewerStatus("Ready");
+      });
 
       streamRef.current = stream;
-      shouldContinueRecordingRef.current = true;
-      setIsListening(true);
-      setStatus("Listening...");
+      peerConnectionRef.current = peerConnection;
+      remoteAudioRef.current = remoteAudio;
+      dataChannelRef.current = dataChannel;
 
+      const offer = await peerConnection.createOffer();
+      const offerSdp = offer.sdp;
+
+      if (!offerSdp) {
+        throw new Error("Unable to create a WebRTC offer.");
+      }
+
+      await peerConnection.setLocalDescription(offer);
       startAudioMeter(stream);
-      startRecordingSegment(stream, mimeType);
+
+      const sdpResponse = await fetch("https://api.openai.com/v1/realtime/calls", {
+        method: "POST",
+        body: offerSdp,
+        headers: {
+          Authorization: `Bearer ${clientSecret}`,
+          "Content-Type": "application/sdp",
+        },
+      });
+
+      if (!sdpResponse.ok) {
+        throw new Error(
+          (await sdpResponse.text()) || "Realtime WebRTC connection failed.",
+        );
+      }
+
+      await peerConnection.setRemoteDescription({
+        type: "answer",
+        sdp: await sdpResponse.text(),
+      });
+
+      setIsListening(true);
     } catch (error) {
+      cleanupConnection();
       setStatus(
-        error instanceof Error ? error.message : "Unable to access microphone.",
+        error instanceof Error ? error.message : "Unable to start realtime audio.",
       );
+      setInterviewerStatus("Error");
       setIsListening(false);
-      stopAudioMeter();
     }
   }
 
   function stop() {
-    shouldContinueRecordingRef.current = false;
-
-    if (segmentTimeoutRef.current) {
-      clearTimeout(segmentTimeoutRef.current);
-      segmentTimeoutRef.current = null;
-    }
-
-    if (mediaRecorderRef.current?.state === "recording") {
-      mediaRecorderRef.current.stop();
-    } else {
-      streamRef.current?.getTracks().forEach((track) => track.stop());
-      streamRef.current = null;
-      mediaRecorderRef.current = null;
-      setIsListening(false);
-    }
-
-    stopAudioMeter();
+    cleanupConnection();
     setIsListening(false);
     setStatus("Mic off");
+    setInterviewerStatus("Ready");
   }
 
   useEffect(() => {
     return () => {
-      shouldContinueRecordingRef.current = false;
-
-      if (segmentTimeoutRef.current) {
-        clearTimeout(segmentTimeoutRef.current);
-        segmentTimeoutRef.current = null;
-      }
-
-      if (mediaRecorderRef.current?.state === "recording") {
-        mediaRecorderRef.current.stop();
-      } else {
-        streamRef.current?.getTracks().forEach((track) => track.stop());
-      }
+      dataChannelRef.current?.close();
+      peerConnectionRef.current?.close();
+      remoteAudioRef.current?.pause();
+      streamRef.current?.getTracks().forEach((track) => track.stop());
 
       if (meterAnimationRef.current) {
         cancelAnimationFrame(meterAnimationRef.current);
@@ -669,8 +802,13 @@ function useElevenLabsTranscript() {
 
       audioSourceRef.current?.disconnect();
       audioContextRef.current?.close().catch(() => null);
+      dataChannelRef.current = null;
+      peerConnectionRef.current = null;
+      remoteAudioRef.current = null;
+      committedTranscriptRef.current = "";
+      inputTranscriptRef.current = "";
+      responseTranscriptRef.current = "";
       streamRef.current = null;
-      mediaRecorderRef.current = null;
       audioSourceRef.current = null;
       audioContextRef.current = null;
       analyserRef.current = null;
@@ -680,6 +818,8 @@ function useElevenLabsTranscript() {
 
   return {
     audioLevel,
+    interviewerResponse,
+    interviewerStatus,
     isListening,
     start,
     status,
@@ -688,66 +828,40 @@ function useElevenLabsTranscript() {
   };
 }
 
-function useOpenAIInterviewResponse(transcriptText: string) {
-  const lastSubmittedTranscriptRef = useRef("");
-  const [text, setText] = useState(
-    "Start talking through your approach and I’ll ask follow-up questions.",
-  );
-  const [status, setStatus] = useState("Ready");
+function getRealtimeClientSecret(payload: unknown) {
+  const directValue = getStringPayloadValue(payload, "value");
 
-  useEffect(() => {
-    const nextTranscript = transcriptText.trim();
+  if (directValue) {
+    return directValue;
+  }
 
-    if (
-      !nextTranscript ||
-      nextTranscript === lastSubmittedTranscriptRef.current
-    ) {
-      return;
-    }
+  if (!payload || typeof payload !== "object" || !("client_secret" in payload)) {
+    return null;
+  }
 
-    const controller = new AbortController();
-    const debounce = setTimeout(async () => {
-      try {
-        lastSubmittedTranscriptRef.current = nextTranscript;
-        setStatus("Thinking...");
+  return getStringPayloadValue(payload.client_secret, "value");
+}
 
-        const response = await fetch("/api/interview", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ transcript: nextTranscript }),
-          signal: controller.signal,
-        });
-        const payload = await response.json().catch(() => null);
+function parseRealtimeEvent(data: unknown) {
+  try {
+    return JSON.parse(String(data)) as unknown;
+  } catch {
+    return null;
+  }
+}
 
-        if (!response.ok) {
-          throw new Error(
-            getStringPayloadValue(payload, "error") ?? "OpenAI request failed.",
-          );
-        }
+async function parseJsonResponse(response: Response) {
+  const text = await response.text();
 
-        setText(
-          getStringPayloadValue(payload, "response") ||
-            "Tell me a little more about your approach.",
-        );
-        setStatus("Responded");
-      } catch (error) {
-        if (error instanceof DOMException && error.name === "AbortError") {
-          return;
-        }
+  if (!text.trim()) {
+    return null;
+  }
 
-        setStatus(error instanceof Error ? error.message : "OpenAI error");
-      }
-    }, 750);
-
-    return () => {
-      clearTimeout(debounce);
-      controller.abort();
-    };
-  }, [transcriptText]);
-
-  return { status, text };
+  try {
+    return JSON.parse(text) as unknown;
+  } catch {
+    return null;
+  }
 }
 
 function getStringPayloadValue(payload: unknown, key: string) {
