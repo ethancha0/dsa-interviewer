@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 type OverlayProps = {
+  interviewerResponse?: string;
+  interviewerStatus?: string;
   isListening?: boolean;
   onClose?: () => void;
   onStartListening?: () => void;
@@ -12,6 +14,8 @@ type OverlayProps = {
 };
 
 export default function Overlay({
+  interviewerResponse = "I can see you’re iterating through the array. Can you walk me through what you’re storing in that dictionary and why?",
+  interviewerStatus = "Ready",
   isListening = false,
   onClose,
   onStartListening,
@@ -45,7 +49,7 @@ export default function Overlay({
                         Alex — Interviewer
                       </h1>
                       <p className="mt-0.5 text-sm font-semibold text-zinc-500">
-                        Speaking...
+                        {interviewerStatus}
                       </p>
                     </div>
                   </div>
@@ -70,8 +74,7 @@ export default function Overlay({
                 </div>
   
                 <blockquote className="mt-4 rounded-xl bg-[#202020] px-4 py-3 text-[15px] font-semibold leading-6 text-zinc-200 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]">
-                  “I can see you’re iterating through the array. Can you walk me
-                  through what you’re storing in that dictionary and why?”
+                  “{interviewerResponse}”
                 </blockquote>
   
                 <p className="mt-4 text-[14px] font-medium italic leading-6 text-zinc-500">

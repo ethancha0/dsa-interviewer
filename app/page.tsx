@@ -156,6 +156,7 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
     null,
   );
   const transcript = useElevenLabsTranscript();
+  const interviewer = useOpenAIInterviewResponse(transcript.text);
 
   function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
     if ((event.target as HTMLElement).closest("button")) {
@@ -242,6 +243,8 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
         onPointerCancel={handleOverlayPointerUp}
       >
         <Overlay
+          interviewerResponse={interviewer.text}
+          interviewerStatus={interviewer.status}
           onClose={onClose}
           transcript={transcript.text}
           transcriptStatus={transcript.status}
@@ -573,6 +576,78 @@ function useElevenLabsTranscript() {
     stop,
     text,
   };
+}
+
+function useOpenAIInterviewResponse(transcriptText: string) {
+  const lastSubmittedTranscriptRef = useRef("");
+  const [text, setText] = useState(
+    "Start talking through your approach and I’ll ask follow-up questions.",
+  );
+  const [status, setStatus] = useState("Ready");
+
+  useEffect(() => {
+    const nextTranscript = transcriptText.trim();
+
+    if (
+      !nextTranscript ||
+      nextTranscript === lastSubmittedTranscriptRef.current
+    ) {
+      return;
+    }
+
+    const controller = new AbortController();
+    const debounce = setTimeout(async () => {
+      try {
+        lastSubmittedTranscriptRef.current = nextTranscript;
+        setStatus("Thinking...");
+
+        const response = await fetch("/api/interview", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ transcript: nextTranscript }),
+          signal: controller.signal,
+        });
+        const payload = await response.json().catch(() => null);
+
+        if (!response.ok) {
+          throw new Error(
+            getStringPayloadValue(payload, "error") ?? "OpenAI request failed.",
+          );
+        }
+
+        setText(
+          getStringPayloadValue(payload, "response") ||
+            "Tell me a little more about your approach.",
+        );
+        setStatus("Responded");
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+
+        setStatus(error instanceof Error ? error.message : "OpenAI error");
+      }
+    }, 750);
+
+    return () => {
+      clearTimeout(debounce);
+      controller.abort();
+    };
+  }, [transcriptText]);
+
+  return { status, text };
+}
+
+function getStringPayloadValue(payload: unknown, key: string) {
+  if (!payload || typeof payload !== "object" || !(key in payload)) {
+    return null;
+  }
+
+  const value = (payload as Record<string, unknown>)[key];
+
+  return typeof value === "string" ? value.trim() : null;
 }
 
 function Badge({
