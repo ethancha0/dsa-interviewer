@@ -4,6 +4,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Overlay from "@/components/ui/pip-overlay/overlay";
+import MuiMicIcon from "@mui/icons-material/Mic";
+import MuiMicOffIcon from "@mui/icons-material/MicOff";
 import { type PointerEvent, useEffect, useRef, useState } from "react";
 
 const featureCards = [
@@ -31,8 +33,28 @@ type DragPosition = {
   y: number;
 };
 
+type InterviewSummary = {
+  areasToImprove: string[];
+  breakdown: Array<{
+    label: string;
+    score: number | null;
+  }>;
+  elapsedSeconds: number;
+  exchangeCount: number;
+  finalComplexity: string | null;
+  hintsUsed: number;
+  overallScore: number | null;
+  transcript: Array<{
+    speaker: string;
+    text: string;
+  }>;
+  verdict: string;
+  wentWell: string[];
+};
+
 const INITIAL_INTERVIEWER_RESPONSE =
   "Start talking through your approach and I’ll ask follow-up questions.";
+const NOT_ENOUGH_INFO = "Not enough information captured to assess this section.";
 
 export default function Home() {
   const [isPracticeOpen, setIsPracticeOpen] = useState(false);
@@ -158,6 +180,8 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
     null,
   );
+  const [summary, setSummary] = useState<InterviewSummary | null>(null);
+  const elapsedSeconds = useElapsedSeconds();
   const interview = useRealtimeInterviewSession();
 
   function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
@@ -198,6 +222,19 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
     }
   }
 
+  function handleEndInterview() {
+    const completedSummary = createInterviewSummary({
+      elapsedSeconds,
+      exchangeCount: interview.exchangeCount,
+      hintsUsed: interview.hintsUsed,
+      interviewerResponse: interview.interviewerResponse,
+      transcript: interview.text,
+    });
+
+    interview.stop();
+    setSummary(completedSummary);
+  }
+
   return (
     <div className="fixed inset-0 z-50 bg-zinc-500/35 p-3 text-zinc-50 backdrop-blur-[2px] sm:p-6 lg:p-8">
       <div className="relative h-full overflow-hidden rounded-[1.35rem] border border-white/15 bg-[#0b0b0b] shadow-[0_32px_120px_rgba(0,0,0,0.55)]">
@@ -230,33 +267,202 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
         />
       </div>
 
-      <div
-        ref={overlayRef}
-        className="absolute z-40 touch-none cursor-grab animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_420ms_both] active:cursor-grabbing"
-        style={
-          overlayPosition
-            ? { left: overlayPosition.x, top: overlayPosition.y }
-            : { right: "2rem", top: "6rem" }
-        }
-        aria-label="DSA interviewer overlay"
-        onPointerDown={handleOverlayPointerDown}
-        onPointerMove={handleOverlayPointerMove}
-        onPointerUp={handleOverlayPointerUp}
-        onPointerCancel={handleOverlayPointerUp}
-      >
-        <Overlay
-          audioLevel={interview.audioLevel}
-          interviewerResponse={interview.interviewerResponse}
-          interviewerStatus={interview.interviewerStatus}
-          onClose={onClose}
-          transcript={interview.text}
-          transcriptStatus={interview.status}
-          isListening={interview.isListening}
-          onStartListening={interview.start}
-          onStopListening={interview.stop}
-        />
-      </div>
+      {summary ? (
+        <InterviewSummaryPanel summary={summary} onClose={onClose} />
+      ) : (
+        <div
+          ref={overlayRef}
+          className="absolute z-40 touch-none cursor-grab animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_420ms_both] active:cursor-grabbing"
+          style={
+            overlayPosition
+              ? { left: overlayPosition.x, top: overlayPosition.y }
+              : { right: "2rem", top: "6rem" }
+          }
+          aria-label="DSA interviewer overlay"
+          onPointerDown={handleOverlayPointerDown}
+          onPointerMove={handleOverlayPointerMove}
+          onPointerUp={handleOverlayPointerUp}
+          onPointerCancel={handleOverlayPointerUp}
+        >
+          <Overlay
+            audioLevel={interview.audioLevel}
+            elapsedTime={formatElapsedClock(elapsedSeconds)}
+            interviewerResponse={interview.interviewerResponse}
+            interviewerStatus={interview.interviewerStatus}
+            isMuted={interview.isMuted}
+            onClose={onClose}
+            onEnd={handleEndInterview}
+            onRequestHint={interview.requestHint}
+            transcript={interview.text}
+            transcriptStatus={interview.status}
+            isListening={interview.isListening}
+            onStartListening={interview.start}
+            onStopListening={interview.stop}
+            onToggleMute={interview.toggleMute}
+          />
+        </div>
+      )}
     </div>
+  );
+}
+
+function InterviewSummaryPanel({
+  onClose,
+  summary,
+}: {
+  onClose: () => void;
+  summary: InterviewSummary;
+}) {
+  return (
+    <section className="absolute inset-0 z-50 overflow-y-auto bg-[#1d1d1b]/96 px-4 py-6 backdrop-blur-sm sm:px-8 lg:px-12">
+      <div className="mx-auto w-full max-w-[860px] pb-8">
+        <header className="flex items-start justify-between gap-5">
+          <div>
+            <h2 className="text-2xl font-bold tracking-[-0.02em] text-white">
+              Interview complete
+            </h2>
+            <p className="mt-1 text-sm font-semibold text-zinc-500">
+              Two Sum · {formatSummaryDuration(summary.elapsedSeconds)} ·{" "}
+              {summary.exchangeCount}{" "}
+              {summary.exchangeCount === 1 ? "exchange" : "exchanges"}
+            </p>
+          </div>
+
+          <Button
+            className="h-9 rounded-full bg-lime-100 px-6 text-sm font-bold text-zinc-950 hover:bg-lime-200"
+            onClick={onClose}
+          >
+            {summary.verdict}
+          </Button>
+        </header>
+
+        <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <SummaryStat
+            label="Overall score"
+            value={
+              summary.overallScore === null ? "Not assessed" : String(summary.overallScore)
+            }
+          />
+          <SummaryStat
+            label="Final complexity"
+            value={summary.finalComplexity ?? "Not assessed"}
+          />
+          <SummaryStat label="Hints used" value={String(summary.hintsUsed)} />
+          <SummaryStat
+            label="Time taken"
+            value={formatSummaryDuration(summary.elapsedSeconds)}
+          />
+        </div>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          <FeedbackCard
+            accent="lime"
+            icon={<CheckCircleIcon />}
+            items={summary.wentWell}
+            emptyMessage={NOT_ENOUGH_INFO}
+            title="What went well"
+          />
+          <FeedbackCard
+            accent="amber"
+            icon={<WarningIcon />}
+            items={summary.areasToImprove}
+            emptyMessage={NOT_ENOUGH_INFO}
+            title="Areas to improve"
+          />
+        </div>
+
+        <section className="mt-6 rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+          <h3 className="text-sm font-bold text-white">Performance breakdown</h3>
+          <div className="mt-4 space-y-3">
+            {summary.breakdown.length ? (
+              summary.breakdown.map((item) => (
+                <div
+                  className="grid grid-cols-[138px_1fr_72px] items-center gap-4 text-sm font-bold text-zinc-400"
+                  key={item.label}
+                >
+                  <span className="truncate">{item.label}</span>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-[#171716]">
+                    <div
+                      className="h-full rounded-full bg-zinc-500"
+                      style={{ width: `${(item.score ?? 0) * 10}%` }}
+                    />
+                  </div>
+                  <span className="text-right text-zinc-500">
+                    {item.score === null ? "N/A" : `${item.score}/10`}
+                  </span>
+                </div>
+              ))
+            ) : (
+              <p className="text-sm font-semibold leading-6 text-zinc-500">
+                {NOT_ENOUGH_INFO}
+              </p>
+            )}
+          </div>
+        </section>
+
+        <section className="mt-6 rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+          <h3 className="text-sm font-bold text-white">Transcript</h3>
+          <div className="mt-4 space-y-3 text-sm font-semibold leading-6 text-zinc-400">
+            {summary.transcript.map((line, index) => (
+              <p key={`${line.speaker}-${index}`}>
+                <span className="mr-2 rounded-md bg-[#181817] px-2 py-1 text-xs font-bold text-zinc-300">
+                  {line.speaker}
+                </span>
+                {line.text}
+              </p>
+            ))}
+          </div>
+        </section>
+      </div>
+    </section>
+  );
+}
+
+function SummaryStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg bg-[#151514] px-4 py-4">
+      <p className="text-2xl font-bold tracking-[-0.03em] text-white">{value}</p>
+      <p className="mt-1 text-xs font-bold text-zinc-500">{label}</p>
+    </div>
+  );
+}
+
+function FeedbackCard({
+  accent,
+  emptyMessage,
+  icon,
+  items,
+  title,
+}: {
+  accent: "amber" | "lime";
+  emptyMessage?: string;
+  icon: React.ReactNode;
+  items: string[];
+  title: string;
+}) {
+  const dotClass = accent === "lime" ? "bg-lime-500" : "bg-amber-500";
+
+  return (
+    <section className="rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+      <h3 className="flex items-center gap-2 text-sm font-bold text-white">
+        {icon}
+        {title}
+      </h3>
+      {items.length ? (
+        <ul className="mt-4 space-y-3 text-sm font-bold leading-6 text-zinc-400">
+          {items.map((item) => (
+            <li className="flex gap-3" key={item}>
+              <span className={`mt-2 size-1.5 shrink-0 rounded-full ${dotClass}`} />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-4 text-sm font-semibold leading-6 text-zinc-500">
+          {emptyMessage ?? "No items recorded."}
+        </p>
+      )}
+    </section>
   );
 }
 
@@ -386,9 +592,7 @@ function DemoWindow() {
               </Avatar>
               <div>
                 <h3 className="text-sm font-bold text-white">Alex</h3>
-                <p className="text-xs font-semibold text-zinc-500">
-                  Interviewer
-                </p>
+                <p className="text-xs font-bold text-gray-500">Interviewer</p>
               </div>
             </div>
             <time className="text-xs font-medium text-zinc-600">28:41</time>
@@ -405,9 +609,19 @@ function DemoWindow() {
 
           <div className="mt-5 flex items-center justify-between gap-3 text-xs font-medium text-zinc-500">
             <div className="flex items-center gap-2">
-              <AudioBars isActive={transcript.isListening} />
+              <AudioBars isActive={transcript.isListening && !transcript.isMuted} />
               {transcript.status}
             </div>
+            <Button
+              variant="secondary"
+              className="size-8 rounded-lg border-white/25 bg-[#2a2a28] p-0 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-[#343431]"
+              disabled={!transcript.isListening}
+              aria-label={transcript.isMuted ? "Unmute microphone" : "Mute microphone"}
+              title={transcript.isMuted ? "Unmute microphone" : "Mute microphone"}
+              onClick={transcript.toggleMute}
+            >
+              {transcript.isMuted ? <MicOffIcon /> : <MicIcon />}
+            </Button>
             <Button
               variant="secondary"
               className="h-8 rounded-lg border-white/10 bg-[#191917] px-3 text-xs text-zinc-400"
@@ -424,6 +638,7 @@ function DemoWindow() {
             <Button
               variant="secondary"
               className="h-10 rounded-lg border-white/10 bg-[#191917] text-zinc-500"
+              onClick={transcript.requestHint}
             >
               <SparkIcon />
               Hint
@@ -439,6 +654,225 @@ function DemoWindow() {
   );
 }
 
+function useElapsedSeconds() {
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setElapsedSeconds((seconds) => seconds + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return elapsedSeconds;
+}
+
+function createInterviewSummary({
+  elapsedSeconds,
+  exchangeCount,
+  hintsUsed,
+  interviewerResponse,
+  transcript,
+}: {
+  elapsedSeconds: number;
+  exchangeCount: number;
+  hintsUsed: number;
+  interviewerResponse: string;
+  transcript: string;
+}): InterviewSummary {
+  const candidateTranscript = normalizeSummaryText(transcript);
+  const interviewerTranscript = normalizeSummaryText(
+    interviewerResponse === INITIAL_INTERVIEWER_RESPONSE ? "" : interviewerResponse,
+  );
+  const wordCount = countWords(candidateTranscript);
+  const completedExchanges = Math.max(exchangeCount, candidateTranscript ? 1 : 0);
+  const hasProblemSignal = hasTwoSumSignal(candidateTranscript);
+  const hasSolutionSignal = hasTwoSumSolutionSignal(candidateTranscript);
+  const hasAssessableTranscript =
+    wordCount >= 12 && hasProblemSignal && elapsedSeconds >= 10;
+  const finalComplexity = extractComplexity(candidateTranscript);
+  const communicationScore = hasAssessableTranscript
+    ? Math.min(10, Math.max(4, Math.round(wordCount / 12) + 5))
+    : null;
+  const comprehensionScore = hasAssessableTranscript
+    ? hasSolutionSignal
+      ? 8
+      : 6
+    : null;
+  const correctnessScore = hasAssessableTranscript
+    ? hasSolutionSignal
+      ? 8
+      : 5
+    : null;
+  const complexityScore =
+    hasAssessableTranscript && finalComplexity
+      ? 8
+      : hasAssessableTranscript
+        ? null
+        : null;
+  const hintScore = hasAssessableTranscript ? Math.max(5, 9 - hintsUsed) : null;
+  const scoredBreakdown = [
+    comprehensionScore,
+    communicationScore,
+    correctnessScore,
+    complexityScore,
+    hintScore,
+  ].filter((score): score is number => score !== null);
+  const overallScore = scoredBreakdown.length
+    ? Math.round(
+        (scoredBreakdown.reduce((total, score) => total + score, 0) /
+          scoredBreakdown.length) *
+          10,
+      )
+    : null;
+  const wentWell = getEvidenceBackedWentWell(candidateTranscript);
+  const areasToImprove = hasAssessableTranscript
+    ? getEvidenceBackedAreasToImprove({
+        hasSolutionSignal,
+        mentionedComplexity: Boolean(finalComplexity),
+        transcript: candidateTranscript,
+      })
+    : [];
+
+  return {
+    areasToImprove,
+    breakdown: hasAssessableTranscript
+      ? [
+          { label: "Problem comprehension", score: comprehensionScore },
+          { label: "Communication", score: communicationScore },
+          { label: "Code correctness", score: correctnessScore },
+          { label: "Complexity analysis", score: complexityScore },
+          { label: "Handling hints", score: hintScore },
+        ]
+      : [],
+    elapsedSeconds,
+    exchangeCount: completedExchanges,
+    finalComplexity,
+    hintsUsed,
+    overallScore,
+    transcript: [
+      ...(interviewerTranscript
+        ? [{ speaker: "Alex", text: interviewerTranscript }]
+        : []),
+      {
+        speaker: "You",
+        text: candidateTranscript || "No candidate transcript was captured.",
+      },
+    ],
+    verdict: overallScore === null ? "Not assessed" : overallScore >= 75 ? "Hire" : "Lean no",
+    wentWell: hasAssessableTranscript ? wentWell : [],
+  };
+}
+
+function normalizeSummaryText(text: string) {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function countWords(text: string) {
+  return text ? text.split(/\s+/).length : 0;
+}
+
+function hasTwoSumSignal(text: string) {
+  return /\b(two sum|target|indices|array|nums|pair|sum|complement)\b/i.test(text);
+}
+
+function hasTwoSumSolutionSignal(text: string) {
+  return /\b(hash ?map|map|dictionary|dict|set|complement|target\s*-\s*\w+)\b/i.test(
+    text,
+  );
+}
+
+function extractComplexity(text: string) {
+  const normalizedText = text.toLowerCase();
+
+  if (/\bo\(\s*n\s*\)\b|linear/.test(normalizedText)) {
+    return "O(n)";
+  }
+
+  if (/\bo\(\s*n\s*(?:\^2|\*\s*n|squared)\s*\)\b|quadratic|nested loop/.test(normalizedText)) {
+    return "O(n²)";
+  }
+
+  if (/\bo\(\s*1\s*\)\b|constant/.test(normalizedText)) {
+    return "O(1)";
+  }
+
+  if (/\bo\(\s*n\s*log\s*n\s*\)\b|n log n/.test(normalizedText)) {
+    return "O(n log n)";
+  }
+
+  return null;
+}
+
+function getEvidenceBackedWentWell(transcript: string) {
+  const wentWell: string[] = [];
+
+  if (/\b(hash ?map|map|dictionary|dict)\b/i.test(transcript)) {
+    wentWell.push("Mentioned using a hash map or dictionary.");
+  }
+
+  if (/\bcomplement|target\s*-\s*\w+\b/i.test(transcript)) {
+    wentWell.push("Referenced complement lookup for the target sum.");
+  }
+
+  if (extractComplexity(transcript)) {
+    wentWell.push("Stated a time or space complexity.");
+  }
+
+  return wentWell;
+}
+
+function getEvidenceBackedAreasToImprove({
+  hasSolutionSignal,
+  mentionedComplexity,
+  transcript,
+}: {
+  hasSolutionSignal: boolean;
+  mentionedComplexity: boolean;
+  transcript: string;
+}) {
+  const areasToImprove: string[] = [];
+
+  if (!hasSolutionSignal) {
+    areasToImprove.push(
+      "The captured answer did not clearly explain the hash map/complement approach.",
+    );
+  }
+
+  if (!mentionedComplexity) {
+    areasToImprove.push("The captured answer did not state final time or space complexity.");
+  }
+
+  if (!/\b(edge case|duplicate|same index|no solution|empty)\b/i.test(transcript)) {
+    areasToImprove.push("Edge cases were not discussed in the captured transcript.");
+  }
+
+  return areasToImprove;
+}
+
+function formatElapsedClock(elapsedSeconds: number) {
+  const minutes = Math.floor(elapsedSeconds / 60);
+  const seconds = elapsedSeconds % 60;
+
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function formatSummaryDuration(elapsedSeconds: number) {
+  const minutes = Math.floor(elapsedSeconds / 60);
+  const seconds = elapsedSeconds % 60;
+
+  if (minutes === 0) {
+    return `${seconds}s`;
+  }
+
+  if (seconds === 0) {
+    return `${minutes}m`;
+  }
+
+  return `${minutes}m ${seconds}s`;
+}
+
 function useRealtimeInterviewSession() {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -448,8 +882,9 @@ function useRealtimeInterviewSession() {
   const meterAnimationRef = useRef<number | null>(null);
   const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
   const remoteAudioRef = useRef<HTMLAudioElement | null>(null);
-  const committedTranscriptRef = useRef("");
   const inputTranscriptRef = useRef("");
+  const sessionTranscriptRef = useRef("");
+  const isMutedRef = useRef(false);
   const responseTranscriptRef = useRef("");
   const streamRef = useRef<MediaStream | null>(null);
   const [audioLevel, setAudioLevel] = useState(0);
@@ -457,9 +892,12 @@ function useRealtimeInterviewSession() {
     INITIAL_INTERVIEWER_RESPONSE,
   );
   const [interviewerStatus, setInterviewerStatus] = useState("Ready");
+  const [exchangeCount, setExchangeCount] = useState(0);
+  const [hintsUsed, setHintsUsed] = useState(0);
   const [text, setText] = useState("");
   const [status, setStatus] = useState("Mic off");
   const [isListening, setIsListening] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   function startAudioMeter(stream: MediaStream) {
     const AudioContextConstructor =
@@ -532,9 +970,19 @@ function useRealtimeInterviewSession() {
   }
 
   function resetInputTranscript() {
-    committedTranscriptRef.current = "";
     inputTranscriptRef.current = "";
-    setText("");
+    setText(sessionTranscriptRef.current);
+  }
+
+  function setMicrophoneMuted(nextIsMuted: boolean) {
+    isMutedRef.current = nextIsMuted;
+    streamRef.current
+      ?.getAudioTracks()
+      .forEach((track) => {
+        track.enabled = !nextIsMuted;
+      });
+    setIsMuted(nextIsMuted);
+    setStatus(nextIsMuted ? "Muted" : "Listening...");
   }
 
   function cleanupConnection() {
@@ -548,8 +996,12 @@ function useRealtimeInterviewSession() {
     peerConnectionRef.current = null;
     remoteAudioRef.current = null;
     resetInputTranscript();
+    sessionTranscriptRef.current = "";
+    isMutedRef.current = false;
+    setIsMuted(false);
     responseTranscriptRef.current = "";
     streamRef.current = null;
+    setText("");
   }
 
   function handleRealtimeEvent(event: unknown) {
@@ -564,6 +1016,10 @@ function useRealtimeInterviewSession() {
     }
 
     if (eventType === "input_audio_buffer.speech_started") {
+      if (isMutedRef.current) {
+        return;
+      }
+
       setStatus("Listening...");
       setInterviewerStatus("Listening");
       return;
@@ -602,7 +1058,7 @@ function useRealtimeInterviewSession() {
       }
 
       setInterviewerStatus("Listening");
-      setStatus("Listening...");
+      setStatus(isMutedRef.current ? "Muted" : "Listening...");
       return;
     }
 
@@ -623,7 +1079,7 @@ function useRealtimeInterviewSession() {
       if (delta) {
         inputTranscriptRef.current += delta;
         setText(
-          [committedTranscriptRef.current, inputTranscriptRef.current]
+          [sessionTranscriptRef.current, inputTranscriptRef.current]
             .filter(Boolean)
             .join(" "),
         );
@@ -639,11 +1095,12 @@ function useRealtimeInterviewSession() {
       const transcript = getStringPayloadValue(event, "transcript");
 
       if (transcript) {
-        committedTranscriptRef.current = committedTranscriptRef.current
-          ? `${committedTranscriptRef.current} ${transcript}`
+        sessionTranscriptRef.current = sessionTranscriptRef.current
+          ? `${sessionTranscriptRef.current} ${transcript}`
           : transcript;
         inputTranscriptRef.current = "";
-        setText(committedTranscriptRef.current);
+        setText(sessionTranscriptRef.current);
+        setExchangeCount((count) => count + 1);
       }
 
       return;
@@ -652,7 +1109,7 @@ function useRealtimeInterviewSession() {
     if (eventType === "response.done") {
       resetInputTranscript();
       setInterviewerStatus("Listening");
-      setStatus("Listening...");
+      setStatus(isMutedRef.current ? "Muted" : "Listening...");
       return;
     }
 
@@ -683,6 +1140,9 @@ function useRealtimeInterviewSession() {
       if (!audioTrack) {
         throw new Error("No microphone audio track was available.");
       }
+
+      isMutedRef.current = false;
+      setIsMuted(false);
 
       const sessionResponse = await fetch("/api/realtime/session", {
         method: "POST",
@@ -794,6 +1254,37 @@ function useRealtimeInterviewSession() {
     setInterviewerStatus("Ready");
   }
 
+  function toggleMute() {
+    if (!streamRef.current) {
+      return;
+    }
+
+    setMicrophoneMuted(!isMutedRef.current);
+  }
+
+  function requestHint() {
+    setHintsUsed((count) => count + 1);
+    const dataChannel = dataChannelRef.current;
+
+    if (!dataChannel || dataChannel.readyState !== "open") {
+      setInterviewerResponse("Start the mic first, then I can give you a hint.");
+      return;
+    }
+
+    responseTranscriptRef.current = "";
+    setInterviewerResponse("Thinking of a hint...");
+    setInterviewerStatus("Thinking");
+    dataChannel.send(
+      JSON.stringify({
+        type: "response.create",
+        response: {
+          instructions:
+            "Give the candidate one concise Two Sum hint based on the current conversation. Do not reveal the full solution. Prefer a guiding question or a small nudge toward the next idea.",
+        },
+      }),
+    );
+  }
+
   useEffect(() => {
     return () => {
       dataChannelRef.current?.close();
@@ -811,8 +1302,9 @@ function useRealtimeInterviewSession() {
       dataChannelRef.current = null;
       peerConnectionRef.current = null;
       remoteAudioRef.current = null;
-      committedTranscriptRef.current = "";
       inputTranscriptRef.current = "";
+      sessionTranscriptRef.current = "";
+      isMutedRef.current = false;
       responseTranscriptRef.current = "";
       streamRef.current = null;
       audioSourceRef.current = null;
@@ -824,13 +1316,18 @@ function useRealtimeInterviewSession() {
 
   return {
     audioLevel,
+    exchangeCount,
+    hintsUsed,
     interviewerResponse,
     interviewerStatus,
     isListening,
+    isMuted,
+    requestHint,
     start,
     status,
     stop,
     text,
+    toggleMute,
   };
 }
 
@@ -962,22 +1459,11 @@ function EyeIcon() {
 }
 
 function MicIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="size-5 text-zinc-300"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth="1.8"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 3.75a3 3 0 0 0-3 3v5.5a3 3 0 0 0 6 0v-5.5a3 3 0 0 0-3-3ZM5.75 11.75a6.25 6.25 0 0 0 12.5 0M12 18v3M8.5 21h7"
-      />
-    </svg>
-  );
+  return <MuiMicIcon aria-hidden="true" className="size-5 text-white" />;
+}
+
+function MicOffIcon() {
+  return <MuiMicOffIcon aria-hidden="true" className="size-5 text-white" />;
 }
 
 function ChartIcon() {
@@ -1032,6 +1518,44 @@ function SparkIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
         d="m12 3 1.4 5.6L19 10l-5.6 1.4L12 17l-1.4-5.6L5 10l5.6-1.4L12 3Z"
+      />
+    </svg>
+  );
+}
+
+function CheckCircleIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-4 text-lime-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+    </svg>
+  );
+}
+
+function WarningIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-4 text-amber-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 9v4M12 17h.01M10.3 4.86 2.7 18a2 2 0 0 0 1.73 3h15.14a2 2 0 0 0 1.73-3L13.7 4.86a2 2 0 0 0-3.4 0Z"
       />
     </svg>
   );
