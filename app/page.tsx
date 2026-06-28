@@ -531,6 +531,12 @@ function useRealtimeInterviewSession() {
     setAudioLevel(0);
   }
 
+  function resetInputTranscript() {
+    committedTranscriptRef.current = "";
+    inputTranscriptRef.current = "";
+    setText("");
+  }
+
   function cleanupConnection() {
     dataChannelRef.current?.close();
     peerConnectionRef.current?.close();
@@ -541,8 +547,7 @@ function useRealtimeInterviewSession() {
     dataChannelRef.current = null;
     peerConnectionRef.current = null;
     remoteAudioRef.current = null;
-    committedTranscriptRef.current = "";
-    inputTranscriptRef.current = "";
+    resetInputTranscript();
     responseTranscriptRef.current = "";
     streamRef.current = null;
   }
@@ -645,6 +650,7 @@ function useRealtimeInterviewSession() {
     }
 
     if (eventType === "response.done") {
+      resetInputTranscript();
       setInterviewerStatus("Listening");
       setStatus("Listening...");
       return;
