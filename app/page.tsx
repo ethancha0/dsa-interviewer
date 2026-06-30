@@ -52,8 +52,7 @@ type InterviewSummary = {
   wentWell: string[];
 };
 
-const INITIAL_INTERVIEWER_RESPONSE =
-  "Start talking through your approach and I’ll ask follow-up questions.";
+const INITIAL_INTERVIEWER_RESPONSE = "";
 const NOT_ENOUGH_INFO = "Not enough information captured to assess this section.";
 
 export default function Home() {
@@ -228,7 +227,7 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
       exchangeCount: interview.exchangeCount,
       hintsUsed: interview.hintsUsed,
       interviewerResponse: interview.interviewerResponse,
-      transcript: interview.text,
+      transcript: interview.fullTranscript,
     });
 
     interview.stop();
@@ -893,6 +892,7 @@ function useRealtimeInterviewSession() {
   );
   const [interviewerStatus, setInterviewerStatus] = useState("Ready");
   const [exchangeCount, setExchangeCount] = useState(0);
+  const [fullTranscript, setFullTranscript] = useState("");
   const [hintsUsed, setHintsUsed] = useState(0);
   const [text, setText] = useState("");
   const [status, setStatus] = useState("Mic off");
@@ -971,7 +971,6 @@ function useRealtimeInterviewSession() {
 
   function resetInputTranscript() {
     inputTranscriptRef.current = "";
-    setText(sessionTranscriptRef.current);
   }
 
   function setMicrophoneMuted(nextIsMuted: boolean) {
@@ -1001,6 +1000,7 @@ function useRealtimeInterviewSession() {
     setIsMuted(false);
     responseTranscriptRef.current = "";
     streamRef.current = null;
+    setFullTranscript("");
     setText("");
   }
 
@@ -1020,6 +1020,8 @@ function useRealtimeInterviewSession() {
         return;
       }
 
+      inputTranscriptRef.current = "";
+      setText("");
       setStatus("Listening...");
       setInterviewerStatus("Listening");
       return;
@@ -1033,12 +1035,16 @@ function useRealtimeInterviewSession() {
 
     if (eventType === "response.created") {
       responseTranscriptRef.current = "";
+      setInterviewerResponse("");
       setInterviewerStatus("Thinking");
       return;
     }
 
-    if (eventType === "response.audio_transcript.delta") {
-      const delta = getStringPayloadValue(event, "delta");
+    if (
+      eventType === "response.output_audio_transcript.delta" ||
+      eventType === "response.audio_transcript.delta"
+    ) {
+      const delta = getRawStringPayloadValue(event, "delta");
 
       if (delta) {
         responseTranscriptRef.current += delta;
@@ -1049,7 +1055,10 @@ function useRealtimeInterviewSession() {
       return;
     }
 
-    if (eventType === "response.audio_transcript.done") {
+    if (
+      eventType === "response.output_audio_transcript.done" ||
+      eventType === "response.audio_transcript.done"
+    ) {
       const transcript = getStringPayloadValue(event, "transcript");
 
       if (transcript) {
@@ -1063,7 +1072,7 @@ function useRealtimeInterviewSession() {
     }
 
     if (eventType === "response.output_text.delta") {
-      const delta = getStringPayloadValue(event, "delta");
+      const delta = getRawStringPayloadValue(event, "delta");
 
       if (delta) {
         responseTranscriptRef.current += delta;
@@ -1074,15 +1083,11 @@ function useRealtimeInterviewSession() {
     }
 
     if (eventType === "conversation.item.input_audio_transcription.delta") {
-      const delta = getStringPayloadValue(event, "delta");
+      const delta = getRawStringPayloadValue(event, "delta");
 
       if (delta) {
         inputTranscriptRef.current += delta;
-        setText(
-          [sessionTranscriptRef.current, inputTranscriptRef.current]
-            .filter(Boolean)
-            .join(" "),
-        );
+        setText(inputTranscriptRef.current);
       }
 
       return;
@@ -1095,11 +1100,14 @@ function useRealtimeInterviewSession() {
       const transcript = getStringPayloadValue(event, "transcript");
 
       if (transcript) {
-        sessionTranscriptRef.current = sessionTranscriptRef.current
+        const nextSessionTranscript = sessionTranscriptRef.current
           ? `${sessionTranscriptRef.current} ${transcript}`
           : transcript;
+
+        sessionTranscriptRef.current = nextSessionTranscript;
         inputTranscriptRef.current = "";
-        setText(sessionTranscriptRef.current);
+        setFullTranscript(nextSessionTranscript);
+        setText(transcript);
         setExchangeCount((count) => count + 1);
       }
 
@@ -1317,6 +1325,7 @@ function useRealtimeInterviewSession() {
   return {
     audioLevel,
     exchangeCount,
+    fullTranscript,
     hintsUsed,
     interviewerResponse,
     interviewerStatus,
@@ -1368,13 +1377,17 @@ async function parseJsonResponse(response: Response) {
 }
 
 function getStringPayloadValue(payload: unknown, key: string) {
+  return getRawStringPayloadValue(payload, key)?.trim() || null;
+}
+
+function getRawStringPayloadValue(payload: unknown, key: string) {
   if (!payload || typeof payload !== "object" || !(key in payload)) {
     return null;
   }
 
   const value = (payload as Record<string, unknown>)[key];
 
-  return typeof value === "string" ? value.trim() : null;
+  return typeof value === "string" ? value : null;
 }
 
 function Badge({

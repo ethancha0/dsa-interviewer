@@ -23,7 +23,7 @@ type OverlayProps = {
 export default function Overlay({
   audioLevel = 0,
   elapsedTime,
-  interviewerResponse = "I can see you’re iterating through the array. Can you walk me through what you’re storing in that dictionary and why?",
+  interviewerResponse = "",
   interviewerStatus = "Ready",
   isListening = false,
   isMuted = false,
@@ -38,6 +38,8 @@ export default function Overlay({
 }: OverlayProps) {
     const localElapsedTime = useElapsedTime();
     const displayElapsedTime = elapsedTime ?? localElapsedTime;
+    const displayInterviewerResponse =
+      interviewerResponse || getInterviewerPlaceholder(interviewerStatus);
 
     return (
           <div className="w-[352px] rounded-[1.45rem] border border-white/10 bg-[#171717] p-3 text-zinc-50 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
@@ -102,7 +104,7 @@ export default function Overlay({
                 </div>
   
                 <blockquote className="mt-4 rounded-xl bg-[#202020] px-4 py-3 text-[15px] font-semibold leading-6 text-zinc-200 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]">
-                  “{interviewerResponse}”
+                  “{displayInterviewerResponse}”
                 </blockquote>
   
                 <p className="mt-4 text-[14px] font-medium italic leading-6 text-zinc-500">
@@ -123,6 +125,14 @@ export default function Overlay({
             </Card>
           </div>
     );
+  }
+
+  function getInterviewerPlaceholder(status: string) {
+    if (/connecting|thinking/i.test(status)) {
+      return "Alex is getting ready to respond...";
+    }
+
+    return "Start the mic to hear Alex's first prompt.";
   }
   
   function useElapsedTime() {
