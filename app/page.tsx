@@ -82,12 +82,14 @@ type InterviewSummary = {
   finalComplexity: string | null;
   hintsUsed: number;
   overallScore: number | null;
-  transcript: Array<{
-    speaker: string;
-    text: string;
-  }>;
+  transcript: TranscriptLine[];
   verdict: string;
   wentWell: string[];
+};
+
+type TranscriptLine = {
+  speaker: "Alex" | "You";
+  text: string;
 };
 
 const INITIAL_INTERVIEWER_RESPONSE = "";
@@ -825,9 +827,20 @@ function createInterviewSummary({
   exchangeCount: number;
   hintsUsed: number;
   interviewerResponse: string;
-  transcript: string;
+  transcript: TranscriptLine[];
 }): InterviewSummary {
-  const candidateTranscript = normalizeSummaryText(transcript);
+  const normalizedTranscript = transcript
+    .map((line) => ({
+      ...line,
+      text: normalizeSummaryText(line.text),
+    }))
+    .filter((line) => line.text);
+  const candidateTranscript = normalizeSummaryText(
+    normalizedTranscript
+      .filter((line) => line.speaker === "You")
+      .map((line) => line.text)
+      .join(" "),
+  );
   const interviewerTranscript = normalizeSummaryText(
     interviewerResponse === INITIAL_INTERVIEWER_RESPONSE ? "" : interviewerResponse,
   );
@@ -897,15 +910,17 @@ function createInterviewSummary({
     finalComplexity,
     hintsUsed,
     overallScore,
-    transcript: [
-      ...(interviewerTranscript
-        ? [{ speaker: "Alex", text: interviewerTranscript }]
-        : []),
-      {
-        speaker: "You",
-        text: candidateTranscript || "No candidate transcript was captured.",
-      },
-    ],
+    transcript: normalizedTranscript.length
+      ? normalizedTranscript
+      : [
+          ...(interviewerTranscript
+            ? ([{ speaker: "Alex", text: interviewerTranscript }] satisfies TranscriptLine[])
+            : []),
+          {
+            speaker: "You",
+            text: candidateTranscript || "No candidate transcript was captured.",
+          },
+        ],
     verdict: overallScore === null ? "Not assessed" : overallScore >= 75 ? "Hire" : "Lean no",
     wentWell: hasAssessableTranscript ? wentWell : [],
   };
@@ -1029,7 +1044,7 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
   const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
   const remoteAudioRef = useRef<HTMLAudioElement | null>(null);
   const inputTranscriptRef = useRef("");
-  const sessionTranscriptRef = useRef("");
+  const sessionTranscriptRef = useRef<TranscriptLine[]>([]);
   const isMutedRef = useRef(false);
   const isScreenSharingRef = useRef(false);
   const responseTranscriptRef = useRef("");
@@ -1044,7 +1059,7 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
   );
   const [interviewerStatus, setInterviewerStatus] = useState("Ready");
   const [exchangeCount, setExchangeCount] = useState(0);
-  const [fullTranscript, setFullTranscript] = useState("");
+  const [fullTranscript, setFullTranscript] = useState<TranscriptLine[]>([]);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [text, setText] = useState("");
   const [status, setStatus] = useState("Mic off");
@@ -1145,6 +1160,33 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
     inputTranscriptRef.current = "";
   }
 
+  function appendTranscriptLine(speaker: TranscriptLine["speaker"], text: string) {
+    const normalizedText = normalizeSummaryText(text);
+
+    if (!normalizedText) {
+      return false;
+    }
+
+    const previousLine =
+      sessionTranscriptRef.current[sessionTranscriptRef.current.length - 1];
+
+    if (
+      previousLine?.speaker === speaker &&
+      previousLine.text === normalizedText
+    ) {
+      return false;
+    }
+
+    const nextTranscript = [
+      ...sessionTranscriptRef.current,
+      { speaker, text: normalizedText },
+    ];
+
+    sessionTranscriptRef.current = nextTranscript;
+    setFullTranscript(nextTranscript);
+    return true;
+  }
+
   function setMicrophoneMuted(nextIsMuted: boolean) {
     isMutedRef.current = nextIsMuted;
     streamRef.current
@@ -1168,12 +1210,12 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
     peerConnectionRef.current = null;
     remoteAudioRef.current = null;
     resetInputTranscript();
-    sessionTranscriptRef.current = "";
+    sessionTranscriptRef.current = [];
     isMutedRef.current = false;
     setIsMuted(false);
     responseTranscriptRef.current = "";
     streamRef.current = null;
-    setFullTranscript("");
+    setFullTranscript([]);
     setText("");
   }
 
@@ -1365,6 +1407,7 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
       if (transcript) {
         responseTranscriptRef.current = transcript;
         setInterviewerResponse(transcript);
+        appendTranscriptLine("Alex", transcript);
       }
 
       setInterviewerStatus("Listening");
@@ -1401,15 +1444,12 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
       const transcript = getStringPayloadValue(event, "transcript");
 
       if (transcript) {
-        const nextSessionTranscript = sessionTranscriptRef.current
-          ? `${sessionTranscriptRef.current} ${transcript}`
-          : transcript;
-
-        sessionTranscriptRef.current = nextSessionTranscript;
         inputTranscriptRef.current = "";
-        setFullTranscript(nextSessionTranscript);
+        const didAppendTranscript = appendTranscriptLine("You", transcript);
         setText(transcript);
-        setExchangeCount((count) => count + 1);
+        if (didAppendTranscript) {
+          setExchangeCount((count) => count + 1);
+        }
       }
 
       return;
@@ -1672,7 +1712,7 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
       peerConnectionRef.current = null;
       remoteAudioRef.current = null;
       inputTranscriptRef.current = "";
-      sessionTranscriptRef.current = "";
+      sessionTranscriptRef.current = [];
       isMutedRef.current = false;
       isScreenSharingRef.current = false;
       responseTranscriptRef.current = "";
