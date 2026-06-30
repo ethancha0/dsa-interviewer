@@ -1,6 +1,8 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import MuiMicIcon from "@mui/icons-material/Mic";
+import MuiMicOffIcon from "@mui/icons-material/MicOff";
 import { useEffect, useState } from "react";
 
 type OverlayProps = {
@@ -200,41 +202,11 @@ export default function Overlay({
   }
   
   function MicIcon() {
-    return (
-      <svg
-        aria-hidden="true"
-        className="size-5 text-white"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth="2.2"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 3.75a3 3 0 0 0-3 3v5.5a3 3 0 0 0 6 0v-5.5a3 3 0 0 0-3-3ZM5.75 11.75a6.25 6.25 0 0 0 12.5 0M12 18v3M8.5 21h7"
-        />
-      </svg>
-    );
+    return <MuiMicIcon aria-hidden="true" className="size-5 text-white" />;
   }
 
   function MicOffIcon() {
-    return (
-      <svg
-        aria-hidden="true"
-        className="size-5 text-white"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth="2.2"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="m4 4 16 16M9 9.75v2.5a3 3 0 0 0 4.5 2.6M15 11.25v-4.5a3 3 0 0 0-5.65-1.4M5.75 11.75a6.25 6.25 0 0 0 9.7 5.2M18.25 11.75a6.2 6.2 0 0 1-1.2 3.68M12 18v3M8.5 21h7"
-        />
-      </svg>
-    );
+    return <MuiMicOffIcon aria-hidden="true" className="size-5 text-white" />;
   }
 
   function BulbIcon() {
