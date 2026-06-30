@@ -1,4 +1,9 @@
 import Link from "next/link";
+import {
+  blind75Problems,
+  neetcode150Problems,
+  type ProblemListItem,
+} from "./problem-lists";
 
 const historyItems = [
   {
@@ -58,7 +63,7 @@ export default function DashboardPage() {
             <Link className="text-white" href="/dashboard">
               Dashboard
             </Link>
-            <Link className="text-zinc-500 transition-colors hover:text-white" href="#">
+            <Link className="text-zinc-500 transition-colors hover:text-white" href="#problem-lists">
               Problems
             </Link>
             <Link className="text-zinc-500 transition-colors hover:text-white" href="#">
@@ -88,7 +93,7 @@ export default function DashboardPage() {
                 NeetCode 150
               </span>
               <span className="px-5 py-2 text-sm font-bold text-zinc-500">
-                NeetCode 75
+                Blind 75
               </span>
             </div>
           </div>
@@ -173,6 +178,37 @@ export default function DashboardPage() {
               </section>
             </div>
           </div>
+
+          <section className="mt-6" id="problem-lists">
+            <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="text-xl font-bold tracking-[-0.03em] text-white">
+                  Problem lists
+                </h2>
+                <p className="mt-1 text-sm font-medium text-zinc-500">
+                  Browse the canonical prep lists and jump directly to LeetCode.
+                </p>
+              </div>
+              <span className="font-mono text-xs text-zinc-600">
+                {neetcode150Problems.length + blind75Problems.length} linked entries
+              </span>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-2">
+              <ProblemListPanel
+                accent="lime"
+                description="A comprehensive roadmap across core interview patterns."
+                problems={neetcode150Problems}
+                title="NeetCode 150"
+              />
+              <ProblemListPanel
+                accent="blue"
+                description="The original high-leverage Blind 75 interview list."
+                problems={blind75Problems}
+                title="Blind 75"
+              />
+            </div>
+          </section>
         </section>
       </div>
     </main>
@@ -320,6 +356,77 @@ function TopicRow({
         {solved}/{total}
       </span>
     </div>
+  );
+}
+
+function ProblemListPanel({
+  accent,
+  description,
+  problems,
+  title,
+}: {
+  accent: "blue" | "lime";
+  description: string;
+  problems: ProblemListItem[];
+  title: string;
+}) {
+  const accentClass = accent === "lime" ? "bg-lime-400" : "bg-blue-400";
+
+  return (
+    <section className="rounded-2xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <span className={`size-2 rounded-full ${accentClass}`} />
+            <h3 className="text-base font-bold text-white">{title}</h3>
+          </div>
+          <p className="mt-2 text-sm font-medium leading-5 text-zinc-500">
+            {description}
+          </p>
+        </div>
+        <span className="rounded-lg bg-white/5 px-3 py-1 font-mono text-xs font-bold text-zinc-400">
+          {problems.length}
+        </span>
+      </div>
+
+      <div className="max-h-[560px] overflow-y-auto pr-2">
+        <div className="divide-y divide-white/5">
+          {problems.map((problem, index) => (
+            <ProblemLink key={`${problem.category}-${problem.title}`} index={index + 1} problem={problem} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProblemLink({
+  index,
+  problem,
+}: {
+  index: number;
+  problem: ProblemListItem;
+}) {
+  return (
+    <a
+      className="grid grid-cols-[40px_1fr_auto] items-center gap-3 py-3 text-sm transition-colors hover:text-white"
+      href={problem.url}
+      rel="noreferrer"
+      target="_blank"
+    >
+      <span className="font-mono text-xs font-bold text-zinc-600">
+        {String(index).padStart(3, "0")}
+      </span>
+      <span className="min-w-0">
+        <span className="block truncate font-semibold text-zinc-200">
+          {problem.title}
+        </span>
+        <span className="mt-0.5 block truncate text-xs font-medium text-zinc-600">
+          {problem.category}
+        </span>
+      </span>
+      <span className="text-xs font-semibold text-zinc-500">Open -&gt;</span>
+    </a>
   );
 }
 
