@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 type OverlayProps = {
   audioLevel?: number;
   elapsedTime?: string;
+  hasStarted?: boolean;
   interviewerResponse?: string;
   interviewerStatus?: string;
   isListening?: boolean;
@@ -15,6 +16,7 @@ type OverlayProps = {
   onClose?: () => void;
   onEnd?: () => void;
   onRequestHint?: () => void;
+  onStartInterview?: () => void;
   onStartListening?: () => void;
   onStopListening?: () => void;
   onToggleMute?: () => void;
@@ -25,6 +27,7 @@ type OverlayProps = {
 export default function Overlay({
   audioLevel = 0,
   elapsedTime,
+  hasStarted = false,
   interviewerResponse = "",
   interviewerStatus = "Ready",
   isListening = false,
@@ -32,6 +35,7 @@ export default function Overlay({
   onClose,
   onEnd,
   onRequestHint,
+  onStartInterview,
   onStartListening,
   onStopListening,
   onToggleMute,
@@ -79,50 +83,61 @@ export default function Overlay({
                   </time>
                 </div>
   
-                <div className="mt-6 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2 text-xs font-medium text-zinc-500">
-                    <AudioBars isActive={isListening && !isMuted} level={audioLevel} />
-                    {transcriptStatus}
+                {hasStarted ? (
+                  <div className="mt-6 flex items-center justify-between gap-3 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_both]">
+                    <div className="flex items-center gap-2 text-xs font-medium text-zinc-500">
+                      <AudioBars isActive={isListening && !isMuted} level={audioLevel} />
+                      {transcriptStatus}
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="secondary"
+                        className="size-8 rounded-lg border-white/25 bg-[#2a2a28] p-0 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-[#343431]"
+                        disabled={!isListening}
+                        aria-label={isMuted ? "Unmute microphone" : "Mute microphone"}
+                        title={isMuted ? "Unmute microphone" : "Mute microphone"}
+                        onClick={onToggleMute}
+                      >
+                        {isMuted ? <MicOffIcon /> : <MicIcon />}
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        className="h-8 rounded-lg px-3 text-xs"
+                        onClick={isListening ? onStopListening : onStartListening}
+                      >
+                        {isListening ? "Stop mic" : "Start mic"}
+                      </Button>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="secondary"
-                      className="size-8 rounded-lg border-white/25 bg-[#2a2a28] p-0 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-[#343431]"
-                      disabled={!isListening}
-                      aria-label={isMuted ? "Unmute microphone" : "Mute microphone"}
-                      title={isMuted ? "Unmute microphone" : "Mute microphone"}
-                      onClick={onToggleMute}
-                    >
-                      {isMuted ? <MicOffIcon /> : <MicIcon />}
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      className="h-8 rounded-lg px-3 text-xs"
-                      onClick={isListening ? onStopListening : onStartListening}
-                    >
-                      {isListening ? "Stop mic" : "Start mic"}
-                    </Button>
-                  </div>
-                </div>
+                ) : null}
   
                 <blockquote className="mt-4 rounded-xl bg-[#202020] px-4 py-3 text-[15px] font-semibold leading-6 text-zinc-200 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]">
                   “{displayInterviewerResponse}”
                 </blockquote>
   
-                <p className="mt-4 text-[14px] font-medium italic leading-6 text-zinc-500">
-                  You: “{transcript || "Click Start mic and answer out loud."}”
-                </p>
-  
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                  <Button variant="secondary" onClick={onRequestHint}>
-                    <BulbIcon />
-                    Hint
+                {hasStarted ? (
+                  <>
+                    <p className="mt-4 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_80ms_both] text-[14px] font-medium italic leading-6 text-zinc-500">
+                      You: “{transcript || "Start answering out loud."}”
+                    </p>
+    
+                    <div className="mt-4 grid grid-cols-2 gap-3 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_140ms_both]">
+                      <Button variant="secondary" onClick={onRequestHint}>
+                        <BulbIcon />
+                        Hint
+                      </Button>
+                      <Button onClick={onEnd ?? onClose}>
+                        <StopIcon />
+                        End
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <Button className="mt-6 h-11 w-full rounded-xl text-sm font-bold" onClick={onStartInterview}>
+                    <MicIcon className="size-5 text-zinc-950" />
+                    Start interview
                   </Button>
-                  <Button onClick={onEnd ?? onClose}>
-                    <StopIcon />
-                    End
-                  </Button>
-                </div>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -134,7 +149,7 @@ export default function Overlay({
       return "Alex is getting ready to respond...";
     }
 
-    return "Start the mic to hear Alex's first prompt.";
+    return "Start the interview when you're ready for Alex's first prompt.";
   }
   
   function useElapsedTime() {
@@ -201,8 +216,8 @@ export default function Overlay({
     );
   }
   
-  function MicIcon() {
-    return <MuiMicIcon aria-hidden="true" className="size-5 text-white" />;
+  function MicIcon({ className = "size-5 text-white" }: { className?: string }) {
+    return <MuiMicIcon aria-hidden="true" className={className} />;
   }
 
   function MicOffIcon() {

@@ -179,8 +179,9 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
     null,
   );
+  const [hasInterviewStarted, setHasInterviewStarted] = useState(false);
   const [summary, setSummary] = useState<InterviewSummary | null>(null);
-  const elapsedSeconds = useElapsedSeconds();
+  const elapsedSeconds = useElapsedSeconds(hasInterviewStarted);
   const interview = useRealtimeInterviewSession();
 
   function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
@@ -232,6 +233,11 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
 
     interview.stop();
     setSummary(completedSummary);
+  }
+
+  function handleStartInterview() {
+    setHasInterviewStarted(true);
+    void interview.start();
   }
 
   return (
@@ -286,12 +292,14 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
           <Overlay
             audioLevel={interview.audioLevel}
             elapsedTime={formatElapsedClock(elapsedSeconds)}
+            hasStarted={hasInterviewStarted}
             interviewerResponse={interview.interviewerResponse}
             interviewerStatus={interview.interviewerStatus}
             isMuted={interview.isMuted}
             onClose={onClose}
             onEnd={handleEndInterview}
             onRequestHint={interview.requestHint}
+            onStartInterview={handleStartInterview}
             transcript={interview.text}
             transcriptStatus={interview.status}
             isListening={interview.isListening}
@@ -653,16 +661,20 @@ function DemoWindow() {
   );
 }
 
-function useElapsedSeconds() {
+function useElapsedSeconds(isActive = true) {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
 
   useEffect(() => {
+    if (!isActive) {
+      return;
+    }
+
     const interval = setInterval(() => {
       setElapsedSeconds((seconds) => seconds + 1);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isActive]);
 
   return elapsedSeconds;
 }
