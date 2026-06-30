@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Overlay from "@/components/ui/pip-overlay/overlay";
 import MuiMicIcon from "@mui/icons-material/Mic";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { type PointerEvent, useEffect, useRef, useState } from "react";
 
 const featureCards = [
@@ -82,6 +83,7 @@ type InterviewSummary = {
   finalComplexity: string | null;
   hintsUsed: number;
   overallScore: number | null;
+  problemTitle: string;
   transcript: TranscriptLine[];
   verdict: string;
   wentWell: string[];
@@ -102,6 +104,7 @@ const DEFAULT_PRACTICE_PROBLEM: PracticeProblem = {
 };
 
 export default function Home() {
+  const router = useRouter();
   const [isPracticeOpen, setIsPracticeOpen] = useState(false);
   const [practiceProblem, setPracticeProblem] = useState<PracticeProblem>(
     DEFAULT_PRACTICE_PROBLEM,
@@ -121,6 +124,15 @@ export default function Home() {
   function openDefaultPractice() {
     setPracticeProblem(DEFAULT_PRACTICE_PROBLEM);
     setIsPracticeOpen(true);
+  }
+
+  function closePractice() {
+    setIsPracticeOpen(false);
+  }
+
+  function closeSummaryToDashboard() {
+    setIsPracticeOpen(false);
+    router.push("/dashboard");
   }
 
   return (
@@ -233,7 +245,8 @@ export default function Home() {
 
       {isPracticeOpen ? (
         <PracticeWorkspace
-          onClose={() => setIsPracticeOpen(false)}
+          onClose={closePractice}
+          onSummaryClose={closeSummaryToDashboard}
           problem={practiceProblem}
         />
       ) : null}
@@ -269,9 +282,11 @@ function titleizeProblemSlug(slug: string) {
 
 function PracticeWorkspace({
   onClose,
+  onSummaryClose,
   problem,
 }: {
   onClose: () => void;
+  onSummaryClose: () => void;
   problem: PracticeProblem;
 }) {
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -328,6 +343,7 @@ function PracticeWorkspace({
       exchangeCount: interview.exchangeCount,
       hintsUsed: interview.hintsUsed,
       interviewerResponse: interview.interviewerResponse,
+      problemTitle: problem.title,
       transcript: interview.fullTranscript,
     });
 
@@ -375,7 +391,7 @@ function PracticeWorkspace({
       </div>
 
       {summary ? (
-        <InterviewSummaryPanel summary={summary} onClose={onClose} />
+        <InterviewSummaryPanel summary={summary} onClose={onSummaryClose} />
       ) : (
         <div
           ref={overlayRef}
@@ -425,13 +441,13 @@ function InterviewSummaryPanel({
   return (
     <section className="absolute inset-0 z-50 overflow-y-auto bg-[#1d1d1b]/96 px-4 py-6 backdrop-blur-sm sm:px-8 lg:px-12">
       <div className="mx-auto w-full max-w-[860px] pb-8">
-        <header className="flex items-start justify-between gap-5">
+        <header className="flex animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_both] items-start justify-between gap-5">
           <div>
             <h2 className="text-2xl font-bold tracking-[-0.02em] text-white">
               Interview complete
             </h2>
             <p className="mt-1 text-sm font-semibold text-zinc-500">
-              Two Sum · {formatSummaryDuration(summary.elapsedSeconds)} ·{" "}
+              {summary.problemTitle} · {formatSummaryDuration(summary.elapsedSeconds)} ·{" "}
               {summary.exchangeCount}{" "}
               {summary.exchangeCount === 1 ? "exchange" : "exchanges"}
             </p>
@@ -447,17 +463,24 @@ function InterviewSummaryPanel({
 
         <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
           <SummaryStat
+            className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_90ms_both]"
             label="Overall score"
             value={
               summary.overallScore === null ? "Not assessed" : String(summary.overallScore)
             }
           />
           <SummaryStat
+            className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_140ms_both]"
             label="Final complexity"
             value={summary.finalComplexity ?? "Not assessed"}
           />
-          <SummaryStat label="Hints used" value={String(summary.hintsUsed)} />
           <SummaryStat
+            className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_190ms_both]"
+            label="Hints used"
+            value={String(summary.hintsUsed)}
+          />
+          <SummaryStat
+            className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_240ms_both]"
             label="Time taken"
             value={formatSummaryDuration(summary.elapsedSeconds)}
           />
@@ -466,6 +489,7 @@ function InterviewSummaryPanel({
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           <FeedbackCard
             accent="lime"
+            className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_310ms_both]"
             icon={<CheckCircleIcon />}
             items={summary.wentWell}
             emptyMessage={NOT_ENOUGH_INFO}
@@ -473,6 +497,7 @@ function InterviewSummaryPanel({
           />
           <FeedbackCard
             accent="amber"
+            className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_380ms_both]"
             icon={<WarningIcon />}
             items={summary.areasToImprove}
             emptyMessage={NOT_ENOUGH_INFO}
@@ -480,20 +505,24 @@ function InterviewSummaryPanel({
           />
         </div>
 
-        <section className="mt-6 rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+        <section className="mt-6 animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_460ms_both] rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
           <h3 className="text-sm font-bold text-white">Performance breakdown</h3>
           <div className="mt-4 space-y-3">
             {summary.breakdown.length ? (
-              summary.breakdown.map((item) => (
+              summary.breakdown.map((item, index) => (
                 <div
-                  className="grid grid-cols-[138px_1fr_72px] items-center gap-4 text-sm font-bold text-zinc-400"
+                  className="grid animate-[row-fade-in_420ms_cubic-bezier(.16,1,.3,1)_both] grid-cols-[138px_1fr_72px] items-center gap-4 text-sm font-bold text-zinc-400"
                   key={item.label}
+                  style={{ animationDelay: `${540 + index * 55}ms` }}
                 >
                   <span className="truncate">{item.label}</span>
                   <div className="h-1.5 overflow-hidden rounded-full bg-[#171716]">
                     <div
-                      className="h-full rounded-full bg-zinc-500"
-                      style={{ width: `${(item.score ?? 0) * 10}%` }}
+                      className="h-full origin-left animate-[score-bar-fill_760ms_cubic-bezier(.16,1,.3,1)_both] rounded-full bg-zinc-500"
+                      style={{
+                        animationDelay: `${620 + index * 55}ms`,
+                        width: `${(item.score ?? 0) * 10}%`,
+                      }}
                     />
                   </div>
                   <span className="text-right text-zinc-500">
@@ -509,11 +538,15 @@ function InterviewSummaryPanel({
           </div>
         </section>
 
-        <section className="mt-6 rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+        <section className="mt-6 animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_560ms_both] rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
           <h3 className="text-sm font-bold text-white">Transcript</h3>
           <div className="mt-4 space-y-3 text-sm font-semibold leading-6 text-zinc-400">
             {summary.transcript.map((line, index) => (
-              <p key={`${line.speaker}-${index}`}>
+              <p
+                className="animate-[row-fade-in_380ms_cubic-bezier(.16,1,.3,1)_both]"
+                key={`${line.speaker}-${index}`}
+                style={{ animationDelay: `${660 + Math.min(index, 14) * 36}ms` }}
+              >
                 <span className="mr-2 rounded-md bg-[#181817] px-2 py-1 text-xs font-bold text-zinc-300">
                   {line.speaker}
                 </span>
@@ -527,9 +560,17 @@ function InterviewSummaryPanel({
   );
 }
 
-function SummaryStat({ label, value }: { label: string; value: string }) {
+function SummaryStat({
+  className = "",
+  label,
+  value,
+}: {
+  className?: string;
+  label: string;
+  value: string;
+}) {
   return (
-    <div className="rounded-lg bg-[#151514] px-4 py-4">
+    <div className={`rounded-lg bg-[#151514] px-4 py-4 ${className}`}>
       <p className="text-2xl font-bold tracking-[-0.03em] text-white">{value}</p>
       <p className="mt-1 text-xs font-bold text-zinc-500">{label}</p>
     </div>
@@ -538,12 +579,14 @@ function SummaryStat({ label, value }: { label: string; value: string }) {
 
 function FeedbackCard({
   accent,
+  className = "",
   emptyMessage,
   icon,
   items,
   title,
 }: {
   accent: "amber" | "lime";
+  className?: string;
   emptyMessage?: string;
   icon: React.ReactNode;
   items: string[];
@@ -552,7 +595,7 @@ function FeedbackCard({
   const dotClass = accent === "lime" ? "bg-lime-500" : "bg-amber-500";
 
   return (
-    <section className="rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+    <section className={`rounded-xl border border-white/10 bg-[#2a2a28] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${className}`}>
       <h3 className="flex items-center gap-2 text-sm font-bold text-white">
         {icon}
         {title}
@@ -821,12 +864,14 @@ function createInterviewSummary({
   exchangeCount,
   hintsUsed,
   interviewerResponse,
+  problemTitle,
   transcript,
 }: {
   elapsedSeconds: number;
   exchangeCount: number;
   hintsUsed: number;
   interviewerResponse: string;
+  problemTitle: string;
   transcript: TranscriptLine[];
 }): InterviewSummary {
   const normalizedTranscript = transcript
@@ -841,29 +886,43 @@ function createInterviewSummary({
       .map((line) => line.text)
       .join(" "),
   );
+  const conversationTranscript = normalizeSummaryText(
+    normalizedTranscript.map((line) => `${line.speaker}: ${line.text}`).join(" "),
+  );
   const interviewerTranscript = normalizeSummaryText(
     interviewerResponse === INITIAL_INTERVIEWER_RESPONSE ? "" : interviewerResponse,
   );
   const wordCount = countWords(candidateTranscript);
   const completedExchanges = Math.max(exchangeCount, candidateTranscript ? 1 : 0);
-  const hasProblemSignal = hasTwoSumSignal(candidateTranscript);
-  const hasSolutionSignal = hasTwoSumSolutionSignal(candidateTranscript);
+  const hasAcceptedSignal = hasAcceptedTestSignal(conversationTranscript);
+  const hasPositiveInterviewerSignal = hasInterviewerSolutionApproval(conversationTranscript);
+  const hasSolutionSignal =
+    hasAcceptedSignal ||
+    hasPositiveInterviewerSignal ||
+    hasGeneralSolutionSignal(candidateTranscript);
   const hasAssessableTranscript =
-    wordCount >= 12 && hasProblemSignal && elapsedSeconds >= 10;
-  const finalComplexity = extractComplexity(candidateTranscript);
+    hasAcceptedSignal ||
+    (normalizedTranscript.length >= 3 && wordCount >= 12);
+  const finalComplexity =
+    extractComplexity(candidateTranscript) ??
+    inferComplexityFromApproach(candidateTranscript);
   const communicationScore = hasAssessableTranscript
-    ? Math.min(10, Math.max(4, Math.round(wordCount / 12) + 5))
+    ? Math.min(10, Math.max(5, Math.round(wordCount / 18) + 6))
     : null;
   const comprehensionScore = hasAssessableTranscript
     ? hasSolutionSignal
-      ? 8
+      ? hasAcceptedSignal
+        ? 9
+        : 8
       : 6
     : null;
-  const correctnessScore = hasAssessableTranscript
-    ? hasSolutionSignal
-      ? 8
-      : 5
-    : null;
+  const correctnessScore = hasAcceptedSignal
+    ? 10
+    : hasAssessableTranscript
+      ? hasSolutionSignal
+        ? 8
+        : 5
+      : null;
   const complexityScore =
     hasAssessableTranscript && finalComplexity
       ? 8
@@ -885,9 +944,13 @@ function createInterviewSummary({
           10,
       )
     : null;
-  const wentWell = getEvidenceBackedWentWell(candidateTranscript);
+  const wentWell = getEvidenceBackedWentWell({
+    accepted: hasAcceptedSignal,
+    transcript: candidateTranscript,
+  });
   const areasToImprove = hasAssessableTranscript
     ? getEvidenceBackedAreasToImprove({
+        accepted: hasAcceptedSignal,
         hasSolutionSignal,
         mentionedComplexity: Boolean(finalComplexity),
         transcript: candidateTranscript,
@@ -910,6 +973,7 @@ function createInterviewSummary({
     finalComplexity,
     hintsUsed,
     overallScore,
+    problemTitle,
     transcript: normalizedTranscript.length
       ? normalizedTranscript
       : [
@@ -934,12 +998,20 @@ function countWords(text: string) {
   return text ? text.split(/\s+/).length : 0;
 }
 
-function hasTwoSumSignal(text: string) {
-  return /\b(two sum|target|indices|array|nums|pair|sum|complement)\b/i.test(text);
+function hasAcceptedTestSignal(text: string) {
+  return /\b(accepted|all\s+\d+\s+(?:out\s+of\s+\d+\s+)?test cases|passes?\s+all\s+test cases|all\s+test cases\s+(?:pass|passed|passing)|\d+\s*\/\s*\d+\s+test cases)\b/i.test(
+    text,
+  );
 }
 
-function hasTwoSumSolutionSignal(text: string) {
-  return /\b(hash ?map|map|dictionary|dict|set|complement|target\s*-\s*\w+)\b/i.test(
+function hasInterviewerSolutionApproval(text: string) {
+  return /\b(looks correct|looks good|correct overall|logic is solid|solution is solid|you're in good shape|very close|passes?)\b/i.test(
+    text,
+  );
+}
+
+function hasGeneralSolutionSignal(text: string) {
+  return /\b(hash ?map|map|dictionary|dict|set|frequency|count|sort|sorted|two[- ]?pointer|sliding window|stack|queue|heap|binary search|dfs|bfs|dynamic programming|dp|recursion|prefix|suffix|greedy|return false|return true|edge case|constraint)\b/i.test(
     text,
   );
 }
@@ -966,15 +1038,37 @@ function extractComplexity(text: string) {
   return null;
 }
 
-function getEvidenceBackedWentWell(transcript: string) {
-  const wentWell: string[] = [];
-
-  if (/\b(hash ?map|map|dictionary|dict)\b/i.test(transcript)) {
-    wentWell.push("Mentioned using a hash map or dictionary.");
+function inferComplexityFromApproach(text: string) {
+  if (/\b(frequency|count|hash ?map|map|dictionary|dict|set)\b/i.test(text)) {
+    return "O(n)";
   }
 
-  if (/\bcomplement|target\s*-\s*\w+\b/i.test(transcript)) {
-    wentWell.push("Referenced complement lookup for the target sum.");
+  if (/\b(sort|sorted)\b/i.test(text)) {
+    return "O(n log n)";
+  }
+
+  return null;
+}
+
+function getEvidenceBackedWentWell({
+  accepted,
+  transcript,
+}: {
+  accepted: boolean;
+  transcript: string;
+}) {
+  const wentWell: string[] = [];
+
+  if (accepted) {
+    wentWell.push("Reached an accepted solution with passing test cases.");
+  }
+
+  if (/\b(hash ?map|map|dictionary|dict|frequency|count)\b/i.test(transcript)) {
+    wentWell.push("Explained a counting or map-based strategy.");
+  }
+
+  if (/\b(edge case|length|constraint|negative|duplicate|empty|null)\b/i.test(transcript)) {
+    wentWell.push("Discussed constraints or edge-case handling.");
   }
 
   if (extractComplexity(transcript)) {
@@ -985,19 +1079,21 @@ function getEvidenceBackedWentWell(transcript: string) {
 }
 
 function getEvidenceBackedAreasToImprove({
+  accepted,
   hasSolutionSignal,
   mentionedComplexity,
   transcript,
 }: {
+  accepted: boolean;
   hasSolutionSignal: boolean;
   mentionedComplexity: boolean;
   transcript: string;
 }) {
   const areasToImprove: string[] = [];
 
-  if (!hasSolutionSignal) {
+  if (!hasSolutionSignal && !accepted) {
     areasToImprove.push(
-      "The captured answer did not clearly explain the hash map/complement approach.",
+      "The captured answer did not clearly explain a complete solution strategy.",
     );
   }
 
@@ -1298,7 +1394,8 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
                 type: "input_text",
                 text:
                   "Current screen context snapshot from the candidate's shared coding window. " +
-                  "Use this image as visual context for the next interview response.",
+                  "Use this image as visual context for the next interview response. " +
+                  "If it clearly shows LeetCode Accepted or all test cases passing for the current problem, ask final follow-up questions and then invite the candidate to end the interview.",
               },
               {
                 type: "input_image",
@@ -1579,7 +1676,7 @@ function useRealtimeInterviewSession(problem: PracticeProblem) {
             response: {
               instructions:
                 isScreenSharingRef.current
-                  ? `Briefly greet the candidate and ask them to start by explaining their ${problem.title} approach. Use the shared screen context when it is relevant.`
+                  ? `Briefly greet the candidate and ask them to start by explaining their ${problem.title} approach. Use the shared screen context when it is relevant. If the shared screen later shows LeetCode Accepted or all test cases passing, ask one or two final follow-up questions and then invite the candidate to end the interview.`
                   : `Briefly greet the candidate and ask them to start by explaining their ${problem.title} approach.`,
             },
           }),

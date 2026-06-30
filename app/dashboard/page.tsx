@@ -51,7 +51,7 @@ export default function DashboardPage() {
   return (
     <main className="min-h-screen bg-[#0b0b0c] text-zinc-100">
       <div className="mx-auto flex min-h-screen w-full max-w-[1220px] flex-col px-4 py-4 sm:px-6 lg:px-8">
-        <header className="flex items-center justify-between border-b border-white/10 pb-4">
+        <header className="flex animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_both] items-center justify-between border-b border-white/10 pb-4">
           <Link className="flex items-center gap-3" href="/">
             <div className="flex size-7 items-center justify-center rounded-lg bg-white text-[11px] font-black text-zinc-950">
               AI
@@ -78,7 +78,7 @@ export default function DashboardPage() {
         </header>
 
         <section className="py-9">
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div className="flex animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_90ms_both] flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl font-bold tracking-[-0.04em] text-white sm:text-4xl">
                 Your interview prep
@@ -99,14 +99,38 @@ export default function DashboardPage() {
           </div>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            <ProgressCard color="#2ee66f" label="Total solved" percent={63} value="94/150" />
-            <ProgressCard color="#f2c84b" label="Mock-interviewed" percent={55} value="55%" />
-            <ProgressCard color="#62a9ff" label="Pass rate (>=7/10)" percent={70} value="70%" />
+            <ProgressCard
+              className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_170ms_both]"
+              color="#2ee66f"
+              label="Total solved"
+              percent={63}
+              value="94/150"
+            />
+            <ProgressCard
+              className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_230ms_both]"
+              color="#f2c84b"
+              label="Mock-interviewed"
+              percent={55}
+              value="55%"
+            />
+            <ProgressCard
+              className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_290ms_both]"
+              color="#62a9ff"
+              label="Pass rate (>=7/10)"
+              percent={70}
+              value="70%"
+            />
           </div>
 
           <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <MiniStat label="Last interviewed" value="Yesterday" detail="Sliding Window" />
             <MiniStat
+              className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_350ms_both]"
+              label="Last interviewed"
+              value="Yesterday"
+              detail="Sliding Window"
+            />
+            <MiniStat
+              className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_400ms_both]"
               label="Interview score"
               value="6.5"
               suffix="/10"
@@ -114,12 +138,14 @@ export default function DashboardPage() {
               tone="red"
             />
             <MiniStat
+              className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_450ms_both]"
               label="Total mock interviews"
               value="52"
               detail="+4 this week"
               tone="green"
             />
             <MiniStat
+              className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_500ms_both]"
               label="Avg. time to solve"
               value="21"
               suffix="min"
@@ -129,34 +155,34 @@ export default function DashboardPage() {
           </div>
 
           <div className="mt-6 grid gap-5 lg:grid-cols-[1.35fr_0.95fr]">
-            <section className="rounded-2xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+            <section className="animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_570ms_both] rounded-2xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
               <div className="mb-5 flex items-center justify-between">
                 <h2 className="text-base font-bold text-white">Interview history</h2>
                 <span className="font-mono text-xs text-zinc-600">last 5</span>
               </div>
 
               <div className="divide-y divide-white/5">
-                {historyItems.map((item) => (
-                  <HistoryRow key={item.title} {...item} />
+                {historyItems.map((item, index) => (
+                  <HistoryRow key={item.title} index={index} {...item} />
                 ))}
               </div>
             </section>
 
             <div className="space-y-5">
-              <section className="rounded-2xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+              <section className="animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_640ms_both] rounded-2xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                 <div className="mb-5 flex items-center justify-between">
                   <h2 className="text-base font-bold text-white">Topic mastery</h2>
                   <span className="font-mono text-xs text-zinc-600">10 topics</span>
                 </div>
 
                 <div className="space-y-4">
-                  {topics.map((topic) => (
-                    <TopicRow key={topic.label} {...topic} />
+                  {topics.map((topic, index) => (
+                    <TopicRow key={topic.label} index={index} {...topic} />
                   ))}
                 </div>
               </section>
 
-              <section className="rounded-2xl border border-emerald-500/45 bg-emerald-500/5 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+              <section className="animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_720ms_both] rounded-2xl border border-emerald-500/45 bg-emerald-500/5 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                 <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-emerald-400">
                   <span className="size-2 rounded-full bg-emerald-400" />
                   Recommended next
@@ -179,7 +205,10 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <section className="mt-6" id="problem-lists">
+          <section
+            className="mt-6 animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_800ms_both]"
+            id="problem-lists"
+          >
             <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
                 <h2 className="text-xl font-bold tracking-[-0.03em] text-white">
@@ -216,18 +245,20 @@ export default function DashboardPage() {
 }
 
 function ProgressCard({
+  className = "",
   color,
   label,
   percent,
   value,
 }: {
+  className?: string;
   color: string;
   label: string;
   percent: number;
   value: string;
 }) {
   return (
-    <section className="rounded-2xl border border-white/10 bg-[#141416] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+    <section className={`rounded-2xl border border-white/10 bg-[#141416] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${className}`}>
       <div className="flex items-center gap-6">
         <ProgressRing color={color} percent={percent} />
         <div>
@@ -255,12 +286,14 @@ function ProgressRing({ color, percent }: { color: string; percent: number }) {
 }
 
 function MiniStat({
+  className = "",
   detail,
   label,
   suffix,
   tone = "zinc",
   value,
 }: {
+  className?: string;
   detail: string;
   label: string;
   suffix?: string;
@@ -271,7 +304,7 @@ function MiniStat({
     tone === "green" ? "text-emerald-400" : tone === "red" ? "text-red-400" : "text-zinc-500";
 
   return (
-    <section className="rounded-xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+    <section className={`rounded-xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${className}`}>
       <p className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-600">
         {label}
       </p>
@@ -287,11 +320,13 @@ function MiniStat({
 }
 
 function HistoryRow({
+  index,
   meta,
   score,
   title,
   tone,
 }: {
+  index: number;
   meta: string;
   score: string;
   title: string;
@@ -305,7 +340,10 @@ function HistoryRow({
         : "bg-amber-500/15 text-amber-300";
 
   return (
-    <article className="grid grid-cols-[40px_1fr_auto] items-center gap-4 py-4">
+    <article
+      className="grid animate-[row-fade-in_420ms_cubic-bezier(.16,1,.3,1)_both] grid-cols-[40px_1fr_auto] items-center gap-4 py-4"
+      style={{ animationDelay: `${680 + index * 45}ms` }}
+    >
       <div className={`rounded-lg px-2 py-2 text-center font-mono text-sm font-bold ${scoreClass}`}>
         {score}
       </div>
@@ -324,10 +362,12 @@ function HistoryRow({
 }
 
 function TopicRow({
+  index,
   label,
   solved,
   total,
 }: {
+  index: number;
   label: string;
   solved: number;
   total: number;
@@ -335,7 +375,10 @@ function TopicRow({
   const activeDots = Math.round((solved / Math.max(total, 1)) * 5);
 
   return (
-    <div className="grid grid-cols-[1fr_auto_48px] items-center gap-4 border-b border-white/5 pb-3 last:border-b-0 last:pb-0">
+    <div
+      className="grid animate-[row-fade-in_420ms_cubic-bezier(.16,1,.3,1)_both] grid-cols-[1fr_auto_48px] items-center gap-4 border-b border-white/5 pb-3 last:border-b-0 last:pb-0"
+      style={{ animationDelay: `${740 + index * 45}ms` }}
+    >
       <span className="text-sm font-medium text-zinc-300">{label}</span>
       <div className="flex gap-1">
         {Array.from({ length: 5 }).map((_, index) => (
@@ -392,7 +435,11 @@ function ProblemListPanel({
       <div className="max-h-[560px] overflow-y-auto pr-2">
         <div className="divide-y divide-white/5">
           {problems.map((problem, index) => (
-            <ProblemLink key={`${problem.category}-${problem.title}`} index={index + 1} problem={problem} />
+            <ProblemLink
+              key={`${problem.category}-${problem.title}`}
+              index={index + 1}
+              problem={problem}
+            />
           ))}
         </div>
       </div>
@@ -411,8 +458,9 @@ function ProblemLink({
 
   return (
     <Link
-      className="grid grid-cols-[40px_1fr_auto] items-center gap-3 py-3 text-sm transition-colors hover:text-white"
+      className="grid animate-[row-fade-in_380ms_cubic-bezier(.16,1,.3,1)_both] grid-cols-[40px_1fr_auto] items-center gap-3 py-3 text-sm transition-colors hover:text-white"
       href={practiceHref}
+      style={{ animationDelay: `${Math.min(index, 20) * 24}ms` }}
     >
       <span className="font-mono text-xs font-bold text-zinc-600">
         {String(index).padStart(3, "0")}
