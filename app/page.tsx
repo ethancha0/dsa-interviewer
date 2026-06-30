@@ -64,6 +64,13 @@ type StartInterviewOptions = {
   shareScreen: boolean;
 };
 
+type PracticeProblem = {
+  category?: string;
+  slug: string;
+  title: string;
+  url: string;
+};
+
 type InterviewSummary = {
   areasToImprove: string[];
   breakdown: Array<{
@@ -85,9 +92,34 @@ type InterviewSummary = {
 
 const INITIAL_INTERVIEWER_RESPONSE = "";
 const NOT_ENOUGH_INFO = "Not enough information captured to assess this section.";
+const DEFAULT_PRACTICE_PROBLEM: PracticeProblem = {
+  category: "Arrays & Hashing",
+  slug: "two-sum",
+  title: "Two Sum",
+  url: "https://leetcode.com/problems/two-sum/",
+};
 
 export default function Home() {
   const [isPracticeOpen, setIsPracticeOpen] = useState(false);
+  const [practiceProblem, setPracticeProblem] = useState<PracticeProblem>(
+    DEFAULT_PRACTICE_PROBLEM,
+  );
+
+  useEffect(() => {
+    const problem = getPracticeProblemFromSearchParams(
+      new URLSearchParams(window.location.search),
+    );
+
+    if (problem) {
+      setPracticeProblem(problem);
+      setIsPracticeOpen(true);
+    }
+  }, []);
+
+  function openDefaultPractice() {
+    setPracticeProblem(DEFAULT_PRACTICE_PROBLEM);
+    setIsPracticeOpen(true);
+  }
 
   return (
     <main className="min-h-screen bg-[#1f1f1d] px-4 py-5 text-zinc-50 sm:px-6 lg:px-10">
@@ -127,7 +159,7 @@ export default function Home() {
 
           <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
             <Button
-              onClick={() => setIsPracticeOpen(true)}
+              onClick={openDefaultPractice}
               variant="secondary"
               className="h-11 rounded-lg border-white/15 bg-transparent px-5 text-[15px] font-bold text-white hover:bg-white/10"
             >
@@ -146,7 +178,7 @@ export default function Home() {
             Live demo
           </p>
 
-          <DemoWindow onStartPractice={() => setIsPracticeOpen(true)} />
+          <DemoWindow onStartPractice={openDefaultPractice} />
 
           <div className="mt-8 grid w-full gap-4 text-left md:grid-cols-3">
             {featureCards.map((feature) => (
@@ -187,7 +219,7 @@ export default function Home() {
 
               <Button
                 className="h-12 rounded-xl px-7 text-[15px] font-bold"
-                onClick={() => setIsPracticeOpen(true)}
+                onClick={openDefaultPractice}
               >
                 <PlayIcon />
                 Start interview
@@ -198,13 +230,48 @@ export default function Home() {
       </div>
 
       {isPracticeOpen ? (
-        <PracticeWorkspace onClose={() => setIsPracticeOpen(false)} />
+        <PracticeWorkspace
+          onClose={() => setIsPracticeOpen(false)}
+          problem={practiceProblem}
+        />
       ) : null}
     </main>
   );
 }
 
-function PracticeWorkspace({ onClose }: { onClose: () => void }) {
+function getPracticeProblemFromSearchParams(searchParams: URLSearchParams) {
+  const slug = searchParams.get("problem")?.trim();
+
+  if (!slug) {
+    return null;
+  }
+
+  const title = searchParams.get("title")?.trim() || titleizeProblemSlug(slug);
+  const category = searchParams.get("category")?.trim();
+
+  return {
+    category,
+    slug,
+    title,
+    url: `https://leetcode.com/problems/${slug}/`,
+  };
+}
+
+function titleizeProblemSlug(slug: string) {
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function PracticeWorkspace({
+  onClose,
+  problem,
+}: {
+  onClose: () => void;
+  problem: PracticeProblem;
+}) {
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const dragOffsetRef = useRef<DragPosition>({ x: 0, y: 0 });
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
@@ -213,7 +280,7 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
   const [hasInterviewStarted, setHasInterviewStarted] = useState(false);
   const [summary, setSummary] = useState<InterviewSummary | null>(null);
   const elapsedSeconds = useElapsedSeconds(hasInterviewStarted);
-  const interview = useRealtimeInterviewSession();
+  const interview = useRealtimeInterviewSession(problem);
 
   function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
     if ((event.target as HTMLElement).closest("button")) {
@@ -280,9 +347,11 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
               AI
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-bold leading-none">Two Sum Interview</p>
+              <p className="text-sm font-bold leading-none">
+                {problem.title} Interview
+              </p>
               <p className="mt-1 truncate text-xs font-medium text-zinc-500">
-                leetcode.com/problems/two-sum
+                {`leetcode.com/problems/${problem.slug}`}
               </p>
             </div>
           </div>
@@ -298,8 +367,8 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
 
         <iframe
           className="absolute inset-x-0 bottom-0 top-12 h-[calc(100%-3rem)] w-full border-0 bg-white"
-          src="https://leetcode.com/problems/two-sum/"
-          title="LeetCode Two Sum"
+          src={problem.url}
+          title={`LeetCode ${problem.title}`}
         />
       </div>
 
@@ -950,7 +1019,7 @@ function formatSummaryDuration(elapsedSeconds: number) {
   return `${minutes}m ${seconds}s`;
 }
 
-function useRealtimeInterviewSession() {
+function useRealtimeInterviewSession(problem: PracticeProblem) {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioSourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
@@ -1420,6 +1489,13 @@ function useRealtimeInterviewSession() {
       setIsMuted(false);
 
       const sessionResponse = await fetch("/api/realtime/session", {
+        body: JSON.stringify({
+          problemTitle: problem.title,
+          problemUrl: problem.url,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
         method: "POST",
       });
       const sessionPayload = await parseJsonResponse(sessionResponse);
@@ -1463,8 +1539,8 @@ function useRealtimeInterviewSession() {
             response: {
               instructions:
                 isScreenSharingRef.current
-                  ? "Briefly greet the candidate and ask them to start by explaining their Two Sum approach. Use the shared screen context when it is relevant."
-                  : "Briefly greet the candidate and ask them to start by explaining their Two Sum approach.",
+                  ? `Briefly greet the candidate and ask them to start by explaining their ${problem.title} approach. Use the shared screen context when it is relevant.`
+                  : `Briefly greet the candidate and ask them to start by explaining their ${problem.title} approach.`,
             },
           }),
         );
@@ -1566,7 +1642,7 @@ function useRealtimeInterviewSession() {
         type: "response.create",
         response: {
           instructions:
-            "Give the candidate one concise Two Sum hint based on the current conversation. Do not reveal the full solution. Prefer a guiding question or a small nudge toward the next idea.",
+            `Give the candidate one concise ${problem.title} hint based on the current conversation. Do not reveal the full solution. Prefer a guiding question or a small nudge toward the next idea.`,
         },
       }),
     );

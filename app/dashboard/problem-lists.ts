@@ -1,5 +1,6 @@
 export type ProblemListItem = {
   category: string;
+  slug: string;
   title: string;
   url: string;
 };
@@ -18,6 +19,7 @@ function flattenProblems(sources: ProblemSource[]) {
   return sources.flatMap(({ category, problems }) =>
     problems.map((problem) => ({
       category,
+      slug: problem.slug,
       title: problem.title,
       url: leetcodeUrl(problem.slug),
     })),

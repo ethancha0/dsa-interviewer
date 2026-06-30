@@ -407,12 +407,12 @@ function ProblemLink({
   index: number;
   problem: ProblemListItem;
 }) {
+  const practiceHref = `/?problem=${encodeURIComponent(problem.slug)}&title=${encodeURIComponent(problem.title)}&category=${encodeURIComponent(problem.category)}`;
+
   return (
-    <a
+    <Link
       className="grid grid-cols-[40px_1fr_auto] items-center gap-3 py-3 text-sm transition-colors hover:text-white"
-      href={problem.url}
-      rel="noreferrer"
-      target="_blank"
+      href={practiceHref}
     >
       <span className="font-mono text-xs font-bold text-zinc-600">
         {String(index).padStart(3, "0")}
@@ -426,7 +426,7 @@ function ProblemLink({
         </span>
       </span>
       <span className="text-xs font-semibold text-zinc-500">Open -&gt;</span>
-    </a>
+    </Link>
   );
 }
 

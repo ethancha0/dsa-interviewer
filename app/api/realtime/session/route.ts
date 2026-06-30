@@ -1,14 +1,15 @@
 const OPENAI_REALTIME_CLIENT_SECRETS_URL =
   "https://api.openai.com/v1/realtime/client_secrets";
 
-const INTERVIEWER_INSTRUCTIONS =
+const DEFAULT_PROBLEM_TITLE = "Two Sum";
+
+const BASE_INTERVIEWER_INSTRUCTIONS =
   "You are Alex, a senior software engineer conducting a DSA interview. " +
-  "The candidate is solving LeetCode Two Sum. Keep the interview conversational and voice-first. " +
   "Use provided screen context snapshots to understand the candidate's visible code and problem page. " +
   "Ask focused follow-up questions, give small nudges when the candidate is stuck, and do not reveal the full solution. " +
   "Reply in one or two concise sentences unless the candidate asks for deeper clarification.";
 
-export async function POST() {
+export async function POST(request: Request) {
   const apiKey = normalizeApiKey(process.env.OPENAI_API_KEY);
 
   if (!apiKey) {
@@ -17,6 +18,24 @@ export async function POST() {
       { status: 500 },
     );
   }
+
+  const requestPayload = await request.json().catch(() => null);
+  const problemTitle =
+    requestPayload && typeof requestPayload === "object"
+      ? getStringPayloadValue(requestPayload, "problemTitle") ?? DEFAULT_PROBLEM_TITLE
+      : DEFAULT_PROBLEM_TITLE;
+  const problemUrl =
+    requestPayload && typeof requestPayload === "object"
+      ? getStringPayloadValue(requestPayload, "problemUrl")
+      : null;
+  const interviewerInstructions = [
+    BASE_INTERVIEWER_INSTRUCTIONS,
+    `The candidate is solving LeetCode ${problemTitle}.`,
+    problemUrl ? `Problem URL: ${problemUrl}.` : null,
+    "Tailor every follow-up to that specific problem.",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   let openAIResponse: Response;
 
@@ -32,7 +51,7 @@ export async function POST() {
         session: {
           type: "realtime",
           model: process.env.OPENAI_REALTIME_MODEL?.trim() || "gpt-realtime-2",
-          instructions: INTERVIEWER_INSTRUCTIONS,
+          instructions: interviewerInstructions,
           audio: {
             input: {
               transcription: {
@@ -63,20 +82,20 @@ export async function POST() {
     );
   }
 
-  const payload = await parseJsonResponse(openAIResponse);
+  const openAIPayload = await parseJsonResponse(openAIResponse);
 
   if (!openAIResponse.ok) {
     return Response.json(
       {
         error:
-          getOpenAIErrorMessage(payload) ??
+          getOpenAIErrorMessage(openAIPayload) ??
           "OpenAI realtime session request failed.",
       },
       { status: openAIResponse.status },
     );
   }
 
-  return Response.json(payload);
+  return Response.json(openAIPayload);
 }
 
 async function parseJsonResponse(response: Response) {
@@ -95,6 +114,16 @@ async function parseJsonResponse(response: Response) {
 
 function normalizeApiKey(apiKey: string | undefined) {
   return apiKey?.trim().replace(/^Bearer\s+/i, "");
+}
+
+function getStringPayloadValue(payload: unknown, key: string) {
+  if (!payload || typeof payload !== "object" || !(key in payload)) {
+    return null;
+  }
+
+  const value = (payload as Record<string, unknown>)[key];
+
+  return typeof value === "string" ? value.trim() || null : null;
 }
 
 function getOpenAIErrorMessage(payload: unknown) {
