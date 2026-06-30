@@ -71,16 +71,23 @@ export function saveLocalDashboardProgress(record: DashboardInterviewRecord) {
   );
 }
 
-export async function recordCompletedInterview(record: DashboardInterviewRecord) {
-  saveLocalDashboardProgress(record);
+export async function recordCompletedInterview(
+  record: DashboardInterviewRecord,
+  apiBase = "",
+) {
+  if (!apiBase) {
+    saveLocalDashboardProgress(record);
+  }
 
   if (typeof window === "undefined") {
     return;
   }
 
-  await fetch("/api/dashboard/progress", {
+  const base = apiBase.replace(/\/$/, "");
+
+  await fetch(`${base || ""}/api/dashboard/progress`, {
     body: JSON.stringify(record),
-    credentials: "same-origin",
+    credentials: apiBase ? "include" : "same-origin",
     headers: {
       "Content-Type": "application/json",
     },

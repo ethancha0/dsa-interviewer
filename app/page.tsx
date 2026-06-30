@@ -3,7 +3,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Overlay from "@/components/ui/pip-overlay/overlay";
+import { LeetCodeInterviewLauncher } from "@/components/interview/leetcode-interview-launcher";
 import { recordCompletedInterview } from "@/lib/dashboard-progress";
 import MuiMicIcon from "@mui/icons-material/Mic";
 import Link from "next/link";
@@ -131,11 +131,6 @@ export default function Home() {
     setIsPracticeOpen(false);
   }
 
-  function closeSummaryToDashboard() {
-    setIsPracticeOpen(false);
-    router.push("/dashboard");
-  }
-
   return (
     <main className="min-h-screen bg-[#1f1f1d] px-4 py-5 text-zinc-50 sm:px-6 lg:px-10">
       <div className="mx-auto flex min-h-[calc(100vh-2.5rem)] w-full max-w-[1240px] flex-col">
@@ -245,9 +240,8 @@ export default function Home() {
       </div>
 
       {isPracticeOpen ? (
-        <PracticeWorkspace
-          onClose={closePractice}
-          onSummaryClose={closeSummaryToDashboard}
+        <LeetCodeInterviewLauncher
+          onCancel={closePractice}
           problem={practiceProblem}
         />
       ) : null}
@@ -279,166 +273,6 @@ function titleizeProblemSlug(slug: string) {
     .filter(Boolean)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-}
-
-function PracticeWorkspace({
-  onClose,
-  onSummaryClose,
-  problem,
-}: {
-  onClose: () => void;
-  onSummaryClose: () => void;
-  problem: PracticeProblem;
-}) {
-  const overlayRef = useRef<HTMLDivElement | null>(null);
-  const dragOffsetRef = useRef<DragPosition>({ x: 0, y: 0 });
-  const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
-    null,
-  );
-  const [hasInterviewStarted, setHasInterviewStarted] = useState(false);
-  const [summary, setSummary] = useState<InterviewSummary | null>(null);
-  const elapsedSeconds = useElapsedSeconds(hasInterviewStarted);
-  const interview = useRealtimeInterviewSession(problem);
-
-  function handleOverlayPointerDown(event: PointerEvent<HTMLDivElement>) {
-    if ((event.target as HTMLElement).closest("button")) {
-      return;
-    }
-
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    dragOffsetRef.current = {
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    };
-
-    setOverlayPosition({ x: rect.left, y: rect.top });
-    event.currentTarget.setPointerCapture(event.pointerId);
-  }
-
-  function handleOverlayPointerMove(event: PointerEvent<HTMLDivElement>) {
-    if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
-      return;
-    }
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    const margin = 16;
-    const maxX = window.innerWidth - rect.width - margin;
-    const maxY = window.innerHeight - rect.height - margin;
-
-    setOverlayPosition({
-      x: Math.min(Math.max(event.clientX - dragOffsetRef.current.x, margin), maxX),
-      y: Math.min(Math.max(event.clientY - dragOffsetRef.current.y, margin), maxY),
-    });
-  }
-
-  function handleOverlayPointerUp(event: PointerEvent<HTMLDivElement>) {
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-  }
-
-  function handleEndInterview() {
-    const completedSummary = createInterviewSummary({
-      elapsedSeconds,
-      exchangeCount: interview.exchangeCount,
-      hintsUsed: interview.hintsUsed,
-      interviewerResponse: interview.interviewerResponse,
-      problemTitle: problem.title,
-      transcript: interview.fullTranscript,
-    });
-
-    interview.stop();
-    void recordCompletedInterview({
-      category: problem.category,
-      completedAt: new Date().toISOString(),
-      elapsedSeconds: completedSummary.elapsedSeconds,
-      overallScore: completedSummary.overallScore,
-      problemSlug: problem.slug,
-      problemTitle: problem.title,
-      verdict: completedSummary.verdict,
-    });
-    setSummary(completedSummary);
-  }
-
-  function handleStartInterview(options: StartInterviewOptions) {
-    setHasInterviewStarted(true);
-    void interview.start(options);
-  }
-
-  return (
-    <div className="fixed inset-0 z-50 bg-zinc-500/35 p-3 text-zinc-50 backdrop-blur-[2px] sm:p-6 lg:p-8">
-      <div className="relative h-full overflow-hidden rounded-[1.35rem] border border-white/15 bg-[#0b0b0b] shadow-[0_32px_120px_rgba(0,0,0,0.55)]">
-        <div className="relative z-30 flex h-12 items-center justify-between border-b border-white/10 bg-[#181817]/95 px-4 backdrop-blur">
-          <div className="flex min-w-0 items-center gap-3">
-            <div className="flex size-7 items-center justify-center rounded-lg bg-black text-[11px] font-bold">
-              AI
-            </div>
-            <div className="min-w-0">
-              <p className="text-sm font-bold leading-none">
-                {problem.title} Interview
-              </p>
-              <p className="mt-1 truncate text-xs font-medium text-zinc-500">
-                {`leetcode.com/problems/${problem.slug}`}
-              </p>
-            </div>
-          </div>
-
-          <Button
-            variant="secondary"
-            className="h-8 rounded-lg border-white/15 bg-transparent px-3 text-xs text-white"
-            onClick={onClose}
-          >
-            Exit
-          </Button>
-        </div>
-
-        <iframe
-          className="absolute inset-x-0 bottom-0 top-12 h-[calc(100%-3rem)] w-full border-0 bg-white"
-          src={problem.url}
-          title={`LeetCode ${problem.title}`}
-        />
-      </div>
-
-      {summary ? (
-        <InterviewSummaryPanel summary={summary} onClose={onSummaryClose} />
-      ) : (
-        <div
-          ref={overlayRef}
-          className="absolute z-40 touch-none cursor-grab animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_420ms_both] active:cursor-grabbing"
-          style={
-            overlayPosition
-              ? { left: overlayPosition.x, top: overlayPosition.y }
-              : { right: "2rem", top: "6rem" }
-          }
-          aria-label="DSA interviewer overlay"
-          onPointerDown={handleOverlayPointerDown}
-          onPointerMove={handleOverlayPointerMove}
-          onPointerUp={handleOverlayPointerUp}
-          onPointerCancel={handleOverlayPointerUp}
-        >
-          <Overlay
-            audioLevel={interview.audioLevel}
-            elapsedTime={formatElapsedClock(elapsedSeconds)}
-            hasStarted={hasInterviewStarted}
-            interviewerResponse={interview.interviewerResponse}
-            interviewerStatus={interview.interviewerStatus}
-            isMuted={interview.isMuted}
-            onClose={onClose}
-            onEnd={handleEndInterview}
-            onRequestHint={interview.requestHint}
-            onStartInterview={handleStartInterview}
-            transcript={interview.text}
-            transcriptStatus={interview.status}
-            isListening={interview.isListening}
-            onStartListening={interview.start}
-            onStopListening={interview.stop}
-            onToggleMute={interview.toggleMute}
-          />
-        </div>
-      )}
-    </div>
-  );
 }
 
 function InterviewSummaryPanel({
