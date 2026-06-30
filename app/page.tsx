@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Overlay from "@/components/ui/pip-overlay/overlay";
+import { recordCompletedInterview } from "@/lib/dashboard-progress";
 import MuiMicIcon from "@mui/icons-material/Mic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -348,6 +349,15 @@ function PracticeWorkspace({
     });
 
     interview.stop();
+    recordCompletedInterview({
+      category: problem.category,
+      completedAt: new Date().toISOString(),
+      elapsedSeconds: completedSummary.elapsedSeconds,
+      overallScore: completedSummary.overallScore,
+      problemSlug: problem.slug,
+      problemTitle: problem.title,
+      verdict: completedSummary.verdict,
+    });
     setSummary(completedSummary);
   }
 

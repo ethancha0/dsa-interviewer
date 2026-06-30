@@ -1,53 +1,41 @@
+"use client";
+
+import {
+  EMPTY_DASHBOARD_PROGRESS,
+  loadDashboardProgress,
+  type DashboardInterviewRecord,
+  type DashboardProgress,
+} from "@/lib/dashboard-progress";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import {
   blind75Problems,
   neetcode150Problems,
   type ProblemListItem,
 } from "./problem-lists";
 
-const historyItems = [
-  {
-    score: "6.5",
-    title: "Longest Repeating Character Replacement",
-    meta: "Yesterday - Alex - 19 min",
-    tone: "amber",
-  },
-  {
-    score: "9.0",
-    title: "Two Sum",
-    meta: "3 days ago - Alex - 8 min",
-    tone: "green",
-  },
-  {
-    score: "8.5",
-    title: "Valid Parentheses",
-    meta: "4 days ago - Alex - 11 min",
-    tone: "green",
-  },
-  {
-    score: "7.0",
-    title: "Binary Search",
-    meta: "5 days ago - Alex - 14 min",
-    tone: "amber",
-  },
-  {
-    score: "4.0",
-    title: "Merge K Sorted Lists",
-    meta: "1 week ago - Alex - 32 min",
-    tone: "red",
-  },
-];
-
-const topics = [
-  { label: "Arrays & Hashing", solved: 9, total: 9 },
-  { label: "Two Pointers", solved: 5, total: 5 },
-  { label: "Sliding Window", solved: 3, total: 7 },
-  { label: "Trees", solved: 5, total: 15 },
-  { label: "Backtracking", solved: 0, total: 9 },
-  { label: "Dynamic Programming", solved: 2, total: 11 },
-];
+const totalTrackProblems = neetcode150Problems.length;
 
 export default function DashboardPage() {
+  const [progress, setProgress] = useState<DashboardProgress>(EMPTY_DASHBOARD_PROGRESS);
+
+  useEffect(() => {
+    setProgress(loadDashboardProgress());
+  }, []);
+
+  const dashboardStats = useMemo(() => getDashboardStats(progress), [progress]);
+  const topics = useMemo(() => getTopicProgress(progress), [progress]);
+  const completedProblemSlugs = useMemo(
+    () => new Set(progress.interviews.map((interview) => interview.problemSlug)),
+    [progress],
+  );
+  const recommendedProblem = useMemo(
+    () =>
+      neetcode150Problems.find((problem) => !completedProblemSlugs.has(problem.slug)) ??
+      neetcode150Problems[0],
+    [completedProblemSlugs],
+  );
+
   return (
     <main className="min-h-screen bg-[#0b0b0c] text-zinc-100">
       <div className="mx-auto flex min-h-screen w-full max-w-[1220px] flex-col px-4 py-4 sm:px-6 lg:px-8">
@@ -84,7 +72,9 @@ export default function DashboardPage() {
                 Your interview prep
               </h1>
               <p className="mt-2 text-sm font-medium text-zinc-500">
-                94 problems solved - avg score 7.4/10 - last interview yesterday
+                {dashboardStats.completedCount} problems completed - avg score{" "}
+                {dashboardStats.averageScoreLabel} -{" "}
+                {dashboardStats.lastInterviewLabel}
               </p>
             </div>
 
@@ -103,22 +93,22 @@ export default function DashboardPage() {
               className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_170ms_both]"
               color="#2ee66f"
               label="Total solved"
-              percent={63}
-              value="94/150"
+              percent={dashboardStats.completedPercent}
+              value={`${dashboardStats.completedCount}/${totalTrackProblems}`}
             />
             <ProgressCard
               className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_230ms_both]"
               color="#f2c84b"
               label="Mock-interviewed"
-              percent={55}
-              value="55%"
+              percent={dashboardStats.mockInterviewPercent}
+              value={`${dashboardStats.mockInterviewPercent}%`}
             />
             <ProgressCard
               className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_290ms_both]"
               color="#62a9ff"
               label="Pass rate (>=7/10)"
-              percent={70}
-              value="70%"
+              percent={dashboardStats.passRate}
+              value={`${dashboardStats.passRate}%`}
             />
           </div>
 
@@ -126,31 +116,31 @@ export default function DashboardPage() {
             <MiniStat
               className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_350ms_both]"
               label="Last interviewed"
-              value="Yesterday"
-              detail="Sliding Window"
+              value={dashboardStats.lastInterviewValue}
+              detail={dashboardStats.lastInterviewDetail}
             />
             <MiniStat
               className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_400ms_both]"
               label="Interview score"
-              value="6.5"
+              value={dashboardStats.latestScoreValue}
               suffix="/10"
-              detail="-1.2 vs your avg"
-              tone="red"
+              detail={dashboardStats.latestScoreDetail}
+              tone={dashboardStats.latestScoreTone}
             />
             <MiniStat
               className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_450ms_both]"
               label="Total mock interviews"
-              value="52"
-              detail="+4 this week"
-              tone="green"
+              value={String(dashboardStats.interviewCount)}
+              detail={dashboardStats.interviewCountDetail}
+              tone={dashboardStats.interviewCount > 0 ? "green" : "zinc"}
             />
             <MiniStat
               className="animate-[panel-rise-in_520ms_cubic-bezier(.16,1,.3,1)_500ms_both]"
               label="Avg. time to solve"
-              value="21"
+              value={dashboardStats.averageMinutesValue}
               suffix="min"
-              detail="-3 min faster"
-              tone="green"
+              detail={dashboardStats.averageMinutesDetail}
+              tone={dashboardStats.interviewCount > 0 ? "green" : "zinc"}
             />
           </div>
 
@@ -158,21 +148,29 @@ export default function DashboardPage() {
             <section className="animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_570ms_both] rounded-2xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
               <div className="mb-5 flex items-center justify-between">
                 <h2 className="text-base font-bold text-white">Interview history</h2>
-                <span className="font-mono text-xs text-zinc-600">last 5</span>
+                <span className="font-mono text-xs text-zinc-600">
+                  {progress.interviews.length ? "last 5" : "fresh start"}
+                </span>
               </div>
 
-              <div className="divide-y divide-white/5">
-                {historyItems.map((item, index) => (
-                  <HistoryRow key={item.title} index={index} {...item} />
-                ))}
-              </div>
+              {progress.interviews.length ? (
+                <div className="divide-y divide-white/5">
+                  {progress.interviews.slice(0, 5).map((item, index) => (
+                    <HistoryRow key={item.problemSlug} index={index} record={item} />
+                  ))}
+                </div>
+              ) : (
+                <EmptyState message="No interviews yet. Open any problem below to complete your first mock interview." />
+              )}
             </section>
 
             <div className="space-y-5">
               <section className="animate-[panel-rise-in_560ms_cubic-bezier(.16,1,.3,1)_640ms_both] rounded-2xl border border-white/10 bg-[#141416] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                 <div className="mb-5 flex items-center justify-between">
                   <h2 className="text-base font-bold text-white">Topic mastery</h2>
-                  <span className="font-mono text-xs text-zinc-600">10 topics</span>
+                  <span className="font-mono text-xs text-zinc-600">
+                    {topics.length} topics
+                  </span>
                 </div>
 
                 <div className="space-y-4">
@@ -188,18 +186,18 @@ export default function DashboardPage() {
                   Recommended next
                 </div>
                 <h2 className="text-lg font-bold tracking-[-0.02em] text-white">
-                  Backtracking - 0/9 solved
+                  {recommendedProblem.category} - next up
                 </h2>
                 <p className="mt-2 text-sm font-medium leading-5 text-zinc-500">
-                  You have not been interviewed on this topic yet. It shows up
-                  in about 12% of FAANG onsite loops.
+                  Continue onboarding by completing {recommendedProblem.title}. The
+                  dashboard will update as soon as you finish the interview.
                 </p>
                 <Link
                   className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-white px-4 text-sm font-bold text-zinc-950 transition-colors hover:bg-zinc-100"
-                  href="/"
+                  href={getPracticeHref(recommendedProblem)}
                 >
                   <PlayIcon />
-                  Start Backtracking interview
+                  Start {recommendedProblem.title}
                 </Link>
               </section>
             </div>
@@ -228,12 +226,14 @@ export default function DashboardPage() {
                 accent="lime"
                 description="A comprehensive roadmap across core interview patterns."
                 problems={neetcode150Problems}
+                completedProblemSlugs={completedProblemSlugs}
                 title="NeetCode 150"
               />
               <ProblemListPanel
                 accent="blue"
                 description="The original high-leverage Blind 75 interview list."
                 problems={blind75Problems}
+                completedProblemSlugs={completedProblemSlugs}
                 title="Blind 75"
               />
             </div>
@@ -321,21 +321,16 @@ function MiniStat({
 
 function HistoryRow({
   index,
-  meta,
-  score,
-  title,
-  tone,
+  record,
 }: {
   index: number;
-  meta: string;
-  score: string;
-  title: string;
-  tone: string;
+  record: DashboardInterviewRecord;
 }) {
+  const score = formatScore(record.overallScore);
   const scoreClass =
-    tone === "green"
+    (record.overallScore ?? 0) >= 70
       ? "bg-emerald-500/15 text-emerald-400"
-      : tone === "red"
+      : (record.overallScore ?? 0) < 50
         ? "bg-red-500/15 text-red-400"
         : "bg-amber-500/15 text-amber-300";
 
@@ -348,8 +343,13 @@ function HistoryRow({
         {score}
       </div>
       <div className="min-w-0">
-        <h3 className="truncate text-sm font-semibold text-white">{title}</h3>
-        <p className="mt-1 truncate text-xs font-medium text-zinc-600">{meta}</p>
+        <h3 className="truncate text-sm font-semibold text-white">
+          {record.problemTitle}
+        </h3>
+        <p className="mt-1 truncate text-xs font-medium text-zinc-600">
+          {formatRelativeDate(record.completedAt)} - Alex -{" "}
+          {formatMinutes(record.elapsedSeconds)}
+        </p>
       </div>
       <Link
         className="hidden text-xs font-semibold text-zinc-500 transition-colors hover:text-white sm:inline"
@@ -404,11 +404,13 @@ function TopicRow({
 
 function ProblemListPanel({
   accent,
+  completedProblemSlugs,
   description,
   problems,
   title,
 }: {
   accent: "blue" | "lime";
+  completedProblemSlugs: Set<string>;
   description: string;
   problems: ProblemListItem[];
   title: string;
@@ -437,6 +439,7 @@ function ProblemListPanel({
           {problems.map((problem, index) => (
             <ProblemLink
               key={`${problem.category}-${problem.title}`}
+              isCompleted={completedProblemSlugs.has(problem.slug)}
               index={index + 1}
               problem={problem}
             />
@@ -449,12 +452,14 @@ function ProblemListPanel({
 
 function ProblemLink({
   index,
+  isCompleted,
   problem,
 }: {
   index: number;
+  isCompleted: boolean;
   problem: ProblemListItem;
 }) {
-  const practiceHref = `/?problem=${encodeURIComponent(problem.slug)}&title=${encodeURIComponent(problem.title)}&category=${encodeURIComponent(problem.category)}`;
+  const practiceHref = getPracticeHref(problem);
 
   return (
     <Link
@@ -473,9 +478,153 @@ function ProblemLink({
           {problem.category}
         </span>
       </span>
-      <span className="text-xs font-semibold text-zinc-500">Open -&gt;</span>
+      <span className="flex items-center gap-2 text-xs font-semibold text-zinc-500">
+        {isCompleted ? (
+          <span
+            aria-label="Completed"
+            className="grid size-6 place-items-center rounded-full bg-emerald-400 text-zinc-950"
+            title="Completed"
+          >
+            <CheckIcon />
+          </span>
+        ) : null}
+        Open -&gt;
+      </span>
     </Link>
   );
+}
+
+function EmptyState({ message }: { message: string }) {
+  return (
+    <div className="rounded-xl border border-dashed border-white/10 bg-white/2 px-4 py-8 text-center text-sm font-semibold leading-6 text-zinc-600">
+      {message}
+    </div>
+  );
+}
+
+function getDashboardStats(progress: DashboardProgress) {
+  const interviews = progress.interviews;
+  const completedCount = interviews.length;
+  const scoredInterviews = interviews.filter(
+    (interview) => typeof interview.overallScore === "number",
+  );
+  const averageScore = scoredInterviews.length
+    ? scoredInterviews.reduce((total, interview) => total + (interview.overallScore ?? 0), 0) /
+      scoredInterviews.length
+    : null;
+  const latestInterview = interviews[0];
+  const latestScore = latestInterview?.overallScore ?? null;
+  const passingCount = scoredInterviews.filter(
+    (interview) => (interview.overallScore ?? 0) >= 70,
+  ).length;
+  const totalElapsedSeconds = interviews.reduce(
+    (total, interview) => total + interview.elapsedSeconds,
+    0,
+  );
+
+  return {
+    averageMinutesDetail: completedCount ? "Across completed interviews" : "No timing yet",
+    averageMinutesValue: completedCount
+      ? String(Math.max(1, Math.round(totalElapsedSeconds / completedCount / 60)))
+      : "0",
+    averageScoreLabel: averageScore === null ? "new" : `${formatScore(averageScore)}/10`,
+    completedCount,
+    completedPercent: clampPercent((completedCount / totalTrackProblems) * 100),
+    interviewCount: interviews.length,
+    interviewCountDetail: completedCount ? "Completed problems" : "Fresh account",
+    lastInterviewDetail: latestInterview?.problemTitle ?? "Complete your first problem",
+    lastInterviewLabel: latestInterview
+      ? `last interview ${formatRelativeDate(latestInterview.completedAt).toLowerCase()}`
+      : "no interviews yet",
+    lastInterviewValue: latestInterview
+      ? formatRelativeDate(latestInterview.completedAt)
+      : "None",
+    latestScoreDetail:
+      latestScore === null ? "No score yet" : latestScore >= 70 ? "Passing interview" : "Keep practicing",
+    latestScoreTone: latestScore === null ? "zinc" : latestScore >= 70 ? "green" : "red",
+    latestScoreValue: latestScore === null ? "0.0" : formatScore(latestScore),
+    mockInterviewPercent: clampPercent((interviews.length / totalTrackProblems) * 100),
+    passRate: scoredInterviews.length
+      ? clampPercent((passingCount / scoredInterviews.length) * 100)
+      : 0,
+  } satisfies {
+    averageMinutesDetail: string;
+    averageMinutesValue: string;
+    averageScoreLabel: string;
+    completedCount: number;
+    completedPercent: number;
+    interviewCount: number;
+    interviewCountDetail: string;
+    lastInterviewDetail: string;
+    lastInterviewLabel: string;
+    lastInterviewValue: string;
+    latestScoreDetail: string;
+    latestScoreTone: "green" | "red" | "zinc";
+    latestScoreValue: string;
+    mockInterviewPercent: number;
+    passRate: number;
+  };
+}
+
+function clampPercent(percent: number) {
+  return Math.min(100, Math.max(0, Math.round(percent)));
+}
+
+function getTopicProgress(progress: DashboardProgress) {
+  const completedByCategory = progress.interviews.reduce<Record<string, number>>(
+    (totals, interview) => {
+      const category = interview.category ?? "Other";
+      totals[category] = (totals[category] ?? 0) + 1;
+      return totals;
+    },
+    {},
+  );
+  const totalsByCategory = neetcode150Problems.reduce<Record<string, number>>(
+    (totals, problem) => {
+      totals[problem.category] = (totals[problem.category] ?? 0) + 1;
+      return totals;
+    },
+    {},
+  );
+
+  return Object.entries(totalsByCategory).map(([label, total]) => ({
+    label,
+    solved: completedByCategory[label] ?? 0,
+    total,
+  }));
+}
+
+function getPracticeHref(problem: ProblemListItem) {
+  return `/?problem=${encodeURIComponent(problem.slug)}&title=${encodeURIComponent(problem.title)}&category=${encodeURIComponent(problem.category)}`;
+}
+
+function formatScore(score: number | null) {
+  return score === null ? "0.0" : (score / 10).toFixed(1);
+}
+
+function formatMinutes(seconds: number) {
+  const minutes = Math.max(1, Math.round(seconds / 60));
+  return `${minutes} min`;
+}
+
+function formatRelativeDate(isoDate: string) {
+  const timestamp = Date.parse(isoDate);
+
+  if (Number.isNaN(timestamp)) {
+    return "Recently";
+  }
+
+  const elapsedDays = Math.floor((Date.now() - timestamp) / 86_400_000);
+
+  if (elapsedDays <= 0) {
+    return "Today";
+  }
+
+  if (elapsedDays === 1) {
+    return "Yesterday";
+  }
+
+  return `${elapsedDays} days ago`;
 }
 
 function PlayIcon() {
@@ -493,6 +642,23 @@ function PlayIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-3.5"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="3"
+      viewBox="0 0 24 24"
+    >
+      <path d="m5 13 4 4L19 7" />
     </svg>
   );
 }
