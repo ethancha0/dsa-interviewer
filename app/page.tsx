@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Overlay from "@/components/ui/pip-overlay/overlay";
 import MuiMicIcon from "@mui/icons-material/Mic";
-import MuiMicOffIcon from "@mui/icons-material/MicOff";
 import { type PointerEvent, useEffect, useRef, useState } from "react";
 
 const featureCards = [
@@ -25,6 +24,33 @@ const featureCards = [
     description:
       "Get a verdict, rubric scores, and specific things to improve after every session.",
     icon: ChartIcon,
+  },
+];
+
+const demoConversation = [
+  {
+    speaker: "Alex",
+    text: "Let's solve Two Sum. What would you keep track of as you scan the array?",
+  },
+  {
+    speaker: "You",
+    text: "I would keep a hash map from each value to its index.",
+  },
+  {
+    speaker: "Alex",
+    text: "Good. For the current number, what lookup tells you if the answer is ready?",
+  },
+  {
+    speaker: "You",
+    text: "I check target minus the current number. If that complement is already in the map, I return both indices.",
+  },
+  {
+    speaker: "Alex",
+    text: "Exactly. What complexity would you call out before you code it?",
+  },
+  {
+    speaker: "You",
+    text: "O(n) time and O(n) space, since each number is visited once.",
   },
 ];
 
@@ -115,7 +141,7 @@ export default function Home() {
             Live demo
           </p>
 
-          <DemoWindow />
+          <DemoWindow onStartPractice={() => setIsPracticeOpen(true)} />
 
           <div className="mt-8 grid w-full gap-4 text-left md:grid-cols-3">
             {featureCards.map((feature) => (
@@ -473,13 +499,27 @@ function FeedbackCard({
   );
 }
 
-function DemoWindow() {
+function DemoWindow({ onStartPractice }: { onStartPractice: () => void }) {
   const stageRef = useRef<HTMLDivElement | null>(null);
   const dragOffsetRef = useRef<DragPosition>({ x: 0, y: 0 });
   const [overlayPosition, setOverlayPosition] = useState<DragPosition | null>(
     null,
   );
-  const transcript = useRealtimeInterviewSession();
+  const [currentTurnIndex, setCurrentTurnIndex] = useState(0);
+  const [showTryPrompt, setShowTryPrompt] = useState(false);
+  const currentTurn = demoConversation[currentTurnIndex];
+  const visibleTurns = demoConversation.slice(
+    Math.max(0, currentTurnIndex - 2),
+    currentTurnIndex + 1,
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTurnIndex((index) => (index + 1) % demoConversation.length);
+    }, 2800);
+
+    return () => clearInterval(interval);
+  }, []);
 
   function handleDemoOverlayPointerDown(event: PointerEvent<HTMLElement>) {
     if ((event.target as HTMLElement).closest("button")) {
@@ -572,7 +612,7 @@ function DemoWindow() {
         <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 
         <aside
-          className="absolute bottom-5 left-5 right-5 z-20 w-[calc(100%-2.5rem)] touch-none cursor-grab rounded-2xl border border-white/10 bg-[#10100f]/95 p-5 text-left shadow-[0_24px_70px_rgba(0,0,0,0.55)] backdrop-blur active:cursor-grabbing md:left-auto md:top-7 md:right-7 md:bottom-auto md:w-[350px] md:p-6"
+          className="absolute bottom-8 left-5 right-5 z-20 w-[calc(100%-2.5rem)] touch-none cursor-grab rounded-2xl border border-white/10 bg-[#10100f]/95 p-5 text-left shadow-[0_24px_70px_rgba(0,0,0,0.55)] backdrop-blur active:cursor-grabbing md:left-auto md:top-4 md:right-7 md:bottom-auto md:w-[350px] md:p-6"
           style={{
             animation:
               "interviewer-overlay-enter 760ms cubic-bezier(.16,1,.3,1) 620ms both",
@@ -602,59 +642,80 @@ function DemoWindow() {
                 <p className="text-xs font-bold text-gray-500">Interviewer</p>
               </div>
             </div>
-            <time className="text-xs font-medium text-zinc-600">28:41</time>
+            <time className="text-xs font-medium text-zinc-600">
+              {formatElapsedClock(currentTurnIndex + 1)}
+            </time>
           </div>
 
-          <blockquote className="rounded-xl bg-[#1c1c1b] p-4 text-sm font-semibold leading-6 text-zinc-200">
-            “I can see you’re working through Two Sum. Walk me through what
-            you’re storing in <InlineCode>seen</InlineCode> and why.”
-          </blockquote>
-
-          <p className="mt-5 text-sm font-medium italic leading-6 text-zinc-500">
-            You: “{transcript.text || "Click Start mic and answer out loud."}”
-          </p>
+          <div className="h-[222px] space-y-3 overflow-hidden">
+            {visibleTurns.map((turn, index) => (
+              <p
+                className={[
+                  "min-h-[66px] rounded-xl px-4 py-3 text-sm font-semibold leading-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]",
+                  turn.speaker === "Alex"
+                    ? "bg-[#1c1c1b] text-zinc-200"
+                    : "ml-7 bg-lime-500/10 text-lime-100",
+                  index === visibleTurns.length - 1
+                    ? "animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_both]"
+                    : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                key={`${turn.speaker}-${turn.text}`}
+              >
+                <span className="mb-1 block text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-500">
+                  {turn.speaker}
+                </span>
+                <span className="line-clamp-2">“{turn.text}”</span>
+              </p>
+            ))}
+          </div>
 
           <div className="mt-5 flex items-center justify-between gap-3 text-xs font-medium text-zinc-500">
-            <div className="flex items-center gap-2">
-              <AudioBars isActive={transcript.isListening && !transcript.isMuted} />
-              {transcript.status}
+            <div className="flex min-w-0 items-center gap-2">
+              <AudioBars isActive />
+              <span className="truncate">
+                {currentTurn?.speaker === "Alex" ? "Alex speaking" : "Candidate answering"}
+              </span>
             </div>
             <Button
               variant="secondary"
-              className="size-8 rounded-lg border-white/25 bg-[#2a2a28] p-0 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-[#343431]"
-              disabled={!transcript.isListening}
-              aria-label={transcript.isMuted ? "Unmute microphone" : "Mute microphone"}
-              title={transcript.isMuted ? "Unmute microphone" : "Mute microphone"}
-              onClick={transcript.toggleMute}
+              className="h-8 shrink-0 whitespace-nowrap rounded-lg border-white/10 bg-[#191917] px-3 text-xs text-zinc-400"
+              onClick={onStartPractice}
             >
-              {transcript.isMuted ? <MicOffIcon /> : <MicIcon />}
-            </Button>
-            <Button
-              variant="secondary"
-              className="h-8 rounded-lg border-white/10 bg-[#191917] px-3 text-xs text-zinc-400"
-              onClick={
-                transcript.isListening ? transcript.stop : transcript.start
-              }
-            >
-              <MicIcon />
-              {transcript.isListening ? "Stop mic" : "Start mic"}
+              <SparkIcon />
+              Try it yourself
             </Button>
           </div>
 
-          <div className="mt-20 grid grid-cols-2 gap-3">
+          <div className="mt-14 grid grid-cols-2 gap-3">
             <Button
               variant="secondary"
               className="h-10 rounded-lg border-white/10 bg-[#191917] text-zinc-500"
-              onClick={transcript.requestHint}
+              onClick={() => setShowTryPrompt(true)}
             >
               <SparkIcon />
               Hint
             </Button>
-            <Button className="h-10 rounded-lg">
+            <Button className="h-10 rounded-lg" onClick={() => setShowTryPrompt(true)}>
               <StopIcon />
               End
             </Button>
           </div>
+
+          {showTryPrompt ? (
+            <div className="mt-4 rounded-xl border border-lime-400/25 bg-lime-400/10 p-4 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_both]">
+              <p className="text-sm font-bold text-lime-100">
+                Want to try this interview yourself?
+              </p>
+              <Button
+                className="mt-3 h-9 w-full rounded-lg text-xs font-bold"
+                onClick={onStartPractice}
+              >
+                Start your Two Sum interview
+              </Button>
+            </div>
+          ) : null}
         </aside>
       </div>
     </Card>
@@ -1419,14 +1480,6 @@ function Badge({
   );
 }
 
-function InlineCode({ children }: { children: React.ReactNode }) {
-  return (
-    <code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-[0.8em] font-bold text-zinc-900">
-      {children}
-    </code>
-  );
-}
-
 function AudioBars({ isActive = true }: { isActive?: boolean }) {
   return (
     <div className="flex h-3 items-center gap-1" aria-label="Listening">
@@ -1485,10 +1538,6 @@ function EyeIcon() {
 
 function MicIcon() {
   return <MuiMicIcon aria-hidden="true" className="size-5 text-white" />;
-}
-
-function MicOffIcon() {
-  return <MuiMicOffIcon aria-hidden="true" className="size-5 text-white" />;
 }
 
 function ChartIcon() {
