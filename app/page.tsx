@@ -958,6 +958,10 @@ function useRealtimeInterviewSession() {
   const sessionTranscriptRef = useRef("");
   const isMutedRef = useRef(false);
   const responseTranscriptRef = useRef("");
+  const screenCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const screenFrameIntervalRef = useRef<number | null>(null);
+  const screenStreamRef = useRef<MediaStream | null>(null);
+  const screenVideoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [audioLevel, setAudioLevel] = useState(0);
   const [interviewerResponse, setInterviewerResponse] = useState(
@@ -971,6 +975,7 @@ function useRealtimeInterviewSession() {
   const [status, setStatus] = useState("Mic off");
   const [isListening, setIsListening] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [isScreenSharing, setIsScreenSharing] = useState(false);
 
   function startAudioMeter(stream: MediaStream) {
     const AudioContextConstructor =
@@ -1042,6 +1047,20 @@ function useRealtimeInterviewSession() {
     setAudioLevel(0);
   }
 
+  function stopScreenContext() {
+    if (screenFrameIntervalRef.current) {
+      window.clearInterval(screenFrameIntervalRef.current);
+      screenFrameIntervalRef.current = null;
+    }
+
+    screenVideoRef.current?.pause();
+    screenStreamRef.current?.getTracks().forEach((track) => track.stop());
+    screenVideoRef.current = null;
+    screenStreamRef.current = null;
+    screenCanvasRef.current = null;
+    setIsScreenSharing(false);
+  }
+
   function resetInputTranscript() {
     inputTranscriptRef.current = "";
   }
@@ -1062,6 +1081,7 @@ function useRealtimeInterviewSession() {
     peerConnectionRef.current?.close();
     remoteAudioRef.current?.pause();
     streamRef.current?.getTracks().forEach((track) => track.stop());
+    stopScreenContext();
     stopAudioMeter();
 
     dataChannelRef.current = null;
