@@ -59,6 +59,10 @@ type DragPosition = {
   y: number;
 };
 
+type StartInterviewOptions = {
+  shareScreen: boolean;
+};
+
 type InterviewSummary = {
   areasToImprove: string[];
   breakdown: Array<{
@@ -261,9 +265,9 @@ function PracticeWorkspace({ onClose }: { onClose: () => void }) {
     setSummary(completedSummary);
   }
 
-  function handleStartInterview() {
+  function handleStartInterview(options: StartInterviewOptions) {
     setHasInterviewStarted(true);
-    void interview.start();
+    void interview.start(options);
   }
 
   return (
@@ -957,6 +961,7 @@ function useRealtimeInterviewSession() {
   const inputTranscriptRef = useRef("");
   const sessionTranscriptRef = useRef("");
   const isMutedRef = useRef(false);
+  const isScreenSharingRef = useRef(false);
   const responseTranscriptRef = useRef("");
   const screenCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const screenFrameIntervalRef = useRef<number | null>(null);
@@ -975,7 +980,6 @@ function useRealtimeInterviewSession() {
   const [status, setStatus] = useState("Mic off");
   const [isListening, setIsListening] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [isScreenSharing, setIsScreenSharing] = useState(false);
 
   function startAudioMeter(stream: MediaStream) {
     const AudioContextConstructor =
@@ -1058,7 +1062,13 @@ function useRealtimeInterviewSession() {
     screenVideoRef.current = null;
     screenStreamRef.current = null;
     screenCanvasRef.current = null;
-    setIsScreenSharing(false);
+    isScreenSharingRef.current = false;
+  }
+
+  function getListeningStatus() {
+    return isScreenSharingRef.current
+      ? "Listening with screen context..."
+      : "Listening...";
   }
 
   function resetInputTranscript() {
@@ -1073,7 +1083,7 @@ function useRealtimeInterviewSession() {
         track.enabled = !nextIsMuted;
       });
     setIsMuted(nextIsMuted);
-    setStatus(nextIsMuted ? "Muted" : "Listening...");
+    setStatus(nextIsMuted ? "Muted" : getListeningStatus());
   }
 
   function cleanupConnection() {
@@ -1095,6 +1105,128 @@ function useRealtimeInterviewSession() {
     streamRef.current = null;
     setFullTranscript("");
     setText("");
+  }
+
+  async function prepareScreenContext(screenStream: MediaStream) {
+    const screenTrack = screenStream.getVideoTracks()[0];
+
+    if (!screenTrack) {
+      throw new Error("No screen video track was available.");
+    }
+
+    const screenVideo = document.createElement("video");
+
+    screenVideo.muted = true;
+    screenVideo.playsInline = true;
+    screenVideo.srcObject = screenStream;
+    screenStreamRef.current = screenStream;
+    screenVideoRef.current = screenVideo;
+    isScreenSharingRef.current = true;
+
+    screenTrack.addEventListener(
+      "ended",
+      () => {
+        stopScreenContext();
+        setStatus(isMutedRef.current ? "Muted" : getListeningStatus());
+      },
+      { once: true },
+    );
+
+    await screenVideo.play().catch(() => null);
+    await waitForScreenFrame(screenVideo);
+  }
+
+  function waitForScreenFrame(screenVideo: HTMLVideoElement) {
+    if (screenVideo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      return Promise.resolve();
+    }
+
+    return new Promise<void>((resolve) => {
+      const timeout = window.setTimeout(resolve, 1200);
+
+      screenVideo.addEventListener(
+        "loadeddata",
+        () => {
+          window.clearTimeout(timeout);
+          resolve();
+        },
+        { once: true },
+      );
+    });
+  }
+
+  function startScreenFrameSharing(dataChannel: RTCDataChannel) {
+    void sendScreenFrame(dataChannel);
+
+    screenFrameIntervalRef.current = window.setInterval(() => {
+      void sendScreenFrame(dataChannel);
+    }, 12000);
+  }
+
+  async function sendScreenFrame(dataChannel: RTCDataChannel) {
+    if (dataChannel.readyState !== "open") {
+      return;
+    }
+
+    const imageUrl = getScreenFrameDataUrl();
+
+    if (!imageUrl) {
+      return;
+    }
+
+    try {
+      dataChannel.send(
+        JSON.stringify({
+          type: "conversation.item.create",
+          item: {
+            type: "message",
+            role: "user",
+            content: [
+              {
+                type: "input_text",
+                text:
+                  "Screen context snapshot from the candidate's shared coding window. " +
+                  "Use it as visual context for the interview, but do not respond to this snapshot by itself.",
+              },
+              {
+                type: "input_image",
+                image_url: imageUrl,
+              },
+            ],
+          },
+        }),
+      );
+    } catch {
+      // Screen frames are best-effort context; audio should continue uninterrupted.
+    }
+  }
+
+  function getScreenFrameDataUrl() {
+    const screenVideo = screenVideoRef.current;
+
+    if (
+      !screenVideo ||
+      screenVideo.readyState < HTMLMediaElement.HAVE_CURRENT_DATA ||
+      screenVideo.videoWidth === 0 ||
+      screenVideo.videoHeight === 0
+    ) {
+      return null;
+    }
+
+    const canvas = screenCanvasRef.current ?? document.createElement("canvas");
+    const maxWidth = 960;
+    const scale = Math.min(1, maxWidth / screenVideo.videoWidth);
+
+    canvas.width = Math.max(1, Math.round(screenVideo.videoWidth * scale));
+    canvas.height = Math.max(1, Math.round(screenVideo.videoHeight * scale));
+    try {
+      canvas.getContext("2d")?.drawImage(screenVideo, 0, 0, canvas.width, canvas.height);
+      screenCanvasRef.current = canvas;
+
+      return canvas.toDataURL("image/jpeg", 0.58);
+    } catch {
+      return null;
+    }
   }
 
   function handleRealtimeEvent(event: unknown) {
@@ -1160,7 +1292,7 @@ function useRealtimeInterviewSession() {
       }
 
       setInterviewerStatus("Listening");
-      setStatus(isMutedRef.current ? "Muted" : "Listening...");
+      setStatus(isMutedRef.current ? "Muted" : getListeningStatus());
       return;
     }
 
@@ -1210,7 +1342,7 @@ function useRealtimeInterviewSession() {
     if (eventType === "response.done") {
       resetInputTranscript();
       setInterviewerStatus("Listening");
-      setStatus(isMutedRef.current ? "Muted" : "Listening...");
+      setStatus(isMutedRef.current ? "Muted" : getListeningStatus());
       return;
     }
 
@@ -1226,7 +1358,7 @@ function useRealtimeInterviewSession() {
     }
   }
 
-  async function start() {
+  async function start({ shareScreen = false }: Partial<StartInterviewOptions> = {}) {
     if (peerConnectionRef.current) {
       return;
     }
@@ -1234,6 +1366,41 @@ function useRealtimeInterviewSession() {
     try {
       setStatus("Connecting...");
       setInterviewerStatus("Connecting");
+
+      let screenStream: MediaStream | null = null;
+      let screenTrack: MediaStreamTrack | null = null;
+
+      if (shareScreen) {
+        if (!navigator.mediaDevices.getDisplayMedia) {
+          setStatus("Screen sharing unavailable. Connecting microphone...");
+        } else {
+          try {
+            setStatus("Choose a screen to share...");
+            screenStream = await navigator.mediaDevices.getDisplayMedia({
+              audio: false,
+              video: {
+                frameRate: { ideal: 2, max: 5 },
+                height: { ideal: 720 },
+                width: { ideal: 1280 },
+              },
+            });
+            screenTrack = screenStream.getVideoTracks()[0] ?? null;
+
+            if (screenTrack) {
+              await prepareScreenContext(screenStream);
+            } else {
+              screenStream.getTracks().forEach((track) => track.stop());
+              screenStream = null;
+            }
+          } catch {
+            stopScreenContext();
+            screenStream = null;
+            screenTrack = null;
+          }
+        }
+      }
+
+      setStatus("Connecting microphone...");
 
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const audioTrack = stream.getAudioTracks()[0];
@@ -1269,20 +1436,28 @@ function useRealtimeInterviewSession() {
 
       remoteAudio.autoplay = true;
       peerConnection.addTrack(audioTrack, stream);
+      if (screenTrack && screenStream) {
+        peerConnection.addTrack(screenTrack, screenStream);
+      }
       peerConnection.addEventListener("track", (event) => {
         remoteAudio.srcObject = event.streams[0];
         remoteAudio.play().catch(() => null);
       });
 
       dataChannel.addEventListener("open", () => {
-        setStatus("Listening...");
+        setStatus(getListeningStatus());
         setInterviewerStatus("Listening");
+        if (isScreenSharingRef.current) {
+          startScreenFrameSharing(dataChannel);
+        }
         dataChannel.send(
           JSON.stringify({
             type: "response.create",
             response: {
               instructions:
-                "Briefly greet the candidate and ask them to start by explaining their Two Sum approach.",
+                isScreenSharingRef.current
+                  ? "Briefly greet the candidate and ask them to start by explaining their Two Sum approach. Use the shared screen context when it is relevant."
+                  : "Briefly greet the candidate and ask them to start by explaining their Two Sum approach.",
             },
           }),
         );
@@ -1297,6 +1472,10 @@ function useRealtimeInterviewSession() {
       });
 
       dataChannel.addEventListener("close", () => {
+        if (screenFrameIntervalRef.current) {
+          window.clearInterval(screenFrameIntervalRef.current);
+          screenFrameIntervalRef.current = null;
+        }
         setIsListening(false);
         setStatus("Mic off");
         setInterviewerStatus("Ready");
@@ -1392,6 +1571,12 @@ function useRealtimeInterviewSession() {
       peerConnectionRef.current?.close();
       remoteAudioRef.current?.pause();
       streamRef.current?.getTracks().forEach((track) => track.stop());
+      screenStreamRef.current?.getTracks().forEach((track) => track.stop());
+
+      if (screenFrameIntervalRef.current) {
+        window.clearInterval(screenFrameIntervalRef.current);
+        screenFrameIntervalRef.current = null;
+      }
 
       if (meterAnimationRef.current) {
         cancelAnimationFrame(meterAnimationRef.current);
@@ -1406,7 +1591,11 @@ function useRealtimeInterviewSession() {
       inputTranscriptRef.current = "";
       sessionTranscriptRef.current = "";
       isMutedRef.current = false;
+      isScreenSharingRef.current = false;
       responseTranscriptRef.current = "";
+      screenCanvasRef.current = null;
+      screenStreamRef.current = null;
+      screenVideoRef.current = null;
       streamRef.current = null;
       audioSourceRef.current = null;
       audioContextRef.current = null;

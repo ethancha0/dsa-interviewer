@@ -5,6 +5,10 @@ import MuiMicIcon from "@mui/icons-material/Mic";
 import MuiMicOffIcon from "@mui/icons-material/MicOff";
 import { useEffect, useState } from "react";
 
+type StartInterviewOptions = {
+  shareScreen: boolean;
+};
+
 type OverlayProps = {
   audioLevel?: number;
   elapsedTime?: string;
@@ -16,7 +20,7 @@ type OverlayProps = {
   onClose?: () => void;
   onEnd?: () => void;
   onRequestHint?: () => void;
-  onStartInterview?: () => void;
+  onStartInterview?: (options: StartInterviewOptions) => void;
   onStartListening?: () => void;
   onStopListening?: () => void;
   onToggleMute?: () => void;
@@ -43,9 +47,15 @@ export default function Overlay({
   transcriptStatus = "Mic off",
 }: OverlayProps) {
     const localElapsedTime = useElapsedTime();
+    const [isScreenPromptOpen, setIsScreenPromptOpen] = useState(false);
     const displayElapsedTime = elapsedTime ?? localElapsedTime;
     const displayInterviewerResponse =
       interviewerResponse || getInterviewerPlaceholder(interviewerStatus);
+
+    function handleStartInterview(shareScreen: boolean) {
+      setIsScreenPromptOpen(false);
+      onStartInterview?.({ shareScreen });
+    }
 
     return (
           <div className="w-[352px] rounded-[1.45rem] border border-white/10 bg-[#171717] p-3 text-zinc-50 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
@@ -132,8 +142,26 @@ export default function Overlay({
                       </Button>
                     </div>
                   </>
+                ) : isScreenPromptOpen ? (
+                  <div className="mt-6 rounded-xl border border-white/10 bg-[#202020] p-4 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_both]">
+                    <p className="text-sm font-bold leading-5 text-white">
+                      Share your screen for better interview feedback?
+                    </p>
+                    <p className="mt-2 text-xs font-medium leading-5 text-zinc-500">
+                      Alex can use snapshots of your code as context. Chrome will ask for
+                      permission next if you choose to share.
+                    </p>
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      <Button variant="secondary" onClick={() => handleStartInterview(false)}>
+                        Skip
+                      </Button>
+                      <Button onClick={() => handleStartInterview(true)}>
+                        Share screen
+                      </Button>
+                    </div>
+                  </div>
                 ) : (
-                  <Button className="mt-6 h-11 w-full rounded-xl text-sm font-bold" onClick={onStartInterview}>
+                  <Button className="mt-6 h-11 w-full rounded-xl text-sm font-bold" onClick={() => setIsScreenPromptOpen(true)}>
                     <MicIcon className="size-5 text-zinc-950" />
                     Start interview
                   </Button>
