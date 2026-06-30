@@ -56,6 +56,9 @@ Create a local `.env` file in the project root:
 
 ```bash
 OPENAI_API_KEY=sk-your-openai-api-key
+GOOGLE_CLIENT_ID=your-google-oauth-client-id
+GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
+AUTH_SECRET=generate-a-long-random-string
 ```
 
 Optional model and voice overrides:
@@ -74,6 +77,14 @@ Variable reference:
 - `OPENAI_REALTIME_TRANSCRIPTION_MODEL` controls input audio transcription for the Realtime session.
 - `OPENAI_REALTIME_VOICE` controls the generated interviewer voice.
 - `OPENAI_MODEL` controls the text-only Responses endpoint in `app/api/interview/route.ts`.
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are required for Google OAuth on `/auth`.
+- `AUTH_SECRET` signs the local session cookie. Generate a long random value and keep it private.
+
+For local Google OAuth, add this authorized redirect URI in Google Cloud Console:
+
+```text
+http://localhost:3000/api/auth/google/callback
+```
 
 Do not commit `.env` files. They are ignored by `.gitignore`.
 

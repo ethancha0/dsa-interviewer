@@ -1,6 +1,19 @@
+import { getGoogleSession } from "@/lib/auth/google-session";
 import Link from "next/link";
 
-export default function AuthPage() {
+export default async function AuthPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{
+    error?: string;
+  }>;
+}) {
+  const [session, resolvedSearchParams] = await Promise.all([
+    getGoogleSession(),
+    searchParams,
+  ]);
+  const errorMessage = getAuthErrorMessage(resolvedSearchParams?.error);
+
   return (
     <main className="min-h-screen bg-[#1f1f1d] px-4 py-5 text-zinc-50 sm:px-6 lg:px-10">
       <div className="mx-auto flex min-h-[calc(100vh-2.5rem)] w-full max-w-[1120px] flex-col">
@@ -50,29 +63,59 @@ export default function AuthPage() {
               <div className="flex items-start justify-between gap-5">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-500">
-                    Welcome back
+                    {session ? "Signed in" : "Welcome back"}
                   </p>
                   <h2 className="mt-3 text-2xl font-bold tracking-[-0.03em] text-white">
-                    Sign in
+                    {session ? session.name : "Sign in"}
                   </h2>
                 </div>
                 <div className="flex size-11 items-center justify-center rounded-xl bg-white text-lg font-black text-zinc-950">
-                  G
+                  {session?.name.charAt(0).toUpperCase() ?? "G"}
                 </div>
               </div>
 
-              <p className="mt-5 text-sm font-medium leading-6 text-zinc-500">
-                Use your Google account to continue. No email/password login is
-                available yet.
-              </p>
+              {session ? (
+                <>
+                  <p className="mt-5 text-sm font-medium leading-6 text-zinc-500">
+                    You are signed in with {session.email}. Continue to your dashboard
+                    or sign out to switch accounts.
+                  </p>
 
-              <a
-                className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-4 text-[15px] font-bold text-zinc-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition-colors hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/70"
-                href="/api/auth/google"
-              >
-                <GoogleIcon />
-                Continue with Google
-              </a>
+                  <Link
+                    className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-xl bg-white px-4 text-[15px] font-bold text-zinc-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition-colors hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/70"
+                    href="/dashboard"
+                  >
+                    Go to dashboard
+                  </Link>
+                  <a
+                    className="mt-3 inline-flex h-11 w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-4 text-sm font-bold text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
+                    href="/api/auth/logout"
+                  >
+                    Sign out
+                  </a>
+                </>
+              ) : (
+                <>
+                  <p className="mt-5 text-sm font-medium leading-6 text-zinc-500">
+                    Use your Google account to continue. No email/password login is
+                    available yet.
+                  </p>
+
+                  {errorMessage ? (
+                    <p className="mt-5 rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm font-semibold leading-5 text-red-200">
+                      {errorMessage}
+                    </p>
+                  ) : null}
+
+                  <a
+                    className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white px-4 text-[15px] font-bold text-zinc-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition-colors hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/70"
+                    href="/api/auth/google"
+                  >
+                    <GoogleIcon />
+                    Continue with Google
+                  </a>
+                </>
+              )}
 
               <p className="mt-5 text-center text-xs font-medium leading-5 text-zinc-600">
                 By continuing, you agree to use DSA Interviewer for interview
@@ -84,6 +127,25 @@ export default function AuthPage() {
       </div>
     </main>
   );
+}
+
+function getAuthErrorMessage(error: string | undefined) {
+  switch (error) {
+    case "missing_google_client_id":
+      return "Missing GOOGLE_CLIENT_ID. Add your Google OAuth client ID to .env and restart the dev server.";
+    case "missing_google_oauth_credentials":
+      return "Missing Google OAuth credentials. Add GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to .env.";
+    case "invalid_google_oauth_state":
+      return "The Google sign-in session expired. Please try again.";
+    case "google_token_exchange_failed":
+      return "Google did not return an access token. Check your OAuth redirect URI configuration.";
+    case "google_profile_unavailable":
+      return "Google sign-in succeeded, but the profile could not be loaded.";
+    case "missing_auth_secret":
+      return "Missing AUTH_SECRET. Add a random secret to .env so sessions can be signed.";
+    default:
+      return null;
+  }
 }
 
 function AuthBenefit({ label }: { label: string }) {
