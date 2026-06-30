@@ -143,6 +143,8 @@ function getAuthErrorMessage(error: string | undefined) {
       return "Google sign-in succeeded, but the profile could not be loaded.";
     case "missing_auth_secret":
       return "Missing AUTH_SECRET. Add a random secret to .env so sessions can be signed.";
+    case "database_or_session_setup_failed":
+      return "Could not save your user session. Check DATABASE_URL, AUTH_SECRET, and your Supabase schema.";
     default:
       return null;
   }

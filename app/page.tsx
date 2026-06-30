@@ -349,7 +349,7 @@ function PracticeWorkspace({
     });
 
     interview.stop();
-    recordCompletedInterview({
+    void recordCompletedInterview({
       category: problem.category,
       completedAt: new Date().toISOString(),
       elapsedSeconds: completedSummary.elapsedSeconds,

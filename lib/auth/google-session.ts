@@ -10,6 +10,7 @@ export type GoogleSession = {
   image?: string;
   name: string;
   sub: string;
+  userId: string;
 };
 
 const textEncoder = new TextEncoder();
@@ -48,7 +49,7 @@ export async function verifySessionToken(token: string) {
   try {
     const session = JSON.parse(base64UrlDecode(payload)) as GoogleSession;
 
-    if (!session.sub || !session.email || session.expiresAt < Date.now()) {
+    if (!session.sub || !session.userId || !session.email || session.expiresAt < Date.now()) {
       return null;
     }
 

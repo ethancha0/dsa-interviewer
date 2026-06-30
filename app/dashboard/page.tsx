@@ -2,7 +2,7 @@
 
 import {
   EMPTY_DASHBOARD_PROGRESS,
-  loadDashboardProgress,
+  loadPersistedDashboardProgress,
   type DashboardInterviewRecord,
   type DashboardProgress,
 } from "@/lib/dashboard-progress";
@@ -20,7 +20,7 @@ export default function DashboardPage() {
   const [progress, setProgress] = useState<DashboardProgress>(EMPTY_DASHBOARD_PROGRESS);
 
   useEffect(() => {
-    setProgress(loadDashboardProgress());
+    void loadPersistedDashboardProgress().then(setProgress);
   }, []);
 
   const dashboardStats = useMemo(() => getDashboardStats(progress), [progress]);

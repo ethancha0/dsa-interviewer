@@ -59,6 +59,7 @@ OPENAI_API_KEY=sk-your-openai-api-key
 GOOGLE_CLIENT_ID=your-google-oauth-client-id
 GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
 AUTH_SECRET=generate-a-long-random-string
+DATABASE_URL=postgresql://postgres:[password]@[host]:5432/postgres
 ```
 
 Optional model and voice overrides:
@@ -79,12 +80,25 @@ Variable reference:
 - `OPENAI_MODEL` controls the text-only Responses endpoint in `app/api/interview/route.ts`.
 - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are required for Google OAuth on `/auth`.
 - `AUTH_SECRET` signs the local session cookie. Generate a long random value and keep it private.
+- `DATABASE_URL` points Drizzle to your Supabase Postgres database. Use the Supabase pooled connection string for deployed apps.
 
 For local Google OAuth, add this authorized redirect URI in Google Cloud Console:
 
 ```text
 http://localhost:3000/api/auth/google/callback
 ```
+
+## Database
+
+This app uses Drizzle ORM with Supabase Postgres for signed-in user progress.
+
+After setting `DATABASE_URL`, create/update the database schema:
+
+```bash
+pnpm db:push
+```
+
+The initial SQL migration is also available at `drizzle/0000_initial_users_completed_problems.sql` if you prefer to run it in the Supabase SQL editor.
 
 Do not commit `.env` files. They are ignored by `.gitignore`.
 

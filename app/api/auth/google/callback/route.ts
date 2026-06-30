@@ -5,6 +5,7 @@ import {
   createSessionToken,
   type GoogleSession,
 } from "@/lib/auth/google-session";
+import { upsertGoogleUser } from "@/lib/db/queries";
 import { NextResponse, type NextRequest } from "next/server";
 
 const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
@@ -41,18 +42,29 @@ export async function GET(request: NextRequest) {
   }
 
   const profile = await fetchGoogleProfile(accessToken);
-  const session = buildSession(profile);
+  const sessionProfile = buildSessionProfile(profile);
 
-  if (!session) {
+  if (!sessionProfile) {
     return redirectWithError(request, "google_profile_unavailable");
   }
 
   let sessionToken: string;
 
   try {
+    const user = await upsertGoogleUser({
+      email: sessionProfile.email,
+      googleSub: sessionProfile.sub,
+      image: sessionProfile.image,
+      name: sessionProfile.name,
+    });
+    const session: GoogleSession = {
+      ...sessionProfile,
+      userId: user.id,
+    };
+
     sessionToken = await createSessionToken(session);
   } catch {
-    return redirectWithError(request, "missing_auth_secret");
+    return redirectWithError(request, "database_or_session_setup_failed");
   }
 
   const response = NextResponse.redirect(new URL("/dashboard", request.url));
@@ -113,7 +125,7 @@ async function fetchGoogleProfile(accessToken: string) {
   return response.json().catch(() => null) as Promise<unknown>;
 }
 
-function buildSession(profile: unknown): GoogleSession | null {
+function buildSessionProfile(profile: unknown): Omit<GoogleSession, "userId"> | null {
   const sub = getStringPayloadValue(profile, "sub");
   const email = getStringPayloadValue(profile, "email");
   const emailVerified = getBooleanPayloadValue(profile, "email_verified");

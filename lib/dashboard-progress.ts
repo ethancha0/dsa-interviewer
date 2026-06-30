@@ -36,7 +36,23 @@ export function loadDashboardProgress() {
   }
 }
 
-export function recordCompletedInterview(record: DashboardInterviewRecord) {
+export async function loadPersistedDashboardProgress() {
+  if (typeof window === "undefined") {
+    return EMPTY_DASHBOARD_PROGRESS;
+  }
+
+  const response = await fetch("/api/dashboard/progress", {
+    credentials: "same-origin",
+  }).catch(() => null);
+
+  if (response?.ok) {
+    return normalizeDashboardProgress(await response.json().catch(() => null));
+  }
+
+  return loadDashboardProgress();
+}
+
+export function saveLocalDashboardProgress(record: DashboardInterviewRecord) {
   if (typeof window === "undefined") {
     return;
   }
@@ -53,6 +69,23 @@ export function recordCompletedInterview(record: DashboardInterviewRecord) {
     DASHBOARD_PROGRESS_STORAGE_KEY,
     JSON.stringify({ interviews: nextInterviews }),
   );
+}
+
+export async function recordCompletedInterview(record: DashboardInterviewRecord) {
+  saveLocalDashboardProgress(record);
+
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  await fetch("/api/dashboard/progress", {
+    body: JSON.stringify(record),
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  }).catch(() => null);
 }
 
 function normalizeDashboardProgress(progress: unknown): DashboardProgress {
