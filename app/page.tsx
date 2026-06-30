@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Overlay from "@/components/ui/pip-overlay/overlay";
 import MuiMicIcon from "@mui/icons-material/Mic";
+import Link from "next/link";
 import { type PointerEvent, useEffect, useRef, useState } from "react";
 
 const featureCards = [
@@ -101,12 +102,12 @@ export default function Home() {
             </span>
           </div>
 
-          <Button
-            variant="secondary"
-            className="h-9 rounded-lg border-white/15 bg-transparent px-5 text-sm font-semibold text-white hover:bg-white/10"
+          <Link
+            className="inline-flex h-9 items-center justify-center rounded-lg border border-white/15 bg-transparent px-5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+            href="/auth"
           >
-            Try it free
-          </Button>
+            Log in
+          </Link>
         </header>
 
         <section className="flex flex-1 flex-col items-center pt-16 text-center sm:pt-20">

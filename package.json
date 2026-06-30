@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "scripts": {
+     "preinstall": "npx only-allow pnpm"
+   },
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
