@@ -1160,7 +1160,7 @@ function useRealtimeInterviewSession() {
 
     screenFrameIntervalRef.current = window.setInterval(() => {
       void sendScreenFrame(dataChannel);
-    }, 12000);
+    }, 8000);
   }
 
   async function sendScreenFrame(dataChannel: RTCDataChannel) {
@@ -1185,8 +1185,8 @@ function useRealtimeInterviewSession() {
               {
                 type: "input_text",
                 text:
-                  "Screen context snapshot from the candidate's shared coding window. " +
-                  "Use it as visual context for the interview, but do not respond to this snapshot by itself.",
+                  "Current screen context snapshot from the candidate's shared coding window. " +
+                  "Use this image as visual context for the next interview response.",
               },
               {
                 type: "input_image",
@@ -1253,6 +1253,12 @@ function useRealtimeInterviewSession() {
     }
 
     if (eventType === "input_audio_buffer.speech_stopped") {
+      const dataChannel = dataChannelRef.current;
+
+      if (isScreenSharingRef.current && dataChannel?.readyState === "open") {
+        void sendScreenFrame(dataChannel);
+      }
+
       setStatus("Thinking...");
       setInterviewerStatus("Thinking");
       return;
