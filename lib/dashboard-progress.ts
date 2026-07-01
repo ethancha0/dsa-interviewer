@@ -1,4 +1,6 @@
 import { queuePendingInterviewRecord } from "@/lib/extension-progress-sync";
+import { saveInterviewSummary } from "@/lib/interview-summary-storage";
+import type { InterviewSummary } from "@/lib/interview/types";
 
 export type DashboardInterviewRecord = {
   category?: string;
@@ -76,7 +78,12 @@ export function saveLocalDashboardProgress(record: DashboardInterviewRecord) {
 export async function recordCompletedInterview(
   record: DashboardInterviewRecord,
   apiBase = "",
+  summary?: InterviewSummary,
 ) {
+  if (summary) {
+    await saveInterviewSummary(record.problemSlug, summary).catch(() => null);
+  }
+
   await queuePendingInterviewRecord(record).catch(() => null);
 
   if (!apiBase) {

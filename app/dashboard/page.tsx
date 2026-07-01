@@ -6,6 +6,7 @@ import {
   type DashboardInterviewRecord,
   type DashboardProgress,
 } from "@/lib/dashboard-progress";
+import { getInterviewSummaryPath } from "@/lib/interview-summary-storage";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -372,9 +373,9 @@ function HistoryRow({
       </div>
       <Link
         className="hidden text-xs font-semibold text-zinc-500 transition-colors hover:text-white sm:inline"
-        href="#"
+        href={getInterviewSummaryPath(record.problemSlug)}
       >
-        Transcript -&gt;
+        Summary -&gt;
       </Link>
     </article>
   );

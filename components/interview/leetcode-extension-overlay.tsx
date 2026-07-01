@@ -2,6 +2,7 @@
 
 import Overlay from "@/components/ui/pip-overlay/overlay";
 import { recordCompletedInterview } from "@/lib/dashboard-progress";
+import { getInterviewSummaryPath } from "@/lib/interview-summary-storage";
 import { launchConfigToProblem } from "@/lib/interview/leetcode-launch";
 import { createInterviewSummary } from "@/lib/interview/summary";
 import type { LeetCodeLaunchConfig, StartInterviewOptions } from "@/lib/interview/types";
@@ -102,11 +103,16 @@ export function LeetCodeExtensionOverlay({
         verdict: summary.verdict,
       },
       config.appOrigin,
+      summary,
     );
 
     setIsInterviewEnded(true);
     setIsSavingInterview(false);
-    window.open(`${config.appOrigin}/dashboard`, "_blank", "noopener,noreferrer");
+    window.open(
+      `${config.appOrigin}${getInterviewSummaryPath(problem.slug)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   }
 
   const displayElapsedTime = formatElapsedClock(
@@ -134,11 +140,11 @@ export function LeetCodeExtensionOverlay({
           </p>
           <a
             className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl bg-white text-sm font-bold text-zinc-950"
-            href={`${config.appOrigin}/dashboard`}
+            href={`${config.appOrigin}${getInterviewSummaryPath(problem.slug)}`}
             rel="noreferrer"
             target="_blank"
           >
-            Open dashboard
+            View summary
           </a>
         </div>
       </div>

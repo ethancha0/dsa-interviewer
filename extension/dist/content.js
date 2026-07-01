@@ -19106,6 +19106,121 @@ To suppress this warning, you need to explicitly provide the \`palette.${key}Cha
     });
   }
 
+  // lib/interview-summary-storage.ts
+  var INTERVIEW_SUMMARIES_STORAGE_KEY = "dsa_interviewer_interview_summaries_v1";
+  var CHROME_INTERVIEW_SUMMARIES_KEY = "interviewSummaries";
+  function getInterviewSummaryPath(slug) {
+    return `/dashboard/summary/${encodeURIComponent(slug)}`;
+  }
+  function loadLocalInterviewSummaries() {
+    if (typeof window === "undefined") {
+      return {};
+    }
+    const stored = window.localStorage.getItem(INTERVIEW_SUMMARIES_STORAGE_KEY);
+    if (!stored) {
+      return {};
+    }
+    try {
+      return normalizeSummaryMap(JSON.parse(stored));
+    } catch {
+      return {};
+    }
+  }
+  function saveLocalInterviewSummary(slug, summary) {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const nextSummaries = {
+      ...loadLocalInterviewSummaries(),
+      [slug]: summary
+    };
+    window.localStorage.setItem(
+      INTERVIEW_SUMMARIES_STORAGE_KEY,
+      JSON.stringify(nextSummaries)
+    );
+  }
+  async function saveInterviewSummary(slug, summary) {
+    saveLocalInterviewSummary(slug, summary);
+    await saveChromeInterviewSummary(slug, summary);
+  }
+  async function saveChromeInterviewSummary(slug, summary) {
+    const storage = getChromeStorageLocal2();
+    if (!storage) {
+      return;
+    }
+    const stored = await storage.get([CHROME_INTERVIEW_SUMMARIES_KEY]);
+    const summaries = normalizeSummaryMap(stored[CHROME_INTERVIEW_SUMMARIES_KEY]);
+    await storage.set({
+      [CHROME_INTERVIEW_SUMMARIES_KEY]: {
+        ...summaries,
+        [slug]: summary
+      }
+    });
+  }
+  function getChromeStorageLocal2() {
+    if (typeof chrome === "undefined") {
+      return null;
+    }
+    return chrome.storage?.local ?? null;
+  }
+  function normalizeSummaryMap(value) {
+    if (!value || typeof value !== "object") {
+      return {};
+    }
+    return Object.fromEntries(
+      Object.entries(value).flatMap(([slug, summary]) => {
+        if (!slug || !summary || typeof summary !== "object") {
+          return [];
+        }
+        const parsed = summary;
+        if (typeof parsed.problemTitle !== "string" || typeof parsed.verdict !== "string") {
+          return [];
+        }
+        return [
+          [
+            slug,
+            {
+              areasToImprove: Array.isArray(parsed.areasToImprove) ? parsed.areasToImprove.filter((item) => typeof item === "string") : [],
+              breakdown: Array.isArray(parsed.breakdown) ? parsed.breakdown.flatMap((item) => {
+                if (!item || typeof item !== "object") {
+                  return [];
+                }
+                const entry = item;
+                if (typeof entry.label !== "string") {
+                  return [];
+                }
+                return [
+                  {
+                    label: entry.label,
+                    score: typeof entry.score === "number" ? entry.score : null
+                  }
+                ];
+              }) : [],
+              elapsedSeconds: typeof parsed.elapsedSeconds === "number" ? parsed.elapsedSeconds : 0,
+              exchangeCount: typeof parsed.exchangeCount === "number" ? parsed.exchangeCount : 0,
+              finalComplexity: typeof parsed.finalComplexity === "string" ? parsed.finalComplexity : null,
+              hintsUsed: typeof parsed.hintsUsed === "number" ? parsed.hintsUsed : 0,
+              overallScore: typeof parsed.overallScore === "number" ? parsed.overallScore : null,
+              problemTitle: parsed.problemTitle,
+              transcript: Array.isArray(parsed.transcript) ? parsed.transcript.flatMap((line2) => {
+                if (!line2 || typeof line2 !== "object") {
+                  return [];
+                }
+                const entry = line2;
+                if (entry.speaker !== "Alex" && entry.speaker !== "You" || typeof entry.text !== "string") {
+                  return [];
+                }
+                return [{ speaker: entry.speaker, text: entry.text }];
+              }) : [],
+              verdict: parsed.verdict,
+              wentWell: Array.isArray(parsed.wentWell) ? parsed.wentWell.filter((item) => typeof item === "string") : []
+            }
+          ]
+        ];
+      })
+    );
+  }
+
   // lib/dashboard-progress.ts
   var DASHBOARD_PROGRESS_STORAGE_KEY = "dsa_interviewer_dashboard_progress_v1";
   var EMPTY_DASHBOARD_PROGRESS = {
@@ -19141,7 +19256,10 @@ To suppress this warning, you need to explicitly provide the \`palette.${key}Cha
       JSON.stringify({ interviews: nextInterviews })
     );
   }
-  async function recordCompletedInterview(record, apiBase = "") {
+  async function recordCompletedInterview(record, apiBase = "", summary) {
+    if (summary) {
+      await saveInterviewSummary(record.problemSlug, summary).catch(() => null);
+    }
     await queuePendingInterviewRecord(record).catch(() => null);
     if (!apiBase) {
       saveLocalDashboardProgress(record);
@@ -20604,11 +20722,16 @@ To suppress this warning, you need to explicitly provide the \`palette.${key}Cha
           problemTitle: problem.title,
           verdict: summary.verdict
         },
-        config.appOrigin
+        config.appOrigin,
+        summary
       );
       setIsInterviewEnded(true);
       setIsSavingInterview(false);
-      window.open(`${config.appOrigin}/dashboard`, "_blank", "noopener,noreferrer");
+      window.open(
+        `${config.appOrigin}${getInterviewSummaryPath(problem.slug)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
     }
     const displayElapsedTime = formatElapsedClock(
       isInterviewEnded ? finalElapsedSecondsRef.current : elapsedSeconds
@@ -20632,10 +20755,10 @@ To suppress this warning, you need to explicitly provide the \`palette.${key}Cha
               "a",
               {
                 className: "mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl bg-white text-sm font-bold text-zinc-950",
-                href: `${config.appOrigin}/dashboard`,
+                href: `${config.appOrigin}${getInterviewSummaryPath(problem.slug)}`,
                 rel: "noreferrer",
                 target: "_blank",
-                children: "Open dashboard"
+                children: "View summary"
               }
             )
           ] })

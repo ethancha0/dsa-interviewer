@@ -1,10 +1,12 @@
 document.documentElement.dataset.dsaInterviewerExtension = "1";
 
 const PRACTICE_HOSTS = new Set(["leetcode.com", "neetcode.io", "www.neetcode.io"]);
+const INTERVIEW_SUMMARIES_STORAGE_KEY = "dsa_interviewer_interview_summaries_v1";
 
 if (!PRACTICE_HOSTS.has(location.hostname)) {
   void chrome.storage.local.set({ appOrigin: location.origin });
   void syncPendingInterviewRecords();
+  void syncInterviewSummaries();
 }
 
 async function syncPendingInterviewRecords() {
@@ -49,4 +51,31 @@ async function syncPendingInterviewRecords() {
   await chrome.storage.local.set({
     pendingInterviewRecords: remainingRecords,
   });
+}
+
+async function syncInterviewSummaries() {
+  const stored = await chrome.storage.local.get(["interviewSummaries"]);
+  const summaries = stored.interviewSummaries;
+
+  if (!summaries || typeof summaries !== "object") {
+    return;
+  }
+
+  let localSummaries = {};
+
+  try {
+    localSummaries = JSON.parse(
+      localStorage.getItem(INTERVIEW_SUMMARIES_STORAGE_KEY) ?? "{}",
+    );
+  } catch {
+    localSummaries = {};
+  }
+
+  localStorage.setItem(
+    INTERVIEW_SUMMARIES_STORAGE_KEY,
+    JSON.stringify({
+      ...localSummaries,
+      ...summaries,
+    }),
+  );
 }
