@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   hasInterviewerExtensionInstalled,
   launchInterviewOnLeetCode,
+  launchInterviewOnNeetCode,
 } from "@/lib/interview/leetcode-launch";
 import type { PracticeProblem } from "@/lib/interview/types";
 import { useEffect, useState } from "react";
@@ -25,21 +26,19 @@ export function LeetCodeInterviewLauncher({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1d1d1b]/95 px-4 py-8 backdrop-blur-sm">
       <div className="w-full max-w-xl rounded-[1.6rem] border border-white/10 bg-[#111110] p-8 shadow-[0_32px_120px_rgba(0,0,0,0.55)]">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-500">
-          LeetCode interview
+          Practice interview
         </p>
         <h2 className="mt-3 text-2xl font-bold tracking-[-0.03em] text-white">
           {problem.title}
         </h2>
         <p className="mt-4 text-sm font-medium leading-7 text-zinc-400">
           With the extension installed, the interviewer overlay appears automatically on
-          any LeetCode problem page. Open this problem on LeetCode to start, or browse
-          there directly.
+          LeetCode or NeetCode problem pages.
         </p>
 
         {extensionInstalled ? (
           <p className="mt-4 rounded-xl border border-lime-400/20 bg-lime-400/10 px-4 py-3 text-sm font-semibold text-lime-200">
-            Extension detected. The overlay will appear when you open this problem on
-            LeetCode.
+            Extension detected. Open this problem on LeetCode or NeetCode to start.
           </p>
         ) : (
           <div className="mt-4 rounded-xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm leading-6 text-amber-100">
@@ -58,6 +57,13 @@ export function LeetCodeInterviewLauncher({
             onClick={() => launchInterviewOnLeetCode(problem)}
           >
             Continue on LeetCode
+          </Button>
+          <Button
+            className="h-11 rounded-xl border-white/10 bg-transparent px-5 text-sm font-bold text-zinc-300 hover:bg-white/5"
+            onClick={() => launchInterviewOnNeetCode(problem)}
+            variant="secondary"
+          >
+            Continue on NeetCode
           </Button>
           <Button
             className="h-11 rounded-xl border-white/10 bg-transparent px-5 text-sm font-bold text-zinc-300 hover:bg-white/5"

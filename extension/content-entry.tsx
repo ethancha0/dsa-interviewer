@@ -2,11 +2,13 @@ import { createRoot, type Root } from "react-dom/client";
 import { StrictMode } from "react";
 import { LeetCodeExtensionOverlay } from "../components/interview/leetcode-extension-overlay";
 import {
-  buildLaunchConfigFromLeetCodePage,
+  buildLaunchConfigFromProblemPage,
   decodeLeetCodeLaunchConfig,
   LEETCODE_LAUNCH_HASH_PREFIX,
 } from "../lib/interview/leetcode-launch";
 import type { LeetCodeLaunchConfig } from "../lib/interview/types";
+
+declare const OVERLAY_STYLES: string;
 
 const HOST_ID = "dsa-interviewer-host";
 const DEFAULT_APP_ORIGIN = "http://localhost:3000";
@@ -50,7 +52,7 @@ async function resolveLaunchConfig(): Promise<LeetCodeLaunchConfig | null> {
 
   const appOrigin = await getAppOrigin();
 
-  return buildLaunchConfigFromLeetCodePage({
+  return buildLaunchConfigFromProblemPage({
     appOrigin,
     pathname: location.pathname,
   });
@@ -70,12 +72,23 @@ function ensureMountPoint() {
     document.documentElement.appendChild(host);
   }
 
-  let mountPoint = host.firstElementChild as HTMLDivElement | null;
+  let shadowRoot = host.shadowRoot;
+
+  if (!shadowRoot) {
+    shadowRoot = host.attachShadow({ mode: "open" });
+
+    const style = document.createElement("style");
+    style.textContent = OVERLAY_STYLES;
+    shadowRoot.appendChild(style);
+  }
+
+  let mountPoint = shadowRoot.querySelector(".dsa-interviewer-root") as HTMLDivElement | null;
 
   if (!mountPoint) {
     mountPoint = document.createElement("div");
-    mountPoint.style.pointerEvents = "auto";
-    host.appendChild(mountPoint);
+    mountPoint.className = "dsa-interviewer-root";
+    mountPoint.style.pointerEvents = "none";
+    shadowRoot.appendChild(mountPoint);
   }
 
   return mountPoint;

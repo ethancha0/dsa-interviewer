@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+
+@source "../components/ui/pip-overlay/**/*.tsx";
+@source "../components/interview/leetcode-extension-overlay.tsx";
+@source "../components/ui/**/*.tsx";
+@source "../lib/utils.ts";
+
+@theme inline {
+  --font-sans: "Geist Variable", "Geist Sans", Arial, Helvetica, sans-serif;
+}
+
+:host,
+.dsa-interviewer-root,
+.dsa-interviewer-root * {
+  font-family: var(--font-sans);
+}
+
+@keyframes interviewer-overlay-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dsa-interviewer-root {
+  -webkit-font-smoothing: antialiased;
+  color: #fafafa;
+}

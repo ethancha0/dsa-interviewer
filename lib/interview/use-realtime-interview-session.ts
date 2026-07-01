@@ -8,6 +8,11 @@ import {
   parseJsonResponse,
   parseRealtimeEvent,
 } from "./realtime-utils";
+import {
+  mountRemoteAudioElement,
+  playRemoteAudio,
+  unmountRemoteAudioElement,
+} from "./remote-audio";
 import { normalizeSummaryText } from "./summary";
 import {
   INITIAL_INTERVIEWER_RESPONSE,
@@ -64,6 +69,8 @@ export function useRealtimeInterviewSession(
     }
 
     const audioContext = new AudioContextConstructor();
+    void audioContext.resume().catch(() => null);
+
     const analyser = audioContext.createAnalyser();
     const audioSource = audioContext.createMediaStreamSource(stream);
 
@@ -187,7 +194,7 @@ export function useRealtimeInterviewSession(
   function cleanupConnection() {
     dataChannelRef.current?.close();
     peerConnectionRef.current?.close();
-    remoteAudioRef.current?.pause();
+    unmountRemoteAudioElement(remoteAudioRef.current);
     streamRef.current?.getTracks().forEach((track) => track.stop());
     stopScreenContext();
     stopAudioMeter();
@@ -541,20 +548,20 @@ export function useRealtimeInterviewSession(
       }
 
       const peerConnection = new RTCPeerConnection();
-      const remoteAudio = new Audio();
+      const remoteAudio = mountRemoteAudioElement();
       const dataChannel = peerConnection.createDataChannel("oai-events");
 
-      remoteAudio.autoplay = true;
       peerConnection.addTrack(audioTrack, stream);
       if (screenTrack && screenStream) {
         peerConnection.addTrack(screenTrack, screenStream);
       }
       peerConnection.addEventListener("track", (event) => {
         remoteAudio.srcObject = event.streams[0];
-        remoteAudio.play().catch(() => null);
+        void playRemoteAudio(remoteAudio);
       });
 
       dataChannel.addEventListener("open", () => {
+        void playRemoteAudio(remoteAudio);
         setStatus(getListeningStatus());
         setInterviewerStatus("Listening");
         if (isScreenSharingRef.current) {

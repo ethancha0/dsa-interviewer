@@ -15,6 +15,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@fontsource-variable/geist": "^5.2.9",
     "@mui/icons-material": "^9.1.1",
     "@mui/material": "^9.1.2",
     "drizzle-orm": "^0.45.2",
@@ -33,6 +34,7 @@
     "esbuild": "^0.28.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "postcss": "^8.5.16",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

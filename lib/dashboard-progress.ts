@@ -1,3 +1,5 @@
+import { queuePendingInterviewRecord } from "@/lib/extension-progress-sync";
+
 export type DashboardInterviewRecord = {
   category?: string;
   completedAt: string;
@@ -75,6 +77,8 @@ export async function recordCompletedInterview(
   record: DashboardInterviewRecord,
   apiBase = "",
 ) {
+  await queuePendingInterviewRecord(record).catch(() => null);
+
   if (!apiBase) {
     saveLocalDashboardProgress(record);
   }

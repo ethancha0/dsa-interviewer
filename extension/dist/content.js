@@ -1,3 +1,4 @@
+var OVERLAY_STYLES="/*! tailwindcss v4.3.1 | MIT License | https://tailwindcss.com */\n@layer properties;\n@layer theme, base, components, utilities;\n@layer theme {\n  :root, :host {\n    --font-sans: \"Geist Variable\", \"Geist Sans\", Arial, Helvetica, sans-serif;\n    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\",\n      \"Courier New\", monospace;\n    --color-red-200: oklch(88.5% 0.062 18.334);\n    --color-red-400: oklch(70.4% 0.191 22.216);\n    --color-red-500: oklch(63.7% 0.237 25.331);\n    --color-amber-50: oklch(98.7% 0.022 95.277);\n    --color-amber-100: oklch(96.2% 0.059 95.617);\n    --color-amber-300: oklch(87.9% 0.169 91.605);\n    --color-amber-400: oklch(82.8% 0.189 84.429);\n    --color-amber-500: oklch(76.9% 0.188 70.08);\n    --color-lime-100: oklch(96.7% 0.067 122.328);\n    --color-lime-200: oklch(93.8% 0.127 124.321);\n    --color-lime-300: oklch(89.7% 0.196 126.665);\n    --color-lime-400: oklch(84.1% 0.238 128.85);\n    --color-lime-500: oklch(76.8% 0.233 130.85);\n    --color-emerald-400: oklch(76.5% 0.177 163.223);\n    --color-emerald-500: oklch(69.6% 0.17 162.48);\n    --color-emerald-600: oklch(59.6% 0.145 163.225);\n    --color-blue-300: oklch(80.9% 0.105 251.813);\n    --color-blue-400: oklch(70.7% 0.165 254.624);\n    --color-blue-500: oklch(62.3% 0.214 259.815);\n    --color-gray-500: oklch(55.1% 0.027 264.364);\n    --color-zinc-50: oklch(98.5% 0 0);\n    --color-zinc-100: oklch(96.7% 0.001 286.375);\n    --color-zinc-200: oklch(92% 0.004 286.32);\n    --color-zinc-300: oklch(87.1% 0.006 286.286);\n    --color-zinc-400: oklch(70.5% 0.015 286.067);\n    --color-zinc-500: oklch(55.2% 0.016 285.938);\n    --color-zinc-600: oklch(44.2% 0.017 285.786);\n    --color-zinc-700: oklch(37% 0.013 285.805);\n    --color-zinc-800: oklch(27.4% 0.006 286.033);\n    --color-zinc-900: oklch(21% 0.006 285.885);\n    --color-zinc-950: oklch(14.1% 0.005 285.823);\n    --color-black: #000;\n    --color-white: #fff;\n    --spacing: 0.25rem;\n    --container-xl: 36rem;\n    --text-xs: 0.75rem;\n    --text-xs--line-height: calc(1 / 0.75);\n    --text-sm: 0.875rem;\n    --text-sm--line-height: calc(1.25 / 0.875);\n    --text-base: 1rem;\n    --text-base--line-height: calc(1.5 / 1);\n    --text-lg: 1.125rem;\n    --text-lg--line-height: calc(1.75 / 1.125);\n    --text-xl: 1.25rem;\n    --text-xl--line-height: calc(1.75 / 1.25);\n    --text-2xl: 1.5rem;\n    --text-2xl--line-height: calc(2 / 1.5);\n    --text-3xl: 1.875rem;\n    --text-3xl--line-height: calc(2.25 / 1.875);\n    --text-4xl: 2.25rem;\n    --text-4xl--line-height: calc(2.5 / 2.25);\n    --text-5xl: 3rem;\n    --text-5xl--line-height: 1;\n    --font-weight-medium: 500;\n    --font-weight-semibold: 600;\n    --font-weight-bold: 700;\n    --font-weight-black: 900;\n    --tracking-wide: 0.025em;\n    --leading-tight: 1.25;\n    --radius-md: 0.375rem;\n    --radius-lg: 0.5rem;\n    --radius-xl: 0.75rem;\n    --radius-2xl: 1rem;\n    --blur-sm: 8px;\n    --default-transition-duration: 150ms;\n    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n    --default-font-family: \"Geist Variable\", \"Geist Sans\", Arial, Helvetica, sans-serif;\n    --default-mono-font-family: var(--font-mono);\n  }\n}\n@layer base {\n  *, ::after, ::before, ::backdrop, ::file-selector-button {\n    box-sizing: border-box;\n    margin: 0;\n    padding: 0;\n    border: 0 solid;\n  }\n  html, :host {\n    line-height: 1.5;\n    -webkit-text-size-adjust: 100%;\n    tab-size: 4;\n    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\");\n    font-feature-settings: var(--default-font-feature-settings, normal);\n    font-variation-settings: var(--default-font-variation-settings, normal);\n    -webkit-tap-highlight-color: transparent;\n  }\n  hr {\n    height: 0;\n    color: inherit;\n    border-top-width: 1px;\n  }\n  abbr:where([title]) {\n    -webkit-text-decoration: underline dotted;\n    text-decoration: underline dotted;\n  }\n  h1, h2, h3, h4, h5, h6 {\n    font-size: inherit;\n    font-weight: inherit;\n  }\n  a {\n    color: inherit;\n    -webkit-text-decoration: inherit;\n    text-decoration: inherit;\n  }\n  b, strong {\n    font-weight: bolder;\n  }\n  code, kbd, samp, pre {\n    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace);\n    font-feature-settings: var(--default-mono-font-feature-settings, normal);\n    font-variation-settings: var(--default-mono-font-variation-settings, normal);\n    font-size: 1em;\n  }\n  small {\n    font-size: 80%;\n  }\n  sub, sup {\n    font-size: 75%;\n    line-height: 0;\n    position: relative;\n    vertical-align: baseline;\n  }\n  sub {\n    bottom: -0.25em;\n  }\n  sup {\n    top: -0.5em;\n  }\n  table {\n    text-indent: 0;\n    border-color: inherit;\n    border-collapse: collapse;\n  }\n  :-moz-focusring {\n    outline: auto;\n  }\n  progress {\n    vertical-align: baseline;\n  }\n  summary {\n    display: list-item;\n  }\n  ol, ul, menu {\n    list-style: none;\n  }\n  img, svg, video, canvas, audio, iframe, embed, object {\n    display: block;\n    vertical-align: middle;\n  }\n  img, video {\n    max-width: 100%;\n    height: auto;\n  }\n  button, input, select, optgroup, textarea, ::file-selector-button {\n    font: inherit;\n    font-feature-settings: inherit;\n    font-variation-settings: inherit;\n    letter-spacing: inherit;\n    color: inherit;\n    border-radius: 0;\n    background-color: transparent;\n    opacity: 1;\n  }\n  :where(select:is([multiple], [size])) optgroup {\n    font-weight: bolder;\n  }\n  :where(select:is([multiple], [size])) optgroup option {\n    padding-inline-start: 20px;\n  }\n  ::file-selector-button {\n    margin-inline-end: 4px;\n  }\n  ::placeholder {\n    opacity: 1;\n  }\n  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {\n    ::placeholder {\n      color: currentcolor;\n      @supports (color: color-mix(in lab, red, red)) {\n        color: color-mix(in oklab, currentcolor 50%, transparent);\n      }\n    }\n  }\n  textarea {\n    resize: vertical;\n  }\n  ::-webkit-search-decoration {\n    -webkit-appearance: none;\n  }\n  ::-webkit-date-and-time-value {\n    min-height: 1lh;\n    text-align: inherit;\n  }\n  ::-webkit-datetime-edit {\n    display: inline-flex;\n  }\n  ::-webkit-datetime-edit-fields-wrapper {\n    padding: 0;\n  }\n  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {\n    padding-block: 0;\n  }\n  ::-webkit-calendar-picker-indicator {\n    line-height: 1;\n  }\n  :-moz-ui-invalid {\n    box-shadow: none;\n  }\n  button, input:where([type=\"button\"], [type=\"reset\"], [type=\"submit\"]), ::file-selector-button {\n    appearance: button;\n  }\n  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {\n    height: auto;\n  }\n  [hidden]:where(:not([hidden=\"until-found\"])) {\n    display: none !important;\n  }\n}\n@layer utilities {\n  .\\@container {\n    container-type: inline-size;\n  }\n  .pointer-events-auto {\n    pointer-events: auto;\n  }\n  .visible {\n    visibility: visible;\n  }\n  .absolute {\n    position: absolute;\n  }\n  .fixed {\n    position: fixed;\n  }\n  .relative {\n    position: relative;\n  }\n  .sticky {\n    position: sticky;\n  }\n  .inset-0 {\n    inset: 0;\n  }\n  .right-5 {\n    right: calc(var(--spacing) * 5);\n  }\n  .bottom-8 {\n    bottom: calc(var(--spacing) * 8);\n  }\n  .left-5 {\n    left: calc(var(--spacing) * 5);\n  }\n  .isolate {\n    isolation: isolate;\n  }\n  .z-20 {\n    z-index: 20;\n  }\n  .z-30 {\n    z-index: 30;\n  }\n  .z-50 {\n    z-index: 50;\n  }\n  .z-\\[2147483647\\] {\n    z-index: 2147483647;\n  }\n  .container {\n    width: 100%;\n    @media (width >= 40rem) {\n      max-width: 40rem;\n    }\n    @media (width >= 48rem) {\n      max-width: 48rem;\n    }\n    @media (width >= 64rem) {\n      max-width: 64rem;\n    }\n    @media (width >= 80rem) {\n      max-width: 80rem;\n    }\n    @media (width >= 96rem) {\n      max-width: 96rem;\n    }\n  }\n  .mx-auto {\n    margin-inline: auto;\n  }\n  .mt-0 {\n    margin-top: 0;\n  }\n  .mt-0\\.5 {\n    margin-top: calc(var(--spacing) * 0.5);\n  }\n  .mt-1 {\n    margin-top: var(--spacing);\n  }\n  .mt-2 {\n    margin-top: calc(var(--spacing) * 2);\n  }\n  .mt-3 {\n    margin-top: calc(var(--spacing) * 3);\n  }\n  .mt-4 {\n    margin-top: calc(var(--spacing) * 4);\n  }\n  .mt-5 {\n    margin-top: calc(var(--spacing) * 5);\n  }\n  .mt-6 {\n    margin-top: calc(var(--spacing) * 6);\n  }\n  .mt-7 {\n    margin-top: calc(var(--spacing) * 7);\n  }\n  .mt-8 {\n    margin-top: calc(var(--spacing) * 8);\n  }\n  .mt-9 {\n    margin-top: calc(var(--spacing) * 9);\n  }\n  .mt-14 {\n    margin-top: calc(var(--spacing) * 14);\n  }\n  .mr-2 {\n    margin-right: calc(var(--spacing) * 2);\n  }\n  .mb-1 {\n    margin-bottom: var(--spacing);\n  }\n  .mb-3 {\n    margin-bottom: calc(var(--spacing) * 3);\n  }\n  .mb-5 {\n    margin-bottom: calc(var(--spacing) * 5);\n  }\n  .mb-7 {\n    margin-bottom: calc(var(--spacing) * 7);\n  }\n  .ml-2 {\n    margin-left: calc(var(--spacing) * 2);\n  }\n  .ml-7 {\n    margin-left: calc(var(--spacing) * 7);\n  }\n  .line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n  .block {\n    display: block;\n  }\n  .flex {\n    display: flex;\n  }\n  .grid {\n    display: grid;\n  }\n  .hidden {\n    display: none;\n  }\n  .inline-block {\n    display: inline-block;\n  }\n  .inline-flex {\n    display: inline-flex;\n  }\n  .table {\n    display: table;\n  }\n  .size-1 {\n    width: var(--spacing);\n    height: var(--spacing);\n  }\n  .size-1\\.5 {\n    width: calc(var(--spacing) * 1.5);\n    height: calc(var(--spacing) * 1.5);\n  }\n  .size-2 {\n    width: calc(var(--spacing) * 2);\n    height: calc(var(--spacing) * 2);\n  }\n  .size-3 {\n    width: calc(var(--spacing) * 3);\n    height: calc(var(--spacing) * 3);\n  }\n  .size-3\\.5 {\n    width: calc(var(--spacing) * 3.5);\n    height: calc(var(--spacing) * 3.5);\n  }\n  .size-4 {\n    width: calc(var(--spacing) * 4);\n    height: calc(var(--spacing) * 4);\n  }\n  .size-5 {\n    width: calc(var(--spacing) * 5);\n    height: calc(var(--spacing) * 5);\n  }\n  .size-6 {\n    width: calc(var(--spacing) * 6);\n    height: calc(var(--spacing) * 6);\n  }\n  .size-7 {\n    width: calc(var(--spacing) * 7);\n    height: calc(var(--spacing) * 7);\n  }\n  .size-8 {\n    width: calc(var(--spacing) * 8);\n    height: calc(var(--spacing) * 8);\n  }\n  .size-10 {\n    width: calc(var(--spacing) * 10);\n    height: calc(var(--spacing) * 10);\n  }\n  .size-11 {\n    width: calc(var(--spacing) * 11);\n    height: calc(var(--spacing) * 11);\n  }\n  .size-12 {\n    width: calc(var(--spacing) * 12);\n    height: calc(var(--spacing) * 12);\n  }\n  .size-16 {\n    width: calc(var(--spacing) * 16);\n    height: calc(var(--spacing) * 16);\n  }\n  .size-full {\n    width: 100%;\n    height: 100%;\n  }\n  .h-1 {\n    height: var(--spacing);\n  }\n  .h-1\\.5 {\n    height: calc(var(--spacing) * 1.5);\n  }\n  .h-3 {\n    height: calc(var(--spacing) * 3);\n  }\n  .h-8 {\n    height: calc(var(--spacing) * 8);\n  }\n  .h-9 {\n    height: calc(var(--spacing) * 9);\n  }\n  .h-10 {\n    height: calc(var(--spacing) * 10);\n  }\n  .h-11 {\n    height: calc(var(--spacing) * 11);\n  }\n  .h-12 {\n    height: calc(var(--spacing) * 12);\n  }\n  .h-\\[222px\\] {\n    height: 222px;\n  }\n  .h-full {\n    height: 100%;\n  }\n  .max-h-\\[560px\\] {\n    max-height: 560px;\n  }\n  .min-h-\\[66px\\] {\n    min-height: 66px;\n  }\n  .min-h-\\[360px\\] {\n    min-height: 360px;\n  }\n  .min-h-\\[calc\\(100vh-2\\.5rem\\)\\] {\n    min-height: calc(100vh - 2.5rem);\n  }\n  .min-h-full {\n    min-height: 100%;\n  }\n  .min-h-screen {\n    min-height: 100vh;\n  }\n  .w-1 {\n    width: var(--spacing);\n  }\n  .w-\\[352px\\] {\n    width: 352px;\n  }\n  .w-\\[calc\\(100\\%-2\\.5rem\\)\\] {\n    width: calc(100% - 2.5rem);\n  }\n  .w-fit {\n    width: fit-content;\n  }\n  .w-full {\n    width: 100%;\n  }\n  .max-w-\\[285px\\] {\n    max-width: 285px;\n  }\n  .max-w-\\[560px\\] {\n    max-width: 560px;\n  }\n  .max-w-\\[610px\\] {\n    max-width: 610px;\n  }\n  .max-w-\\[620px\\] {\n    max-width: 620px;\n  }\n  .max-w-\\[670px\\] {\n    max-width: 670px;\n  }\n  .max-w-\\[690px\\] {\n    max-width: 690px;\n  }\n  .max-w-\\[860px\\] {\n    max-width: 860px;\n  }\n  .max-w-\\[1120px\\] {\n    max-width: 1120px;\n  }\n  .max-w-\\[1220px\\] {\n    max-width: 1220px;\n  }\n  .max-w-\\[1240px\\] {\n    max-width: 1240px;\n  }\n  .max-w-xl {\n    max-width: var(--container-xl);\n  }\n  .min-w-0 {\n    min-width: 0;\n  }\n  .flex-1 {\n    flex: 1;\n  }\n  .flex-shrink {\n    flex-shrink: 1;\n  }\n  .shrink {\n    flex-shrink: 1;\n  }\n  .shrink-0 {\n    flex-shrink: 0;\n  }\n  .flex-grow {\n    flex-grow: 1;\n  }\n  .grow {\n    flex-grow: 1;\n  }\n  .border-collapse {\n    border-collapse: collapse;\n  }\n  .origin-left {\n    transform-origin: 0;\n  }\n  .transform {\n    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);\n  }\n  .animate-\\[interviewer-overlay-enter_420ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_80ms_both\\] {\n    animation: interviewer-overlay-enter 420ms cubic-bezier(.16,1,.3,1) 80ms both;\n  }\n  .animate-\\[interviewer-overlay-enter_420ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_140ms_both\\] {\n    animation: interviewer-overlay-enter 420ms cubic-bezier(.16,1,.3,1) 140ms both;\n  }\n  .animate-\\[interviewer-overlay-enter_420ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_both\\] {\n    animation: interviewer-overlay-enter 420ms cubic-bezier(.16,1,.3,1) both;\n  }\n  .animate-\\[interviewer-overlay-enter_620ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_420ms_both\\] {\n    animation: interviewer-overlay-enter 620ms cubic-bezier(.16,1,.3,1) 420ms both;\n  }\n  .animate-\\[interviewer-overlay-enter_620ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_both\\] {\n    animation: interviewer-overlay-enter 620ms cubic-bezier(.16,1,.3,1) both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_90ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 90ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_140ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 140ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_170ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 170ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_190ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 190ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_230ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 230ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_240ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 240ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_290ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 290ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_310ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 310ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_350ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 350ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_380ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 380ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_400ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 400ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_450ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 450ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_500ms_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) 500ms both;\n  }\n  .animate-\\[panel-rise-in_520ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_both\\] {\n    animation: panel-rise-in 520ms cubic-bezier(.16,1,.3,1) both;\n  }\n  .animate-\\[panel-rise-in_560ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_460ms_both\\] {\n    animation: panel-rise-in 560ms cubic-bezier(.16,1,.3,1) 460ms both;\n  }\n  .animate-\\[panel-rise-in_560ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_560ms_both\\] {\n    animation: panel-rise-in 560ms cubic-bezier(.16,1,.3,1) 560ms both;\n  }\n  .animate-\\[panel-rise-in_560ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_570ms_both\\] {\n    animation: panel-rise-in 560ms cubic-bezier(.16,1,.3,1) 570ms both;\n  }\n  .animate-\\[panel-rise-in_560ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_640ms_both\\] {\n    animation: panel-rise-in 560ms cubic-bezier(.16,1,.3,1) 640ms both;\n  }\n  .animate-\\[panel-rise-in_560ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_720ms_both\\] {\n    animation: panel-rise-in 560ms cubic-bezier(.16,1,.3,1) 720ms both;\n  }\n  .animate-\\[panel-rise-in_560ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_800ms_both\\] {\n    animation: panel-rise-in 560ms cubic-bezier(.16,1,.3,1) 800ms both;\n  }\n  .animate-\\[row-fade-in_380ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_both\\] {\n    animation: row-fade-in 380ms cubic-bezier(.16,1,.3,1) both;\n  }\n  .animate-\\[row-fade-in_420ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_both\\] {\n    animation: row-fade-in 420ms cubic-bezier(.16,1,.3,1) both;\n  }\n  .animate-\\[score-bar-fill_760ms_cubic-bezier\\(\\.16\\,1\\,\\.3\\,1\\)_both\\] {\n    animation: score-bar-fill 760ms cubic-bezier(.16,1,.3,1) both;\n  }\n  .cursor-grab {\n    cursor: grab;\n  }\n  .touch-none {\n    touch-action: none;\n  }\n  .resize {\n    resize: both;\n  }\n  .list-decimal {\n    list-style-type: decimal;\n  }\n  .grid-cols-2 {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n  .grid-cols-\\[1fr_auto_48px\\] {\n    grid-template-columns: 1fr auto 48px;\n  }\n  .grid-cols-\\[40px_1fr_auto\\] {\n    grid-template-columns: 40px 1fr auto;\n  }\n  .grid-cols-\\[138px_1fr_72px\\] {\n    grid-template-columns: 138px 1fr 72px;\n  }\n  .flex-col {\n    flex-direction: column;\n  }\n  .flex-wrap {\n    flex-wrap: wrap;\n  }\n  .place-items-center {\n    place-items: center;\n  }\n  .items-center {\n    align-items: center;\n  }\n  .items-start {\n    align-items: flex-start;\n  }\n  .justify-between {\n    justify-content: space-between;\n  }\n  .justify-center {\n    justify-content: center;\n  }\n  .gap-1 {\n    gap: var(--spacing);\n  }\n  .gap-2 {\n    gap: calc(var(--spacing) * 2);\n  }\n  .gap-3 {\n    gap: calc(var(--spacing) * 3);\n  }\n  .gap-4 {\n    gap: calc(var(--spacing) * 4);\n  }\n  .gap-5 {\n    gap: calc(var(--spacing) * 5);\n  }\n  .gap-6 {\n    gap: calc(var(--spacing) * 6);\n  }\n  .gap-7 {\n    gap: calc(var(--spacing) * 7);\n  }\n  .gap-10 {\n    gap: calc(var(--spacing) * 10);\n  }\n  .space-y-1 {\n    :where(& > :not(:last-child)) {\n      --tw-space-y-reverse: 0;\n      margin-block-start: calc(var(--spacing) * var(--tw-space-y-reverse));\n      margin-block-end: calc(var(--spacing) * calc(1 - var(--tw-space-y-reverse)));\n    }\n  }\n  .space-y-3 {\n    :where(& > :not(:last-child)) {\n      --tw-space-y-reverse: 0;\n      margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));\n      margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));\n    }\n  }\n  .space-y-4 {\n    :where(& > :not(:last-child)) {\n      --tw-space-y-reverse: 0;\n      margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));\n      margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));\n    }\n  }\n  .space-y-5 {\n    :where(& > :not(:last-child)) {\n      --tw-space-y-reverse: 0;\n      margin-block-start: calc(calc(var(--spacing) * 5) * var(--tw-space-y-reverse));\n      margin-block-end: calc(calc(var(--spacing) * 5) * calc(1 - var(--tw-space-y-reverse)));\n    }\n  }\n  .divide-y {\n    :where(& > :not(:last-child)) {\n      --tw-divide-y-reverse: 0;\n      border-bottom-style: var(--tw-border-style);\n      border-top-style: var(--tw-border-style);\n      border-top-width: calc(1px * var(--tw-divide-y-reverse));\n      border-bottom-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));\n    }\n  }\n  .divide-white {\n    :where(& > :not(:last-child)) {\n      border-color: var(--color-white);\n    }\n  }\n  .divide-white\\/5 {\n    :where(& > :not(:last-child)) {\n      border-color: color-mix(in srgb, #fff 5%, transparent);\n      @supports (color: color-mix(in lab, red, red)) {\n        border-color: color-mix(in oklab, var(--color-white) 5%, transparent);\n      }\n    }\n  }\n  .truncate {\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n  }\n  .overflow-hidden {\n    overflow: hidden;\n  }\n  .overflow-y-auto {\n    overflow-y: auto;\n  }\n  .rounded-2xl {\n    border-radius: var(--radius-2xl);\n  }\n  .rounded-\\[1\\.6rem\\] {\n    border-radius: 1.6rem;\n  }\n  .rounded-\\[1\\.25rem\\] {\n    border-radius: 1.25rem;\n  }\n  .rounded-\\[1\\.45rem\\] {\n    border-radius: 1.45rem;\n  }\n  .rounded-full {\n    border-radius: calc(infinity * 1px);\n  }\n  .rounded-lg {\n    border-radius: var(--radius-lg);\n  }\n  .rounded-md {\n    border-radius: var(--radius-md);\n  }\n  .rounded-xl {\n    border-radius: var(--radius-xl);\n  }\n  .border {\n    border-style: var(--tw-border-style);\n    border-width: 1px;\n  }\n  .border-0 {\n    border-style: var(--tw-border-style);\n    border-width: 0px;\n  }\n  .border-b {\n    border-bottom-style: var(--tw-border-style);\n    border-bottom-width: 1px;\n  }\n  .border-dashed {\n    --tw-border-style: dashed;\n    border-style: dashed;\n  }\n  .border-amber-400 {\n    border-color: var(--color-amber-400);\n  }\n  .border-amber-400\\/20 {\n    border-color: color-mix(in srgb, oklch(82.8% 0.189 84.429) 20%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-amber-400) 20%, transparent);\n    }\n  }\n  .border-emerald-500 {\n    border-color: var(--color-emerald-500);\n  }\n  .border-emerald-500\\/45 {\n    border-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 45%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-emerald-500) 45%, transparent);\n    }\n  }\n  .border-lime-400 {\n    border-color: var(--color-lime-400);\n  }\n  .border-lime-400\\/20 {\n    border-color: color-mix(in srgb, oklch(84.1% 0.238 128.85) 20%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-lime-400) 20%, transparent);\n    }\n  }\n  .border-lime-400\\/25 {\n    border-color: color-mix(in srgb, oklch(84.1% 0.238 128.85) 25%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-lime-400) 25%, transparent);\n    }\n  }\n  .border-red-400 {\n    border-color: var(--color-red-400);\n  }\n  .border-red-400\\/20 {\n    border-color: color-mix(in srgb, oklch(70.4% 0.191 22.216) 20%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-red-400) 20%, transparent);\n    }\n  }\n  .border-white {\n    border-color: var(--color-white);\n  }\n  .border-white\\/5 {\n    border-color: color-mix(in srgb, #fff 5%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-white) 5%, transparent);\n    }\n  }\n  .border-white\\/10 {\n    border-color: color-mix(in srgb, #fff 10%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-white) 10%, transparent);\n    }\n  }\n  .border-white\\/15 {\n    border-color: color-mix(in srgb, #fff 15%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-white) 15%, transparent);\n    }\n  }\n  .border-white\\/25 {\n    border-color: color-mix(in srgb, #fff 25%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      border-color: color-mix(in oklab, var(--color-white) 25%, transparent);\n    }\n  }\n  .bg-\\[\\#0b0b0b\\] {\n    background-color: #0b0b0b;\n  }\n  .bg-\\[\\#0b0b0c\\] {\n    background-color: #0b0b0c;\n  }\n  .bg-\\[\\#1c1c1b\\] {\n    background-color: #1c1c1b;\n  }\n  .bg-\\[\\#1d1d1b\\]\\/95 {\n    background-color: color-mix(in oklab, #1d1d1b 95%, transparent);\n  }\n  .bg-\\[\\#1d1d1b\\]\\/96 {\n    background-color: color-mix(in oklab, #1d1d1b 96%, transparent);\n  }\n  .bg-\\[\\#1f1f1d\\] {\n    background-color: #1f1f1d;\n  }\n  .bg-\\[\\#2a2a28\\] {\n    background-color: #2a2a28;\n  }\n  .bg-\\[\\#10100f\\]\\/95 {\n    background-color: color-mix(in oklab, #10100f 95%, transparent);\n  }\n  .bg-\\[\\#33332f\\] {\n    background-color: #33332f;\n  }\n  .bg-\\[\\#111110\\] {\n    background-color: #111110;\n  }\n  .bg-\\[\\#111111\\] {\n    background-color: #111111;\n  }\n  .bg-\\[\\#141416\\] {\n    background-color: #141416;\n  }\n  .bg-\\[\\#151514\\] {\n    background-color: #151514;\n  }\n  .bg-\\[\\#161618\\] {\n    background-color: #161618;\n  }\n  .bg-\\[\\#171716\\] {\n    background-color: #171716;\n  }\n  .bg-\\[\\#171717\\] {\n    background-color: #171717;\n  }\n  .bg-\\[\\#181817\\] {\n    background-color: #181817;\n  }\n  .bg-\\[\\#191917\\] {\n    background-color: #191917;\n  }\n  .bg-\\[\\#202020\\] {\n    background-color: #202020;\n  }\n  .bg-\\[\\#232326\\] {\n    background-color: #232326;\n  }\n  .bg-\\[\\#262624\\] {\n    background-color: #262624;\n  }\n  .bg-\\[\\#282826\\] {\n    background-color: #282826;\n  }\n  .bg-\\[\\#a7e079\\] {\n    background-color: #a7e079;\n  }\n  .bg-\\[\\#ff7b7b\\] {\n    background-color: #ff7b7b;\n  }\n  .bg-\\[\\#ffd36b\\] {\n    background-color: #ffd36b;\n  }\n  .bg-amber-300 {\n    background-color: var(--color-amber-300);\n  }\n  .bg-amber-400 {\n    background-color: var(--color-amber-400);\n  }\n  .bg-amber-400\\/10 {\n    background-color: color-mix(in srgb, oklch(82.8% 0.189 84.429) 10%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-amber-400) 10%, transparent);\n    }\n  }\n  .bg-amber-500 {\n    background-color: var(--color-amber-500);\n  }\n  .bg-amber-500\\/15 {\n    background-color: color-mix(in srgb, oklch(76.9% 0.188 70.08) 15%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-amber-500) 15%, transparent);\n    }\n  }\n  .bg-black {\n    background-color: var(--color-black);\n  }\n  .bg-blue-400 {\n    background-color: var(--color-blue-400);\n  }\n  .bg-blue-500 {\n    background-color: var(--color-blue-500);\n  }\n  .bg-blue-500\\/15 {\n    background-color: color-mix(in srgb, oklch(62.3% 0.214 259.815) 15%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-blue-500) 15%, transparent);\n    }\n  }\n  .bg-emerald-400 {\n    background-color: var(--color-emerald-400);\n  }\n  .bg-emerald-500 {\n    background-color: var(--color-emerald-500);\n  }\n  .bg-emerald-500\\/5 {\n    background-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 5%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-emerald-500) 5%, transparent);\n    }\n  }\n  .bg-emerald-500\\/15 {\n    background-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 15%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-emerald-500) 15%, transparent);\n    }\n  }\n  .bg-lime-100 {\n    background-color: var(--color-lime-100);\n  }\n  .bg-lime-400 {\n    background-color: var(--color-lime-400);\n  }\n  .bg-lime-400\\/10 {\n    background-color: color-mix(in srgb, oklch(84.1% 0.238 128.85) 10%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-lime-400) 10%, transparent);\n    }\n  }\n  .bg-lime-500 {\n    background-color: var(--color-lime-500);\n  }\n  .bg-lime-500\\/10 {\n    background-color: color-mix(in srgb, oklch(76.8% 0.233 130.85) 10%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-lime-500) 10%, transparent);\n    }\n  }\n  .bg-lime-500\\/20 {\n    background-color: color-mix(in srgb, oklch(76.8% 0.233 130.85) 20%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-lime-500) 20%, transparent);\n    }\n  }\n  .bg-red-400 {\n    background-color: var(--color-red-400);\n  }\n  .bg-red-400\\/10 {\n    background-color: color-mix(in srgb, oklch(70.4% 0.191 22.216) 10%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-red-400) 10%, transparent);\n    }\n  }\n  .bg-red-500 {\n    background-color: var(--color-red-500);\n  }\n  .bg-red-500\\/15 {\n    background-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 15%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-red-500) 15%, transparent);\n    }\n  }\n  .bg-transparent {\n    background-color: transparent;\n  }\n  .bg-white {\n    background-color: var(--color-white);\n  }\n  .bg-white\\/2 {\n    background-color: color-mix(in srgb, #fff 2%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-white) 2%, transparent);\n    }\n  }\n  .bg-white\\/5 {\n    background-color: color-mix(in srgb, #fff 5%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-white) 5%, transparent);\n    }\n  }\n  .bg-zinc-500 {\n    background-color: var(--color-zinc-500);\n  }\n  .bg-zinc-700 {\n    background-color: var(--color-zinc-700);\n  }\n  .bg-zinc-800 {\n    background-color: var(--color-zinc-800);\n  }\n  .bg-zinc-900 {\n    background-color: var(--color-zinc-900);\n  }\n  .bg-zinc-900\\/95 {\n    background-color: color-mix(in srgb, oklch(21% 0.006 285.885) 95%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      background-color: color-mix(in oklab, var(--color-zinc-900) 95%, transparent);\n    }\n  }\n  .bg-linear-to-br {\n    --tw-gradient-position: to bottom right;\n    @supports (background-image: linear-gradient(in lab, red, red)) {\n      --tw-gradient-position: to bottom right in oklab;\n    }\n    background-image: linear-gradient(var(--tw-gradient-stops));\n  }\n  .bg-linear-to-r {\n    --tw-gradient-position: to right;\n    @supports (background-image: linear-gradient(in lab, red, red)) {\n      --tw-gradient-position: to right in oklab;\n    }\n    background-image: linear-gradient(var(--tw-gradient-stops));\n  }\n  .bg-linear-to-t {\n    --tw-gradient-position: to top;\n    @supports (background-image: linear-gradient(in lab, red, red)) {\n      --tw-gradient-position: to top in oklab;\n    }\n    background-image: linear-gradient(var(--tw-gradient-stops));\n  }\n  .from-black {\n    --tw-gradient-from: var(--color-black);\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .from-black\\/5 {\n    --tw-gradient-from: color-mix(in srgb, #000 5%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      --tw-gradient-from: color-mix(in oklab, var(--color-black) 5%, transparent);\n    }\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .from-black\\/30 {\n    --tw-gradient-from: color-mix(in srgb, #000 30%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      --tw-gradient-from: color-mix(in oklab, var(--color-black) 30%, transparent);\n    }\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .from-lime-300 {\n    --tw-gradient-from: var(--color-lime-300);\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .via-transparent {\n    --tw-gradient-via: transparent;\n    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);\n    --tw-gradient-stops: var(--tw-gradient-via-stops);\n  }\n  .to-black {\n    --tw-gradient-to: var(--color-black);\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .to-black\\/45 {\n    --tw-gradient-to: color-mix(in srgb, #000 45%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      --tw-gradient-to: color-mix(in oklab, var(--color-black) 45%, transparent);\n    }\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .to-emerald-600 {\n    --tw-gradient-to: var(--color-emerald-600);\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .to-transparent {\n    --tw-gradient-to: transparent;\n    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));\n  }\n  .object-cover {\n    object-fit: cover;\n  }\n  .object-\\[50\\%_18\\%\\] {\n    object-position: 50% 18%;\n  }\n  .p-0 {\n    padding: 0;\n  }\n  .p-1 {\n    padding: var(--spacing);\n  }\n  .p-3 {\n    padding: calc(var(--spacing) * 3);\n  }\n  .p-4 {\n    padding: calc(var(--spacing) * 4);\n  }\n  .p-5 {\n    padding: calc(var(--spacing) * 5);\n  }\n  .p-6 {\n    padding: calc(var(--spacing) * 6);\n  }\n  .p-7 {\n    padding: calc(var(--spacing) * 7);\n  }\n  .p-8 {\n    padding: calc(var(--spacing) * 8);\n  }\n  .px-1 {\n    padding-inline: var(--spacing);\n  }\n  .px-2 {\n    padding-inline: calc(var(--spacing) * 2);\n  }\n  .px-3 {\n    padding-inline: calc(var(--spacing) * 3);\n  }\n  .px-4 {\n    padding-inline: calc(var(--spacing) * 4);\n  }\n  .px-5 {\n    padding-inline: calc(var(--spacing) * 5);\n  }\n  .px-6 {\n    padding-inline: calc(var(--spacing) * 6);\n  }\n  .px-7 {\n    padding-inline: calc(var(--spacing) * 7);\n  }\n  .py-1 {\n    padding-block: var(--spacing);\n  }\n  .py-1\\.5 {\n    padding-block: calc(var(--spacing) * 1.5);\n  }\n  .py-2 {\n    padding-block: calc(var(--spacing) * 2);\n  }\n  .py-3 {\n    padding-block: calc(var(--spacing) * 3);\n  }\n  .py-4 {\n    padding-block: calc(var(--spacing) * 4);\n  }\n  .py-5 {\n    padding-block: calc(var(--spacing) * 5);\n  }\n  .py-6 {\n    padding-block: calc(var(--spacing) * 6);\n  }\n  .py-8 {\n    padding-block: calc(var(--spacing) * 8);\n  }\n  .py-9 {\n    padding-block: calc(var(--spacing) * 9);\n  }\n  .py-12 {\n    padding-block: calc(var(--spacing) * 12);\n  }\n  .pt-2 {\n    padding-top: calc(var(--spacing) * 2);\n  }\n  .pt-16 {\n    padding-top: calc(var(--spacing) * 16);\n  }\n  .pr-2 {\n    padding-right: calc(var(--spacing) * 2);\n  }\n  .pb-3 {\n    padding-bottom: calc(var(--spacing) * 3);\n  }\n  .pb-4 {\n    padding-bottom: calc(var(--spacing) * 4);\n  }\n  .pb-5 {\n    padding-bottom: calc(var(--spacing) * 5);\n  }\n  .pb-8 {\n    padding-bottom: calc(var(--spacing) * 8);\n  }\n  .pl-5 {\n    padding-left: calc(var(--spacing) * 5);\n  }\n  .text-center {\n    text-align: center;\n  }\n  .text-left {\n    text-align: left;\n  }\n  .text-right {\n    text-align: right;\n  }\n  .font-mono {\n    font-family: var(--font-mono);\n  }\n  .text-2xl {\n    font-size: var(--text-2xl);\n    line-height: var(--tw-leading, var(--text-2xl--line-height));\n  }\n  .text-3xl {\n    font-size: var(--text-3xl);\n    line-height: var(--tw-leading, var(--text-3xl--line-height));\n  }\n  .text-base {\n    font-size: var(--text-base);\n    line-height: var(--tw-leading, var(--text-base--line-height));\n  }\n  .text-lg {\n    font-size: var(--text-lg);\n    line-height: var(--tw-leading, var(--text-lg--line-height));\n  }\n  .text-sm {\n    font-size: var(--text-sm);\n    line-height: var(--tw-leading, var(--text-sm--line-height));\n  }\n  .text-xl {\n    font-size: var(--text-xl);\n    line-height: var(--tw-leading, var(--text-xl--line-height));\n  }\n  .text-xs {\n    font-size: var(--text-xs);\n    line-height: var(--tw-leading, var(--text-xs--line-height));\n  }\n  .text-\\[11px\\] {\n    font-size: 11px;\n  }\n  .text-\\[12px\\] {\n    font-size: 12px;\n  }\n  .text-\\[14px\\] {\n    font-size: 14px;\n  }\n  .text-\\[15px\\] {\n    font-size: 15px;\n  }\n  .text-\\[38px\\] {\n    font-size: 38px;\n  }\n  .text-\\[42px\\] {\n    font-size: 42px;\n  }\n  .leading-5 {\n    --tw-leading: calc(var(--spacing) * 5);\n    line-height: calc(var(--spacing) * 5);\n  }\n  .leading-6 {\n    --tw-leading: calc(var(--spacing) * 6);\n    line-height: calc(var(--spacing) * 6);\n  }\n  .leading-7 {\n    --tw-leading: calc(var(--spacing) * 7);\n    line-height: calc(var(--spacing) * 7);\n  }\n  .leading-\\[0\\.96\\] {\n    --tw-leading: 0.96;\n    line-height: 0.96;\n  }\n  .leading-tight {\n    --tw-leading: var(--leading-tight);\n    line-height: var(--leading-tight);\n  }\n  .font-black {\n    --tw-font-weight: var(--font-weight-black);\n    font-weight: var(--font-weight-black);\n  }\n  .font-bold {\n    --tw-font-weight: var(--font-weight-bold);\n    font-weight: var(--font-weight-bold);\n  }\n  .font-medium {\n    --tw-font-weight: var(--font-weight-medium);\n    font-weight: var(--font-weight-medium);\n  }\n  .font-semibold {\n    --tw-font-weight: var(--font-weight-semibold);\n    font-weight: var(--font-weight-semibold);\n  }\n  .tracking-\\[-0\\.02em\\] {\n    --tw-tracking: -0.02em;\n    letter-spacing: -0.02em;\n  }\n  .tracking-\\[-0\\.03em\\] {\n    --tw-tracking: -0.03em;\n    letter-spacing: -0.03em;\n  }\n  .tracking-\\[-0\\.04em\\] {\n    --tw-tracking: -0.04em;\n    letter-spacing: -0.04em;\n  }\n  .tracking-\\[-0\\.045em\\] {\n    --tw-tracking: -0.045em;\n    letter-spacing: -0.045em;\n  }\n  .tracking-\\[0\\.12em\\] {\n    --tw-tracking: 0.12em;\n    letter-spacing: 0.12em;\n  }\n  .tracking-\\[0\\.14em\\] {\n    --tw-tracking: 0.14em;\n    letter-spacing: 0.14em;\n  }\n  .tracking-\\[0\\.16em\\] {\n    --tw-tracking: 0.16em;\n    letter-spacing: 0.16em;\n  }\n  .tracking-wide {\n    --tw-tracking: var(--tracking-wide);\n    letter-spacing: var(--tracking-wide);\n  }\n  .text-balance {\n    text-wrap: balance;\n  }\n  .text-wrap {\n    text-wrap: wrap;\n  }\n  .whitespace-nowrap {\n    white-space: nowrap;\n  }\n  .text-amber-50 {\n    color: var(--color-amber-50);\n  }\n  .text-amber-100 {\n    color: var(--color-amber-100);\n  }\n  .text-amber-300 {\n    color: var(--color-amber-300);\n  }\n  .text-amber-500 {\n    color: var(--color-amber-500);\n  }\n  .text-blue-300 {\n    color: var(--color-blue-300);\n  }\n  .text-emerald-400 {\n    color: var(--color-emerald-400);\n  }\n  .text-gray-500 {\n    color: var(--color-gray-500);\n  }\n  .text-lime-100 {\n    color: var(--color-lime-100);\n  }\n  .text-lime-200 {\n    color: var(--color-lime-200);\n  }\n  .text-lime-400 {\n    color: var(--color-lime-400);\n  }\n  .text-lime-500 {\n    color: var(--color-lime-500);\n  }\n  .text-red-200 {\n    color: var(--color-red-200);\n  }\n  .text-red-400 {\n    color: var(--color-red-400);\n  }\n  .text-white {\n    color: var(--color-white);\n  }\n  .text-zinc-50 {\n    color: var(--color-zinc-50);\n  }\n  .text-zinc-100 {\n    color: var(--color-zinc-100);\n  }\n  .text-zinc-200 {\n    color: var(--color-zinc-200);\n  }\n  .text-zinc-300 {\n    color: var(--color-zinc-300);\n  }\n  .text-zinc-400 {\n    color: var(--color-zinc-400);\n  }\n  .text-zinc-500 {\n    color: var(--color-zinc-500);\n  }\n  .text-zinc-600 {\n    color: var(--color-zinc-600);\n  }\n  .text-zinc-950 {\n    color: var(--color-zinc-950);\n  }\n  .lowercase {\n    text-transform: lowercase;\n  }\n  .uppercase {\n    text-transform: uppercase;\n  }\n  .italic {\n    font-style: italic;\n  }\n  .overline {\n    text-decoration-line: overline;\n  }\n  .underline {\n    text-decoration-line: underline;\n  }\n  .antialiased {\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n  .shadow-2xl {\n    --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_0_10px_rgba\\(132\\,204\\,22\\,0\\.3\\)\\] {\n    --tw-shadow: 0 0 10px var(--tw-shadow-color, rgba(132,204,22,0.3));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_0_10px_rgba\\(132\\,204\\,22\\,0\\.25\\)\\] {\n    --tw-shadow: 0 0 10px var(--tw-shadow-color, rgba(132,204,22,0.25));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_0_12px_rgba\\(132\\,204\\,22\\,0\\.65\\)\\] {\n    --tw-shadow: 0 0 12px var(--tw-shadow-color, rgba(132,204,22,0.65));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_0_30px_rgba\\(34\\,197\\,94\\,0\\.25\\)\\] {\n    --tw-shadow: 0 0 30px var(--tw-shadow-color, rgba(34,197,94,0.25));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_24px_70px_rgba\\(0\\,0\\,0\\,0\\.55\\)\\] {\n    --tw-shadow: 0 24px 70px var(--tw-shadow-color, rgba(0,0,0,0.55));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_28px_80px_rgba\\(0\\,0\\,0\\,0\\.55\\)\\] {\n    --tw-shadow: 0 28px 80px var(--tw-shadow-color, rgba(0,0,0,0.55));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_28px_90px_rgba\\(0\\,0\\,0\\,0\\.35\\)\\] {\n    --tw-shadow: 0 28px 90px var(--tw-shadow-color, rgba(0,0,0,0.35));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_32px_120px_rgba\\(0\\,0\\,0\\,0\\.45\\)\\] {\n    --tw-shadow: 0 32px 120px var(--tw-shadow-color, rgba(0,0,0,0.45));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[0_32px_120px_rgba\\(0\\,0\\,0\\,0\\.55\\)\\] {\n    --tw-shadow: 0 32px 120px var(--tw-shadow-color, rgba(0,0,0,0.55));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[inset_0_0_0_1px_rgba\\(255\\,255\\,255\\,0\\.03\\)\\] {\n    --tw-shadow: inset 0 0 0 1px var(--tw-shadow-color, rgba(255,255,255,0.03));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[inset_0_1px_0_rgba\\(255\\,255\\,255\\,0\\.03\\)\\] {\n    --tw-shadow: inset 0 1px 0 var(--tw-shadow-color, rgba(255,255,255,0.03));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[inset_0_1px_0_rgba\\(255\\,255\\,255\\,0\\.04\\)\\] {\n    --tw-shadow: inset 0 1px 0 var(--tw-shadow-color, rgba(255,255,255,0.04));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[inset_0_1px_0_rgba\\(255\\,255\\,255\\,0\\.05\\)\\] {\n    --tw-shadow: inset 0 1px 0 var(--tw-shadow-color, rgba(255,255,255,0.05));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[inset_0_1px_0_rgba\\(255\\,255\\,255\\,0\\.08\\)\\] {\n    --tw-shadow: inset 0 1px 0 var(--tw-shadow-color, rgba(255,255,255,0.08));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[inset_0_1px_0_rgba\\(255\\,255\\,255\\,0\\.12\\)\\] {\n    --tw-shadow: inset 0 1px 0 var(--tw-shadow-color, rgba(255,255,255,0.12));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-\\[inset_0_1px_0_rgba\\(255\\,255\\,255\\,0\\.65\\)\\] {\n    --tw-shadow: inset 0 1px 0 var(--tw-shadow-color, rgba(255,255,255,0.65));\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-none {\n    --tw-shadow: 0 0 #0000;\n    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n  }\n  .shadow-black {\n    --tw-shadow-color: #000;\n    @supports (color: color-mix(in lab, red, red)) {\n      --tw-shadow-color: color-mix(in oklab, var(--color-black) var(--tw-shadow-alpha), transparent);\n    }\n  }\n  .shadow-black\\/40 {\n    --tw-shadow-color: color-mix(in srgb, #000 40%, transparent);\n    @supports (color: color-mix(in lab, red, red)) {\n      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-black) 40%, transparent) var(--tw-shadow-alpha), transparent);\n    }\n  }\n  .outline {\n    outline-style: var(--tw-outline-style);\n    outline-width: 1px;\n  }\n  .blur {\n    --tw-blur: blur(8px);\n    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);\n  }\n  .filter {\n    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);\n  }\n  .backdrop-blur {\n    --tw-backdrop-blur: blur(8px);\n    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);\n    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);\n  }\n  .backdrop-blur-sm {\n    --tw-backdrop-blur: blur(var(--blur-sm));\n    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);\n    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);\n  }\n  .backdrop-filter {\n    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);\n    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);\n  }\n  .transition {\n    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;\n    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));\n    transition-duration: var(--tw-duration, var(--default-transition-duration));\n  }\n  .transition-colors {\n    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;\n    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));\n    transition-duration: var(--tw-duration, var(--default-transition-duration));\n  }\n  .last\\:border-b-0 {\n    &:last-child {\n      border-bottom-style: var(--tw-border-style);\n      border-bottom-width: 0px;\n    }\n  }\n  .last\\:pb-0 {\n    &:last-child {\n      padding-bottom: 0;\n    }\n  }\n  .hover\\:bg-\\[\\#343431\\] {\n    &:hover {\n      @media (hover: hover) {\n        background-color: #343431;\n      }\n    }\n  }\n  .hover\\:bg-lime-200 {\n    &:hover {\n      @media (hover: hover) {\n        background-color: var(--color-lime-200);\n      }\n    }\n  }\n  .hover\\:bg-lime-300 {\n    &:hover {\n      @media (hover: hover) {\n        background-color: var(--color-lime-300);\n      }\n    }\n  }\n  .hover\\:bg-white\\/5 {\n    &:hover {\n      @media (hover: hover) {\n        background-color: color-mix(in srgb, #fff 5%, transparent);\n        @supports (color: color-mix(in lab, red, red)) {\n          background-color: color-mix(in oklab, var(--color-white) 5%, transparent);\n        }\n      }\n    }\n  }\n  .hover\\:bg-white\\/10 {\n    &:hover {\n      @media (hover: hover) {\n        background-color: color-mix(in srgb, #fff 10%, transparent);\n        @supports (color: color-mix(in lab, red, red)) {\n          background-color: color-mix(in oklab, var(--color-white) 10%, transparent);\n        }\n      }\n    }\n  }\n  .hover\\:bg-zinc-100 {\n    &:hover {\n      @media (hover: hover) {\n        background-color: var(--color-zinc-100);\n      }\n    }\n  }\n  .hover\\:bg-zinc-800 {\n    &:hover {\n      @media (hover: hover) {\n        background-color: var(--color-zinc-800);\n      }\n    }\n  }\n  .hover\\:text-white {\n    &:hover {\n      @media (hover: hover) {\n        color: var(--color-white);\n      }\n    }\n  }\n  .focus-visible\\:ring-2 {\n    &:focus-visible {\n      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);\n      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n    }\n  }\n  .focus-visible\\:ring-lime-400\\/70 {\n    &:focus-visible {\n      --tw-ring-color: color-mix(in srgb, oklch(84.1% 0.238 128.85) 70%, transparent);\n      @supports (color: color-mix(in lab, red, red)) {\n        --tw-ring-color: color-mix(in oklab, var(--color-lime-400) 70%, transparent);\n      }\n    }\n  }\n  .focus-visible\\:outline-none {\n    &:focus-visible {\n      --tw-outline-style: none;\n      outline-style: none;\n    }\n  }\n  .active\\:cursor-grabbing {\n    &:active {\n      cursor: grabbing;\n    }\n  }\n  .disabled\\:pointer-events-none {\n    &:disabled {\n      pointer-events: none;\n    }\n  }\n  .disabled\\:opacity-50 {\n    &:disabled {\n      opacity: 50%;\n    }\n  }\n  .sm\\:inline {\n    @media (width >= 40rem) {\n      display: inline;\n    }\n  }\n  .sm\\:min-h-\\[520px\\] {\n    @media (width >= 40rem) {\n      min-height: 520px;\n    }\n  }\n  .sm\\:grid-cols-3 {\n    @media (width >= 40rem) {\n      grid-template-columns: repeat(3, minmax(0, 1fr));\n    }\n  }\n  .sm\\:flex-row {\n    @media (width >= 40rem) {\n      flex-direction: row;\n    }\n  }\n  .sm\\:px-6 {\n    @media (width >= 40rem) {\n      padding-inline: calc(var(--spacing) * 6);\n    }\n  }\n  .sm\\:px-8 {\n    @media (width >= 40rem) {\n      padding-inline: calc(var(--spacing) * 8);\n    }\n  }\n  .sm\\:pt-20 {\n    @media (width >= 40rem) {\n      padding-top: calc(var(--spacing) * 20);\n    }\n  }\n  .sm\\:text-4xl {\n    @media (width >= 40rem) {\n      font-size: var(--text-4xl);\n      line-height: var(--tw-leading, var(--text-4xl--line-height));\n    }\n  }\n  .sm\\:text-5xl {\n    @media (width >= 40rem) {\n      font-size: var(--text-5xl);\n      line-height: var(--tw-leading, var(--text-5xl--line-height));\n    }\n  }\n  .sm\\:text-base {\n    @media (width >= 40rem) {\n      font-size: var(--text-base);\n      line-height: var(--tw-leading, var(--text-base--line-height));\n    }\n  }\n  .sm\\:text-lg {\n    @media (width >= 40rem) {\n      font-size: var(--text-lg);\n      line-height: var(--tw-leading, var(--text-lg--line-height));\n    }\n  }\n  .md\\:top-4 {\n    @media (width >= 48rem) {\n      top: calc(var(--spacing) * 4);\n    }\n  }\n  .md\\:right-7 {\n    @media (width >= 48rem) {\n      right: calc(var(--spacing) * 7);\n    }\n  }\n  .md\\:bottom-auto {\n    @media (width >= 48rem) {\n      bottom: auto;\n    }\n  }\n  .md\\:left-auto {\n    @media (width >= 48rem) {\n      left: auto;\n    }\n  }\n  .md\\:flex {\n    @media (width >= 48rem) {\n      display: flex;\n    }\n  }\n  .md\\:w-\\[350px\\] {\n    @media (width >= 48rem) {\n      width: 350px;\n    }\n  }\n  .md\\:grid-cols-2 {\n    @media (width >= 48rem) {\n      grid-template-columns: repeat(2, minmax(0, 1fr));\n    }\n  }\n  .md\\:grid-cols-3 {\n    @media (width >= 48rem) {\n      grid-template-columns: repeat(3, minmax(0, 1fr));\n    }\n  }\n  .md\\:flex-row {\n    @media (width >= 48rem) {\n      flex-direction: row;\n    }\n  }\n  .md\\:items-center {\n    @media (width >= 48rem) {\n      align-items: center;\n    }\n  }\n  .md\\:items-end {\n    @media (width >= 48rem) {\n      align-items: flex-end;\n    }\n  }\n  .md\\:justify-between {\n    @media (width >= 48rem) {\n      justify-content: space-between;\n    }\n  }\n  .md\\:p-6 {\n    @media (width >= 48rem) {\n      padding: calc(var(--spacing) * 6);\n    }\n  }\n  .lg\\:grid-cols-2 {\n    @media (width >= 64rem) {\n      grid-template-columns: repeat(2, minmax(0, 1fr));\n    }\n  }\n  .lg\\:grid-cols-3 {\n    @media (width >= 64rem) {\n      grid-template-columns: repeat(3, minmax(0, 1fr));\n    }\n  }\n  .lg\\:grid-cols-4 {\n    @media (width >= 64rem) {\n      grid-template-columns: repeat(4, minmax(0, 1fr));\n    }\n  }\n  .lg\\:grid-cols-\\[1\\.35fr_0\\.95fr\\] {\n    @media (width >= 64rem) {\n      grid-template-columns: 1.35fr 0.95fr;\n    }\n  }\n  .lg\\:grid-cols-\\[1fr_440px\\] {\n    @media (width >= 64rem) {\n      grid-template-columns: 1fr 440px;\n    }\n  }\n  .lg\\:px-8 {\n    @media (width >= 64rem) {\n      padding-inline: calc(var(--spacing) * 8);\n    }\n  }\n  .lg\\:px-10 {\n    @media (width >= 64rem) {\n      padding-inline: calc(var(--spacing) * 10);\n    }\n  }\n  .lg\\:px-12 {\n    @media (width >= 64rem) {\n      padding-inline: calc(var(--spacing) * 12);\n    }\n  }\n  .lg\\:py-16 {\n    @media (width >= 64rem) {\n      padding-block: calc(var(--spacing) * 16);\n    }\n  }\n  .lg\\:text-\\[58px\\] {\n    @media (width >= 64rem) {\n      font-size: 58px;\n    }\n  }\n  .lg\\:text-\\[64px\\] {\n    @media (width >= 64rem) {\n      font-size: 64px;\n    }\n  }\n  .xl\\:grid-cols-4 {\n    @media (width >= 80rem) {\n      grid-template-columns: repeat(4, minmax(0, 1fr));\n    }\n  }\n}\n@font-face {\n  font-family: 'Geist Variable';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100 900;\n  src: url(../node_modules/.pnpm/@fontsource-variable+geist@5.2.9/node_modules/@fontsource-variable/geist/files/geist-cyrillic-ext-wght-normal.woff2) format('woff2-variations');\n  unicode-range: U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;\n}\n@font-face {\n  font-family: 'Geist Variable';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100 900;\n  src: url(../node_modules/.pnpm/@fontsource-variable+geist@5.2.9/node_modules/@fontsource-variable/geist/files/geist-cyrillic-wght-normal.woff2) format('woff2-variations');\n  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;\n}\n@font-face {\n  font-family: 'Geist Variable';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100 900;\n  src: url(../node_modules/.pnpm/@fontsource-variable+geist@5.2.9/node_modules/@fontsource-variable/geist/files/geist-vietnamese-wght-normal.woff2) format('woff2-variations');\n  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;\n}\n@font-face {\n  font-family: 'Geist Variable';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100 900;\n  src: url(../node_modules/.pnpm/@fontsource-variable+geist@5.2.9/node_modules/@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2) format('woff2-variations');\n  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Geist Variable';\n  font-style: normal;\n  font-display: swap;\n  font-weight: 100 900;\n  src: url(../node_modules/.pnpm/@fontsource-variable+geist@5.2.9/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2) format('woff2-variations');\n  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;\n}\n:host,\n.dsa-interviewer-root,\n.dsa-interviewer-root * {\n  font-family: var(--font-sans);\n}\n@keyframes interviewer-overlay-enter {\n  from {\n    opacity: 0;\n    transform: translateY(18px) scale(0.94);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n  }\n}\n.dsa-interviewer-root {\n  -webkit-font-smoothing: antialiased;\n  color: #fafafa;\n}\n@property --tw-rotate-x {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-rotate-y {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-rotate-z {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-skew-x {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-skew-y {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-space-y-reverse {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0;\n}\n@property --tw-divide-y-reverse {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0;\n}\n@property --tw-border-style {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: solid;\n}\n@property --tw-gradient-position {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-gradient-from {\n  syntax: \"<color>\";\n  inherits: false;\n  initial-value: #0000;\n}\n@property --tw-gradient-via {\n  syntax: \"<color>\";\n  inherits: false;\n  initial-value: #0000;\n}\n@property --tw-gradient-to {\n  syntax: \"<color>\";\n  inherits: false;\n  initial-value: #0000;\n}\n@property --tw-gradient-stops {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-gradient-via-stops {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-gradient-from-position {\n  syntax: \"<length-percentage>\";\n  inherits: false;\n  initial-value: 0%;\n}\n@property --tw-gradient-via-position {\n  syntax: \"<length-percentage>\";\n  inherits: false;\n  initial-value: 50%;\n}\n@property --tw-gradient-to-position {\n  syntax: \"<length-percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-leading {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-font-weight {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-tracking {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-inset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-ring-inset {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-offset-width {\n  syntax: \"<length>\";\n  inherits: false;\n  initial-value: 0px;\n}\n@property --tw-ring-offset-color {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: #fff;\n}\n@property --tw-ring-offset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-outline-style {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: solid;\n}\n@property --tw-blur {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-brightness {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-contrast {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-grayscale {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-hue-rotate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-invert {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-opacity {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-saturate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-sepia {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-drop-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-drop-shadow-size {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-blur {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-brightness {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-contrast {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-grayscale {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-hue-rotate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-invert {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-opacity {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-saturate {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-backdrop-sepia {\n  syntax: \"*\";\n  inherits: false;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-rotate-x: initial;\n      --tw-rotate-y: initial;\n      --tw-rotate-z: initial;\n      --tw-skew-x: initial;\n      --tw-skew-y: initial;\n      --tw-space-y-reverse: 0;\n      --tw-divide-y-reverse: 0;\n      --tw-border-style: solid;\n      --tw-gradient-position: initial;\n      --tw-gradient-from: #0000;\n      --tw-gradient-via: #0000;\n      --tw-gradient-to: #0000;\n      --tw-gradient-stops: initial;\n      --tw-gradient-via-stops: initial;\n      --tw-gradient-from-position: 0%;\n      --tw-gradient-via-position: 50%;\n      --tw-gradient-to-position: 100%;\n      --tw-leading: initial;\n      --tw-font-weight: initial;\n      --tw-tracking: initial;\n      --tw-shadow: 0 0 #0000;\n      --tw-shadow-color: initial;\n      --tw-shadow-alpha: 100%;\n      --tw-inset-shadow: 0 0 #0000;\n      --tw-inset-shadow-color: initial;\n      --tw-inset-shadow-alpha: 100%;\n      --tw-ring-color: initial;\n      --tw-ring-shadow: 0 0 #0000;\n      --tw-inset-ring-color: initial;\n      --tw-inset-ring-shadow: 0 0 #0000;\n      --tw-ring-inset: initial;\n      --tw-ring-offset-width: 0px;\n      --tw-ring-offset-color: #fff;\n      --tw-ring-offset-shadow: 0 0 #0000;\n      --tw-outline-style: solid;\n      --tw-blur: initial;\n      --tw-brightness: initial;\n      --tw-contrast: initial;\n      --tw-grayscale: initial;\n      --tw-hue-rotate: initial;\n      --tw-invert: initial;\n      --tw-opacity: initial;\n      --tw-saturate: initial;\n      --tw-sepia: initial;\n      --tw-drop-shadow: initial;\n      --tw-drop-shadow-color: initial;\n      --tw-drop-shadow-alpha: 100%;\n      --tw-drop-shadow-size: initial;\n      --tw-backdrop-blur: initial;\n      --tw-backdrop-brightness: initial;\n      --tw-backdrop-contrast: initial;\n      --tw-backdrop-grayscale: initial;\n      --tw-backdrop-hue-rotate: initial;\n      --tw-backdrop-invert: initial;\n      --tw-backdrop-opacity: initial;\n      --tw-backdrop-saturate: initial;\n      --tw-backdrop-sepia: initial;\n    }\n  }\n}\n";
 "use strict";
 (() => {
   var __create = Object.create;
@@ -13,11 +14,11 @@
       throw mod = 0, e;
     }
   };
-  var __copyProps = (to, from, except, desc) => {
-    if (from && typeof from === "object" || typeof from === "function") {
-      for (let key of __getOwnPropNames(from))
+  var __copyProps = (to, from2, except, desc) => {
+    if (from2 && typeof from2 === "object" || typeof from2 === "function") {
+      for (let key of __getOwnPropNames(from2))
         if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+          __defProp(to, key, { get: () => from2[key], enumerable: !(desc = __getOwnPropDesc(from2, key)) || desc.enumerable });
     }
     return to;
   };
@@ -34,17 +35,17 @@
   var require_scheduler_production = __commonJS({
     "node_modules/.pnpm/scheduler@0.27.0/node_modules/scheduler/cjs/scheduler.production.js"(exports) {
       "use strict";
-      function push(heap, node) {
+      function push(heap, node2) {
         var index = heap.length;
-        heap.push(node);
+        heap.push(node2);
         a: for (; 0 < index; ) {
           var parentIndex = index - 1 >>> 1, parent = heap[parentIndex];
-          if (0 < compare(parent, node))
-            heap[parentIndex] = node, heap[index] = parent, index = parentIndex;
+          if (0 < compare(parent, node2))
+            heap[parentIndex] = node2, heap[index] = parent, index = parentIndex;
           else break a;
         }
       }
-      function peek(heap) {
+      function peek2(heap) {
         return 0 === heap.length ? null : heap[0];
       }
       function pop(heap) {
@@ -52,11 +53,11 @@
         var first = heap[0], last = heap.pop();
         if (last !== first) {
           heap[0] = last;
-          a: for (var index = 0, length = heap.length, halfLength = length >>> 1; index < halfLength; ) {
+          a: for (var index = 0, length2 = heap.length, halfLength = length2 >>> 1; index < halfLength; ) {
             var leftIndex = 2 * (index + 1) - 1, left = heap[leftIndex], rightIndex = leftIndex + 1, right = heap[rightIndex];
             if (0 > compare(left, last))
-              rightIndex < length && 0 > compare(right, left) ? (heap[index] = right, heap[rightIndex] = last, index = rightIndex) : (heap[index] = left, heap[leftIndex] = last, index = leftIndex);
-            else if (rightIndex < length && 0 > compare(right, last))
+              rightIndex < length2 && 0 > compare(right, left) ? (heap[index] = right, heap[rightIndex] = last, index = rightIndex) : (heap[index] = left, heap[leftIndex] = last, index = leftIndex);
+            else if (rightIndex < length2 && 0 > compare(right, last))
               heap[index] = right, heap[rightIndex] = last, index = rightIndex;
             else break a;
           }
@@ -95,22 +96,22 @@
       var localClearTimeout = "function" === typeof clearTimeout ? clearTimeout : null;
       var localSetImmediate = "undefined" !== typeof setImmediate ? setImmediate : null;
       function advanceTimers(currentTime) {
-        for (var timer = peek(timerQueue); null !== timer; ) {
+        for (var timer = peek2(timerQueue); null !== timer; ) {
           if (null === timer.callback) pop(timerQueue);
           else if (timer.startTime <= currentTime)
             pop(timerQueue), timer.sortIndex = timer.expirationTime, push(taskQueue, timer);
           else break;
-          timer = peek(timerQueue);
+          timer = peek2(timerQueue);
         }
       }
       function handleTimeout(currentTime) {
         isHostTimeoutScheduled = false;
         advanceTimers(currentTime);
         if (!isHostCallbackScheduled)
-          if (null !== peek(taskQueue))
+          if (null !== peek2(taskQueue))
             isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline());
           else {
-            var firstTimer = peek(timerQueue);
+            var firstTimer = peek2(timerQueue);
             null !== firstTimer && requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
           }
       }
@@ -136,7 +137,7 @@
               try {
                 b: {
                   advanceTimers(currentTime);
-                  for (currentTask = peek(taskQueue); null !== currentTask && !(currentTask.expirationTime > currentTime && shouldYieldToHost()); ) {
+                  for (currentTask = peek2(taskQueue); null !== currentTask && !(currentTask.expirationTime > currentTime && shouldYieldToHost()); ) {
                     var callback = currentTask.callback;
                     if ("function" === typeof callback) {
                       currentTask.callback = null;
@@ -151,14 +152,14 @@
                         hasMoreWork = true;
                         break b;
                       }
-                      currentTask === peek(taskQueue) && pop(taskQueue);
+                      currentTask === peek2(taskQueue) && pop(taskQueue);
                       advanceTimers(currentTime);
                     } else pop(taskQueue);
-                    currentTask = peek(taskQueue);
+                    currentTask = peek2(taskQueue);
                   }
                   if (null !== currentTask) hasMoreWork = true;
                   else {
-                    var firstTimer = peek(timerQueue);
+                    var firstTimer = peek2(timerQueue);
                     null !== firstTimer && requestHostTimeout(
                       handleTimeout,
                       firstTimer.startTime - currentTime
@@ -284,7 +285,7 @@
           expirationTime: timeout,
           sortIndex: -1
         };
-        options > currentTime ? (priorityLevel.sortIndex = options, push(timerQueue, priorityLevel), null === peek(taskQueue) && priorityLevel === peek(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options - currentTime))) : (priorityLevel.sortIndex = timeout, push(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline())));
+        options > currentTime ? (priorityLevel.sortIndex = options, push(timerQueue, priorityLevel), null === peek2(taskQueue) && priorityLevel === peek2(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options - currentTime))) : (priorityLevel.sortIndex = timeout, push(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline())));
         return priorityLevel;
       };
       exports.unstable_shouldYield = shouldYieldToHost;
@@ -348,7 +349,7 @@
         enqueueSetState: function() {
         }
       };
-      var assign = Object.assign;
+      var assign2 = Object.assign;
       var emptyObject = {};
       function Component(props, context, updater) {
         this.props = props;
@@ -378,7 +379,7 @@
       }
       var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
       pureComponentPrototype.constructor = PureComponent;
-      assign(pureComponentPrototype, Component.prototype);
+      assign2(pureComponentPrototype, Component.prototype);
       pureComponentPrototype.isPureReactComponent = true;
       var isArrayImpl = Array.isArray;
       function noop() {
@@ -398,13 +399,13 @@
       function cloneAndReplaceKey(oldElement, newKey) {
         return ReactElement(oldElement.type, newKey, oldElement.props);
       }
-      function isValidElement(object) {
+      function isValidElement3(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
       function escape(key) {
         var escaperLookup = { "=": "=0", ":": "=2" };
-        return "$" + key.replace(/[=:]/g, function(match) {
-          return escaperLookup[match];
+        return "$" + key.replace(/[=:]/g, function(match2) {
+          return escaperLookup[match2];
         });
       }
       var userProvidedKeyEscapeRegex = /\/+/g;
@@ -465,7 +466,7 @@
         if (invokeCallback)
           return callback = callback(children), invokeCallback = "" === nameSoFar ? "." + getElementKey(children, 0) : nameSoFar, isArrayImpl(callback) ? (escapedPrefix = "", null != invokeCallback && (escapedPrefix = invokeCallback.replace(userProvidedKeyEscapeRegex, "$&/") + "/"), mapIntoArray(callback, array, escapedPrefix, "", function(c) {
             return c;
-          })) : null != callback && (isValidElement(callback) && (callback = cloneAndReplaceKey(
+          })) : null != callback && (isValidElement3(callback) && (callback = cloneAndReplaceKey(
             callback,
             escapedPrefix + (null == callback.key || children && children.key === callback.key ? "" : ("" + callback.key).replace(
               userProvidedKeyEscapeRegex,
@@ -574,7 +575,7 @@
           }) || [];
         },
         only: function(children) {
-          if (!isValidElement(children))
+          if (!isValidElement3(children))
             throw Error(
               "React.Children.only expected to receive a single React element child."
             );
@@ -609,7 +610,7 @@
           throw Error(
             "The argument must be a React element, but you passed " + element + "."
           );
-        var props = assign({}, element.props), key = element.key;
+        var props = assign2({}, element.props), key = element.key;
         if (null != config)
           for (propName in void 0 !== config.key && (key = "" + config.key), config)
             !hasOwnProperty.call(config, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config.ref || (props[propName] = config[propName]);
@@ -661,7 +662,7 @@
       exports.forwardRef = function(render) {
         return { $$typeof: REACT_FORWARD_REF_TYPE, render };
       };
-      exports.isValidElement = isValidElement;
+      exports.isValidElement = isValidElement3;
       exports.lazy = function(ctor) {
         return {
           $$typeof: REACT_LAZY_TYPE,
@@ -772,7 +773,7 @@
   var require_react_dom_production = __commonJS({
     "node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom.production.js"(exports) {
       "use strict";
-      var React = require_react();
+      var React10 = require_react();
       function formatProdErrorMessage(code) {
         var url = "https://react.dev/errors/" + code;
         if (1 < arguments.length) {
@@ -812,18 +813,18 @@
           implementation
         };
       }
-      var ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      var ReactSharedInternals = React10.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       function getCrossOriginStringAs(as, input) {
         if ("font" === as) return "";
         if ("string" === typeof input)
           return "use-credentials" === input ? input : "";
       }
       exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
-      exports.createPortal = function(children, container) {
+      exports.createPortal = function(children, container2) {
         var key = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
-        if (!container || 1 !== container.nodeType && 9 !== container.nodeType && 11 !== container.nodeType)
+        if (!container2 || 1 !== container2.nodeType && 9 !== container2.nodeType && 11 !== container2.nodeType)
           throw Error(formatProdErrorMessage(299));
-        return createPortal$1(children, container, null, key);
+        return createPortal$1(children, container2, null, key);
       };
       exports.flushSync = function(fn) {
         var previousTransition = ReactSharedInternals.T, previousUpdatePriority = Internals.p;
@@ -948,7 +949,7 @@
     "node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.production.js"(exports) {
       "use strict";
       var Scheduler = require_scheduler();
-      var React = require_react();
+      var React10 = require_react();
       var ReactDOM = require_react_dom();
       function formatProdErrorMessage(code) {
         var url = "https://react.dev/errors/" + code;
@@ -959,19 +960,19 @@
         }
         return "Minified React error #" + code + "; visit " + url + " for the full message or use the non-minified dev environment for full errors and additional helpful warnings.";
       }
-      function isValidContainer(node) {
-        return !(!node || 1 !== node.nodeType && 9 !== node.nodeType && 11 !== node.nodeType);
+      function isValidContainer(node2) {
+        return !(!node2 || 1 !== node2.nodeType && 9 !== node2.nodeType && 11 !== node2.nodeType);
       }
       function getNearestMountedFiber(fiber) {
-        var node = fiber, nearestMounted = fiber;
-        if (fiber.alternate) for (; node.return; ) node = node.return;
+        var node2 = fiber, nearestMounted = fiber;
+        if (fiber.alternate) for (; node2.return; ) node2 = node2.return;
         else {
-          fiber = node;
+          fiber = node2;
           do
-            node = fiber, 0 !== (node.flags & 4098) && (nearestMounted = node.return), fiber = node.return;
+            node2 = fiber, 0 !== (node2.flags & 4098) && (nearestMounted = node2.return), fiber = node2.return;
           while (fiber);
         }
-        return 3 === node.tag ? nearestMounted : null;
+        return 3 === node2.tag ? nearestMounted : null;
       }
       function getSuspenseInstanceFromFiber(fiber) {
         if (13 === fiber.tag) {
@@ -1061,17 +1062,17 @@
         if (3 !== a.tag) throw Error(formatProdErrorMessage(188));
         return a.stateNode.current === a ? fiber : alternate;
       }
-      function findCurrentHostFiberImpl(node) {
-        var tag = node.tag;
-        if (5 === tag || 26 === tag || 27 === tag || 6 === tag) return node;
-        for (node = node.child; null !== node; ) {
-          tag = findCurrentHostFiberImpl(node);
+      function findCurrentHostFiberImpl(node2) {
+        var tag = node2.tag;
+        if (5 === tag || 26 === tag || 27 === tag || 6 === tag) return node2;
+        for (node2 = node2.child; null !== node2; ) {
+          tag = findCurrentHostFiberImpl(node2);
           if (null !== tag) return tag;
-          node = node.sibling;
+          node2 = node2.sibling;
         }
         return null;
       }
-      var assign = Object.assign;
+      var assign2 = Object.assign;
       var REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element");
       var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element");
       var REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal");
@@ -1139,7 +1140,7 @@
         return null;
       }
       var isArrayImpl = Array.isArray;
-      var ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      var ReactSharedInternals = React10.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       var ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       var sharedNotPendingObject = {
         pending: false,
@@ -1152,13 +1153,13 @@
       function createCursor(defaultValue) {
         return { current: defaultValue };
       }
-      function pop(cursor) {
-        0 > index || (cursor.current = valueStack[index], valueStack[index] = null, index--);
+      function pop(cursor2) {
+        0 > index || (cursor2.current = valueStack[index], valueStack[index] = null, index--);
       }
-      function push(cursor, value) {
+      function push(cursor2, value) {
         index++;
-        valueStack[index] = cursor.current;
-        cursor.current = value;
+        valueStack[index] = cursor2.current;
+        cursor2.current = value;
       }
       var contextStackCursor = createCursor(null);
       var contextFiberStackCursor = createCursor(null);
@@ -1206,18 +1207,18 @@
         contextFiberStackCursor.current === fiber && (pop(contextStackCursor), pop(contextFiberStackCursor));
         hostTransitionProviderCursor.current === fiber && (pop(hostTransitionProviderCursor), HostTransitionContext._currentValue = sharedNotPendingObject);
       }
-      var prefix;
+      var prefix2;
       var suffix;
       function describeBuiltInComponentFrame(name) {
-        if (void 0 === prefix)
+        if (void 0 === prefix2)
           try {
             throw Error();
           } catch (x) {
-            var match = x.stack.trim().match(/\n( *(at )?)/);
-            prefix = match && match[1] || "";
+            var match2 = x.stack.trim().match(/\n( *(at )?)/);
+            prefix2 = match2 && match2[1] || "";
             suffix = -1 < x.stack.indexOf("\n    at") ? " (<anonymous>)" : -1 < x.stack.indexOf("@") ? "@unknown:0:0" : "";
           }
-        return "\n" + prefix + name + suffix;
+        return "\n" + prefix2 + name + suffix;
       }
       var reentry = false;
       function describeNativeComponentFrame(fn, construct) {
@@ -1614,12 +1615,12 @@
       var internalEventHandlesSetKey = "__reactHandles$" + randomKey;
       var internalRootNodeResourcesKey = "__reactResources$" + randomKey;
       var internalHoistableMarker = "__reactMarker$" + randomKey;
-      function detachDeletedInstance(node) {
-        delete node[internalInstanceKey];
-        delete node[internalPropsKey];
-        delete node[internalEventHandlersKey];
-        delete node[internalEventHandlerListenersKey];
-        delete node[internalEventHandlesSetKey];
+      function detachDeletedInstance(node2) {
+        delete node2[internalInstanceKey];
+        delete node2[internalPropsKey];
+        delete node2[internalEventHandlersKey];
+        delete node2[internalEventHandlerListenersKey];
+        delete node2[internalEventHandlesSetKey];
       }
       function getClosestInstanceFromNode(targetNode) {
         var targetInst = targetNode[internalInstanceKey];
@@ -1639,11 +1640,11 @@
         }
         return null;
       }
-      function getInstanceFromNode(node) {
-        if (node = node[internalInstanceKey] || node[internalContainerInstanceKey]) {
-          var tag = node.tag;
+      function getInstanceFromNode(node2) {
+        if (node2 = node2[internalInstanceKey] || node2[internalContainerInstanceKey]) {
+          var tag = node2.tag;
           if (5 === tag || 6 === tag || 13 === tag || 31 === tag || 26 === tag || 27 === tag || 3 === tag)
-            return node;
+            return node2;
         }
         return null;
       }
@@ -1657,8 +1658,8 @@
         resources || (resources = root2[internalRootNodeResourcesKey] = { hoistableStyles: /* @__PURE__ */ new Map(), hoistableScripts: /* @__PURE__ */ new Map() });
         return resources;
       }
-      function markNodeAsHoistable(node) {
-        node[internalHoistableMarker] = true;
+      function markNodeAsHoistable(node2) {
+        node2[internalHoistableMarker] = true;
       }
       var allNativeEvents = /* @__PURE__ */ new Set();
       var registrationNameDependencies = {};
@@ -1685,52 +1686,52 @@
         illegalAttributeNameCache[attributeName] = true;
         return false;
       }
-      function setValueForAttribute(node, name, value) {
+      function setValueForAttribute(node2, name, value) {
         if (isAttributeNameSafe(name))
-          if (null === value) node.removeAttribute(name);
+          if (null === value) node2.removeAttribute(name);
           else {
             switch (typeof value) {
               case "undefined":
               case "function":
               case "symbol":
-                node.removeAttribute(name);
+                node2.removeAttribute(name);
                 return;
               case "boolean":
                 var prefix$10 = name.toLowerCase().slice(0, 5);
                 if ("data-" !== prefix$10 && "aria-" !== prefix$10) {
-                  node.removeAttribute(name);
+                  node2.removeAttribute(name);
                   return;
                 }
             }
-            node.setAttribute(name, "" + value);
+            node2.setAttribute(name, "" + value);
           }
       }
-      function setValueForKnownAttribute(node, name, value) {
-        if (null === value) node.removeAttribute(name);
+      function setValueForKnownAttribute(node2, name, value) {
+        if (null === value) node2.removeAttribute(name);
         else {
           switch (typeof value) {
             case "undefined":
             case "function":
             case "symbol":
             case "boolean":
-              node.removeAttribute(name);
+              node2.removeAttribute(name);
               return;
           }
-          node.setAttribute(name, "" + value);
+          node2.setAttribute(name, "" + value);
         }
       }
-      function setValueForNamespacedAttribute(node, namespace, name, value) {
-        if (null === value) node.removeAttribute(name);
+      function setValueForNamespacedAttribute(node2, namespace, name, value) {
+        if (null === value) node2.removeAttribute(name);
         else {
           switch (typeof value) {
             case "undefined":
             case "function":
             case "symbol":
             case "boolean":
-              node.removeAttribute(name);
+              node2.removeAttribute(name);
               return;
           }
-          node.setAttributeNS(namespace, name, "" + value);
+          node2.setAttributeNS(namespace, name, "" + value);
         }
       }
       function getToStringValue(value) {
@@ -1751,14 +1752,14 @@
         var type = elem.type;
         return (elem = elem.nodeName) && "input" === elem.toLowerCase() && ("checkbox" === type || "radio" === type);
       }
-      function trackValueOnNode(node, valueField, currentValue) {
+      function trackValueOnNode(node2, valueField, currentValue) {
         var descriptor = Object.getOwnPropertyDescriptor(
-          node.constructor.prototype,
+          node2.constructor.prototype,
           valueField
         );
-        if (!node.hasOwnProperty(valueField) && "undefined" !== typeof descriptor && "function" === typeof descriptor.get && "function" === typeof descriptor.set) {
+        if (!node2.hasOwnProperty(valueField) && "undefined" !== typeof descriptor && "function" === typeof descriptor.get && "function" === typeof descriptor.set) {
           var get = descriptor.get, set = descriptor.set;
-          Object.defineProperty(node, valueField, {
+          Object.defineProperty(node2, valueField, {
             configurable: true,
             get: function() {
               return get.call(this);
@@ -1768,7 +1769,7 @@
               set.call(this, value);
             }
           });
-          Object.defineProperty(node, valueField, {
+          Object.defineProperty(node2, valueField, {
             enumerable: descriptor.enumerable
           });
           return {
@@ -1779,31 +1780,31 @@
               currentValue = "" + value;
             },
             stopTracking: function() {
-              node._valueTracker = null;
-              delete node[valueField];
+              node2._valueTracker = null;
+              delete node2[valueField];
             }
           };
         }
       }
-      function track(node) {
-        if (!node._valueTracker) {
-          var valueField = isCheckable(node) ? "checked" : "value";
-          node._valueTracker = trackValueOnNode(
-            node,
+      function track(node2) {
+        if (!node2._valueTracker) {
+          var valueField = isCheckable(node2) ? "checked" : "value";
+          node2._valueTracker = trackValueOnNode(
+            node2,
             valueField,
-            "" + node[valueField]
+            "" + node2[valueField]
           );
         }
       }
-      function updateValueIfChanged(node) {
-        if (!node) return false;
-        var tracker = node._valueTracker;
+      function updateValueIfChanged(node2) {
+        if (!node2) return false;
+        var tracker = node2._valueTracker;
         if (!tracker) return true;
         var lastValue = tracker.getValue();
         var value = "";
-        node && (value = isCheckable(node) ? node.checked ? "true" : "false" : node.value);
-        node = value;
-        return node !== lastValue ? (tracker.setValue(node), true) : false;
+        node2 && (value = isCheckable(node2) ? node2.checked ? "true" : "false" : node2.value);
+        node2 = value;
+        return node2 !== lastValue ? (tracker.setValue(node2), true) : false;
       }
       function getActiveElement(doc) {
         doc = doc || ("undefined" !== typeof document ? document : void 0);
@@ -1858,27 +1859,27 @@
         null != name && "function" !== typeof name && "symbol" !== typeof name && "boolean" !== typeof name && (element.name = name);
         track(element);
       }
-      function setDefaultValue(node, type, value) {
-        "number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
+      function setDefaultValue(node2, type, value) {
+        "number" === type && getActiveElement(node2.ownerDocument) === node2 || node2.defaultValue === "" + value || (node2.defaultValue = "" + value);
       }
-      function updateOptions(node, multiple, propValue, setDefaultSelected) {
-        node = node.options;
+      function updateOptions(node2, multiple, propValue, setDefaultSelected) {
+        node2 = node2.options;
         if (multiple) {
           multiple = {};
           for (var i = 0; i < propValue.length; i++)
             multiple["$" + propValue[i]] = true;
-          for (propValue = 0; propValue < node.length; propValue++)
-            i = multiple.hasOwnProperty("$" + node[propValue].value), node[propValue].selected !== i && (node[propValue].selected = i), i && setDefaultSelected && (node[propValue].defaultSelected = true);
+          for (propValue = 0; propValue < node2.length; propValue++)
+            i = multiple.hasOwnProperty("$" + node2[propValue].value), node2[propValue].selected !== i && (node2[propValue].selected = i), i && setDefaultSelected && (node2[propValue].defaultSelected = true);
         } else {
           propValue = "" + getToStringValue(propValue);
           multiple = null;
-          for (i = 0; i < node.length; i++) {
-            if (node[i].value === propValue) {
-              node[i].selected = true;
-              setDefaultSelected && (node[i].defaultSelected = true);
+          for (i = 0; i < node2.length; i++) {
+            if (node2[i].value === propValue) {
+              node2[i].selected = true;
+              setDefaultSelected && (node2[i].defaultSelected = true);
               return;
             }
-            null !== multiple || node[i].disabled || (multiple = node[i]);
+            null !== multiple || node2[i].disabled || (multiple = node2[i]);
           }
           null !== multiple && (multiple.selected = true);
         }
@@ -1909,37 +1910,37 @@
         children === defaultValue && "" !== children && null !== children && (element.value = children);
         track(element);
       }
-      function setTextContent(node, text) {
+      function setTextContent(node2, text) {
         if (text) {
-          var firstChild = node.firstChild;
-          if (firstChild && firstChild === node.lastChild && 3 === firstChild.nodeType) {
+          var firstChild = node2.firstChild;
+          if (firstChild && firstChild === node2.lastChild && 3 === firstChild.nodeType) {
             firstChild.nodeValue = text;
             return;
           }
         }
-        node.textContent = text;
+        node2.textContent = text;
       }
       var unitlessNumbers = new Set(
         "animationIterationCount aspectRatio borderImageOutset borderImageSlice borderImageWidth boxFlex boxFlexGroup boxOrdinalGroup columnCount columns flex flexGrow flexPositive flexShrink flexNegative flexOrder gridArea gridRow gridRowEnd gridRowSpan gridRowStart gridColumn gridColumnEnd gridColumnSpan gridColumnStart fontWeight lineClamp lineHeight opacity order orphans scale tabSize widows zIndex zoom fillOpacity floodOpacity stopOpacity strokeDasharray strokeDashoffset strokeMiterlimit strokeOpacity strokeWidth MozAnimationIterationCount MozBoxFlex MozBoxFlexGroup MozLineClamp msAnimationIterationCount msFlex msZoom msFlexGrow msFlexNegative msFlexOrder msFlexPositive msFlexShrink msGridColumn msGridColumnSpan msGridRow msGridRowSpan WebkitAnimationIterationCount WebkitBoxFlex WebKitBoxFlexGroup WebkitBoxOrdinalGroup WebkitColumnCount WebkitColumns WebkitFlex WebkitFlexGrow WebkitFlexPositive WebkitFlexShrink WebkitLineClamp".split(
           " "
         )
       );
-      function setValueForStyle(style2, styleName, value) {
-        var isCustomProperty = 0 === styleName.indexOf("--");
-        null == value || "boolean" === typeof value || "" === value ? isCustomProperty ? style2.setProperty(styleName, "") : "float" === styleName ? style2.cssFloat = "" : style2[styleName] = "" : isCustomProperty ? style2.setProperty(styleName, value) : "number" !== typeof value || 0 === value || unitlessNumbers.has(styleName) ? "float" === styleName ? style2.cssFloat = value : style2[styleName] = ("" + value).trim() : style2[styleName] = value + "px";
+      function setValueForStyle(style4, styleName, value) {
+        var isCustomProperty3 = 0 === styleName.indexOf("--");
+        null == value || "boolean" === typeof value || "" === value ? isCustomProperty3 ? style4.setProperty(styleName, "") : "float" === styleName ? style4.cssFloat = "" : style4[styleName] = "" : isCustomProperty3 ? style4.setProperty(styleName, value) : "number" !== typeof value || 0 === value || unitlessNumbers.has(styleName) ? "float" === styleName ? style4.cssFloat = value : style4[styleName] = ("" + value).trim() : style4[styleName] = value + "px";
       }
-      function setValueForStyles(node, styles, prevStyles) {
+      function setValueForStyles(node2, styles, prevStyles) {
         if (null != styles && "object" !== typeof styles)
           throw Error(formatProdErrorMessage(62));
-        node = node.style;
+        node2 = node2.style;
         if (null != prevStyles) {
           for (var styleName in prevStyles)
-            !prevStyles.hasOwnProperty(styleName) || null != styles && styles.hasOwnProperty(styleName) || (0 === styleName.indexOf("--") ? node.setProperty(styleName, "") : "float" === styleName ? node.cssFloat = "" : node[styleName] = "");
+            !prevStyles.hasOwnProperty(styleName) || null != styles && styles.hasOwnProperty(styleName) || (0 === styleName.indexOf("--") ? node2.setProperty(styleName, "") : "float" === styleName ? node2.cssFloat = "" : node2[styleName] = "");
           for (var styleName$16 in styles)
-            styleName = styles[styleName$16], styles.hasOwnProperty(styleName$16) && prevStyles[styleName$16] !== styleName && setValueForStyle(node, styleName$16, styleName);
+            styleName = styles[styleName$16], styles.hasOwnProperty(styleName$16) && prevStyles[styleName$16] !== styleName && setValueForStyle(node2, styleName$16, styleName);
         } else
           for (var styleName$17 in styles)
-            styles.hasOwnProperty(styleName$17) && setValueForStyle(node, styleName$17, styles[styleName$17]);
+            styles.hasOwnProperty(styleName$17) && setValueForStyle(node2, styleName$17, styles[styleName$17]);
       }
       function isCustomElement(tagName) {
         if (-1 === tagName.indexOf("-")) return false;
@@ -1957,7 +1958,7 @@
             return true;
         }
       }
-      var aliases = /* @__PURE__ */ new Map([
+      var aliases2 = /* @__PURE__ */ new Map([
         ["acceptCharset", "accept-charset"],
         ["htmlFor", "for"],
         ["httpEquiv", "http-equiv"],
@@ -2202,7 +2203,7 @@
           this.isPropagationStopped = functionThatReturnsFalse;
           return this;
         }
-        assign(SyntheticBaseEvent.prototype, {
+        assign2(SyntheticBaseEvent.prototype, {
           preventDefault: function() {
             this.defaultPrevented = true;
             var event = this.nativeEvent;
@@ -2229,12 +2230,12 @@
         isTrusted: 0
       };
       var SyntheticEvent = createSyntheticEvent(EventInterface);
-      var UIEventInterface = assign({}, EventInterface, { view: 0, detail: 0 });
+      var UIEventInterface = assign2({}, EventInterface, { view: 0, detail: 0 });
       var SyntheticUIEvent = createSyntheticEvent(UIEventInterface);
       var lastMovementX;
       var lastMovementY;
       var lastMouseEvent;
-      var MouseEventInterface = assign({}, UIEventInterface, {
+      var MouseEventInterface = assign2({}, UIEventInterface, {
         screenX: 0,
         screenY: 0,
         clientX: 0,
@@ -2261,23 +2262,23 @@
         }
       });
       var SyntheticMouseEvent = createSyntheticEvent(MouseEventInterface);
-      var DragEventInterface = assign({}, MouseEventInterface, { dataTransfer: 0 });
+      var DragEventInterface = assign2({}, MouseEventInterface, { dataTransfer: 0 });
       var SyntheticDragEvent = createSyntheticEvent(DragEventInterface);
-      var FocusEventInterface = assign({}, UIEventInterface, { relatedTarget: 0 });
+      var FocusEventInterface = assign2({}, UIEventInterface, { relatedTarget: 0 });
       var SyntheticFocusEvent = createSyntheticEvent(FocusEventInterface);
-      var AnimationEventInterface = assign({}, EventInterface, {
+      var AnimationEventInterface = assign2({}, EventInterface, {
         animationName: 0,
         elapsedTime: 0,
         pseudoElement: 0
       });
       var SyntheticAnimationEvent = createSyntheticEvent(AnimationEventInterface);
-      var ClipboardEventInterface = assign({}, EventInterface, {
+      var ClipboardEventInterface = assign2({}, EventInterface, {
         clipboardData: function(event) {
           return "clipboardData" in event ? event.clipboardData : window.clipboardData;
         }
       });
       var SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface);
-      var CompositionEventInterface = assign({}, EventInterface, { data: 0 });
+      var CompositionEventInterface = assign2({}, EventInterface, { data: 0 });
       var SyntheticCompositionEvent = createSyntheticEvent(CompositionEventInterface);
       var normalizeKey = {
         Esc: "Escape",
@@ -2344,7 +2345,7 @@
       function getEventModifierState() {
         return modifierStateGetter;
       }
-      var KeyboardEventInterface = assign({}, UIEventInterface, {
+      var KeyboardEventInterface = assign2({}, UIEventInterface, {
         key: function(nativeEvent) {
           if (nativeEvent.key) {
             var key = normalizeKey[nativeEvent.key] || nativeEvent.key;
@@ -2372,7 +2373,7 @@
         }
       });
       var SyntheticKeyboardEvent = createSyntheticEvent(KeyboardEventInterface);
-      var PointerEventInterface = assign({}, MouseEventInterface, {
+      var PointerEventInterface = assign2({}, MouseEventInterface, {
         pointerId: 0,
         width: 0,
         height: 0,
@@ -2385,7 +2386,7 @@
         isPrimary: 0
       });
       var SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface);
-      var TouchEventInterface = assign({}, UIEventInterface, {
+      var TouchEventInterface = assign2({}, UIEventInterface, {
         touches: 0,
         targetTouches: 0,
         changedTouches: 0,
@@ -2396,13 +2397,13 @@
         getModifierState: getEventModifierState
       });
       var SyntheticTouchEvent = createSyntheticEvent(TouchEventInterface);
-      var TransitionEventInterface = assign({}, EventInterface, {
+      var TransitionEventInterface = assign2({}, EventInterface, {
         propertyName: 0,
         elapsedTime: 0,
         pseudoElement: 0
       });
       var SyntheticTransitionEvent = createSyntheticEvent(TransitionEventInterface);
-      var WheelEventInterface = assign({}, MouseEventInterface, {
+      var WheelEventInterface = assign2({}, MouseEventInterface, {
         deltaX: function(event) {
           return "deltaX" in event ? event.deltaX : "wheelDeltaX" in event ? -event.wheelDeltaX : 0;
         },
@@ -2413,7 +2414,7 @@
         deltaMode: 0
       });
       var SyntheticWheelEvent = createSyntheticEvent(WheelEventInterface);
-      var ToggleEventInterface = assign({}, EventInterface, {
+      var ToggleEventInterface = assign2({}, EventInterface, {
         newState: 0,
         oldState: 0
       });
@@ -2584,31 +2585,31 @@
         }
         return true;
       }
-      function getLeafNode(node) {
-        for (; node && node.firstChild; ) node = node.firstChild;
-        return node;
+      function getLeafNode(node2) {
+        for (; node2 && node2.firstChild; ) node2 = node2.firstChild;
+        return node2;
       }
       function getNodeForCharacterOffset(root2, offset) {
-        var node = getLeafNode(root2);
+        var node2 = getLeafNode(root2);
         root2 = 0;
-        for (var nodeEnd; node; ) {
-          if (3 === node.nodeType) {
-            nodeEnd = root2 + node.textContent.length;
+        for (var nodeEnd; node2; ) {
+          if (3 === node2.nodeType) {
+            nodeEnd = root2 + node2.textContent.length;
             if (root2 <= offset && nodeEnd >= offset)
-              return { node, offset: offset - root2 };
+              return { node: node2, offset: offset - root2 };
             root2 = nodeEnd;
           }
           a: {
-            for (; node; ) {
-              if (node.nextSibling) {
-                node = node.nextSibling;
+            for (; node2; ) {
+              if (node2.nextSibling) {
+                node2 = node2.nextSibling;
                 break a;
               }
-              node = node.parentNode;
+              node2 = node2.parentNode;
             }
-            node = void 0;
+            node2 = void 0;
           }
-          node = getLeafNode(node);
+          node2 = getLeafNode(node2);
         }
       }
       function containsNode(outerNode, innerNode) {
@@ -2669,14 +2670,14 @@
         transitionend: makePrefixMap("Transition", "TransitionEnd")
       };
       var prefixedEventNames = {};
-      var style = {};
-      canUseDOM && (style = document.createElement("div").style, "AnimationEvent" in window || (delete vendorPrefixes.animationend.animation, delete vendorPrefixes.animationiteration.animation, delete vendorPrefixes.animationstart.animation), "TransitionEvent" in window || delete vendorPrefixes.transitionend.transition);
+      var style3 = {};
+      canUseDOM && (style3 = document.createElement("div").style, "AnimationEvent" in window || (delete vendorPrefixes.animationend.animation, delete vendorPrefixes.animationiteration.animation, delete vendorPrefixes.animationstart.animation), "TransitionEvent" in window || delete vendorPrefixes.transitionend.transition);
       function getVendorPrefixedEventName(eventName) {
         if (prefixedEventNames[eventName]) return prefixedEventNames[eventName];
         if (!vendorPrefixes[eventName]) return eventName;
         var prefixMap = vendorPrefixes[eventName], styleProp;
         for (styleProp in prefixMap)
-          if (prefixMap.hasOwnProperty(styleProp) && styleProp in style)
+          if (prefixMap.hasOwnProperty(styleProp) && styleProp in style3)
             return prefixedEventNames[eventName] = prefixMap[styleProp];
         return eventName;
       }
@@ -2951,16 +2952,16 @@
         var baseLength = 32 - clz32(baseIdWithLeadingBit) - 1;
         baseIdWithLeadingBit &= ~(1 << baseLength);
         index2 += 1;
-        var length = 32 - clz32(totalChildren) + baseLength;
-        if (30 < length) {
+        var length2 = 32 - clz32(totalChildren) + baseLength;
+        if (30 < length2) {
           var numberOfOverflowBits = baseLength - baseLength % 5;
-          length = (baseIdWithLeadingBit & (1 << numberOfOverflowBits) - 1).toString(32);
+          length2 = (baseIdWithLeadingBit & (1 << numberOfOverflowBits) - 1).toString(32);
           baseIdWithLeadingBit >>= numberOfOverflowBits;
           baseLength -= numberOfOverflowBits;
           treeContextId = 1 << 32 - clz32(totalChildren) + baseLength | index2 << baseLength | baseIdWithLeadingBit;
-          treeContextOverflow = length + workInProgress2;
+          treeContextOverflow = length2 + workInProgress2;
         } else
-          treeContextId = 1 << length | index2 << baseLength | baseIdWithLeadingBit, treeContextOverflow = workInProgress2;
+          treeContextId = 1 << length2 | index2 << baseLength | baseIdWithLeadingBit, treeContextOverflow = workInProgress2;
       }
       function pushMaterializedTreeId(workInProgress2) {
         null !== workInProgress2.return && (pushTreeFork(workInProgress2, 1), pushTreeId(workInProgress2, 1, 0));
@@ -3267,7 +3268,7 @@
         _currentValue2: null,
         _threadCount: 0
       };
-      function createCache() {
+      function createCache3() {
         return {
           controller: new AbortControllerLocal(),
           data: /* @__PURE__ */ new Map(),
@@ -3943,14 +3944,14 @@
           queue = queue.firstBaseUpdate;
           if (null !== queue) {
             do {
-              var clone = {
+              var clone2 = {
                 lane: queue.lane,
                 tag: queue.tag,
                 payload: queue.payload,
                 callback: null,
                 next: null
               };
-              null === newLast ? newFirst = newLast = clone : newLast = newLast.next = clone;
+              null === newLast ? newFirst = newLast = clone2 : newLast = newLast.next = clone2;
               queue = queue.next;
             } while (null !== queue);
             null === newLast ? newFirst = newLast = capturedUpdate : newLast = newLast.next = capturedUpdate;
@@ -4025,7 +4026,7 @@
                     workInProgress2 = update.payload;
                     updateLane = "function" === typeof workInProgress2 ? workInProgress2.call(instance, newState, updateLane) : workInProgress2;
                     if (null === updateLane || void 0 === updateLane) break a;
-                    newState = assign({}, newState, updateLane);
+                    newState = assign2({}, newState, updateLane);
                     break a;
                   case 2:
                     hasForceUpdate = true;
@@ -4113,25 +4114,25 @@
       }
       var suspenseStackCursor = createCursor(0);
       function findFirstSuspended(row) {
-        for (var node = row; null !== node; ) {
-          if (13 === node.tag) {
-            var state = node.memoizedState;
+        for (var node2 = row; null !== node2; ) {
+          if (13 === node2.tag) {
+            var state = node2.memoizedState;
             if (null !== state && (state = state.dehydrated, null === state || isSuspenseInstancePending(state) || isSuspenseInstanceFallback(state)))
-              return node;
-          } else if (19 === node.tag && ("forwards" === node.memoizedProps.revealOrder || "backwards" === node.memoizedProps.revealOrder || "unstable_legacy-backwards" === node.memoizedProps.revealOrder || "together" === node.memoizedProps.revealOrder)) {
-            if (0 !== (node.flags & 128)) return node;
-          } else if (null !== node.child) {
-            node.child.return = node;
-            node = node.child;
+              return node2;
+          } else if (19 === node2.tag && ("forwards" === node2.memoizedProps.revealOrder || "backwards" === node2.memoizedProps.revealOrder || "unstable_legacy-backwards" === node2.memoizedProps.revealOrder || "together" === node2.memoizedProps.revealOrder)) {
+            if (0 !== (node2.flags & 128)) return node2;
+          } else if (null !== node2.child) {
+            node2.child.return = node2;
+            node2 = node2.child;
             continue;
           }
-          if (node === row) break;
-          for (; null === node.sibling; ) {
-            if (null === node.return || node.return === row) return null;
-            node = node.return;
+          if (node2 === row) break;
+          for (; null === node2.sibling; ) {
+            if (null === node2.return || node2.return === row) return null;
+            node2 = node2.return;
           }
-          node.sibling.return = node.return;
-          node = node.sibling;
+          node2.sibling.return = node2.return;
+          node2 = node2.sibling;
         }
         return null;
       }
@@ -4534,36 +4535,36 @@
           null === setPendingState ? (actionNode.next = actionQueue.pending = actionNode, runActionStateAction(actionQueue, actionNode)) : (actionNode.next = setPendingState.next, actionQueue.pending = setPendingState.next = actionNode);
         }
       }
-      function runActionStateAction(actionQueue, node) {
-        var action = node.action, payload = node.payload, prevState = actionQueue.state;
-        if (node.isTransition) {
+      function runActionStateAction(actionQueue, node2) {
+        var action = node2.action, payload = node2.payload, prevState = actionQueue.state;
+        if (node2.isTransition) {
           var prevTransition = ReactSharedInternals.T, currentTransition = {};
           ReactSharedInternals.T = currentTransition;
           try {
             var returnValue = action(prevState, payload), onStartTransitionFinish = ReactSharedInternals.S;
             null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
-            handleActionReturnValue(actionQueue, node, returnValue);
+            handleActionReturnValue(actionQueue, node2, returnValue);
           } catch (error) {
-            onActionError(actionQueue, node, error);
+            onActionError(actionQueue, node2, error);
           } finally {
             null !== prevTransition && null !== currentTransition.types && (prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition;
           }
         } else
           try {
-            prevTransition = action(prevState, payload), handleActionReturnValue(actionQueue, node, prevTransition);
+            prevTransition = action(prevState, payload), handleActionReturnValue(actionQueue, node2, prevTransition);
           } catch (error$66) {
-            onActionError(actionQueue, node, error$66);
+            onActionError(actionQueue, node2, error$66);
           }
       }
-      function handleActionReturnValue(actionQueue, node, returnValue) {
+      function handleActionReturnValue(actionQueue, node2, returnValue) {
         null !== returnValue && "object" === typeof returnValue && "function" === typeof returnValue.then ? returnValue.then(
           function(nextState) {
-            onActionSuccess(actionQueue, node, nextState);
+            onActionSuccess(actionQueue, node2, nextState);
           },
           function(error) {
-            return onActionError(actionQueue, node, error);
+            return onActionError(actionQueue, node2, error);
           }
-        ) : onActionSuccess(actionQueue, node, returnValue);
+        ) : onActionSuccess(actionQueue, node2, returnValue);
       }
       function onActionSuccess(actionQueue, actionNode, nextState) {
         actionNode.status = "fulfilled";
@@ -4963,7 +4964,7 @@
               fiber = createUpdate(lane);
               var root$69 = enqueueUpdate(provider, fiber, lane);
               null !== root$69 && (scheduleUpdateOnFiber(root$69, provider, lane), entangleTransitions(root$69, provider, lane));
-              provider = { cache: createCache() };
+              provider = { cache: createCache3() };
               fiber.payload = provider;
               return;
           }
@@ -5363,7 +5364,7 @@
       function applyDerivedStateFromProps(workInProgress2, ctor, getDerivedStateFromProps, nextProps) {
         ctor = workInProgress2.memoizedState;
         getDerivedStateFromProps = getDerivedStateFromProps(nextProps, ctor);
-        getDerivedStateFromProps = null === getDerivedStateFromProps || void 0 === getDerivedStateFromProps ? ctor : assign({}, ctor, getDerivedStateFromProps);
+        getDerivedStateFromProps = null === getDerivedStateFromProps || void 0 === getDerivedStateFromProps ? ctor : assign2({}, ctor, getDerivedStateFromProps);
         workInProgress2.memoizedState = getDerivedStateFromProps;
         0 === workInProgress2.lanes && (workInProgress2.updateQueue.baseState = getDerivedStateFromProps);
       }
@@ -5412,7 +5413,7 @@
             "ref" !== propName && (newProps[propName] = baseProps[propName]);
         }
         if (Component = Component.defaultProps) {
-          newProps === baseProps && (newProps = assign({}, newProps));
+          newProps === baseProps && (newProps = assign2({}, newProps));
           for (var propName$73 in Component)
             void 0 === newProps[propName$73] && (newProps[propName$73] = Component[propName$73]);
         }
@@ -6647,7 +6648,7 @@
               workInProgress2.pendingProps
             );
           case 24:
-            return prepareToReadContext(workInProgress2), props = readContext(CacheContext), null === current ? ($$typeof = peekCacheFromPool(), null === $$typeof && ($$typeof = workInProgressRoot, prevState = createCache(), $$typeof.pooledCache = prevState, prevState.refCount++, null !== prevState && ($$typeof.pooledCacheLanes |= renderLanes2), $$typeof = prevState), workInProgress2.memoizedState = { parent: props, cache: $$typeof }, initializeUpdateQueue(workInProgress2), pushProvider(workInProgress2, CacheContext, $$typeof)) : (0 !== (current.lanes & renderLanes2) && (cloneUpdateQueue(current, workInProgress2), processUpdateQueue(workInProgress2, null, null, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction()), $$typeof = current.memoizedState, prevState = workInProgress2.memoizedState, $$typeof.parent !== props ? ($$typeof = { parent: props, cache: props }, workInProgress2.memoizedState = $$typeof, 0 === workInProgress2.lanes && (workInProgress2.memoizedState = workInProgress2.updateQueue.baseState = $$typeof), pushProvider(workInProgress2, CacheContext, props)) : (props = prevState.cache, pushProvider(workInProgress2, CacheContext, props), props !== $$typeof.cache && propagateContextChanges(
+            return prepareToReadContext(workInProgress2), props = readContext(CacheContext), null === current ? ($$typeof = peekCacheFromPool(), null === $$typeof && ($$typeof = workInProgressRoot, prevState = createCache3(), $$typeof.pooledCache = prevState, prevState.refCount++, null !== prevState && ($$typeof.pooledCacheLanes |= renderLanes2), $$typeof = prevState), workInProgress2.memoizedState = { parent: props, cache: $$typeof }, initializeUpdateQueue(workInProgress2), pushProvider(workInProgress2, CacheContext, $$typeof)) : (0 !== (current.lanes & renderLanes2) && (cloneUpdateQueue(current, workInProgress2), processUpdateQueue(workInProgress2, null, null, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction()), $$typeof = current.memoizedState, prevState = workInProgress2.memoizedState, $$typeof.parent !== props ? ($$typeof = { parent: props, cache: props }, workInProgress2.memoizedState = $$typeof, 0 === workInProgress2.lanes && (workInProgress2.memoizedState = workInProgress2.updateQueue.baseState = $$typeof), pushProvider(workInProgress2, CacheContext, props)) : (props = prevState.cache, pushProvider(workInProgress2, CacheContext, props), props !== $$typeof.cache && propagateContextChanges(
               workInProgress2,
               [CacheContext],
               renderLanes2,
@@ -7285,21 +7286,21 @@
           if (!(fiber.flags & 2)) return fiber.stateNode;
         }
       }
-      function insertOrAppendPlacementNodeIntoContainer(node, before, parent) {
-        var tag = node.tag;
+      function insertOrAppendPlacementNodeIntoContainer(node2, before, parent) {
+        var tag = node2.tag;
         if (5 === tag || 6 === tag)
-          node = node.stateNode, before ? (9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent).insertBefore(node, before) : (before = 9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent, before.appendChild(node), parent = parent._reactRootContainer, null !== parent && void 0 !== parent || null !== before.onclick || (before.onclick = noop$1));
-        else if (4 !== tag && (27 === tag && isSingletonScope(node.type) && (parent = node.stateNode, before = null), node = node.child, null !== node))
-          for (insertOrAppendPlacementNodeIntoContainer(node, before, parent), node = node.sibling; null !== node; )
-            insertOrAppendPlacementNodeIntoContainer(node, before, parent), node = node.sibling;
+          node2 = node2.stateNode, before ? (9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent).insertBefore(node2, before) : (before = 9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent, before.appendChild(node2), parent = parent._reactRootContainer, null !== parent && void 0 !== parent || null !== before.onclick || (before.onclick = noop$1));
+        else if (4 !== tag && (27 === tag && isSingletonScope(node2.type) && (parent = node2.stateNode, before = null), node2 = node2.child, null !== node2))
+          for (insertOrAppendPlacementNodeIntoContainer(node2, before, parent), node2 = node2.sibling; null !== node2; )
+            insertOrAppendPlacementNodeIntoContainer(node2, before, parent), node2 = node2.sibling;
       }
-      function insertOrAppendPlacementNode(node, before, parent) {
-        var tag = node.tag;
+      function insertOrAppendPlacementNode(node2, before, parent) {
+        var tag = node2.tag;
         if (5 === tag || 6 === tag)
-          node = node.stateNode, before ? parent.insertBefore(node, before) : parent.appendChild(node);
-        else if (4 !== tag && (27 === tag && isSingletonScope(node.type) && (parent = node.stateNode), node = node.child, null !== node))
-          for (insertOrAppendPlacementNode(node, before, parent), node = node.sibling; null !== node; )
-            insertOrAppendPlacementNode(node, before, parent), node = node.sibling;
+          node2 = node2.stateNode, before ? parent.insertBefore(node2, before) : parent.appendChild(node2);
+        else if (4 !== tag && (27 === tag && isSingletonScope(node2.type) && (parent = node2.stateNode), node2 = node2.child, null !== node2))
+          for (insertOrAppendPlacementNode(node2, before, parent), node2 = node2.sibling; null !== node2; )
+            insertOrAppendPlacementNode(node2, before, parent), node2 = node2.sibling;
       }
       function commitHostSingletonAcquisition(finishedWork) {
         var singleton = finishedWork.stateNode, props = finishedWork.memoizedProps;
@@ -7342,25 +7343,25 @@
                   JSCompiler_temp = null;
                   break a;
                 }
-                var length = 0, start = -1, end = -1, indexWithinAnchor = 0, indexWithinFocus = 0, node = root2, parentNode = null;
+                var length2 = 0, start = -1, end = -1, indexWithinAnchor = 0, indexWithinFocus = 0, node2 = root2, parentNode = null;
                 b: for (; ; ) {
-                  for (var next; ; ) {
-                    node !== JSCompiler_temp || 0 !== anchorOffset && 3 !== node.nodeType || (start = length + anchorOffset);
-                    node !== focusNode || 0 !== selection && 3 !== node.nodeType || (end = length + selection);
-                    3 === node.nodeType && (length += node.nodeValue.length);
-                    if (null === (next = node.firstChild)) break;
-                    parentNode = node;
-                    node = next;
+                  for (var next2; ; ) {
+                    node2 !== JSCompiler_temp || 0 !== anchorOffset && 3 !== node2.nodeType || (start = length2 + anchorOffset);
+                    node2 !== focusNode || 0 !== selection && 3 !== node2.nodeType || (end = length2 + selection);
+                    3 === node2.nodeType && (length2 += node2.nodeValue.length);
+                    if (null === (next2 = node2.firstChild)) break;
+                    parentNode = node2;
+                    node2 = next2;
                   }
                   for (; ; ) {
-                    if (node === root2) break b;
-                    parentNode === JSCompiler_temp && ++indexWithinAnchor === anchorOffset && (start = length);
-                    parentNode === focusNode && ++indexWithinFocus === selection && (end = length);
-                    if (null !== (next = node.nextSibling)) break;
-                    node = parentNode;
-                    parentNode = node.parentNode;
+                    if (node2 === root2) break b;
+                    parentNode === JSCompiler_temp && ++indexWithinAnchor === anchorOffset && (start = length2);
+                    parentNode === focusNode && ++indexWithinFocus === selection && (end = length2);
+                    if (null !== (next2 = node2.nextSibling)) break;
+                    node2 = parentNode;
+                    parentNode = node2.parentNode;
                   }
-                  node = next;
+                  node2 = next2;
                 }
                 JSCompiler_temp = -1 === start || -1 === end ? null : { start, end };
               } else JSCompiler_temp = null;
@@ -8938,9 +8939,9 @@
         );
       }
       function isRenderConsistentWithExternalStores(finishedWork) {
-        for (var node = finishedWork; ; ) {
-          var tag = node.tag;
-          if ((0 === tag || 11 === tag || 15 === tag) && node.flags & 16384 && (tag = node.updateQueue, null !== tag && (tag = tag.stores, null !== tag)))
+        for (var node2 = finishedWork; ; ) {
+          var tag = node2.tag;
+          if ((0 === tag || 11 === tag || 15 === tag) && node2.flags & 16384 && (tag = node2.updateQueue, null !== tag && (tag = tag.stores, null !== tag)))
             for (var i = 0; i < tag.length; i++) {
               var check = tag[i], getSnapshot = check.getSnapshot;
               check = check.value;
@@ -8950,17 +8951,17 @@
                 return false;
               }
             }
-          tag = node.child;
-          if (node.subtreeFlags & 16384 && null !== tag)
-            tag.return = node, node = tag;
+          tag = node2.child;
+          if (node2.subtreeFlags & 16384 && null !== tag)
+            tag.return = node2, node2 = tag;
           else {
-            if (node === finishedWork) break;
-            for (; null === node.sibling; ) {
-              if (null === node.return || node.return === finishedWork) return true;
-              node = node.return;
+            if (node2 === finishedWork) break;
+            for (; null === node2.sibling; ) {
+              if (null === node2.return || node2.return === finishedWork) return true;
+              node2 = node2.return;
             }
-            node.sibling.return = node.return;
-            node = node.sibling;
+            node2.sibling.return = node2.return;
+            node2 = node2.sibling;
           }
         }
         return true;
@@ -9210,42 +9211,42 @@
           performUnitOfWork(workInProgress);
       }
       function performUnitOfWork(unitOfWork) {
-        var next = beginWork(unitOfWork.alternate, unitOfWork, entangledRenderLanes);
+        var next2 = beginWork(unitOfWork.alternate, unitOfWork, entangledRenderLanes);
         unitOfWork.memoizedProps = unitOfWork.pendingProps;
-        null === next ? completeUnitOfWork(unitOfWork) : workInProgress = next;
+        null === next2 ? completeUnitOfWork(unitOfWork) : workInProgress = next2;
       }
       function replaySuspendedUnitOfWork(unitOfWork) {
-        var next = unitOfWork;
-        var current = next.alternate;
-        switch (next.tag) {
+        var next2 = unitOfWork;
+        var current = next2.alternate;
+        switch (next2.tag) {
           case 15:
           case 0:
-            next = replayFunctionComponent(
+            next2 = replayFunctionComponent(
               current,
-              next,
-              next.pendingProps,
-              next.type,
+              next2,
+              next2.pendingProps,
+              next2.type,
               void 0,
               workInProgressRootRenderLanes
             );
             break;
           case 11:
-            next = replayFunctionComponent(
+            next2 = replayFunctionComponent(
               current,
-              next,
-              next.pendingProps,
-              next.type.render,
-              next.ref,
+              next2,
+              next2.pendingProps,
+              next2.type.render,
+              next2.ref,
               workInProgressRootRenderLanes
             );
             break;
           case 5:
-            resetHooksOnUnwind(next);
+            resetHooksOnUnwind(next2);
           default:
-            unwindInterruptedWork(current, next), next = workInProgress = resetWorkInProgress(next, entangledRenderLanes), next = beginWork(current, next, entangledRenderLanes);
+            unwindInterruptedWork(current, next2), next2 = workInProgress = resetWorkInProgress(next2, entangledRenderLanes), next2 = beginWork(current, next2, entangledRenderLanes);
         }
         unitOfWork.memoizedProps = unitOfWork.pendingProps;
-        null === next ? completeUnitOfWork(unitOfWork) : workInProgress = next;
+        null === next2 ? completeUnitOfWork(unitOfWork) : workInProgress = next2;
       }
       function throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, suspendedReason) {
         lastContextDependency = currentlyRenderingFiber$1 = null;
@@ -9299,13 +9300,13 @@
             return;
           }
           unitOfWork = completedWork.return;
-          var next = completeWork(
+          var next2 = completeWork(
             completedWork.alternate,
             completedWork,
             entangledRenderLanes
           );
-          if (null !== next) {
-            workInProgress = next;
+          if (null !== next2) {
+            workInProgress = next2;
             return;
           }
           completedWork = completedWork.sibling;
@@ -9319,19 +9320,19 @@
       }
       function unwindUnitOfWork(unitOfWork, skipSiblings) {
         do {
-          var next = unwindWork(unitOfWork.alternate, unitOfWork);
-          if (null !== next) {
-            next.flags &= 32767;
-            workInProgress = next;
+          var next2 = unwindWork(unitOfWork.alternate, unitOfWork);
+          if (null !== next2) {
+            next2.flags &= 32767;
+            workInProgress = next2;
             return;
           }
-          next = unitOfWork.return;
-          null !== next && (next.flags |= 32768, next.subtreeFlags = 0, next.deletions = null);
+          next2 = unitOfWork.return;
+          null !== next2 && (next2.flags |= 32768, next2.subtreeFlags = 0, next2.deletions = null);
           if (!skipSiblings && (unitOfWork = unitOfWork.sibling, null !== unitOfWork)) {
             workInProgress = unitOfWork;
             return;
           }
-          workInProgress = unitOfWork = next;
+          workInProgress = unitOfWork = next2;
         } while (null !== unitOfWork);
         workInProgressRootExitStatus = 6;
         workInProgress = null;
@@ -9414,7 +9415,7 @@
                   else {
                     var doc = priorFocusedElem.ownerDocument || document, win = doc && doc.defaultView || window;
                     if (win.getSelection) {
-                      var selection = win.getSelection(), length = priorFocusedElem.textContent.length, start$jscomp$0 = Math.min(priorSelectionRange.start, length), end$jscomp$0 = void 0 === priorSelectionRange.end ? start$jscomp$0 : Math.min(priorSelectionRange.end, length);
+                      var selection = win.getSelection(), length2 = priorFocusedElem.textContent.length, start$jscomp$0 = Math.min(priorSelectionRange.start, length2), end$jscomp$0 = void 0 === priorSelectionRange.end ? start$jscomp$0 : Math.min(priorSelectionRange.end, length2);
                       !selection.extend && start$jscomp$0 > end$jscomp$0 && (curFocusedElem = end$jscomp$0, end$jscomp$0 = start$jscomp$0, start$jscomp$0 = curFocusedElem);
                       var startMarker = getNodeForCharacterOffset(
                         priorFocusedElem,
@@ -9699,13 +9700,13 @@
         mightHavePendingSyncWork = didScheduleMicrotask = false;
         var syncTransitionLanes = 0;
         0 !== currentEventTransitionLane && shouldAttemptEagerTransition() && (syncTransitionLanes = currentEventTransitionLane);
-        for (var currentTime = now(), prev = null, root2 = firstScheduledRoot; null !== root2; ) {
-          var next = root2.next, nextLanes = scheduleTaskForRootDuringMicrotask(root2, currentTime);
+        for (var currentTime = now(), prev2 = null, root2 = firstScheduledRoot; null !== root2; ) {
+          var next2 = root2.next, nextLanes = scheduleTaskForRootDuringMicrotask(root2, currentTime);
           if (0 === nextLanes)
-            root2.next = null, null === prev ? firstScheduledRoot = next : prev.next = next, null === next && (lastScheduledRoot = prev);
-          else if (prev = root2, 0 !== syncTransitionLanes || 0 !== (nextLanes & 3))
+            root2.next = null, null === prev2 ? firstScheduledRoot = next2 : prev2.next = next2, null === next2 && (lastScheduledRoot = prev2);
+          else if (prev2 = root2, 0 !== syncTransitionLanes || 0 !== (nextLanes & 3))
             mightHavePendingSyncWork = true;
-          root2 = next;
+          root2 = next2;
         }
         0 !== pendingEffectsStatus && 5 !== pendingEffectsStatus || flushSyncWorkAcrossRoots_impl(syncTransitionLanes, false);
         0 !== currentEventTransitionLane && (currentEventTransitionLane = 0);
@@ -10024,8 +10025,8 @@
             if (null === targetInst$jscomp$0) return;
             var nodeTag = targetInst$jscomp$0.tag;
             if (3 === nodeTag || 4 === nodeTag) {
-              var container = targetInst$jscomp$0.stateNode.containerInfo;
-              if (container === targetContainer) break;
+              var container2 = targetInst$jscomp$0.stateNode.containerInfo;
+              if (container2 === targetContainer) break;
               if (4 === nodeTag)
                 for (nodeTag = targetInst$jscomp$0.return; null !== nodeTag; ) {
                   var grandTag = nodeTag.tag;
@@ -10033,15 +10034,15 @@
                     return;
                   nodeTag = nodeTag.return;
                 }
-              for (; null !== container; ) {
-                nodeTag = getClosestInstanceFromNode(container);
+              for (; null !== container2; ) {
+                nodeTag = getClosestInstanceFromNode(container2);
                 if (null === nodeTag) return;
                 grandTag = nodeTag.tag;
                 if (5 === grandTag || 6 === grandTag || 26 === grandTag || 27 === grandTag) {
                   targetInst$jscomp$0 = ancestorInst = nodeTag;
                   continue a;
                 }
-                container = container.parentNode;
+                container2 = container2.parentNode;
               }
             }
             targetInst$jscomp$0 = targetInst$jscomp$0.return;
@@ -10361,11 +10362,11 @@
         while (inst && 5 !== inst.tag && 27 !== inst.tag);
         return inst ? inst : null;
       }
-      function accumulateEnterLeaveListenersForEvent(dispatchQueue, event, target, common, inCapturePhase) {
-        for (var registrationName = event._reactName, listeners = []; null !== target && target !== common; ) {
+      function accumulateEnterLeaveListenersForEvent(dispatchQueue, event, target, common2, inCapturePhase) {
+        for (var registrationName = event._reactName, listeners = []; null !== target && target !== common2; ) {
           var _instance3 = target, alternate = _instance3.alternate, stateNode = _instance3.stateNode;
           _instance3 = _instance3.tag;
-          if (null !== alternate && alternate === common) break;
+          if (null !== alternate && alternate === common2) break;
           5 !== _instance3 && 26 !== _instance3 && 27 !== _instance3 || null === stateNode || (alternate = stateNode, inCapturePhase ? (stateNode = getListener(target, registrationName), null != stateNode && listeners.unshift(
             createDispatchListener(target, stateNode, alternate)
           )) : inCapturePhase || (stateNode = getListener(target, registrationName), null != stateNode && listeners.push(
@@ -10642,7 +10643,7 @@
             break;
           default:
             if (!(2 < key.length) || "o" !== key[0] && "O" !== key[0] || "n" !== key[1] && "N" !== key[1])
-              key = aliases.get(key) || key, setValueForAttribute(domElement, key, value);
+              key = aliases2.get(key) || key, setValueForAttribute(domElement, key, value);
         }
       }
       function setPropOnCustomElement(domElement, tag, key, value, props, prevValue) {
@@ -11163,15 +11164,15 @@
       function estimateBandwidth() {
         if ("function" === typeof performance.getEntriesByType) {
           for (var count = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i = 0; i < resourceEntries.length; i++) {
-            var entry = resourceEntries[i], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration = entry.duration;
-            if (transferSize && duration && isLikelyStaticResource(initiatorType)) {
+            var entry = resourceEntries[i], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration2 = entry.duration;
+            if (transferSize && duration2 && isLikelyStaticResource(initiatorType)) {
               initiatorType = 0;
-              duration = entry.responseEnd;
+              duration2 = entry.responseEnd;
               for (i += 1; i < resourceEntries.length; i++) {
                 var overlapEntry = resourceEntries[i], overlapStartTime = overlapEntry.startTime;
-                if (overlapStartTime > duration) break;
+                if (overlapStartTime > duration2) break;
                 var overlapTransferSize = overlapEntry.transferSize, overlapInitiatorType = overlapEntry.initiatorType;
-                overlapTransferSize && isLikelyStaticResource(overlapInitiatorType) && (overlapEntry = overlapEntry.responseEnd, initiatorType += overlapTransferSize * (overlapEntry < duration ? 1 : (duration - overlapStartTime) / (overlapEntry - overlapStartTime)));
+                overlapTransferSize && isLikelyStaticResource(overlapInitiatorType) && (overlapEntry = overlapEntry.responseEnd, initiatorType += overlapTransferSize * (overlapEntry < duration2 ? 1 : (duration2 - overlapStartTime) / (overlapEntry - overlapStartTime)));
               }
               --i;
               bits += 8 * (transferSize + initiatorType) / (entry.duration / 1e3);
@@ -11239,71 +11240,71 @@
         return "head" === type;
       }
       function clearHydrationBoundary(parentInstance, hydrationInstance) {
-        var node = hydrationInstance, depth = 0;
+        var node2 = hydrationInstance, depth = 0;
         do {
-          var nextNode = node.nextSibling;
-          parentInstance.removeChild(node);
+          var nextNode = node2.nextSibling;
+          parentInstance.removeChild(node2);
           if (nextNode && 8 === nextNode.nodeType)
-            if (node = nextNode.data, "/$" === node || "/&" === node) {
+            if (node2 = nextNode.data, "/$" === node2 || "/&" === node2) {
               if (0 === depth) {
                 parentInstance.removeChild(nextNode);
                 retryIfBlockedOn(hydrationInstance);
                 return;
               }
               depth--;
-            } else if ("$" === node || "$?" === node || "$~" === node || "$!" === node || "&" === node)
+            } else if ("$" === node2 || "$?" === node2 || "$~" === node2 || "$!" === node2 || "&" === node2)
               depth++;
-            else if ("html" === node)
+            else if ("html" === node2)
               releaseSingletonInstance(parentInstance.ownerDocument.documentElement);
-            else if ("head" === node) {
-              node = parentInstance.ownerDocument.head;
-              releaseSingletonInstance(node);
-              for (var node$jscomp$0 = node.firstChild; node$jscomp$0; ) {
+            else if ("head" === node2) {
+              node2 = parentInstance.ownerDocument.head;
+              releaseSingletonInstance(node2);
+              for (var node$jscomp$0 = node2.firstChild; node$jscomp$0; ) {
                 var nextNode$jscomp$0 = node$jscomp$0.nextSibling, nodeName = node$jscomp$0.nodeName;
-                node$jscomp$0[internalHoistableMarker] || "SCRIPT" === nodeName || "STYLE" === nodeName || "LINK" === nodeName && "stylesheet" === node$jscomp$0.rel.toLowerCase() || node.removeChild(node$jscomp$0);
+                node$jscomp$0[internalHoistableMarker] || "SCRIPT" === nodeName || "STYLE" === nodeName || "LINK" === nodeName && "stylesheet" === node$jscomp$0.rel.toLowerCase() || node2.removeChild(node$jscomp$0);
                 node$jscomp$0 = nextNode$jscomp$0;
               }
             } else
-              "body" === node && releaseSingletonInstance(parentInstance.ownerDocument.body);
-          node = nextNode;
-        } while (node);
+              "body" === node2 && releaseSingletonInstance(parentInstance.ownerDocument.body);
+          node2 = nextNode;
+        } while (node2);
         retryIfBlockedOn(hydrationInstance);
       }
       function hideOrUnhideDehydratedBoundary(suspenseInstance, isHidden) {
-        var node = suspenseInstance;
+        var node2 = suspenseInstance;
         suspenseInstance = 0;
         do {
-          var nextNode = node.nextSibling;
-          1 === node.nodeType ? isHidden ? (node._stashedDisplay = node.style.display, node.style.display = "none") : (node.style.display = node._stashedDisplay || "", "" === node.getAttribute("style") && node.removeAttribute("style")) : 3 === node.nodeType && (isHidden ? (node._stashedText = node.nodeValue, node.nodeValue = "") : node.nodeValue = node._stashedText || "");
+          var nextNode = node2.nextSibling;
+          1 === node2.nodeType ? isHidden ? (node2._stashedDisplay = node2.style.display, node2.style.display = "none") : (node2.style.display = node2._stashedDisplay || "", "" === node2.getAttribute("style") && node2.removeAttribute("style")) : 3 === node2.nodeType && (isHidden ? (node2._stashedText = node2.nodeValue, node2.nodeValue = "") : node2.nodeValue = node2._stashedText || "");
           if (nextNode && 8 === nextNode.nodeType)
-            if (node = nextNode.data, "/$" === node)
+            if (node2 = nextNode.data, "/$" === node2)
               if (0 === suspenseInstance) break;
               else suspenseInstance--;
             else
-              "$" !== node && "$?" !== node && "$~" !== node && "$!" !== node || suspenseInstance++;
-          node = nextNode;
-        } while (node);
+              "$" !== node2 && "$?" !== node2 && "$~" !== node2 && "$!" !== node2 || suspenseInstance++;
+          node2 = nextNode;
+        } while (node2);
       }
-      function clearContainerSparingly(container) {
-        var nextNode = container.firstChild;
+      function clearContainerSparingly(container2) {
+        var nextNode = container2.firstChild;
         nextNode && 10 === nextNode.nodeType && (nextNode = nextNode.nextSibling);
         for (; nextNode; ) {
-          var node = nextNode;
+          var node2 = nextNode;
           nextNode = nextNode.nextSibling;
-          switch (node.nodeName) {
+          switch (node2.nodeName) {
             case "HTML":
             case "HEAD":
             case "BODY":
-              clearContainerSparingly(node);
-              detachDeletedInstance(node);
+              clearContainerSparingly(node2);
+              detachDeletedInstance(node2);
               continue;
             case "SCRIPT":
             case "STYLE":
               continue;
             case "LINK":
-              if ("stylesheet" === node.rel.toLowerCase()) continue;
+              if ("stylesheet" === node2.rel.toLowerCase()) continue;
           }
-          container.removeChild(node);
+          container2.removeChild(node2);
         }
       }
       function canHydrateInstance(instance, type, props, inRootOrSingleton) {
@@ -11385,18 +11386,18 @@
           instance._reactRetry = listener;
         }
       }
-      function getNextHydratable(node) {
-        for (; null != node; node = node.nextSibling) {
-          var nodeType = node.nodeType;
+      function getNextHydratable(node2) {
+        for (; null != node2; node2 = node2.nextSibling) {
+          var nodeType = node2.nodeType;
           if (1 === nodeType || 3 === nodeType) break;
           if (8 === nodeType) {
-            nodeType = node.data;
+            nodeType = node2.data;
             if ("$" === nodeType || "$!" === nodeType || "$?" === nodeType || "$~" === nodeType || "&" === nodeType || "F!" === nodeType || "F" === nodeType)
               break;
             if ("/$" === nodeType || "/&" === nodeType) return null;
           }
         }
-        return node;
+        return node2;
       }
       var previousHydratableOnEnteringScopedSingleton = null;
       function getNextHydratableInstanceAfterHydrationBoundary(hydrationInstance) {
@@ -11455,8 +11456,8 @@
       }
       var preloadPropsMap = /* @__PURE__ */ new Map();
       var preconnectsSet = /* @__PURE__ */ new Set();
-      function getHoistableRoot(container) {
-        return "function" === typeof container.getRootNode ? container.getRootNode() : 9 === container.nodeType ? container : container.ownerDocument;
+      function getHoistableRoot(container2) {
+        return "function" === typeof container2.getRootNode ? container2.getRootNode() : 9 === container2.nodeType ? container2 : container2.ownerDocument;
       }
       var previousDispatcher = ReactDOMSharedInternals.d;
       ReactDOMSharedInternals.d = {
@@ -11514,7 +11515,7 @@
             case "script":
               key = getScriptKey(href);
           }
-          preloadPropsMap.has(key) || (href = assign(
+          preloadPropsMap.has(key) || (href = assign2(
             {
               rel: "preload",
               href: "image" === as && options2 && options2.imageSrcSet ? void 0 : href,
@@ -11538,7 +11539,7 @@
             case "script":
               key = getScriptKey(href);
           }
-          if (!preloadPropsMap.has(key) && (href = assign({ rel: "modulepreload", href }, options2), preloadPropsMap.set(key, href), null === ownerDocument.querySelector(preloadSelector))) {
+          if (!preloadPropsMap.has(key) && (href = assign2({ rel: "modulepreload", href }, options2), preloadPropsMap.set(key, href), null === ownerDocument.querySelector(preloadSelector))) {
             switch (as) {
               case "audioworklet":
               case "paintworklet":
@@ -11570,7 +11571,7 @@
             ))
               state.loading = 5;
             else {
-              href = assign(
+              href = assign2(
                 { rel: "stylesheet", href, "data-precedence": precedence },
                 options2
               );
@@ -11606,7 +11607,7 @@
         var ownerDocument = globalDocument;
         if (ownerDocument && src) {
           var scripts = getResourcesFromRoot(ownerDocument).hoistableScripts, key = getScriptKey(src), resource = scripts.get(key);
-          resource || (resource = ownerDocument.querySelector(getScriptSelectorFromKey(key)), resource || (src = assign({ src, async: true }, options2), (options2 = preloadPropsMap.get(key)) && adoptPreloadPropsForScript(src, options2), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
+          resource || (resource = ownerDocument.querySelector(getScriptSelectorFromKey(key)), resource || (src = assign2({ src, async: true }, options2), (options2 = preloadPropsMap.get(key)) && adoptPreloadPropsForScript(src, options2), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
             type: "script",
             instance: resource,
             count: 1,
@@ -11619,7 +11620,7 @@
         var ownerDocument = globalDocument;
         if (ownerDocument && src) {
           var scripts = getResourcesFromRoot(ownerDocument).hoistableScripts, key = getScriptKey(src), resource = scripts.get(key);
-          resource || (resource = ownerDocument.querySelector(getScriptSelectorFromKey(key)), resource || (src = assign({ src, async: true, type: "module" }, options2), (options2 = preloadPropsMap.get(key)) && adoptPreloadPropsForScript(src, options2), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
+          resource || (resource = ownerDocument.querySelector(getScriptSelectorFromKey(key)), resource || (src = assign2({ src, async: true, type: "module" }, options2), (options2 = preloadPropsMap.get(key)) && adoptPreloadPropsForScript(src, options2), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
             type: "script",
             instance: resource,
             count: 1,
@@ -11698,7 +11699,7 @@
         return 'link[rel="stylesheet"][' + key + "]";
       }
       function stylesheetPropsFromRawProps(rawProps) {
-        return assign({}, rawProps, {
+        return assign2({}, rawProps, {
           "data-precedence": rawProps.precedence,
           precedence: null
         });
@@ -11726,7 +11727,7 @@
               );
               if (instance)
                 return resource.instance = instance, markNodeAsHoistable(instance), instance;
-              var styleProps = assign({}, props, {
+              var styleProps = assign2({}, props, {
                 "data-href": props.href,
                 "data-precedence": props.precedence,
                 href: null,
@@ -11767,7 +11768,7 @@
                 return resource.instance = styleProps, markNodeAsHoistable(styleProps), styleProps;
               instance = props;
               if (styleProps = preloadPropsMap.get(instance$249))
-                instance = assign({}, props), adoptPreloadPropsForScript(instance, styleProps);
+                instance = assign2({}, props), adoptPreloadPropsForScript(instance, styleProps);
               hoistableRoot = hoistableRoot.ownerDocument || hoistableRoot;
               styleProps = hoistableRoot.createElement("script");
               markNodeAsHoistable(styleProps);
@@ -11787,8 +11788,8 @@
         for (var nodes = root2.querySelectorAll(
           'link[rel="stylesheet"][data-precedence],style[data-precedence]'
         ), last = nodes.length ? nodes[nodes.length - 1] : null, prior = last, i = 0; i < nodes.length; i++) {
-          var node = nodes[i];
-          if (node.dataset.precedence === precedence) prior = node;
+          var node2 = nodes[i];
+          if (node2.dataset.precedence === precedence) prior = node2;
           else if (prior !== last) break;
         }
         prior ? prior.parentNode.insertBefore(instance, prior.nextSibling) : (precedence = 9 === root2.nodeType ? root2.head : root2, precedence.insertBefore(instance, precedence.firstChild));
@@ -11815,12 +11816,12 @@
         cache.set(type, null);
         ownerDocument = ownerDocument.getElementsByTagName(type);
         for (caches = 0; caches < ownerDocument.length; caches++) {
-          var node = ownerDocument[caches];
-          if (!(node[internalHoistableMarker] || node[internalInstanceKey] || "link" === type && "stylesheet" === node.getAttribute("rel")) && "http://www.w3.org/2000/svg" !== node.namespaceURI) {
-            var nodeKey = node.getAttribute(keyAttribute) || "";
+          var node2 = ownerDocument[caches];
+          if (!(node2[internalHoistableMarker] || node2[internalInstanceKey] || "link" === type && "stylesheet" === node2.getAttribute("rel")) && "http://www.w3.org/2000/svg" !== node2.namespaceURI) {
+            var nodeKey = node2.getAttribute(keyAttribute) || "";
             nodeKey = type + nodeKey;
             var existing = cache.get(nodeKey);
-            existing ? existing.push(node) : cache.set(nodeKey, [node]);
+            existing ? existing.push(node2) : cache.set(nodeKey, [node2]);
           }
         }
         return cache;
@@ -11950,17 +11951,17 @@
             for (var nodes = root2.querySelectorAll(
               "link[data-precedence],style[data-precedence]"
             ), i = 0; i < nodes.length; i++) {
-              var node = nodes[i];
-              if ("LINK" === node.nodeName || "not all" !== node.getAttribute("media"))
-                precedences.set(node.dataset.precedence, node), last = node;
+              var node2 = nodes[i];
+              if ("LINK" === node2.nodeName || "not all" !== node2.getAttribute("media"))
+                precedences.set(node2.dataset.precedence, node2), last = node2;
             }
             last && precedences.set(null, last);
           }
           nodes = resource.instance;
-          node = nodes.getAttribute("data-precedence");
-          i = precedences.get(node) || last;
+          node2 = nodes.getAttribute("data-precedence");
+          i = precedences.get(node2) || last;
           i === last && precedences.set(null, nodes);
-          precedences.set(node, nodes);
+          precedences.set(node2, nodes);
           this.count++;
           last = onUnsuspend.bind(this);
           nodes.addEventListener("load", last);
@@ -12014,7 +12015,7 @@
         isStrictMode = createFiberImplClass(3, null, null, tag);
         containerInfo.current = isStrictMode;
         isStrictMode.stateNode = containerInfo;
-        tag = createCache();
+        tag = createCache3();
         tag.refCount++;
         containerInfo.pooledCache = tag;
         tag.refCount++;
@@ -12031,14 +12032,14 @@
         parentComponent = emptyContextObject;
         return parentComponent;
       }
-      function updateContainerImpl(rootFiber, lane, element, container, parentComponent, callback) {
+      function updateContainerImpl(rootFiber, lane, element, container2, parentComponent, callback) {
         parentComponent = getContextForSubtree(parentComponent);
-        null === container.context ? container.context = parentComponent : container.pendingContext = parentComponent;
-        container = createUpdate(lane);
-        container.payload = { element };
+        null === container2.context ? container2.context = parentComponent : container2.pendingContext = parentComponent;
+        container2 = createUpdate(lane);
+        container2.payload = { element };
         callback = void 0 === callback ? null : callback;
-        null !== callback && (container.callback = callback);
-        element = enqueueUpdate(rootFiber, container, lane);
+        null !== callback && (container2.callback = callback);
+        element = enqueueUpdate(rootFiber, container2, lane);
         null !== element && (scheduleUpdateOnFiber(element, rootFiber, lane), entangleTransitions(element, rootFiber, lane));
       }
       function markRetryLaneImpl(fiber, retryLane) {
@@ -12069,22 +12070,22 @@
         }
       }
       var _enabled = true;
-      function dispatchDiscreteEvent(domEventName, eventSystemFlags, container, nativeEvent) {
+      function dispatchDiscreteEvent(domEventName, eventSystemFlags, container2, nativeEvent) {
         var prevTransition = ReactSharedInternals.T;
         ReactSharedInternals.T = null;
         var previousPriority = ReactDOMSharedInternals.p;
         try {
-          ReactDOMSharedInternals.p = 2, dispatchEvent(domEventName, eventSystemFlags, container, nativeEvent);
+          ReactDOMSharedInternals.p = 2, dispatchEvent(domEventName, eventSystemFlags, container2, nativeEvent);
         } finally {
           ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition;
         }
       }
-      function dispatchContinuousEvent(domEventName, eventSystemFlags, container, nativeEvent) {
+      function dispatchContinuousEvent(domEventName, eventSystemFlags, container2, nativeEvent) {
         var prevTransition = ReactSharedInternals.T;
         ReactSharedInternals.T = null;
         var previousPriority = ReactDOMSharedInternals.p;
         try {
-          ReactDOMSharedInternals.p = 8, dispatchEvent(domEventName, eventSystemFlags, container, nativeEvent);
+          ReactDOMSharedInternals.p = 8, dispatchEvent(domEventName, eventSystemFlags, container2, nativeEvent);
         } finally {
           ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition;
         }
@@ -12567,10 +12568,10 @@
         var root2 = this._internalRoot;
         if (null !== root2) {
           this._internalRoot = null;
-          var container = root2.containerInfo;
+          var container2 = root2.containerInfo;
           updateContainerImpl(root2.current, 2, null, root2, null, null);
           flushSyncWork$1();
-          container[internalContainerInstanceKey] = null;
+          container2[internalContainerInstanceKey] = null;
         }
       };
       function ReactDOMHydrationRoot(internalRoot) {
@@ -12585,7 +12586,7 @@
           0 === i && attemptExplicitHydrationTarget(target);
         }
       };
-      var isomorphicReactPackageVersion$jscomp$inline_1840 = React.version;
+      var isomorphicReactPackageVersion$jscomp$inline_1840 = React10.version;
       if ("19.2.4" !== isomorphicReactPackageVersion$jscomp$inline_1840)
         throw Error(
           formatProdErrorMessage(
@@ -12625,12 +12626,12 @@
           }
       }
       var hook$jscomp$inline_2348;
-      exports.createRoot = function(container, options2) {
-        if (!isValidContainer(container)) throw Error(formatProdErrorMessage(299));
+      exports.createRoot = function(container2, options2) {
+        if (!isValidContainer(container2)) throw Error(formatProdErrorMessage(299));
         var isStrictMode = false, identifierPrefix = "", onUncaughtError = defaultOnUncaughtError, onCaughtError = defaultOnCaughtError, onRecoverableError = defaultOnRecoverableError;
         null !== options2 && void 0 !== options2 && (true === options2.unstable_strictMode && (isStrictMode = true), void 0 !== options2.identifierPrefix && (identifierPrefix = options2.identifierPrefix), void 0 !== options2.onUncaughtError && (onUncaughtError = options2.onUncaughtError), void 0 !== options2.onCaughtError && (onCaughtError = options2.onCaughtError), void 0 !== options2.onRecoverableError && (onRecoverableError = options2.onRecoverableError));
         options2 = createFiberRoot(
-          container,
+          container2,
           1,
           false,
           null,
@@ -12643,16 +12644,16 @@
           onRecoverableError,
           defaultOnDefaultTransitionIndicator
         );
-        container[internalContainerInstanceKey] = options2.current;
-        listenToAllSupportedEvents(container);
+        container2[internalContainerInstanceKey] = options2.current;
+        listenToAllSupportedEvents(container2);
         return new ReactDOMRoot(options2);
       };
-      exports.hydrateRoot = function(container, initialChildren, options2) {
-        if (!isValidContainer(container)) throw Error(formatProdErrorMessage(299));
+      exports.hydrateRoot = function(container2, initialChildren, options2) {
+        if (!isValidContainer(container2)) throw Error(formatProdErrorMessage(299));
         var isStrictMode = false, identifierPrefix = "", onUncaughtError = defaultOnUncaughtError, onCaughtError = defaultOnCaughtError, onRecoverableError = defaultOnRecoverableError, formState = null;
         null !== options2 && void 0 !== options2 && (true === options2.unstable_strictMode && (isStrictMode = true), void 0 !== options2.identifierPrefix && (identifierPrefix = options2.identifierPrefix), void 0 !== options2.onUncaughtError && (onUncaughtError = options2.onUncaughtError), void 0 !== options2.onCaughtError && (onCaughtError = options2.onCaughtError), void 0 !== options2.onRecoverableError && (onRecoverableError = options2.onRecoverableError), void 0 !== options2.formState && (formState = options2.formState));
         initialChildren = createFiberRoot(
-          container,
+          container2,
           1,
           true,
           initialChildren,
@@ -12676,8 +12677,8 @@
         initialChildren.current.lanes = options2;
         markRootUpdated$1(initialChildren, options2);
         ensureRootIsScheduled(initialChildren);
-        container[internalContainerInstanceKey] = initialChildren.current;
-        listenToAllSupportedEvents(container);
+        container2[internalContainerInstanceKey] = initialChildren.current;
+        listenToAllSupportedEvents(container2);
         return new ReactDOMHydrationRoot(initialChildren);
       };
       exports.version = "19.2.4";
@@ -12752,9 +12753,6358 @@
     }
   });
 
+  // node_modules/.pnpm/react-is@19.2.7/node_modules/react-is/cjs/react-is.production.js
+  var require_react_is_production = __commonJS({
+    "node_modules/.pnpm/react-is@19.2.7/node_modules/react-is/cjs/react-is.production.js"(exports) {
+      "use strict";
+      var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element");
+      var REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal");
+      var REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment");
+      var REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode");
+      var REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler");
+      var REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer");
+      var REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context");
+      var REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref");
+      var REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense");
+      var REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list");
+      var REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo");
+      var REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+      var REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition");
+      var REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference");
+      function typeOf(object) {
+        if ("object" === typeof object && null !== object) {
+          var $$typeof = object.$$typeof;
+          switch ($$typeof) {
+            case REACT_ELEMENT_TYPE:
+              switch (object = object.type, object) {
+                case REACT_FRAGMENT_TYPE:
+                case REACT_PROFILER_TYPE:
+                case REACT_STRICT_MODE_TYPE:
+                case REACT_SUSPENSE_TYPE:
+                case REACT_SUSPENSE_LIST_TYPE:
+                case REACT_VIEW_TRANSITION_TYPE:
+                  return object;
+                default:
+                  switch (object = object && object.$$typeof, object) {
+                    case REACT_CONTEXT_TYPE:
+                    case REACT_FORWARD_REF_TYPE:
+                    case REACT_LAZY_TYPE:
+                    case REACT_MEMO_TYPE:
+                      return object;
+                    case REACT_CONSUMER_TYPE:
+                      return object;
+                    default:
+                      return $$typeof;
+                  }
+              }
+            case REACT_PORTAL_TYPE:
+              return $$typeof;
+          }
+        }
+      }
+      exports.ContextConsumer = REACT_CONSUMER_TYPE;
+      exports.ContextProvider = REACT_CONTEXT_TYPE;
+      exports.Element = REACT_ELEMENT_TYPE;
+      exports.ForwardRef = REACT_FORWARD_REF_TYPE;
+      exports.Fragment = REACT_FRAGMENT_TYPE;
+      exports.Lazy = REACT_LAZY_TYPE;
+      exports.Memo = REACT_MEMO_TYPE;
+      exports.Portal = REACT_PORTAL_TYPE;
+      exports.Profiler = REACT_PROFILER_TYPE;
+      exports.StrictMode = REACT_STRICT_MODE_TYPE;
+      exports.Suspense = REACT_SUSPENSE_TYPE;
+      exports.SuspenseList = REACT_SUSPENSE_LIST_TYPE;
+      exports.isContextConsumer = function(object) {
+        return typeOf(object) === REACT_CONSUMER_TYPE;
+      };
+      exports.isContextProvider = function(object) {
+        return typeOf(object) === REACT_CONTEXT_TYPE;
+      };
+      exports.isElement = function(object) {
+        return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
+      };
+      exports.isForwardRef = function(object) {
+        return typeOf(object) === REACT_FORWARD_REF_TYPE;
+      };
+      exports.isFragment = function(object) {
+        return typeOf(object) === REACT_FRAGMENT_TYPE;
+      };
+      exports.isLazy = function(object) {
+        return typeOf(object) === REACT_LAZY_TYPE;
+      };
+      exports.isMemo = function(object) {
+        return typeOf(object) === REACT_MEMO_TYPE;
+      };
+      exports.isPortal = function(object) {
+        return typeOf(object) === REACT_PORTAL_TYPE;
+      };
+      exports.isProfiler = function(object) {
+        return typeOf(object) === REACT_PROFILER_TYPE;
+      };
+      exports.isStrictMode = function(object) {
+        return typeOf(object) === REACT_STRICT_MODE_TYPE;
+      };
+      exports.isSuspense = function(object) {
+        return typeOf(object) === REACT_SUSPENSE_TYPE;
+      };
+      exports.isSuspenseList = function(object) {
+        return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
+      };
+      exports.isValidElementType = function(type) {
+        return "string" === typeof type || "function" === typeof type || type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || "object" === typeof type && null !== type && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_CONSUMER_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_CLIENT_REFERENCE || void 0 !== type.getModuleId) ? true : false;
+      };
+      exports.typeOf = typeOf;
+    }
+  });
+
+  // node_modules/.pnpm/react-is@19.2.7/node_modules/react-is/index.js
+  var require_react_is = __commonJS({
+    "node_modules/.pnpm/react-is@19.2.7/node_modules/react-is/index.js"(exports, module) {
+      "use strict";
+      if (true) {
+        module.exports = require_react_is_production();
+      } else {
+        module.exports = null;
+      }
+    }
+  });
+
+  // node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/cjs/react-is.production.min.js
+  var require_react_is_production_min = __commonJS({
+    "node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/cjs/react-is.production.min.js"(exports) {
+      "use strict";
+      var b = "function" === typeof Symbol && Symbol.for;
+      var c = b ? /* @__PURE__ */ Symbol.for("react.element") : 60103;
+      var d = b ? /* @__PURE__ */ Symbol.for("react.portal") : 60106;
+      var e = b ? /* @__PURE__ */ Symbol.for("react.fragment") : 60107;
+      var f = b ? /* @__PURE__ */ Symbol.for("react.strict_mode") : 60108;
+      var g = b ? /* @__PURE__ */ Symbol.for("react.profiler") : 60114;
+      var h = b ? /* @__PURE__ */ Symbol.for("react.provider") : 60109;
+      var k = b ? /* @__PURE__ */ Symbol.for("react.context") : 60110;
+      var l = b ? /* @__PURE__ */ Symbol.for("react.async_mode") : 60111;
+      var m = b ? /* @__PURE__ */ Symbol.for("react.concurrent_mode") : 60111;
+      var n = b ? /* @__PURE__ */ Symbol.for("react.forward_ref") : 60112;
+      var p = b ? /* @__PURE__ */ Symbol.for("react.suspense") : 60113;
+      var q = b ? /* @__PURE__ */ Symbol.for("react.suspense_list") : 60120;
+      var r2 = b ? /* @__PURE__ */ Symbol.for("react.memo") : 60115;
+      var t = b ? /* @__PURE__ */ Symbol.for("react.lazy") : 60116;
+      var v = b ? /* @__PURE__ */ Symbol.for("react.block") : 60121;
+      var w = b ? /* @__PURE__ */ Symbol.for("react.fundamental") : 60117;
+      var x = b ? /* @__PURE__ */ Symbol.for("react.responder") : 60118;
+      var y = b ? /* @__PURE__ */ Symbol.for("react.scope") : 60119;
+      function z(a) {
+        if ("object" === typeof a && null !== a) {
+          var u = a.$$typeof;
+          switch (u) {
+            case c:
+              switch (a = a.type, a) {
+                case l:
+                case m:
+                case e:
+                case g:
+                case f:
+                case p:
+                  return a;
+                default:
+                  switch (a = a && a.$$typeof, a) {
+                    case k:
+                    case n:
+                    case t:
+                    case r2:
+                    case h:
+                      return a;
+                    default:
+                      return u;
+                  }
+              }
+            case d:
+              return u;
+          }
+        }
+      }
+      function A(a) {
+        return z(a) === m;
+      }
+      exports.AsyncMode = l;
+      exports.ConcurrentMode = m;
+      exports.ContextConsumer = k;
+      exports.ContextProvider = h;
+      exports.Element = c;
+      exports.ForwardRef = n;
+      exports.Fragment = e;
+      exports.Lazy = t;
+      exports.Memo = r2;
+      exports.Portal = d;
+      exports.Profiler = g;
+      exports.StrictMode = f;
+      exports.Suspense = p;
+      exports.isAsyncMode = function(a) {
+        return A(a) || z(a) === l;
+      };
+      exports.isConcurrentMode = A;
+      exports.isContextConsumer = function(a) {
+        return z(a) === k;
+      };
+      exports.isContextProvider = function(a) {
+        return z(a) === h;
+      };
+      exports.isElement = function(a) {
+        return "object" === typeof a && null !== a && a.$$typeof === c;
+      };
+      exports.isForwardRef = function(a) {
+        return z(a) === n;
+      };
+      exports.isFragment = function(a) {
+        return z(a) === e;
+      };
+      exports.isLazy = function(a) {
+        return z(a) === t;
+      };
+      exports.isMemo = function(a) {
+        return z(a) === r2;
+      };
+      exports.isPortal = function(a) {
+        return z(a) === d;
+      };
+      exports.isProfiler = function(a) {
+        return z(a) === g;
+      };
+      exports.isStrictMode = function(a) {
+        return z(a) === f;
+      };
+      exports.isSuspense = function(a) {
+        return z(a) === p;
+      };
+      exports.isValidElementType = function(a) {
+        return "string" === typeof a || "function" === typeof a || a === e || a === m || a === g || a === f || a === p || a === q || "object" === typeof a && null !== a && (a.$$typeof === t || a.$$typeof === r2 || a.$$typeof === h || a.$$typeof === k || a.$$typeof === n || a.$$typeof === w || a.$$typeof === x || a.$$typeof === y || a.$$typeof === v);
+      };
+      exports.typeOf = z;
+    }
+  });
+
+  // node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/index.js
+  var require_react_is2 = __commonJS({
+    "node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/index.js"(exports, module) {
+      "use strict";
+      if (true) {
+        module.exports = require_react_is_production_min();
+      } else {
+        module.exports = null;
+      }
+    }
+  });
+
+  // node_modules/.pnpm/hoist-non-react-statics@3.3.2/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
+  var require_hoist_non_react_statics_cjs = __commonJS({
+    "node_modules/.pnpm/hoist-non-react-statics@3.3.2/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"(exports, module) {
+      "use strict";
+      var reactIs = require_react_is2();
+      var REACT_STATICS = {
+        childContextTypes: true,
+        contextType: true,
+        contextTypes: true,
+        defaultProps: true,
+        displayName: true,
+        getDefaultProps: true,
+        getDerivedStateFromError: true,
+        getDerivedStateFromProps: true,
+        mixins: true,
+        propTypes: true,
+        type: true
+      };
+      var KNOWN_STATICS = {
+        name: true,
+        length: true,
+        prototype: true,
+        caller: true,
+        callee: true,
+        arguments: true,
+        arity: true
+      };
+      var FORWARD_REF_STATICS = {
+        "$$typeof": true,
+        render: true,
+        defaultProps: true,
+        displayName: true,
+        propTypes: true
+      };
+      var MEMO_STATICS = {
+        "$$typeof": true,
+        compare: true,
+        defaultProps: true,
+        displayName: true,
+        propTypes: true,
+        type: true
+      };
+      var TYPE_STATICS = {};
+      TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+      TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
+      function getStatics(component) {
+        if (reactIs.isMemo(component)) {
+          return MEMO_STATICS;
+        }
+        return TYPE_STATICS[component["$$typeof"]] || REACT_STATICS;
+      }
+      var defineProperty = Object.defineProperty;
+      var getOwnPropertyNames = Object.getOwnPropertyNames;
+      var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+      var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+      var getPrototypeOf = Object.getPrototypeOf;
+      var objectPrototype = Object.prototype;
+      function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+        if (typeof sourceComponent !== "string") {
+          if (objectPrototype) {
+            var inheritedComponent = getPrototypeOf(sourceComponent);
+            if (inheritedComponent && inheritedComponent !== objectPrototype) {
+              hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+            }
+          }
+          var keys = getOwnPropertyNames(sourceComponent);
+          if (getOwnPropertySymbols) {
+            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+          }
+          var targetStatics = getStatics(targetComponent);
+          var sourceStatics = getStatics(sourceComponent);
+          for (var i = 0; i < keys.length; ++i) {
+            var key = keys[i];
+            if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+              var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+              try {
+                defineProperty(targetComponent, key, descriptor);
+              } catch (e) {
+              }
+            }
+          }
+        }
+        return targetComponent;
+      }
+      module.exports = hoistNonReactStatics;
+    }
+  });
+
   // extension/content-entry.tsx
   var import_client = __toESM(require_client());
+  var import_react8 = __toESM(require_react());
+
+  // lib/utils.ts
+  function cn(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
+  // components/ui/avatar.tsx
+  var import_jsx_runtime = __toESM(require_jsx_runtime());
+  function Avatar({ className, ...props }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "div",
+      {
+        className: cn(
+          "relative flex size-12 shrink-0 overflow-hidden rounded-full",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+  function AvatarFallback({
+    className,
+    ...props
+  }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "div",
+      {
+        className: cn(
+          "flex size-full items-center justify-center rounded-full bg-zinc-800 text-zinc-400",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+
+  // components/ui/button.tsx
+  var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+  var variants = {
+    default: "bg-white text-zinc-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] hover:bg-zinc-100",
+    secondary: "border border-white/10 bg-zinc-900/95 text-zinc-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:bg-zinc-800"
+  };
+  function Button({
+    className,
+    variant = "default",
+    ...props
+  }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+      "button",
+      {
+        className: cn(
+          "inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/70 disabled:pointer-events-none disabled:opacity-50",
+          variants[variant],
+          className
+        ),
+        ...props
+      }
+    );
+  }
+
+  // components/ui/card.tsx
+  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  function Card({ className, ...props }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+      "div",
+      {
+        className: cn(
+          "rounded-[1.25rem] border border-white/10 bg-[#111111] text-zinc-50 shadow-2xl shadow-black/40",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+  function CardContent({
+    className,
+    ...props
+  }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: cn("p-6", className), ...props });
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/SvgIcon/SvgIcon.mjs
+  var React8 = __toESM(require_react(), 1);
+
+  // node_modules/.pnpm/clsx@2.1.1/node_modules/clsx/dist/clsx.mjs
+  function r(e) {
+    var t, f, n = "";
+    if ("string" == typeof e || "number" == typeof e) n += e;
+    else if ("object" == typeof e) if (Array.isArray(e)) {
+      var o = e.length;
+      for (t = 0; t < o; t++) e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+    } else for (f in e) e[f] && (n && (n += " "), n += f);
+    return n;
+  }
+  function clsx() {
+    for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
+    return n;
+  }
+  var clsx_default = clsx;
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/composeClasses/composeClasses.mjs
+  function composeClasses(slots, getUtilityClass, classes = void 0) {
+    const output = {};
+    for (const slotName in slots) {
+      const slot = slots[slotName];
+      let buffer = "";
+      let start = true;
+      for (let i = 0; i < slot.length; i += 1) {
+        const value = slot[i];
+        if (value) {
+          buffer += (start === true ? "" : " ") + getUtilityClass(value);
+          start = false;
+          if (classes && classes[value]) {
+            buffer += " " + classes[value];
+          }
+        }
+      }
+      output[slotName] = buffer;
+    }
+    return output;
+  }
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/formatMuiErrorMessage/formatMuiErrorMessage.mjs
+  function formatMuiErrorMessage(code, ...args) {
+    const url = new URL(`https://mui.com/production-error/?code=${code}`);
+    args.forEach((arg2) => url.searchParams.append("args[]", arg2));
+    return `Minified MUI error #${code}; visit ${url} for the full message.`;
+  }
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/capitalize/capitalize.mjs
+  function capitalize(string) {
+    if (typeof string !== "string") {
+      throw new Error(false ? "MUI: `capitalize(string)` expects a string argument." : formatMuiErrorMessage(7));
+    }
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/utils/capitalize.mjs
+  var capitalize_default = capitalize;
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/fastDeepAssign/fastDeepAssign.mjs
+  function fastDeepAssign(target, source) {
+    const sourceIsArray = Array.isArray(source);
+    const targetIsArray = Array.isArray(target);
+    if (isPrimitive(source)) {
+      return source;
+    } else if (isPrimitiveOrBuiltIn(target)) {
+      return clone(source);
+    } else if (sourceIsArray && targetIsArray) {
+      return mergeArray(target, source);
+    } else if (sourceIsArray !== targetIsArray) {
+      return clone(source);
+    } else {
+      return mergeObject(target, source);
+    }
+  }
+  function cloneArray(value) {
+    let i = 0;
+    const il = value.length;
+    const result = new Array(il);
+    for (i = 0; i < il; i += 1) {
+      result[i] = clone(value[i]);
+    }
+    return result;
+  }
+  function cloneObject(target) {
+    const result = {};
+    for (const key in target) {
+      if (key === "__proto__" || key === "constructor" || key === "prototype") {
+        continue;
+      }
+      result[key] = clone(target[key]);
+    }
+    return result;
+  }
+  function mergeArray(target, source) {
+    const tl = target.length;
+    for (let i = 0; i < source.length; i += 1) {
+      target[tl + i] = clone(source[i]);
+    }
+    return target;
+  }
+  function isMergeableObject(value) {
+    return typeof value === "object" && value !== null && !(value instanceof RegExp) && !(value instanceof Date);
+  }
+  function isPrimitive(value) {
+    return typeof value !== "object" || value === null;
+  }
+  function isPrimitiveOrBuiltIn(value) {
+    return typeof value !== "object" || value === null || value instanceof RegExp || value instanceof Date;
+  }
+  function clone(entry) {
+    return isMergeableObject(entry) ? Array.isArray(entry) ? cloneArray(entry) : cloneObject(entry) : entry;
+  }
+  function mergeObject(target, source) {
+    for (const key in source) {
+      if (key === "__proto__" || key === "constructor" || key === "prototype") {
+        continue;
+      }
+      if (key in target) {
+        target[key] = fastDeepAssign(target[key], source[key]);
+      } else {
+        target[key] = clone(source[key]);
+      }
+    }
+    return target;
+  }
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/isObjectEmpty/isObjectEmpty.mjs
+  function isObjectEmpty(object) {
+    if (object == null) {
+      return true;
+    }
+    for (const _ in object) {
+      return false;
+    }
+    return true;
+  }
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/deepmerge/deepmerge.mjs
+  var React = __toESM(require_react(), 1);
+  var import_react_is = __toESM(require_react_is(), 1);
+  function isPlainObject(item) {
+    if (typeof item !== "object" || item === null) {
+      return false;
+    }
+    const prototype = Object.getPrototypeOf(item);
+    return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in item) && !(Symbol.iterator in item);
+  }
+  function deepClone(source) {
+    if (/* @__PURE__ */ React.isValidElement(source) || (0, import_react_is.isValidElementType)(source) || !isPlainObject(source)) {
+      return source;
+    }
+    const output = {};
+    Object.keys(source).forEach((key) => {
+      output[key] = deepClone(source[key]);
+    });
+    return output;
+  }
+  function deepmerge(target, source, options = {
+    clone: true
+  }) {
+    const output = options.clone ? {
+      ...target
+    } : target;
+    if (isPlainObject(target) && isPlainObject(source)) {
+      Object.keys(source).forEach((key) => {
+        if (/* @__PURE__ */ React.isValidElement(source[key]) || (0, import_react_is.isValidElementType)(source[key])) {
+          output[key] = source[key];
+        } else if (isPlainObject(source[key]) && // Avoid prototype pollution
+        Object.prototype.hasOwnProperty.call(target, key) && isPlainObject(target[key])) {
+          output[key] = deepmerge(target[key], source[key], options);
+        } else if (options.clone) {
+          output[key] = isPlainObject(source[key]) ? deepClone(source[key]) : source[key];
+        } else {
+          output[key] = source[key];
+        }
+      });
+    }
+    return output;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/cssContainerQueries/cssContainerQueries.mjs
+  var MIN_WIDTH_PATTERN = /min-width:\s*([0-9.]+)/;
+  function sortContainerQueries(theme, css) {
+    if (!theme.containerQueries || !hasContainerQuery(css)) {
+      return css;
+    }
+    const keys = [];
+    for (const key in css) {
+      if (key.startsWith("@container")) {
+        keys.push(key);
+      }
+    }
+    keys.sort((a, b) => {
+      return +(a.match(MIN_WIDTH_PATTERN)?.[1] || 0) - +(b.match(MIN_WIDTH_PATTERN)?.[1] || 0);
+    });
+    const result = css;
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
+      const value = result[key];
+      delete result[key];
+      result[key] = value;
+    }
+    return result;
+  }
+  function hasContainerQuery(css) {
+    for (const key in css) {
+      if (key.startsWith("@container")) {
+        return true;
+      }
+    }
+    return false;
+  }
+  function isCqShorthand(breakpointKeys, value) {
+    return value === "@" || value.startsWith("@") && (breakpointKeys.some((key) => value.startsWith(`@${key}`)) || !!value.match(/^@\d/));
+  }
+  function getContainerQuery(theme, shorthand) {
+    const matches = shorthand.match(/^@([^/]+)?\/?(.+)?$/);
+    if (!matches) {
+      if (false) {
+        throw (
+          /* minify-error */
+          new Error(`MUI: The provided shorthand ${`(${shorthand})`} is invalid. The format should be \`@<breakpoint | number>\` or \`@<breakpoint | number>/<container>\`.
+For example, \`@sm\` or \`@600\` or \`@40rem/sidebar\`.`)
+        );
+      }
+      return null;
+    }
+    const [, containerQuery, containerName] = matches;
+    const value = Number.isNaN(+containerQuery) ? containerQuery || 0 : +containerQuery;
+    return theme.containerQueries(containerName).up(value);
+  }
+  function cssContainerQueries(themeInput) {
+    const toContainerQuery = (mediaQuery, name) => mediaQuery.replace("@media", name ? `@container ${name}` : "@container");
+    function attachCq(node3, name) {
+      node3.up = (...args) => toContainerQuery(themeInput.breakpoints.up(...args), name);
+      node3.down = (...args) => toContainerQuery(themeInput.breakpoints.down(...args), name);
+      node3.between = (...args) => toContainerQuery(themeInput.breakpoints.between(...args), name);
+      node3.only = (...args) => toContainerQuery(themeInput.breakpoints.only(...args), name);
+      node3.not = (...args) => {
+        const result = toContainerQuery(themeInput.breakpoints.not(...args), name);
+        if (result.includes("not all and")) {
+          return result.replace("not all and ", "").replace("min-width:", "width<").replace("max-width:", "width>").replace("and", "or");
+        }
+        return result;
+      };
+    }
+    const node2 = {};
+    const containerQueries = (name) => {
+      attachCq(node2, name);
+      return node2;
+    };
+    attachCq(containerQueries);
+    return {
+      ...themeInput,
+      containerQueries
+    };
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/createBreakpoints/createBreakpoints.mjs
+  var sortBreakpointsValues = (values2) => {
+    const breakpointsAsArray = Object.keys(values2).map((key) => ({
+      key,
+      val: values2[key]
+    })) || [];
+    breakpointsAsArray.sort((breakpoint1, breakpoint2) => breakpoint1.val - breakpoint2.val);
+    return breakpointsAsArray.reduce((acc, obj) => {
+      return {
+        ...acc,
+        [obj.key]: obj.val
+      };
+    }, {});
+  };
+  function createBreakpoints(breakpoints) {
+    const {
+      values: values2 = {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536
+      },
+      unit = "px",
+      step = 5,
+      ...other
+    } = breakpoints;
+    const sortedValues = sortBreakpointsValues(values2);
+    const keys = Object.keys(sortedValues);
+    function up(key) {
+      const value = typeof values2[key] === "number" ? values2[key] : key;
+      return `@media (min-width:${value}${unit})`;
+    }
+    function down(key) {
+      const value = typeof values2[key] === "number" ? values2[key] : key;
+      return `@media (max-width:${value - step / 100}${unit})`;
+    }
+    function between(start, end) {
+      const endIndex = keys.indexOf(end);
+      return `@media (min-width:${typeof values2[start] === "number" ? values2[start] : start}${unit}) and (max-width:${(endIndex !== -1 && typeof values2[keys[endIndex]] === "number" ? values2[keys[endIndex]] : end) - step / 100}${unit})`;
+    }
+    function only(key) {
+      if (keys.indexOf(key) + 1 < keys.length) {
+        return between(key, keys[keys.indexOf(key) + 1]);
+      }
+      return up(key);
+    }
+    function not(key) {
+      const keyIndex = keys.indexOf(key);
+      if (keyIndex === 0) {
+        return up(keys[1]);
+      }
+      if (keyIndex === keys.length - 1) {
+        return down(keys[keyIndex]);
+      }
+      return between(key, keys[keys.indexOf(key) + 1]).replace("@media", "@media not all and");
+    }
+    const mediaKeys = [];
+    for (let i = 0; i < keys.length; i += 1) {
+      mediaKeys.push(up(keys[i]));
+    }
+    return {
+      keys,
+      values: sortedValues,
+      up,
+      down,
+      between,
+      only,
+      not,
+      unit,
+      internal_mediaKeys: mediaKeys,
+      ...other
+    };
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/breakpoints/breakpoints.mjs
+  var EMPTY_THEME = {};
+  var values = {
+    xs: 0,
+    // phone
+    sm: 600,
+    // tablet
+    md: 900,
+    // small laptop
+    lg: 1200,
+    // desktop
+    xl: 1536
+    // large screen
+  };
+  var DEFAULT_BREAKPOINTS = createBreakpoints({
+    values
+  });
+  var defaultContainerQueries = {
+    containerQueries: (containerName) => ({
+      up: (key) => {
+        let result = typeof key === "number" ? key : values[key] || key;
+        if (typeof result === "number") {
+          result = `${result}px`;
+        }
+        return containerName ? `@container ${containerName} (min-width:${result})` : `@container (min-width:${result})`;
+      }
+    })
+  };
+  function handleBreakpoints(props, propValue, styleFromPropValue) {
+    const result = {};
+    return iterateBreakpoints(result, props.theme, propValue, (mediaKey, value, initialKey) => {
+      const finalValue = styleFromPropValue(value, initialKey);
+      if (mediaKey) {
+        result[mediaKey] = finalValue;
+      } else {
+        fastDeepAssign(result, finalValue);
+      }
+    });
+  }
+  function iterateBreakpoints(target, theme, propValue, callback) {
+    theme ??= EMPTY_THEME;
+    if (Array.isArray(propValue)) {
+      const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
+      for (let i = 0; i < propValue.length; i += 1) {
+        buildBreakpoint(target, breakpoints.up(breakpoints.keys[i]), propValue[i], void 0, callback);
+      }
+      return target;
+    }
+    if (typeof propValue === "object") {
+      const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
+      const breakpointValues = breakpoints.values ?? values;
+      for (const key in propValue) {
+        if (isCqShorthand(breakpoints.keys, key)) {
+          const containerKey = getContainerQuery(theme.containerQueries ? theme : defaultContainerQueries, key);
+          if (containerKey) {
+            buildBreakpoint(target, containerKey, propValue[key], key, callback);
+          }
+        } else if (key in breakpointValues) {
+          const mediaKey = breakpoints.up(key);
+          buildBreakpoint(target, mediaKey, propValue[key], key, callback);
+        } else {
+          const cssKey = key;
+          target[cssKey] = propValue[cssKey];
+        }
+      }
+      return target;
+    }
+    callback(void 0, propValue);
+    return target;
+  }
+  function buildBreakpoint(target, mediaKey, value, initialKey, callback) {
+    target[mediaKey] ??= {};
+    callback(mediaKey, value, initialKey);
+  }
+  function createEmptyBreakpointObject(breakpoints = DEFAULT_BREAKPOINTS) {
+    const {
+      internal_mediaKeys: mediaKeys
+    } = breakpoints;
+    const result = {};
+    for (let i = 0; i < mediaKeys.length; i += 1) {
+      result[mediaKeys[i]] = {};
+    }
+    return result;
+  }
+  function removeUnusedBreakpoints(breakpoints, style3) {
+    const breakpointKeys = breakpoints.internal_mediaKeys;
+    for (let i = 0; i < breakpointKeys.length; i += 1) {
+      const key = breakpointKeys[i];
+      if (isObjectEmpty(style3[key])) {
+        delete style3[key];
+      }
+    }
+    return style3;
+  }
+  function hasBreakpoint(breakpoints, value) {
+    if (Array.isArray(value)) {
+      return true;
+    }
+    if (typeof value === "object" && value !== null) {
+      for (let i = 0; i < breakpoints.keys.length; i += 1) {
+        if (breakpoints.keys[i] in value) {
+          return true;
+        }
+      }
+      const valueKeys = Object.keys(value);
+      for (let i = 0; i < valueKeys.length; i += 1) {
+        if (isCqShorthand(breakpoints.keys, valueKeys[i])) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/style/style.mjs
+  function getStyleValue2(themeMapping, transform, userValue, alternateProp) {
+    let value;
+    if (typeof themeMapping === "function") {
+      value = themeMapping(userValue);
+    } else if (Array.isArray(themeMapping)) {
+      value = themeMapping[userValue] || userValue;
+    } else if (typeof userValue === "string") {
+      value = getPath(themeMapping, userValue, true, alternateProp) || userValue;
+    } else {
+      value = userValue;
+    }
+    if (transform) {
+      value = transform(value, userValue, themeMapping);
+    }
+    return value;
+  }
+  function getPath(obj, pathInput, checkVars = true, alternateProp = void 0) {
+    if (!obj || !pathInput) {
+      return null;
+    }
+    const path = pathInput.split(".");
+    if (obj.vars && checkVars) {
+      const val = getPathImpl(obj.vars, path, alternateProp);
+      if (val != null) {
+        return val;
+      }
+    }
+    return getPathImpl(obj, path, alternateProp);
+  }
+  function getPathImpl(object, path, alternateProp = void 0) {
+    let lastResult = void 0;
+    let result = object;
+    let index = 0;
+    while (index < path.length) {
+      if (result === null || result === void 0) {
+        return result;
+      }
+      lastResult = result;
+      result = result[path[index]];
+      index += 1;
+    }
+    if (alternateProp && result === void 0) {
+      const lastKey = path[path.length - 1];
+      const alternateKey = `${alternateProp}${lastKey === "default" ? "" : capitalize(lastKey)}`;
+      return lastResult?.[alternateKey];
+    }
+    return result;
+  }
+  function style(options) {
+    const {
+      prop,
+      cssProperty = options.prop,
+      themeKey,
+      transform
+    } = options;
+    const fn = (props) => {
+      if (props[prop] == null) {
+        return null;
+      }
+      const propValue = props[prop];
+      const theme = props.theme;
+      const themeMapping = getPath(theme, themeKey) || {};
+      const styleFromPropValue = (valueFinal) => {
+        const value = getStyleValue2(themeMapping, transform, valueFinal, prop);
+        return cssProperty === false ? value : {
+          [cssProperty]: value
+        };
+      };
+      return handleBreakpoints(props, propValue, styleFromPropValue);
+    };
+    fn.propTypes = false ? {
+      [prop]: responsivePropType_default
+    } : {};
+    fn.filterProps = [prop];
+    return fn;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/spacing/spacing.mjs
+  var EMPTY_THEME2 = {
+    internal_cache: {}
+  };
+  var properties = {
+    m: "margin",
+    p: "padding"
+  };
+  var directions = {
+    t: "Top",
+    r: "Right",
+    b: "Bottom",
+    l: "Left",
+    x: ["Left", "Right"],
+    y: ["Top", "Bottom"]
+  };
+  var aliases = {
+    marginX: "mx",
+    marginY: "my",
+    paddingX: "px",
+    paddingY: "py"
+  };
+  var CSS_PROPERTIES = {};
+  for (const key in properties) {
+    CSS_PROPERTIES[key] = [properties[key]];
+  }
+  for (const keyProperty in properties) {
+    for (const keyDirection in directions) {
+      const property = properties[keyProperty];
+      const direction = directions[keyDirection];
+      const value = Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
+      CSS_PROPERTIES[keyProperty + keyDirection] = value;
+    }
+  }
+  for (const key in aliases) {
+    CSS_PROPERTIES[key] = CSS_PROPERTIES[aliases[key]];
+  }
+  var marginKeys = /* @__PURE__ */ new Set(["m", "mt", "mr", "mb", "ml", "mx", "my", "margin", "marginTop", "marginRight", "marginBottom", "marginLeft", "marginX", "marginY", "marginInline", "marginInlineStart", "marginInlineEnd", "marginBlock", "marginBlockStart", "marginBlockEnd"]);
+  var paddingKeys = /* @__PURE__ */ new Set(["p", "pt", "pr", "pb", "pl", "px", "py", "padding", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "paddingX", "paddingY", "paddingInline", "paddingInlineStart", "paddingInlineEnd", "paddingBlock", "paddingBlockStart", "paddingBlockEnd"]);
+  var spacingKeys = /* @__PURE__ */ new Set([...marginKeys, ...paddingKeys]);
+  function createUnaryUnit(theme, themeKey, defaultValue, propName) {
+    const themeSpacing = getPath(theme, themeKey, true) ?? defaultValue;
+    if (typeof themeSpacing === "number" || typeof themeSpacing === "string") {
+      return (val) => {
+        if (typeof val === "string") {
+          return val;
+        }
+        if (false) {
+          if (typeof val !== "number") {
+            console.error(`MUI: Expected ${propName} argument to be a number or a string, got ${val}.`);
+          }
+        }
+        if (typeof themeSpacing === "string") {
+          if (themeSpacing.startsWith("var(") && val === 0) {
+            return 0;
+          }
+          if (themeSpacing.startsWith("var(") && val === 1) {
+            return themeSpacing;
+          }
+          return `calc(${val} * ${themeSpacing})`;
+        }
+        return themeSpacing * val;
+      };
+    }
+    if (Array.isArray(themeSpacing)) {
+      return (val) => {
+        if (typeof val === "string") {
+          return val;
+        }
+        const abs2 = Math.abs(val);
+        if (false) {
+          if (!Number.isInteger(abs2)) {
+            console.error([`MUI: The \`theme.${themeKey}\` array type cannot be combined with non integer values.You should either use an integer value that can be used as index, or define the \`theme.${themeKey}\` as a number.`].join("\n"));
+          } else if (abs2 > themeSpacing.length - 1) {
+            console.error([`MUI: The value provided (${abs2}) overflows.`, `The supported values are: ${JSON.stringify(themeSpacing)}.`, `${abs2} > ${themeSpacing.length - 1}, you need to add the missing values.`].join("\n"));
+          }
+        }
+        const transformed = themeSpacing[abs2];
+        if (val >= 0) {
+          return transformed;
+        }
+        if (typeof transformed === "number") {
+          return -transformed;
+        }
+        if (typeof transformed === "string" && transformed.startsWith("var(")) {
+          return `calc(-1 * ${transformed})`;
+        }
+        return `-${transformed}`;
+      };
+    }
+    if (typeof themeSpacing === "function") {
+      return themeSpacing;
+    }
+    if (false) {
+      console.error([`MUI: The \`theme.${themeKey}\` value (${themeSpacing}) is invalid.`, "It should be a number, an array or a function."].join("\n"));
+    }
+    return () => void 0;
+  }
+  function createUnarySpacing(theme) {
+    return createUnaryUnit(theme, "spacing", 8, "spacing");
+  }
+  function getValue(transformer, propValue) {
+    if (typeof propValue === "string" || propValue == null) {
+      return propValue;
+    }
+    return transformer(propValue);
+  }
+  var container = [""];
+  function style2(props, keys) {
+    const theme = props.theme ?? EMPTY_THEME2;
+    const transformer = theme?.internal_cache?.unarySpacing ?? createUnarySpacing(theme);
+    const result = {};
+    for (const prop in props) {
+      if (!keys.has(prop)) {
+        continue;
+      }
+      const cssProperties = CSS_PROPERTIES[prop] ?? (container[0] = prop, container);
+      const propValue = props[prop];
+      iterateBreakpoints(result, props.theme, propValue, (mediaKey, value) => {
+        const target = mediaKey ? result[mediaKey] : result;
+        for (let i = 0; i < cssProperties.length; i += 1) {
+          target[cssProperties[i]] = getValue(transformer, value);
+        }
+      });
+    }
+    return result;
+  }
+  function marginFn(props) {
+    return style2(props, marginKeys);
+  }
+  marginFn.propTypes = false ? Array.from(marginKeys).reduce((obj, key) => {
+    obj[key] = responsivePropType_default;
+    return obj;
+  }, {}) : {};
+  marginFn.filterProps = marginKeys;
+  var margin = marginFn;
+  function paddingFn(props) {
+    return style2(props, paddingKeys);
+  }
+  paddingFn.propTypes = false ? Array.from(paddingKeys).reduce((obj, key) => {
+    obj[key] = responsivePropType_default;
+    return obj;
+  }, {}) : {};
+  paddingFn.filterProps = paddingKeys;
+  var padding = paddingFn;
+  function spacingFn(props) {
+    return style2(props, spacingKeys);
+  }
+  spacingFn.propTypes = false ? Array.from(spacingKeys).reduce((obj, key) => {
+    obj[key] = responsivePropType_default;
+    return obj;
+  }, {}) : {};
+  spacingFn.filterProps = spacingKeys;
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/compose/compose.mjs
+  function compose(...styles) {
+    const handlers = styles.reduce((acc, style3) => {
+      style3.filterProps.forEach((prop) => {
+        acc[prop] = style3;
+      });
+      return acc;
+    }, {});
+    const fn = (props) => {
+      const result = {};
+      for (const prop in props) {
+        if (handlers[prop]) {
+          fastDeepAssign(result, handlers[prop](props));
+        }
+      }
+      return result;
+    };
+    fn.propTypes = false ? styles.reduce((acc, style3) => Object.assign(acc, style3.propTypes), {}) : {};
+    fn.filterProps = styles.reduce((acc, style3) => acc.concat(style3.filterProps), []);
+    return fn;
+  }
+  var compose_default = compose;
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/borders/borders.mjs
+  function borderTransform(value) {
+    if (typeof value !== "number") {
+      return value;
+    }
+    return `${value}px solid`;
+  }
+  function createBorderStyle(prop, transform) {
+    return style({
+      prop,
+      themeKey: "borders",
+      transform
+    });
+  }
+  var border = createBorderStyle("border", borderTransform);
+  var borderTop = createBorderStyle("borderTop", borderTransform);
+  var borderRight = createBorderStyle("borderRight", borderTransform);
+  var borderBottom = createBorderStyle("borderBottom", borderTransform);
+  var borderLeft = createBorderStyle("borderLeft", borderTransform);
+  var borderColor = createBorderStyle("borderColor");
+  var borderTopColor = createBorderStyle("borderTopColor");
+  var borderRightColor = createBorderStyle("borderRightColor");
+  var borderBottomColor = createBorderStyle("borderBottomColor");
+  var borderLeftColor = createBorderStyle("borderLeftColor");
+  var outline = createBorderStyle("outline", borderTransform);
+  var outlineColor = createBorderStyle("outlineColor");
+  var borderRadius = (props) => {
+    if (props.borderRadius !== void 0 && props.borderRadius !== null) {
+      const transformer = createUnaryUnit(props.theme, "shape.borderRadius", 4, "borderRadius");
+      const styleFromPropValue = (propValue) => ({
+        borderRadius: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.borderRadius, styleFromPropValue);
+    }
+    return null;
+  };
+  borderRadius.propTypes = false ? {
+    borderRadius: responsivePropType_default
+  } : {};
+  borderRadius.filterProps = ["borderRadius"];
+  var borders = compose_default(border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderTopColor, borderRightColor, borderBottomColor, borderLeftColor, borderRadius, outline, outlineColor);
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/cssGrid/cssGrid.mjs
+  var gap = (props) => {
+    if (props.gap !== void 0 && props.gap !== null) {
+      const transformer = createUnaryUnit(props.theme, "spacing", 8, "gap");
+      const styleFromPropValue = (propValue) => ({
+        gap: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.gap, styleFromPropValue);
+    }
+    return null;
+  };
+  gap.propTypes = false ? {
+    gap: responsivePropType_default
+  } : {};
+  gap.filterProps = ["gap"];
+  var columnGap = (props) => {
+    if (props.columnGap !== void 0 && props.columnGap !== null) {
+      const transformer = createUnaryUnit(props.theme, "spacing", 8, "columnGap");
+      const styleFromPropValue = (propValue) => ({
+        columnGap: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.columnGap, styleFromPropValue);
+    }
+    return null;
+  };
+  columnGap.propTypes = false ? {
+    columnGap: responsivePropType_default
+  } : {};
+  columnGap.filterProps = ["columnGap"];
+  var rowGap = (props) => {
+    if (props.rowGap !== void 0 && props.rowGap !== null) {
+      const transformer = createUnaryUnit(props.theme, "spacing", 8, "rowGap");
+      const styleFromPropValue = (propValue) => ({
+        rowGap: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.rowGap, styleFromPropValue);
+    }
+    return null;
+  };
+  rowGap.propTypes = false ? {
+    rowGap: responsivePropType_default
+  } : {};
+  rowGap.filterProps = ["rowGap"];
+  var gridColumn = style({
+    prop: "gridColumn"
+  });
+  var gridRow = style({
+    prop: "gridRow"
+  });
+  var gridAutoFlow = style({
+    prop: "gridAutoFlow"
+  });
+  var gridAutoColumns = style({
+    prop: "gridAutoColumns"
+  });
+  var gridAutoRows = style({
+    prop: "gridAutoRows"
+  });
+  var gridTemplateColumns = style({
+    prop: "gridTemplateColumns"
+  });
+  var gridTemplateRows = style({
+    prop: "gridTemplateRows"
+  });
+  var gridTemplateAreas = style({
+    prop: "gridTemplateAreas"
+  });
+  var gridArea = style({
+    prop: "gridArea"
+  });
+  var grid = compose_default(gap, columnGap, rowGap, gridColumn, gridRow, gridAutoFlow, gridAutoColumns, gridAutoRows, gridTemplateColumns, gridTemplateRows, gridTemplateAreas, gridArea);
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/palette/palette.mjs
+  function paletteTransform(value, userValue) {
+    if (userValue === "grey") {
+      return userValue;
+    }
+    return value;
+  }
+  var color = style({
+    prop: "color",
+    themeKey: "palette",
+    transform: paletteTransform
+  });
+  var bgcolor = style({
+    prop: "bgcolor",
+    cssProperty: "backgroundColor",
+    themeKey: "palette",
+    transform: paletteTransform
+  });
+  var backgroundColor = style({
+    prop: "backgroundColor",
+    themeKey: "palette",
+    transform: paletteTransform
+  });
+  var palette = compose_default(color, bgcolor, backgroundColor);
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/sizing/sizing.mjs
+  var breakpointsValues = values;
+  function sizingTransform(value) {
+    return value <= 1 && value !== 0 ? `${value * 100}%` : value;
+  }
+  var width = style({
+    prop: "width",
+    transform: sizingTransform
+  });
+  var maxWidth = (props) => {
+    if (props.maxWidth !== void 0 && props.maxWidth !== null) {
+      const styleFromPropValue = (propValue) => {
+        const breakpoint = props.theme?.breakpoints?.values?.[propValue] || breakpointsValues[propValue];
+        if (!breakpoint) {
+          return {
+            maxWidth: sizingTransform(propValue)
+          };
+        }
+        if (props.theme?.breakpoints?.unit !== "px") {
+          return {
+            maxWidth: `${breakpoint}${props.theme.breakpoints.unit}`
+          };
+        }
+        return {
+          maxWidth: breakpoint
+        };
+      };
+      return handleBreakpoints(props, props.maxWidth, styleFromPropValue);
+    }
+    return null;
+  };
+  maxWidth.filterProps = ["maxWidth"];
+  var minWidth = style({
+    prop: "minWidth",
+    transform: sizingTransform
+  });
+  var height = style({
+    prop: "height",
+    transform: sizingTransform
+  });
+  var maxHeight = style({
+    prop: "maxHeight",
+    transform: sizingTransform
+  });
+  var minHeight = style({
+    prop: "minHeight",
+    transform: sizingTransform
+  });
+  var sizeWidth = style({
+    prop: "size",
+    cssProperty: "width",
+    transform: sizingTransform
+  });
+  var sizeHeight = style({
+    prop: "size",
+    cssProperty: "height",
+    transform: sizingTransform
+  });
+  var boxSizing = style({
+    prop: "boxSizing"
+  });
+  var sizing = compose_default(width, maxWidth, minWidth, height, maxHeight, minHeight, boxSizing);
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/styleFunctionSx/defaultSxConfig.mjs
+  var defaultSxConfig = {
+    // borders
+    border: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderTop: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderRight: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderBottom: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderLeft: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderColor: {
+      themeKey: "palette"
+    },
+    borderTopColor: {
+      themeKey: "palette"
+    },
+    borderRightColor: {
+      themeKey: "palette"
+    },
+    borderBottomColor: {
+      themeKey: "palette"
+    },
+    borderLeftColor: {
+      themeKey: "palette"
+    },
+    outline: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    outlineColor: {
+      themeKey: "palette"
+    },
+    borderRadius: {
+      themeKey: "shape.borderRadius",
+      style: borderRadius
+    },
+    // palette
+    color: {
+      themeKey: "palette",
+      transform: paletteTransform
+    },
+    bgcolor: {
+      themeKey: "palette",
+      cssProperty: "backgroundColor",
+      transform: paletteTransform
+    },
+    backgroundColor: {
+      themeKey: "palette",
+      transform: paletteTransform
+    },
+    // spacing
+    p: {
+      style: padding
+    },
+    pt: {
+      style: padding
+    },
+    pr: {
+      style: padding
+    },
+    pb: {
+      style: padding
+    },
+    pl: {
+      style: padding
+    },
+    px: {
+      style: padding
+    },
+    py: {
+      style: padding
+    },
+    padding: {
+      style: padding
+    },
+    paddingTop: {
+      style: padding
+    },
+    paddingRight: {
+      style: padding
+    },
+    paddingBottom: {
+      style: padding
+    },
+    paddingLeft: {
+      style: padding
+    },
+    paddingX: {
+      style: padding
+    },
+    paddingY: {
+      style: padding
+    },
+    paddingInline: {
+      style: padding
+    },
+    paddingInlineStart: {
+      style: padding
+    },
+    paddingInlineEnd: {
+      style: padding
+    },
+    paddingBlock: {
+      style: padding
+    },
+    paddingBlockStart: {
+      style: padding
+    },
+    paddingBlockEnd: {
+      style: padding
+    },
+    m: {
+      style: margin
+    },
+    mt: {
+      style: margin
+    },
+    mr: {
+      style: margin
+    },
+    mb: {
+      style: margin
+    },
+    ml: {
+      style: margin
+    },
+    mx: {
+      style: margin
+    },
+    my: {
+      style: margin
+    },
+    margin: {
+      style: margin
+    },
+    marginTop: {
+      style: margin
+    },
+    marginRight: {
+      style: margin
+    },
+    marginBottom: {
+      style: margin
+    },
+    marginLeft: {
+      style: margin
+    },
+    marginX: {
+      style: margin
+    },
+    marginY: {
+      style: margin
+    },
+    marginInline: {
+      style: margin
+    },
+    marginInlineStart: {
+      style: margin
+    },
+    marginInlineEnd: {
+      style: margin
+    },
+    marginBlock: {
+      style: margin
+    },
+    marginBlockStart: {
+      style: margin
+    },
+    marginBlockEnd: {
+      style: margin
+    },
+    // display
+    displayPrint: {
+      cssProperty: false,
+      transform: (value) => ({
+        "@media print": {
+          display: value
+        }
+      })
+    },
+    display: {},
+    overflow: {},
+    textOverflow: {},
+    visibility: {},
+    whiteSpace: {},
+    // flexbox
+    flexBasis: {},
+    flexDirection: {},
+    flexWrap: {},
+    justifyContent: {},
+    alignItems: {},
+    alignContent: {},
+    order: {},
+    flex: {},
+    flexGrow: {},
+    flexShrink: {},
+    alignSelf: {},
+    justifyItems: {},
+    justifySelf: {},
+    // grid
+    gap: {
+      style: gap
+    },
+    rowGap: {
+      style: rowGap
+    },
+    columnGap: {
+      style: columnGap
+    },
+    gridColumn: {},
+    gridRow: {},
+    gridAutoFlow: {},
+    gridAutoColumns: {},
+    gridAutoRows: {},
+    gridTemplateColumns: {},
+    gridTemplateRows: {},
+    gridTemplateAreas: {},
+    gridArea: {},
+    // positions
+    position: {},
+    zIndex: {
+      themeKey: "zIndex"
+    },
+    top: {},
+    right: {},
+    bottom: {},
+    left: {},
+    // shadows
+    boxShadow: {
+      themeKey: "shadows"
+    },
+    // sizing
+    width: {
+      transform: sizingTransform
+    },
+    maxWidth: {
+      style: maxWidth
+    },
+    minWidth: {
+      transform: sizingTransform
+    },
+    height: {
+      transform: sizingTransform
+    },
+    maxHeight: {
+      transform: sizingTransform
+    },
+    minHeight: {
+      transform: sizingTransform
+    },
+    boxSizing: {},
+    // typography
+    font: {
+      themeKey: "font"
+    },
+    fontFamily: {
+      themeKey: "typography"
+    },
+    fontSize: {
+      themeKey: "typography"
+    },
+    fontStyle: {
+      themeKey: "typography"
+    },
+    fontWeight: {
+      themeKey: "typography"
+    },
+    letterSpacing: {},
+    textTransform: {},
+    lineHeight: {},
+    textAlign: {},
+    typography: {
+      cssProperty: false,
+      themeKey: "typography"
+    }
+  };
+  var defaultSxConfig_default = defaultSxConfig;
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/styleFunctionSx/styleFunctionSx.mjs
+  var EMPTY_THEME3 = {};
+  function unstable_createStyleFunctionSx() {
+    function styleFunctionSx(props) {
+      if (!props.sx) {
+        return null;
+      }
+      const {
+        sx,
+        theme = EMPTY_THEME3,
+        nested
+      } = props;
+      const config = theme.unstable_sxConfig ?? defaultSxConfig_default;
+      const wrapper2 = {
+        sx: null,
+        theme,
+        nested: true
+      };
+      function process2(sxInput) {
+        let sxObject = sxInput;
+        if (typeof sxInput === "function") {
+          sxObject = sxInput(theme);
+        } else if (typeof sxInput !== "object") {
+          return sxInput;
+        }
+        if (!sxObject) {
+          return null;
+        }
+        const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
+        const css = createEmptyBreakpointObject(breakpoints);
+        for (const styleKey in sxObject) {
+          const value = callIfFn(sxObject[styleKey], theme);
+          if (value === null || value === void 0) {
+            continue;
+          }
+          if (typeof value !== "object") {
+            setThemeValue(css, styleKey, value, theme, config);
+            continue;
+          }
+          if (config[styleKey]) {
+            setThemeValue(css, styleKey, value, theme, config);
+            continue;
+          }
+          if (hasBreakpoint(breakpoints, value)) {
+            iterateBreakpoints(css, props.theme, value, (mediaKey, finalValue) => {
+              css[mediaKey][styleKey] = finalValue;
+            });
+          } else {
+            wrapper2.sx = value;
+            css[styleKey] = styleFunctionSx(wrapper2);
+          }
+        }
+        if (!nested && theme.modularCssLayers) {
+          return {
+            "@layer sx": sortContainerQueries(theme, removeUnusedBreakpoints(breakpoints, css))
+          };
+        }
+        return sortContainerQueries(theme, removeUnusedBreakpoints(breakpoints, css));
+      }
+      return Array.isArray(sx) ? sx.map(process2) : process2(sx);
+    }
+    styleFunctionSx.filterProps = ["sx"];
+    return styleFunctionSx;
+  }
+  var styleFunctionSx_default = unstable_createStyleFunctionSx();
+  function setThemeValue(css, prop, value, theme, config) {
+    const options = config[prop];
+    if (!options) {
+      css[prop] = value;
+      return;
+    }
+    if (value == null) {
+      return;
+    }
+    const {
+      themeKey
+    } = options;
+    if (themeKey === "typography" && value === "inherit") {
+      css[prop] = value;
+      return;
+    }
+    const {
+      style: style3
+    } = options;
+    if (style3) {
+      fastDeepAssign(css, style3({
+        [prop]: value,
+        theme
+      }));
+      return;
+    }
+    const {
+      cssProperty = prop,
+      transform
+    } = options;
+    const themeMapping = getPath(theme, themeKey);
+    iterateBreakpoints(css, theme, value, (mediaKey, valueFinal) => {
+      const finalValue = getStyleValue2(themeMapping, transform, valueFinal, prop);
+      if (cssProperty === false) {
+        if (mediaKey) {
+          fastDeepAssign(css[mediaKey], finalValue);
+        } else {
+          fastDeepAssign(css, finalValue);
+        }
+      } else {
+        if (mediaKey) {
+          css[mediaKey][cssProperty] = finalValue;
+        } else {
+          css[cssProperty] = finalValue;
+        }
+      }
+    });
+  }
+  function callIfFn(maybeFn, arg2) {
+    return typeof maybeFn === "function" ? maybeFn(arg2) : maybeFn;
+  }
+
+  // node_modules/.pnpm/@babel+runtime@7.29.7/node_modules/@babel/runtime/helpers/esm/extends.js
+  function _extends() {
+    return _extends = Object.assign ? Object.assign.bind() : function(n) {
+      for (var e = 1; e < arguments.length; e++) {
+        var t = arguments[e];
+        for (var r2 in t) ({}).hasOwnProperty.call(t, r2) && (n[r2] = t[r2]);
+      }
+      return n;
+    }, _extends.apply(null, arguments);
+  }
+
+  // node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4/node_modules/@emotion/react/dist/emotion-element-f0de968e.browser.esm.js
+  var React3 = __toESM(require_react());
+  var import_react = __toESM(require_react());
+
+  // node_modules/.pnpm/@emotion+sheet@1.4.0/node_modules/@emotion/sheet/dist/emotion-sheet.esm.js
+  var isDevelopment = false;
+  function sheetForTag(tag) {
+    if (tag.sheet) {
+      return tag.sheet;
+    }
+    for (var i = 0; i < document.styleSheets.length; i++) {
+      if (document.styleSheets[i].ownerNode === tag) {
+        return document.styleSheets[i];
+      }
+    }
+    return void 0;
+  }
+  function createStyleElement(options) {
+    var tag = document.createElement("style");
+    tag.setAttribute("data-emotion", options.key);
+    if (options.nonce !== void 0) {
+      tag.setAttribute("nonce", options.nonce);
+    }
+    tag.appendChild(document.createTextNode(""));
+    tag.setAttribute("data-s", "");
+    return tag;
+  }
+  var StyleSheet = /* @__PURE__ */ (function() {
+    function StyleSheet2(options) {
+      var _this = this;
+      this._insertTag = function(tag) {
+        var before;
+        if (_this.tags.length === 0) {
+          if (_this.insertionPoint) {
+            before = _this.insertionPoint.nextSibling;
+          } else if (_this.prepend) {
+            before = _this.container.firstChild;
+          } else {
+            before = _this.before;
+          }
+        } else {
+          before = _this.tags[_this.tags.length - 1].nextSibling;
+        }
+        _this.container.insertBefore(tag, before);
+        _this.tags.push(tag);
+      };
+      this.isSpeedy = options.speedy === void 0 ? !isDevelopment : options.speedy;
+      this.tags = [];
+      this.ctr = 0;
+      this.nonce = options.nonce;
+      this.key = options.key;
+      this.container = options.container;
+      this.prepend = options.prepend;
+      this.insertionPoint = options.insertionPoint;
+      this.before = null;
+    }
+    var _proto = StyleSheet2.prototype;
+    _proto.hydrate = function hydrate(nodes) {
+      nodes.forEach(this._insertTag);
+    };
+    _proto.insert = function insert(rule) {
+      if (this.ctr % (this.isSpeedy ? 65e3 : 1) === 0) {
+        this._insertTag(createStyleElement(this));
+      }
+      var tag = this.tags[this.tags.length - 1];
+      if (this.isSpeedy) {
+        var sheet = sheetForTag(tag);
+        try {
+          sheet.insertRule(rule, sheet.cssRules.length);
+        } catch (e) {
+        }
+      } else {
+        tag.appendChild(document.createTextNode(rule));
+      }
+      this.ctr++;
+    };
+    _proto.flush = function flush() {
+      this.tags.forEach(function(tag) {
+        var _tag$parentNode;
+        return (_tag$parentNode = tag.parentNode) == null ? void 0 : _tag$parentNode.removeChild(tag);
+      });
+      this.tags = [];
+      this.ctr = 0;
+    };
+    return StyleSheet2;
+  })();
+
+  // node_modules/.pnpm/stylis@4.2.0/node_modules/stylis/src/Enum.js
+  var MS = "-ms-";
+  var MOZ = "-moz-";
+  var WEBKIT = "-webkit-";
+  var COMMENT = "comm";
+  var RULESET = "rule";
+  var DECLARATION = "decl";
+  var IMPORT = "@import";
+  var KEYFRAMES = "@keyframes";
+  var LAYER = "@layer";
+
+  // node_modules/.pnpm/stylis@4.2.0/node_modules/stylis/src/Utility.js
+  var abs = Math.abs;
+  var from = String.fromCharCode;
+  var assign = Object.assign;
+  function hash(value, length2) {
+    return charat(value, 0) ^ 45 ? (((length2 << 2 ^ charat(value, 0)) << 2 ^ charat(value, 1)) << 2 ^ charat(value, 2)) << 2 ^ charat(value, 3) : 0;
+  }
+  function trim(value) {
+    return value.trim();
+  }
+  function match(value, pattern) {
+    return (value = pattern.exec(value)) ? value[0] : value;
+  }
+  function replace(value, pattern, replacement) {
+    return value.replace(pattern, replacement);
+  }
+  function indexof(value, search) {
+    return value.indexOf(search);
+  }
+  function charat(value, index) {
+    return value.charCodeAt(index) | 0;
+  }
+  function substr(value, begin, end) {
+    return value.slice(begin, end);
+  }
+  function strlen(value) {
+    return value.length;
+  }
+  function sizeof(value) {
+    return value.length;
+  }
+  function append(value, array) {
+    return array.push(value), value;
+  }
+  function combine(array, callback) {
+    return array.map(callback).join("");
+  }
+
+  // node_modules/.pnpm/stylis@4.2.0/node_modules/stylis/src/Tokenizer.js
+  var line = 1;
+  var column = 1;
+  var length = 0;
+  var position = 0;
+  var character = 0;
+  var characters = "";
+  function node(value, root, parent, type, props, children, length2) {
+    return { value, root, parent, type, props, children, line, column, length: length2, return: "" };
+  }
+  function copy(root, props) {
+    return assign(node("", null, null, "", null, null, 0), root, { length: -root.length }, props);
+  }
+  function char() {
+    return character;
+  }
+  function prev() {
+    character = position > 0 ? charat(characters, --position) : 0;
+    if (column--, character === 10)
+      column = 1, line--;
+    return character;
+  }
+  function next() {
+    character = position < length ? charat(characters, position++) : 0;
+    if (column++, character === 10)
+      column = 1, line++;
+    return character;
+  }
+  function peek() {
+    return charat(characters, position);
+  }
+  function caret() {
+    return position;
+  }
+  function slice(begin, end) {
+    return substr(characters, begin, end);
+  }
+  function token(type) {
+    switch (type) {
+      // \0 \t \n \r \s whitespace token
+      case 0:
+      case 9:
+      case 10:
+      case 13:
+      case 32:
+        return 5;
+      // ! + , / > @ ~ isolate token
+      case 33:
+      case 43:
+      case 44:
+      case 47:
+      case 62:
+      case 64:
+      case 126:
+      // ; { } breakpoint token
+      case 59:
+      case 123:
+      case 125:
+        return 4;
+      // : accompanied token
+      case 58:
+        return 3;
+      // " ' ( [ opening delimit token
+      case 34:
+      case 39:
+      case 40:
+      case 91:
+        return 2;
+      // ) ] closing delimit token
+      case 41:
+      case 93:
+        return 1;
+    }
+    return 0;
+  }
+  function alloc(value) {
+    return line = column = 1, length = strlen(characters = value), position = 0, [];
+  }
+  function dealloc(value) {
+    return characters = "", value;
+  }
+  function delimit(type) {
+    return trim(slice(position - 1, delimiter(type === 91 ? type + 2 : type === 40 ? type + 1 : type)));
+  }
+  function whitespace(type) {
+    while (character = peek())
+      if (character < 33)
+        next();
+      else
+        break;
+    return token(type) > 2 || token(character) > 3 ? "" : " ";
+  }
+  function escaping(index, count) {
+    while (--count && next())
+      if (character < 48 || character > 102 || character > 57 && character < 65 || character > 70 && character < 97)
+        break;
+    return slice(index, caret() + (count < 6 && peek() == 32 && next() == 32));
+  }
+  function delimiter(type) {
+    while (next())
+      switch (character) {
+        // ] ) " '
+        case type:
+          return position;
+        // " '
+        case 34:
+        case 39:
+          if (type !== 34 && type !== 39)
+            delimiter(character);
+          break;
+        // (
+        case 40:
+          if (type === 41)
+            delimiter(type);
+          break;
+        // \
+        case 92:
+          next();
+          break;
+      }
+    return position;
+  }
+  function commenter(type, index) {
+    while (next())
+      if (type + character === 47 + 10)
+        break;
+      else if (type + character === 42 + 42 && peek() === 47)
+        break;
+    return "/*" + slice(index, position - 1) + "*" + from(type === 47 ? type : next());
+  }
+  function identifier(index) {
+    while (!token(peek()))
+      next();
+    return slice(index, position);
+  }
+
+  // node_modules/.pnpm/stylis@4.2.0/node_modules/stylis/src/Parser.js
+  function compile(value) {
+    return dealloc(parse("", null, null, null, [""], value = alloc(value), 0, [0], value));
+  }
+  function parse(value, root, parent, rule, rules, rulesets, pseudo, points, declarations) {
+    var index = 0;
+    var offset = 0;
+    var length2 = pseudo;
+    var atrule = 0;
+    var property = 0;
+    var previous = 0;
+    var variable = 1;
+    var scanning = 1;
+    var ampersand = 1;
+    var character2 = 0;
+    var type = "";
+    var props = rules;
+    var children = rulesets;
+    var reference = rule;
+    var characters2 = type;
+    while (scanning)
+      switch (previous = character2, character2 = next()) {
+        // (
+        case 40:
+          if (previous != 108 && charat(characters2, length2 - 1) == 58) {
+            if (indexof(characters2 += replace(delimit(character2), "&", "&\f"), "&\f") != -1)
+              ampersand = -1;
+            break;
+          }
+        // " ' [
+        case 34:
+        case 39:
+        case 91:
+          characters2 += delimit(character2);
+          break;
+        // \t \n \r \s
+        case 9:
+        case 10:
+        case 13:
+        case 32:
+          characters2 += whitespace(previous);
+          break;
+        // \
+        case 92:
+          characters2 += escaping(caret() - 1, 7);
+          continue;
+        // /
+        case 47:
+          switch (peek()) {
+            case 42:
+            case 47:
+              append(comment(commenter(next(), caret()), root, parent), declarations);
+              break;
+            default:
+              characters2 += "/";
+          }
+          break;
+        // {
+        case 123 * variable:
+          points[index++] = strlen(characters2) * ampersand;
+        // } ; \0
+        case 125 * variable:
+        case 59:
+        case 0:
+          switch (character2) {
+            // \0 }
+            case 0:
+            case 125:
+              scanning = 0;
+            // ;
+            case 59 + offset:
+              if (ampersand == -1) characters2 = replace(characters2, /\f/g, "");
+              if (property > 0 && strlen(characters2) - length2)
+                append(property > 32 ? declaration(characters2 + ";", rule, parent, length2 - 1) : declaration(replace(characters2, " ", "") + ";", rule, parent, length2 - 2), declarations);
+              break;
+            // @ ;
+            case 59:
+              characters2 += ";";
+            // { rule/at-rule
+            default:
+              append(reference = ruleset(characters2, root, parent, index, offset, rules, points, type, props = [], children = [], length2), rulesets);
+              if (character2 === 123)
+                if (offset === 0)
+                  parse(characters2, root, reference, reference, props, rulesets, length2, points, children);
+                else
+                  switch (atrule === 99 && charat(characters2, 3) === 110 ? 100 : atrule) {
+                    // d l m s
+                    case 100:
+                    case 108:
+                    case 109:
+                    case 115:
+                      parse(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length2), children), rules, children, length2, points, rule ? props : children);
+                      break;
+                    default:
+                      parse(characters2, reference, reference, reference, [""], children, 0, points, children);
+                  }
+          }
+          index = offset = property = 0, variable = ampersand = 1, type = characters2 = "", length2 = pseudo;
+          break;
+        // :
+        case 58:
+          length2 = 1 + strlen(characters2), property = previous;
+        default:
+          if (variable < 1) {
+            if (character2 == 123)
+              --variable;
+            else if (character2 == 125 && variable++ == 0 && prev() == 125)
+              continue;
+          }
+          switch (characters2 += from(character2), character2 * variable) {
+            // &
+            case 38:
+              ampersand = offset > 0 ? 1 : (characters2 += "\f", -1);
+              break;
+            // ,
+            case 44:
+              points[index++] = (strlen(characters2) - 1) * ampersand, ampersand = 1;
+              break;
+            // @
+            case 64:
+              if (peek() === 45)
+                characters2 += delimit(next());
+              atrule = peek(), offset = length2 = strlen(type = characters2 += identifier(caret())), character2++;
+              break;
+            // -
+            case 45:
+              if (previous === 45 && strlen(characters2) == 2)
+                variable = 0;
+          }
+      }
+    return rulesets;
+  }
+  function ruleset(value, root, parent, index, offset, rules, points, type, props, children, length2) {
+    var post = offset - 1;
+    var rule = offset === 0 ? rules : [""];
+    var size = sizeof(rule);
+    for (var i = 0, j = 0, k = 0; i < index; ++i)
+      for (var x = 0, y = substr(value, post + 1, post = abs(j = points[i])), z = value; x < size; ++x)
+        if (z = trim(j > 0 ? rule[x] + " " + y : replace(y, /&\f/g, rule[x])))
+          props[k++] = z;
+    return node(value, root, parent, offset === 0 ? RULESET : type, props, children, length2);
+  }
+  function comment(value, root, parent) {
+    return node(value, root, parent, COMMENT, from(char()), substr(value, 2, -2), 0);
+  }
+  function declaration(value, root, parent, length2) {
+    return node(value, root, parent, DECLARATION, substr(value, 0, length2), substr(value, length2 + 1, -1), length2);
+  }
+
+  // node_modules/.pnpm/stylis@4.2.0/node_modules/stylis/src/Serializer.js
+  function serialize(children, callback) {
+    var output = "";
+    var length2 = sizeof(children);
+    for (var i = 0; i < length2; i++)
+      output += callback(children[i], i, children, callback) || "";
+    return output;
+  }
+  function stringify(element, index, children, callback) {
+    switch (element.type) {
+      case LAYER:
+        if (element.children.length) break;
+      case IMPORT:
+      case DECLARATION:
+        return element.return = element.return || element.value;
+      case COMMENT:
+        return "";
+      case KEYFRAMES:
+        return element.return = element.value + "{" + serialize(element.children, callback) + "}";
+      case RULESET:
+        element.value = element.props.join(",");
+    }
+    return strlen(children = serialize(element.children, callback)) ? element.return = element.value + "{" + children + "}" : "";
+  }
+
+  // node_modules/.pnpm/stylis@4.2.0/node_modules/stylis/src/Middleware.js
+  function middleware(collection) {
+    var length2 = sizeof(collection);
+    return function(element, index, children, callback) {
+      var output = "";
+      for (var i = 0; i < length2; i++)
+        output += collection[i](element, index, children, callback) || "";
+      return output;
+    };
+  }
+  function rulesheet(callback) {
+    return function(element) {
+      if (!element.root) {
+        if (element = element.return)
+          callback(element);
+      }
+    };
+  }
+
+  // node_modules/.pnpm/@emotion+memoize@0.9.0/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js
+  function memoize(fn) {
+    var cache = /* @__PURE__ */ Object.create(null);
+    return function(arg2) {
+      if (cache[arg2] === void 0) cache[arg2] = fn(arg2);
+      return cache[arg2];
+    };
+  }
+
+  // node_modules/.pnpm/@emotion+cache@11.14.0/node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js
+  var identifierWithPointTracking = function identifierWithPointTracking2(begin, points, index) {
+    var previous = 0;
+    var character2 = 0;
+    while (true) {
+      previous = character2;
+      character2 = peek();
+      if (previous === 38 && character2 === 12) {
+        points[index] = 1;
+      }
+      if (token(character2)) {
+        break;
+      }
+      next();
+    }
+    return slice(begin, position);
+  };
+  var toRules = function toRules2(parsed, points) {
+    var index = -1;
+    var character2 = 44;
+    do {
+      switch (token(character2)) {
+        case 0:
+          if (character2 === 38 && peek() === 12) {
+            points[index] = 1;
+          }
+          parsed[index] += identifierWithPointTracking(position - 1, points, index);
+          break;
+        case 2:
+          parsed[index] += delimit(character2);
+          break;
+        case 4:
+          if (character2 === 44) {
+            parsed[++index] = peek() === 58 ? "&\f" : "";
+            points[index] = parsed[index].length;
+            break;
+          }
+        // fallthrough
+        default:
+          parsed[index] += from(character2);
+      }
+    } while (character2 = next());
+    return parsed;
+  };
+  var getRules = function getRules2(value, points) {
+    return dealloc(toRules(alloc(value), points));
+  };
+  var fixedElements = /* @__PURE__ */ new WeakMap();
+  var compat = function compat2(element) {
+    if (element.type !== "rule" || !element.parent || // positive .length indicates that this rule contains pseudo
+    // negative .length indicates that this rule has been already prefixed
+    element.length < 1) {
+      return;
+    }
+    var value = element.value;
+    var parent = element.parent;
+    var isImplicitRule = element.column === parent.column && element.line === parent.line;
+    while (parent.type !== "rule") {
+      parent = parent.parent;
+      if (!parent) return;
+    }
+    if (element.props.length === 1 && value.charCodeAt(0) !== 58 && !fixedElements.get(parent)) {
+      return;
+    }
+    if (isImplicitRule) {
+      return;
+    }
+    fixedElements.set(element, true);
+    var points = [];
+    var rules = getRules(value, points);
+    var parentRules = parent.props;
+    for (var i = 0, k = 0; i < rules.length; i++) {
+      for (var j = 0; j < parentRules.length; j++, k++) {
+        element.props[k] = points[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
+      }
+    }
+  };
+  var removeLabel = function removeLabel2(element) {
+    if (element.type === "decl") {
+      var value = element.value;
+      if (
+        // charcode for l
+        value.charCodeAt(0) === 108 && // charcode for b
+        value.charCodeAt(2) === 98
+      ) {
+        element["return"] = "";
+        element.value = "";
+      }
+    }
+  };
+  function prefix(value, length2) {
+    switch (hash(value, length2)) {
+      // color-adjust
+      case 5103:
+        return WEBKIT + "print-" + value + value;
+      // animation, animation-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function)
+      case 5737:
+      case 4201:
+      case 3177:
+      case 3433:
+      case 1641:
+      case 4457:
+      case 2921:
+      // text-decoration, filter, clip-path, backface-visibility, column, box-decoration-break
+      case 5572:
+      case 6356:
+      case 5844:
+      case 3191:
+      case 6645:
+      case 3005:
+      // mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite,
+      case 6391:
+      case 5879:
+      case 5623:
+      case 6135:
+      case 4599:
+      case 4855:
+      // background-clip, columns, column-(count|fill|gap|rule|rule-color|rule-style|rule-width|span|width)
+      case 4215:
+      case 6389:
+      case 5109:
+      case 5365:
+      case 5621:
+      case 3829:
+        return WEBKIT + value + value;
+      // appearance, user-select, transform, hyphens, text-size-adjust
+      case 5349:
+      case 4246:
+      case 4810:
+      case 6968:
+      case 2756:
+        return WEBKIT + value + MOZ + value + MS + value + value;
+      // flex, flex-direction
+      case 6828:
+      case 4268:
+        return WEBKIT + value + MS + value + value;
+      // order
+      case 6165:
+        return WEBKIT + value + MS + "flex-" + value + value;
+      // align-items
+      case 5187:
+        return WEBKIT + value + replace(value, /(\w+).+(:[^]+)/, WEBKIT + "box-$1$2" + MS + "flex-$1$2") + value;
+      // align-self
+      case 5443:
+        return WEBKIT + value + MS + "flex-item-" + replace(value, /flex-|-self/, "") + value;
+      // align-content
+      case 4675:
+        return WEBKIT + value + MS + "flex-line-pack" + replace(value, /align-content|flex-|-self/, "") + value;
+      // flex-shrink
+      case 5548:
+        return WEBKIT + value + MS + replace(value, "shrink", "negative") + value;
+      // flex-basis
+      case 5292:
+        return WEBKIT + value + MS + replace(value, "basis", "preferred-size") + value;
+      // flex-grow
+      case 6060:
+        return WEBKIT + "box-" + replace(value, "-grow", "") + WEBKIT + value + MS + replace(value, "grow", "positive") + value;
+      // transition
+      case 4554:
+        return WEBKIT + replace(value, /([^-])(transform)/g, "$1" + WEBKIT + "$2") + value;
+      // cursor
+      case 6187:
+        return replace(replace(replace(value, /(zoom-|grab)/, WEBKIT + "$1"), /(image-set)/, WEBKIT + "$1"), value, "") + value;
+      // background, background-image
+      case 5495:
+      case 3959:
+        return replace(value, /(image-set\([^]*)/, WEBKIT + "$1$`$1");
+      // justify-content
+      case 4968:
+        return replace(replace(value, /(.+:)(flex-)?(.*)/, WEBKIT + "box-pack:$3" + MS + "flex-pack:$3"), /s.+-b[^;]+/, "justify") + WEBKIT + value + value;
+      // (margin|padding)-inline-(start|end)
+      case 4095:
+      case 3583:
+      case 4068:
+      case 2532:
+        return replace(value, /(.+)-inline(.+)/, WEBKIT + "$1$2") + value;
+      // (min|max)?(width|height|inline-size|block-size)
+      case 8116:
+      case 7059:
+      case 5753:
+      case 5535:
+      case 5445:
+      case 5701:
+      case 4933:
+      case 4677:
+      case 5533:
+      case 5789:
+      case 5021:
+      case 4765:
+        if (strlen(value) - 1 - length2 > 6) switch (charat(value, length2 + 1)) {
+          // (m)ax-content, (m)in-content
+          case 109:
+            if (charat(value, length2 + 4) !== 45) break;
+          // (f)ill-available, (f)it-content
+          case 102:
+            return replace(value, /(.+:)(.+)-([^]+)/, "$1" + WEBKIT + "$2-$3$1" + MOZ + (charat(value, length2 + 3) == 108 ? "$3" : "$2-$3")) + value;
+          // (s)tretch
+          case 115:
+            return ~indexof(value, "stretch") ? prefix(replace(value, "stretch", "fill-available"), length2) + value : value;
+        }
+        break;
+      // position: sticky
+      case 4949:
+        if (charat(value, length2 + 1) !== 115) break;
+      // display: (flex|inline-flex)
+      case 6444:
+        switch (charat(value, strlen(value) - 3 - (~indexof(value, "!important") && 10))) {
+          // stic(k)y
+          case 107:
+            return replace(value, ":", ":" + WEBKIT) + value;
+          // (inline-)?fl(e)x
+          case 101:
+            return replace(value, /(.+:)([^;!]+)(;|!.+)?/, "$1" + WEBKIT + (charat(value, 14) === 45 ? "inline-" : "") + "box$3$1" + WEBKIT + "$2$3$1" + MS + "$2box$3") + value;
+        }
+        break;
+      // writing-mode
+      case 5936:
+        switch (charat(value, length2 + 11)) {
+          // vertical-l(r)
+          case 114:
+            return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb") + value;
+          // vertical-r(l)
+          case 108:
+            return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb-rl") + value;
+          // horizontal(-)tb
+          case 45:
+            return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "lr") + value;
+        }
+        return WEBKIT + value + MS + value + value;
+    }
+    return value;
+  }
+  var prefixer = function prefixer2(element, index, children, callback) {
+    if (element.length > -1) {
+      if (!element["return"]) switch (element.type) {
+        case DECLARATION:
+          element["return"] = prefix(element.value, element.length);
+          break;
+        case KEYFRAMES:
+          return serialize([copy(element, {
+            value: replace(element.value, "@", "@" + WEBKIT)
+          })], callback);
+        case RULESET:
+          if (element.length) return combine(element.props, function(value) {
+            switch (match(value, /(::plac\w+|:read-\w+)/)) {
+              // :read-(only|write)
+              case ":read-only":
+              case ":read-write":
+                return serialize([copy(element, {
+                  props: [replace(value, /:(read-\w+)/, ":" + MOZ + "$1")]
+                })], callback);
+              // :placeholder
+              case "::placeholder":
+                return serialize([copy(element, {
+                  props: [replace(value, /:(plac\w+)/, ":" + WEBKIT + "input-$1")]
+                }), copy(element, {
+                  props: [replace(value, /:(plac\w+)/, ":" + MOZ + "$1")]
+                }), copy(element, {
+                  props: [replace(value, /:(plac\w+)/, MS + "input-$1")]
+                })], callback);
+            }
+            return "";
+          });
+      }
+    }
+  };
+  var defaultStylisPlugins = [prefixer];
+  var createCache = function createCache2(options) {
+    var key = options.key;
+    if (key === "css") {
+      var ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])");
+      Array.prototype.forEach.call(ssrStyles, function(node2) {
+        var dataEmotionAttribute = node2.getAttribute("data-emotion");
+        if (dataEmotionAttribute.indexOf(" ") === -1) {
+          return;
+        }
+        document.head.appendChild(node2);
+        node2.setAttribute("data-s", "");
+      });
+    }
+    var stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
+    var inserted = {};
+    var container2;
+    var nodesToHydrate = [];
+    {
+      container2 = options.container || document.head;
+      Array.prototype.forEach.call(
+        // this means we will ignore elements which don't have a space in them which
+        // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
+        document.querySelectorAll('style[data-emotion^="' + key + ' "]'),
+        function(node2) {
+          var attrib = node2.getAttribute("data-emotion").split(" ");
+          for (var i = 1; i < attrib.length; i++) {
+            inserted[attrib[i]] = true;
+          }
+          nodesToHydrate.push(node2);
+        }
+      );
+    }
+    var _insert;
+    var omnipresentPlugins = [compat, removeLabel];
+    {
+      var currentSheet;
+      var finalizingPlugins = [stringify, rulesheet(function(rule) {
+        currentSheet.insert(rule);
+      })];
+      var serializer = middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
+      var stylis = function stylis2(styles) {
+        return serialize(compile(styles), serializer);
+      };
+      _insert = function insert(selector, serialized, sheet, shouldCache) {
+        currentSheet = sheet;
+        stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
+        if (shouldCache) {
+          cache.inserted[serialized.name] = true;
+        }
+      };
+    }
+    var cache = {
+      key,
+      sheet: new StyleSheet({
+        key,
+        container: container2,
+        nonce: options.nonce,
+        speedy: options.speedy,
+        prepend: options.prepend,
+        insertionPoint: options.insertionPoint
+      }),
+      nonce: options.nonce,
+      inserted,
+      registered: {},
+      insert: _insert
+    };
+    cache.sheet.hydrate(nodesToHydrate);
+    return cache;
+  };
+
+  // node_modules/.pnpm/@emotion+utils@1.4.2/node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js
+  var isBrowser = true;
+  function getRegisteredStyles(registered, registeredStyles, classNames) {
+    var rawClassName = "";
+    classNames.split(" ").forEach(function(className) {
+      if (registered[className] !== void 0) {
+        registeredStyles.push(registered[className] + ";");
+      } else if (className) {
+        rawClassName += className + " ";
+      }
+    });
+    return rawClassName;
+  }
+  var registerStyles = function registerStyles2(cache, serialized, isStringTag2) {
+    var className = cache.key + "-" + serialized.name;
+    if (
+      // we only need to add the styles to the registered cache if the
+      // class name could be used further down
+      // the tree but if it's a string tag, we know it won't
+      // so we don't have to add it to registered cache.
+      // this improves memory usage since we can avoid storing the whole style string
+      (isStringTag2 === false || // we need to always store it if we're in compat mode and
+      // in node since emotion-server relies on whether a style is in
+      // the registered cache to know whether a style is global or not
+      // also, note that this check will be dead code eliminated in the browser
+      isBrowser === false) && cache.registered[className] === void 0
+    ) {
+      cache.registered[className] = serialized.styles;
+    }
+  };
+  var insertStyles = function insertStyles2(cache, serialized, isStringTag2) {
+    registerStyles(cache, serialized, isStringTag2);
+    var className = cache.key + "-" + serialized.name;
+    if (cache.inserted[serialized.name] === void 0) {
+      var current = serialized;
+      do {
+        cache.insert(serialized === current ? "." + className : "", current, cache.sheet, true);
+        current = current.next;
+      } while (current !== void 0);
+    }
+  };
+
+  // node_modules/.pnpm/@emotion+hash@0.9.2/node_modules/@emotion/hash/dist/emotion-hash.esm.js
+  function murmur2(str) {
+    var h = 0;
+    var k, i = 0, len = str.length;
+    for (; len >= 4; ++i, len -= 4) {
+      k = str.charCodeAt(i) & 255 | (str.charCodeAt(++i) & 255) << 8 | (str.charCodeAt(++i) & 255) << 16 | (str.charCodeAt(++i) & 255) << 24;
+      k = /* Math.imul(k, m): */
+      (k & 65535) * 1540483477 + ((k >>> 16) * 59797 << 16);
+      k ^= /* k >>> r: */
+      k >>> 24;
+      h = /* Math.imul(k, m): */
+      (k & 65535) * 1540483477 + ((k >>> 16) * 59797 << 16) ^ /* Math.imul(h, m): */
+      (h & 65535) * 1540483477 + ((h >>> 16) * 59797 << 16);
+    }
+    switch (len) {
+      case 3:
+        h ^= (str.charCodeAt(i + 2) & 255) << 16;
+      case 2:
+        h ^= (str.charCodeAt(i + 1) & 255) << 8;
+      case 1:
+        h ^= str.charCodeAt(i) & 255;
+        h = /* Math.imul(h, m): */
+        (h & 65535) * 1540483477 + ((h >>> 16) * 59797 << 16);
+    }
+    h ^= h >>> 13;
+    h = /* Math.imul(h, m): */
+    (h & 65535) * 1540483477 + ((h >>> 16) * 59797 << 16);
+    return ((h ^ h >>> 15) >>> 0).toString(36);
+  }
+
+  // node_modules/.pnpm/@emotion+unitless@0.10.0/node_modules/@emotion/unitless/dist/emotion-unitless.esm.js
+  var unitlessKeys = {
+    animationIterationCount: 1,
+    aspectRatio: 1,
+    borderImageOutset: 1,
+    borderImageSlice: 1,
+    borderImageWidth: 1,
+    boxFlex: 1,
+    boxFlexGroup: 1,
+    boxOrdinalGroup: 1,
+    columnCount: 1,
+    columns: 1,
+    flex: 1,
+    flexGrow: 1,
+    flexPositive: 1,
+    flexShrink: 1,
+    flexNegative: 1,
+    flexOrder: 1,
+    gridRow: 1,
+    gridRowEnd: 1,
+    gridRowSpan: 1,
+    gridRowStart: 1,
+    gridColumn: 1,
+    gridColumnEnd: 1,
+    gridColumnSpan: 1,
+    gridColumnStart: 1,
+    msGridRow: 1,
+    msGridRowSpan: 1,
+    msGridColumn: 1,
+    msGridColumnSpan: 1,
+    fontWeight: 1,
+    lineHeight: 1,
+    opacity: 1,
+    order: 1,
+    orphans: 1,
+    scale: 1,
+    tabSize: 1,
+    widows: 1,
+    zIndex: 1,
+    zoom: 1,
+    WebkitLineClamp: 1,
+    // SVG-related properties
+    fillOpacity: 1,
+    floodOpacity: 1,
+    stopOpacity: 1,
+    strokeDasharray: 1,
+    strokeDashoffset: 1,
+    strokeMiterlimit: 1,
+    strokeOpacity: 1,
+    strokeWidth: 1
+  };
+
+  // node_modules/.pnpm/@emotion+serialize@1.3.3/node_modules/@emotion/serialize/dist/emotion-serialize.esm.js
+  var isDevelopment2 = false;
+  var hyphenateRegex = /[A-Z]|^ms/g;
+  var animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g;
+  var isCustomProperty = function isCustomProperty2(property) {
+    return property.charCodeAt(1) === 45;
+  };
+  var isProcessableValue = function isProcessableValue2(value) {
+    return value != null && typeof value !== "boolean";
+  };
+  var processStyleName = /* @__PURE__ */ memoize(function(styleName) {
+    return isCustomProperty(styleName) ? styleName : styleName.replace(hyphenateRegex, "-$&").toLowerCase();
+  });
+  var processStyleValue = function processStyleValue2(key, value) {
+    switch (key) {
+      case "animation":
+      case "animationName": {
+        if (typeof value === "string") {
+          return value.replace(animationRegex, function(match2, p1, p2) {
+            cursor = {
+              name: p1,
+              styles: p2,
+              next: cursor
+            };
+            return p1;
+          });
+        }
+      }
+    }
+    if (unitlessKeys[key] !== 1 && !isCustomProperty(key) && typeof value === "number" && value !== 0) {
+      return value + "px";
+    }
+    return value;
+  };
+  var noComponentSelectorMessage = "Component selectors can only be used in conjunction with @emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware compiler transform.";
+  function handleInterpolation(mergedProps, registered, interpolation) {
+    if (interpolation == null) {
+      return "";
+    }
+    var componentSelector = interpolation;
+    if (componentSelector.__emotion_styles !== void 0) {
+      return componentSelector;
+    }
+    switch (typeof interpolation) {
+      case "boolean": {
+        return "";
+      }
+      case "object": {
+        var keyframes = interpolation;
+        if (keyframes.anim === 1) {
+          cursor = {
+            name: keyframes.name,
+            styles: keyframes.styles,
+            next: cursor
+          };
+          return keyframes.name;
+        }
+        var serializedStyles = interpolation;
+        if (serializedStyles.styles !== void 0) {
+          var next2 = serializedStyles.next;
+          if (next2 !== void 0) {
+            while (next2 !== void 0) {
+              cursor = {
+                name: next2.name,
+                styles: next2.styles,
+                next: cursor
+              };
+              next2 = next2.next;
+            }
+          }
+          var styles = serializedStyles.styles + ";";
+          return styles;
+        }
+        return createStringFromObject(mergedProps, registered, interpolation);
+      }
+      case "function": {
+        if (mergedProps !== void 0) {
+          var previousCursor = cursor;
+          var result = interpolation(mergedProps);
+          cursor = previousCursor;
+          return handleInterpolation(mergedProps, registered, result);
+        }
+        break;
+      }
+    }
+    var asString = interpolation;
+    if (registered == null) {
+      return asString;
+    }
+    var cached = registered[asString];
+    return cached !== void 0 ? cached : asString;
+  }
+  function createStringFromObject(mergedProps, registered, obj) {
+    var string = "";
+    if (Array.isArray(obj)) {
+      for (var i = 0; i < obj.length; i++) {
+        string += handleInterpolation(mergedProps, registered, obj[i]) + ";";
+      }
+    } else {
+      for (var key in obj) {
+        var value = obj[key];
+        if (typeof value !== "object") {
+          var asString = value;
+          if (registered != null && registered[asString] !== void 0) {
+            string += key + "{" + registered[asString] + "}";
+          } else if (isProcessableValue(asString)) {
+            string += processStyleName(key) + ":" + processStyleValue(key, asString) + ";";
+          }
+        } else {
+          if (key === "NO_COMPONENT_SELECTOR" && isDevelopment2) {
+            throw new Error(noComponentSelectorMessage);
+          }
+          if (Array.isArray(value) && typeof value[0] === "string" && (registered == null || registered[value[0]] === void 0)) {
+            for (var _i = 0; _i < value.length; _i++) {
+              if (isProcessableValue(value[_i])) {
+                string += processStyleName(key) + ":" + processStyleValue(key, value[_i]) + ";";
+              }
+            }
+          } else {
+            var interpolated = handleInterpolation(mergedProps, registered, value);
+            switch (key) {
+              case "animation":
+              case "animationName": {
+                string += processStyleName(key) + ":" + interpolated + ";";
+                break;
+              }
+              default: {
+                string += key + "{" + interpolated + "}";
+              }
+            }
+          }
+        }
+      }
+    }
+    return string;
+  }
+  var labelPattern = /label:\s*([^\s;{]+)\s*(;|$)/g;
+  var cursor;
+  function serializeStyles(args, registered, mergedProps) {
+    if (args.length === 1 && typeof args[0] === "object" && args[0] !== null && args[0].styles !== void 0) {
+      return args[0];
+    }
+    var stringMode = true;
+    var styles = "";
+    cursor = void 0;
+    var strings = args[0];
+    if (strings == null || strings.raw === void 0) {
+      stringMode = false;
+      styles += handleInterpolation(mergedProps, registered, strings);
+    } else {
+      var asTemplateStringsArr = strings;
+      styles += asTemplateStringsArr[0];
+    }
+    for (var i = 1; i < args.length; i++) {
+      styles += handleInterpolation(mergedProps, registered, args[i]);
+      if (stringMode) {
+        var templateStringsArr = strings;
+        styles += templateStringsArr[i];
+      }
+    }
+    labelPattern.lastIndex = 0;
+    var identifierName = "";
+    var match2;
+    while ((match2 = labelPattern.exec(styles)) !== null) {
+      identifierName += "-" + match2[1];
+    }
+    var name = murmur2(styles) + identifierName;
+    return {
+      name,
+      styles,
+      next: cursor
+    };
+  }
+
+  // node_modules/.pnpm/@emotion+use-insertion-effect-with-fallbacks@1.2.0_react@19.2.4/node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js
+  var React2 = __toESM(require_react());
+  var syncFallback = function syncFallback2(create) {
+    return create();
+  };
+  var useInsertionEffect2 = React2["useInsertionEffect"] ? React2["useInsertionEffect"] : false;
+  var useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect2 || syncFallback;
+
+  // node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4/node_modules/@emotion/react/dist/emotion-element-f0de968e.browser.esm.js
+  var isDevelopment3 = false;
+  var EmotionCacheContext = /* @__PURE__ */ React3.createContext(
+    // we're doing this to avoid preconstruct's dead code elimination in this one case
+    // because this module is primarily intended for the browser and node
+    // but it's also required in react native and similar environments sometimes
+    // and we could have a special build just for that
+    // but this is much easier and the native packages
+    // might use a different theme context in the future anyway
+    typeof HTMLElement !== "undefined" ? /* @__PURE__ */ createCache({
+      key: "css"
+    }) : null
+  );
+  var CacheProvider = EmotionCacheContext.Provider;
+  var withEmotionCache = function withEmotionCache2(func) {
+    return /* @__PURE__ */ (0, import_react.forwardRef)(function(props, ref) {
+      var cache = (0, import_react.useContext)(EmotionCacheContext);
+      return func(props, cache, ref);
+    });
+  };
+  var ThemeContext = /* @__PURE__ */ React3.createContext({});
+  var hasOwn = {}.hasOwnProperty;
+  var typePropName = "__EMOTION_TYPE_PLEASE_DO_NOT_USE__";
+  var createEmotionProps = function createEmotionProps2(type, props) {
+    var newProps = {};
+    for (var _key in props) {
+      if (hasOwn.call(props, _key)) {
+        newProps[_key] = props[_key];
+      }
+    }
+    newProps[typePropName] = type;
+    return newProps;
+  };
+  var Insertion = function Insertion2(_ref) {
+    var cache = _ref.cache, serialized = _ref.serialized, isStringTag2 = _ref.isStringTag;
+    registerStyles(cache, serialized, isStringTag2);
+    useInsertionEffectAlwaysWithSyncFallback(function() {
+      return insertStyles(cache, serialized, isStringTag2);
+    });
+    return null;
+  };
+  var Emotion = /* @__PURE__ */ withEmotionCache(function(props, cache, ref) {
+    var cssProp = props.css;
+    if (typeof cssProp === "string" && cache.registered[cssProp] !== void 0) {
+      cssProp = cache.registered[cssProp];
+    }
+    var WrappedComponent = props[typePropName];
+    var registeredStyles = [cssProp];
+    var className = "";
+    if (typeof props.className === "string") {
+      className = getRegisteredStyles(cache.registered, registeredStyles, props.className);
+    } else if (props.className != null) {
+      className = props.className + " ";
+    }
+    var serialized = serializeStyles(registeredStyles, void 0, React3.useContext(ThemeContext));
+    className += cache.key + "-" + serialized.name;
+    var newProps = {};
+    for (var _key2 in props) {
+      if (hasOwn.call(props, _key2) && _key2 !== "css" && _key2 !== typePropName && !isDevelopment3) {
+        newProps[_key2] = props[_key2];
+      }
+    }
+    newProps.className = className;
+    if (ref) {
+      newProps.ref = ref;
+    }
+    return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement(Insertion, {
+      cache,
+      serialized,
+      isStringTag: typeof WrappedComponent === "string"
+    }), /* @__PURE__ */ React3.createElement(WrappedComponent, newProps));
+  });
+  var Emotion$1 = Emotion;
+
+  // node_modules/.pnpm/@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4/node_modules/@emotion/react/dist/emotion-react.browser.esm.js
+  var React4 = __toESM(require_react());
+  var import_hoist_non_react_statics = __toESM(require_hoist_non_react_statics_cjs());
+  var jsx4 = function jsx5(type, props) {
+    var args = arguments;
+    if (props == null || !hasOwn.call(props, "css")) {
+      return React4.createElement.apply(void 0, args);
+    }
+    var argsLength = args.length;
+    var createElementArgArray = new Array(argsLength);
+    createElementArgArray[0] = Emotion$1;
+    createElementArgArray[1] = createEmotionProps(type, props);
+    for (var i = 2; i < argsLength; i++) {
+      createElementArgArray[i] = args[i];
+    }
+    return React4.createElement.apply(null, createElementArgArray);
+  };
+  (function(_jsx8) {
+    var JSX;
+    /* @__PURE__ */ (function(_JSX) {
+    })(JSX || (JSX = _jsx8.JSX || (_jsx8.JSX = {})));
+  })(jsx4 || (jsx4 = {}));
+
+  // node_modules/.pnpm/@emotion+styled@11.14.1_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@types+react@19.2.17_react@19.2.4/node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
+  var React5 = __toESM(require_react());
+
+  // node_modules/.pnpm/@emotion+is-prop-valid@1.4.0/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js
+  var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|disableRemotePlayback|download|draggable|encType|enterKeyHint|fetchpriority|fetchPriority|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|popover|popoverTarget|popoverTargetAction|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/;
+  var isPropValid = /* @__PURE__ */ memoize(
+    function(prop) {
+      return reactPropsRegex.test(prop) || prop.charCodeAt(0) === 111 && prop.charCodeAt(1) === 110 && prop.charCodeAt(2) < 91;
+    }
+    /* Z+1 */
+  );
+
+  // node_modules/.pnpm/@emotion+styled@11.14.1_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@types+react@19.2.17_react@19.2.4/node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
+  var isDevelopment4 = false;
+  var testOmitPropsOnStringTag = isPropValid;
+  var testOmitPropsOnComponent = function testOmitPropsOnComponent2(key) {
+    return key !== "theme";
+  };
+  var getDefaultShouldForwardProp = function getDefaultShouldForwardProp2(tag) {
+    return typeof tag === "string" && // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96 ? testOmitPropsOnStringTag : testOmitPropsOnComponent;
+  };
+  var composeShouldForwardProps = function composeShouldForwardProps2(tag, options, isReal) {
+    var shouldForwardProp2;
+    if (options) {
+      var optionsShouldForwardProp = options.shouldForwardProp;
+      shouldForwardProp2 = tag.__emotion_forwardProp && optionsShouldForwardProp ? function(propName) {
+        return tag.__emotion_forwardProp(propName) && optionsShouldForwardProp(propName);
+      } : optionsShouldForwardProp;
+    }
+    if (typeof shouldForwardProp2 !== "function" && isReal) {
+      shouldForwardProp2 = tag.__emotion_forwardProp;
+    }
+    return shouldForwardProp2;
+  };
+  var Insertion3 = function Insertion4(_ref) {
+    var cache = _ref.cache, serialized = _ref.serialized, isStringTag2 = _ref.isStringTag;
+    registerStyles(cache, serialized, isStringTag2);
+    useInsertionEffectAlwaysWithSyncFallback(function() {
+      return insertStyles(cache, serialized, isStringTag2);
+    });
+    return null;
+  };
+  var createStyled = function createStyled2(tag, options) {
+    var isReal = tag.__emotion_real === tag;
+    var baseTag = isReal && tag.__emotion_base || tag;
+    var identifierName;
+    var targetClassName;
+    if (options !== void 0) {
+      identifierName = options.label;
+      targetClassName = options.target;
+    }
+    var shouldForwardProp2 = composeShouldForwardProps(tag, options, isReal);
+    var defaultShouldForwardProp = shouldForwardProp2 || getDefaultShouldForwardProp(baseTag);
+    var shouldUseAs = !defaultShouldForwardProp("as");
+    return function() {
+      var args = arguments;
+      var styles = isReal && tag.__emotion_styles !== void 0 ? tag.__emotion_styles.slice(0) : [];
+      if (identifierName !== void 0) {
+        styles.push("label:" + identifierName + ";");
+      }
+      if (args[0] == null || args[0].raw === void 0) {
+        styles.push.apply(styles, args);
+      } else {
+        var templateStringsArr = args[0];
+        styles.push(templateStringsArr[0]);
+        var len = args.length;
+        var i = 1;
+        for (; i < len; i++) {
+          styles.push(args[i], templateStringsArr[i]);
+        }
+      }
+      var Styled = withEmotionCache(function(props, cache, ref) {
+        var FinalTag = shouldUseAs && props.as || baseTag;
+        var className = "";
+        var classInterpolations = [];
+        var mergedProps = props;
+        if (props.theme == null) {
+          mergedProps = {};
+          for (var key in props) {
+            mergedProps[key] = props[key];
+          }
+          mergedProps.theme = React5.useContext(ThemeContext);
+        }
+        if (typeof props.className === "string") {
+          className = getRegisteredStyles(cache.registered, classInterpolations, props.className);
+        } else if (props.className != null) {
+          className = props.className + " ";
+        }
+        var serialized = serializeStyles(styles.concat(classInterpolations), cache.registered, mergedProps);
+        className += cache.key + "-" + serialized.name;
+        if (targetClassName !== void 0) {
+          className += " " + targetClassName;
+        }
+        var finalShouldForwardProp = shouldUseAs && shouldForwardProp2 === void 0 ? getDefaultShouldForwardProp(FinalTag) : defaultShouldForwardProp;
+        var newProps = {};
+        for (var _key in props) {
+          if (shouldUseAs && _key === "as") continue;
+          if (finalShouldForwardProp(_key)) {
+            newProps[_key] = props[_key];
+          }
+        }
+        newProps.className = className;
+        if (ref) {
+          newProps.ref = ref;
+        }
+        return /* @__PURE__ */ React5.createElement(React5.Fragment, null, /* @__PURE__ */ React5.createElement(Insertion3, {
+          cache,
+          serialized,
+          isStringTag: typeof FinalTag === "string"
+        }), /* @__PURE__ */ React5.createElement(FinalTag, newProps));
+      });
+      Styled.displayName = identifierName !== void 0 ? identifierName : "Styled(" + (typeof baseTag === "string" ? baseTag : baseTag.displayName || baseTag.name || "Component") + ")";
+      Styled.defaultProps = tag.defaultProps;
+      Styled.__emotion_real = Styled;
+      Styled.__emotion_base = baseTag;
+      Styled.__emotion_styles = styles;
+      Styled.__emotion_forwardProp = shouldForwardProp2;
+      Object.defineProperty(Styled, "toString", {
+        value: function value() {
+          if (targetClassName === void 0 && isDevelopment4) {
+            return "NO_COMPONENT_SELECTOR";
+          }
+          return "." + targetClassName;
+        }
+      });
+      Styled.withComponent = function(nextTag, nextOptions) {
+        var newStyled = createStyled2(nextTag, _extends({}, options, nextOptions, {
+          shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
+        }));
+        return newStyled.apply(void 0, styles);
+      };
+      return Styled;
+    };
+  };
+
+  // node_modules/.pnpm/@emotion+styled@11.14.1_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@types+react@19.2.17_react@19.2.4/node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js
+  var import_react3 = __toESM(require_react());
+  var tags = [
+    "a",
+    "abbr",
+    "address",
+    "area",
+    "article",
+    "aside",
+    "audio",
+    "b",
+    "base",
+    "bdi",
+    "bdo",
+    "big",
+    "blockquote",
+    "body",
+    "br",
+    "button",
+    "canvas",
+    "caption",
+    "cite",
+    "code",
+    "col",
+    "colgroup",
+    "data",
+    "datalist",
+    "dd",
+    "del",
+    "details",
+    "dfn",
+    "dialog",
+    "div",
+    "dl",
+    "dt",
+    "em",
+    "embed",
+    "fieldset",
+    "figcaption",
+    "figure",
+    "footer",
+    "form",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "head",
+    "header",
+    "hgroup",
+    "hr",
+    "html",
+    "i",
+    "iframe",
+    "img",
+    "input",
+    "ins",
+    "kbd",
+    "keygen",
+    "label",
+    "legend",
+    "li",
+    "link",
+    "main",
+    "map",
+    "mark",
+    "marquee",
+    "menu",
+    "menuitem",
+    "meta",
+    "meter",
+    "nav",
+    "noscript",
+    "object",
+    "ol",
+    "optgroup",
+    "option",
+    "output",
+    "p",
+    "param",
+    "picture",
+    "pre",
+    "progress",
+    "q",
+    "rp",
+    "rt",
+    "ruby",
+    "s",
+    "samp",
+    "script",
+    "section",
+    "select",
+    "small",
+    "source",
+    "span",
+    "strong",
+    "style",
+    "sub",
+    "summary",
+    "sup",
+    "table",
+    "tbody",
+    "td",
+    "textarea",
+    "tfoot",
+    "th",
+    "thead",
+    "time",
+    "title",
+    "tr",
+    "track",
+    "u",
+    "ul",
+    "var",
+    "video",
+    "wbr",
+    // SVG
+    "circle",
+    "clipPath",
+    "defs",
+    "ellipse",
+    "foreignObject",
+    "g",
+    "image",
+    "line",
+    "linearGradient",
+    "mask",
+    "path",
+    "pattern",
+    "polygon",
+    "polyline",
+    "radialGradient",
+    "rect",
+    "stop",
+    "svg",
+    "text",
+    "tspan"
+  ];
+  var styled = createStyled.bind(null);
+  tags.forEach(function(tagName) {
+    styled[tagName] = styled(tagName);
+  });
+
+  // node_modules/.pnpm/@mui+styled-engine@9.1.1_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emo_e28de8d761f2a81f785bb956112a9948/node_modules/@mui/styled-engine/index.mjs
+  function styled2(tag, options) {
+    const stylesFactory = styled(tag, options);
+    if (false) {
+      return (...styles) => {
+        const component = typeof tag === "string" ? `"${tag}"` : "component";
+        if (styles.length === 0) {
+          console.error([`MUI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`, 'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.'].join("\n"));
+        } else if (styles.some((style3) => style3 === void 0)) {
+          console.error(`MUI: the styled(${component})(...args) API requires all its args to be defined.`);
+        }
+        return stylesFactory(...styles);
+      };
+    }
+    return stylesFactory;
+  }
+  var styled_engine_default = styled2;
+  function internal_mutateStyles(tag, processor) {
+    if (Array.isArray(tag.__emotion_styles)) {
+      tag.__emotion_styles = processor(tag.__emotion_styles);
+    }
+  }
+  var wrapper = [];
+  function internal_serializeStyles(styles) {
+    wrapper[0] = styles;
+    return serializeStyles(wrapper);
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/createTheme/shape.mjs
+  var shape = {
+    borderRadius: 4
+  };
+  var shape_default = shape;
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/createTheme/createSpacing.mjs
+  function createSpacing(spacingInput = 8, transform = createUnarySpacing({
+    spacing: spacingInput
+  })) {
+    if (spacingInput.mui) {
+      return spacingInput;
+    }
+    const spacing = (...argsInput) => {
+      if (false) {
+        if (!(argsInput.length <= 4)) {
+          console.error(`MUI: Too many arguments provided, expected between 0 and 4, got ${argsInput.length}`);
+        }
+      }
+      const args = argsInput.length === 0 ? [1] : argsInput;
+      return args.map((argument) => {
+        const output = transform(argument);
+        return typeof output === "number" ? `${output}px` : output;
+      }).join(" ");
+    };
+    spacing.mui = true;
+    return spacing;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/createTheme/applyStyles.mjs
+  function applyStyles(key, styles) {
+    const theme = this;
+    if (theme.vars) {
+      if (!theme.colorSchemes?.[key] || typeof theme.getColorSchemeSelector !== "function") {
+        return {};
+      }
+      let selector = theme.getColorSchemeSelector(key);
+      if (selector === "&") {
+        return styles;
+      }
+      if (selector.includes("data-") || selector.includes(".")) {
+        selector = `*:where(${selector.replace(/\s*&$/, "")}) &`;
+      }
+      return {
+        [selector]: styles
+      };
+    }
+    if (theme.palette.mode === key) {
+      return styles;
+    }
+    return {};
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/createTheme/createTheme.mjs
+  function createTheme(options = {}, ...args) {
+    const {
+      breakpoints: breakpointsInput = {},
+      palette: paletteInput = {},
+      spacing: spacingInput,
+      shape: shapeInput = {},
+      ...other
+    } = options;
+    const breakpoints = createBreakpoints(breakpointsInput);
+    const spacing = createSpacing(spacingInput);
+    let muiTheme = deepmerge({
+      breakpoints,
+      direction: "ltr",
+      components: {},
+      // Inject component definitions.
+      palette: {
+        mode: "light",
+        ...paletteInput
+      },
+      spacing,
+      shape: {
+        ...shape_default,
+        ...shapeInput
+      }
+    }, other);
+    muiTheme = cssContainerQueries(muiTheme);
+    muiTheme.applyStyles = applyStyles;
+    muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
+    muiTheme.unstable_sxConfig = {
+      ...defaultSxConfig_default,
+      ...other?.unstable_sxConfig
+    };
+    muiTheme.unstable_sx = function sx(props) {
+      return styleFunctionSx_default({
+        sx: props,
+        theme: this
+      });
+    };
+    muiTheme.internal_cache = {};
+    return muiTheme;
+  }
+  var createTheme_default = createTheme;
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/ClassNameGenerator/ClassNameGenerator.mjs
+  var defaultGenerator = (componentName) => componentName;
+  var createClassNameGenerator = () => {
+    let generate = defaultGenerator;
+    return {
+      configure(generator) {
+        generate = generator;
+      },
+      generate(componentName) {
+        return generate(componentName);
+      },
+      reset() {
+        generate = defaultGenerator;
+      }
+    };
+  };
+  var ClassNameGenerator = createClassNameGenerator();
+  var ClassNameGenerator_default = ClassNameGenerator;
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/generateUtilityClass/generateUtilityClass.mjs
+  var globalStateClasses = {
+    active: "active",
+    checked: "checked",
+    completed: "completed",
+    disabled: "disabled",
+    error: "error",
+    expanded: "expanded",
+    focused: "focused",
+    focusVisible: "focusVisible",
+    open: "open",
+    readOnly: "readOnly",
+    required: "required",
+    selected: "selected"
+  };
+  function generateUtilityClass(componentName, slot, globalStatePrefix = "Mui") {
+    const globalStateClass = globalStateClasses[slot];
+    return globalStateClass ? `${globalStatePrefix}-${globalStateClass}` : `${ClassNameGenerator_default.generate(componentName)}-${slot}`;
+  }
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/generateUtilityClasses/generateUtilityClasses.mjs
+  function generateUtilityClasses(componentName, slots, globalStatePrefix = "Mui") {
+    const result = {};
+    slots.forEach((slot) => {
+      result[slot] = generateUtilityClass(componentName, slot, globalStatePrefix);
+    });
+    return result;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/preprocessStyles.mjs
+  function preprocessStyles(input) {
+    const {
+      variants: variants2,
+      ...style3
+    } = input;
+    const result = {
+      variants: variants2,
+      style: internal_serializeStyles(style3),
+      isProcessed: true
+    };
+    if (result.style === style3) {
+      return result;
+    }
+    if (variants2) {
+      variants2.forEach((variant) => {
+        if (typeof variant.style !== "function") {
+          variant.style = internal_serializeStyles(variant.style);
+        }
+      });
+    }
+    return result;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/createStyled/createStyled.mjs
+  var systemDefaultTheme = createTheme_default();
+  function shouldForwardProp(prop) {
+    return prop !== "ownerState" && prop !== "theme" && prop !== "sx" && prop !== "as";
+  }
+  function shallowLayer(serialized, layerName) {
+    if (layerName && serialized && typeof serialized === "object" && serialized.styles && !serialized.styles.startsWith("@layer")) {
+      serialized.styles = `@layer ${layerName}{${String(serialized.styles)}}`;
+    }
+    return serialized;
+  }
+  function defaultOverridesResolver(slot) {
+    if (!slot) {
+      return null;
+    }
+    return (_props, styles) => styles[slot];
+  }
+  function attachTheme(props, themeId, defaultTheme2) {
+    props.theme = isObjectEmpty(props.theme) ? defaultTheme2 : props.theme[themeId] || props.theme;
+  }
+  function processStyle(props, style3, layerName) {
+    const resolvedStyle = typeof style3 === "function" ? style3(props) : style3;
+    if (Array.isArray(resolvedStyle)) {
+      return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle, layerName));
+    }
+    if (Array.isArray(resolvedStyle?.variants)) {
+      let rootStyle;
+      if (resolvedStyle.isProcessed) {
+        rootStyle = layerName ? shallowLayer(resolvedStyle.style, layerName) : resolvedStyle.style;
+      } else {
+        const {
+          variants: variants2,
+          ...otherStyles
+        } = resolvedStyle;
+        rootStyle = layerName ? shallowLayer(internal_serializeStyles(otherStyles), layerName) : otherStyles;
+      }
+      return processStyleVariants(props, resolvedStyle.variants, [rootStyle], layerName);
+    }
+    if (resolvedStyle?.isProcessed) {
+      return layerName ? shallowLayer(internal_serializeStyles(resolvedStyle.style), layerName) : resolvedStyle.style;
+    }
+    return layerName ? shallowLayer(internal_serializeStyles(resolvedStyle), layerName) : resolvedStyle;
+  }
+  function processStyleVariants(props, variants2, results = [], layerName = void 0) {
+    let mergedState;
+    variantLoop: for (let i = 0; i < variants2.length; i += 1) {
+      const variant = variants2[i];
+      if (typeof variant.props === "function") {
+        mergedState ??= {
+          ...props,
+          ...props.ownerState,
+          ownerState: props.ownerState
+        };
+        if (!variant.props(mergedState)) {
+          continue;
+        }
+      } else {
+        for (const key in variant.props) {
+          if (props[key] !== variant.props[key] && props.ownerState?.[key] !== variant.props[key]) {
+            continue variantLoop;
+          }
+        }
+      }
+      if (typeof variant.style === "function") {
+        mergedState ??= {
+          ...props,
+          ...props.ownerState,
+          ownerState: props.ownerState
+        };
+        results.push(layerName ? shallowLayer(internal_serializeStyles(variant.style(mergedState)), layerName) : variant.style(mergedState));
+      } else {
+        results.push(layerName ? shallowLayer(internal_serializeStyles(variant.style), layerName) : variant.style);
+      }
+    }
+    return results;
+  }
+  function createStyled3(input = {}) {
+    const {
+      themeId,
+      defaultTheme: defaultTheme2 = systemDefaultTheme,
+      rootShouldForwardProp: rootShouldForwardProp2 = shouldForwardProp,
+      slotShouldForwardProp: slotShouldForwardProp2 = shouldForwardProp
+    } = input;
+    function styleAttachTheme(props) {
+      attachTheme(props, themeId, defaultTheme2);
+    }
+    const styled4 = (tag, inputOptions = {}) => {
+      internal_mutateStyles(tag, (styles) => styles.filter((style3) => style3 !== styleFunctionSx_default));
+      const {
+        name: componentName,
+        slot: componentSlot,
+        skipVariantsResolver: inputSkipVariantsResolver,
+        skipSx: inputSkipSx,
+        // TODO v6: remove `lowercaseFirstLetter()` in the next major release
+        // For more details: https://github.com/mui/material-ui/pull/37908
+        overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
+        ...options
+      } = inputOptions;
+      const layerName = componentName && componentName.startsWith("Mui") || !!componentSlot ? "components" : "custom";
+      const skipVariantsResolver = inputSkipVariantsResolver !== void 0 ? inputSkipVariantsResolver : (
+        // TODO v6: remove `Root` in the next major release
+        // For more details: https://github.com/mui/material-ui/pull/37908
+        componentSlot && componentSlot !== "Root" && componentSlot !== "root" || false
+      );
+      const skipSx = inputSkipSx || false;
+      let shouldForwardPropOption = shouldForwardProp;
+      if (componentSlot === "Root" || componentSlot === "root") {
+        shouldForwardPropOption = rootShouldForwardProp2;
+      } else if (componentSlot) {
+        shouldForwardPropOption = slotShouldForwardProp2;
+      } else if (isStringTag(tag)) {
+        shouldForwardPropOption = void 0;
+      }
+      const defaultStyledResolver = styled_engine_default(tag, {
+        shouldForwardProp: shouldForwardPropOption,
+        label: generateStyledLabel(componentName, componentSlot),
+        ...options
+      });
+      const transformStyle = (style3) => {
+        if (style3.__emotion_real === style3) {
+          return style3;
+        }
+        if (typeof style3 === "function") {
+          return function styleFunctionProcessor(props) {
+            return processStyle(props, style3, props.theme.modularCssLayers ? layerName : void 0);
+          };
+        }
+        if (isPlainObject(style3)) {
+          const serialized = preprocessStyles(style3);
+          return function styleObjectProcessor(props) {
+            if (!serialized.variants) {
+              return props.theme.modularCssLayers ? shallowLayer(serialized.style, layerName) : serialized.style;
+            }
+            return processStyle(props, serialized, props.theme.modularCssLayers ? layerName : void 0);
+          };
+        }
+        return style3;
+      };
+      const muiStyledResolver = (...expressionsInput) => {
+        const expressionsHead = [];
+        const expressionsBody = expressionsInput.map(transformStyle);
+        const expressionsTail = [];
+        expressionsHead.push(styleAttachTheme);
+        if (componentName && overridesResolver) {
+          expressionsTail.push(function styleThemeOverrides(props) {
+            const theme = props.theme;
+            const styleOverrides = theme.components?.[componentName]?.styleOverrides;
+            if (!styleOverrides) {
+              return null;
+            }
+            const resolvedStyleOverrides = {};
+            for (const slotKey in styleOverrides) {
+              resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey], props.theme.modularCssLayers ? "theme" : void 0);
+            }
+            return overridesResolver(props, resolvedStyleOverrides);
+          });
+        }
+        if (componentName && !skipVariantsResolver) {
+          expressionsTail.push(function styleThemeVariants(props) {
+            const theme = props.theme;
+            const themeVariants = theme?.components?.[componentName]?.variants;
+            if (!themeVariants) {
+              return null;
+            }
+            return processStyleVariants(props, themeVariants, [], props.theme.modularCssLayers ? "theme" : void 0);
+          });
+        }
+        if (!skipSx) {
+          expressionsTail.push(styleFunctionSx_default);
+        }
+        if (Array.isArray(expressionsBody[0])) {
+          const inputStrings = expressionsBody.shift();
+          const placeholdersHead = new Array(expressionsHead.length).fill("");
+          const placeholdersTail = new Array(expressionsTail.length).fill("");
+          let outputStrings;
+          {
+            outputStrings = [...placeholdersHead, ...inputStrings, ...placeholdersTail];
+            outputStrings.raw = [...placeholdersHead, ...inputStrings.raw, ...placeholdersTail];
+          }
+          expressionsHead.unshift(outputStrings);
+        }
+        const expressions = [...expressionsHead, ...expressionsBody, ...expressionsTail];
+        const Component = defaultStyledResolver(...expressions);
+        if (tag.muiName) {
+          Component.muiName = tag.muiName;
+        }
+        if (false) {
+          Component.displayName = generateDisplayName(componentName, componentSlot, tag);
+        }
+        return Component;
+      };
+      if (defaultStyledResolver.withConfig) {
+        muiStyledResolver.withConfig = defaultStyledResolver.withConfig;
+      }
+      return muiStyledResolver;
+    };
+    return styled4;
+  }
+  function generateStyledLabel(componentName, componentSlot) {
+    let label;
+    if (false) {
+      if (componentName) {
+        label = `${componentName}-${lowercaseFirstLetter(componentSlot || "Root")}`;
+      }
+    }
+    return label;
+  }
+  function isStringTag(tag) {
+    return typeof tag === "string" && // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96;
+  }
+  function lowercaseFirstLetter(string) {
+    if (!string) {
+      return string;
+    }
+    return string.charAt(0).toLowerCase() + string.slice(1);
+  }
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/resolveProps/resolveProps.mjs
+  function resolveProps(defaultProps, props, mergeClassNameAndStyle = false) {
+    const output = {
+      ...props
+    };
+    for (const key in defaultProps) {
+      if (Object.prototype.hasOwnProperty.call(defaultProps, key)) {
+        const propName = key;
+        if (propName === "components" || propName === "slots") {
+          output[propName] = {
+            ...defaultProps[propName],
+            ...output[propName]
+          };
+        } else if (propName === "componentsProps" || propName === "slotProps") {
+          const defaultSlotProps = defaultProps[propName];
+          const slotProps = props[propName];
+          if (!slotProps) {
+            output[propName] = defaultSlotProps || {};
+          } else if (!defaultSlotProps) {
+            output[propName] = slotProps;
+          } else {
+            output[propName] = {
+              ...slotProps
+            };
+            for (const slotKey in defaultSlotProps) {
+              if (Object.prototype.hasOwnProperty.call(defaultSlotProps, slotKey)) {
+                const slotPropName = slotKey;
+                output[propName][slotPropName] = resolveProps(defaultSlotProps[slotPropName], slotProps[slotPropName], mergeClassNameAndStyle);
+              }
+            }
+          }
+        } else if (propName === "className" && mergeClassNameAndStyle && props.className !== void 0) {
+          output.className = clsx_default(defaultProps?.className, props?.className);
+        } else if (propName === "style" && mergeClassNameAndStyle && props.style) {
+          output.style = {
+            ...defaultProps?.style,
+            ...props?.style
+          };
+        } else if (output[propName] === void 0) {
+          output[propName] = defaultProps[propName];
+        }
+      }
+    }
+    return output;
+  }
+
+  // node_modules/.pnpm/@mui+utils@9.1.1_@types+react@19.2.17_react@19.2.4/node_modules/@mui/utils/clamp/clamp.mjs
+  function clamp(val, min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER) {
+    return Math.max(min, Math.min(val, max));
+  }
+  var clamp_default = clamp;
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/colorManipulator/colorManipulator.mjs
+  function clampWrapper(value, min = 0, max = 1) {
+    if (false) {
+      if (value < min || value > max) {
+        console.error(`MUI: The value provided ${value} is out of range [${min}, ${max}].`);
+      }
+    }
+    return clamp_default(value, min, max);
+  }
+  function hexToRgb(color2) {
+    color2 = color2.slice(1);
+    const re = new RegExp(`.{1,${color2.length >= 6 ? 2 : 1}}`, "g");
+    let colors = color2.match(re);
+    if (colors && colors[0].length === 1) {
+      colors = colors.map((n) => n + n);
+    }
+    if (false) {
+      if (color2.length !== color2.trim().length) {
+        console.error(`MUI: The color: "${color2}" is invalid. Make sure the color input doesn't contain leading/trailing space.`);
+      }
+    }
+    return colors ? `rgb${colors.length === 4 ? "a" : ""}(${colors.map((n, index) => {
+      return index < 3 ? parseInt(n, 16) : Math.round(parseInt(n, 16) / 255 * 1e3) / 1e3;
+    }).join(", ")})` : "";
+  }
+  function decomposeColor(color2) {
+    if (color2.type) {
+      return color2;
+    }
+    if (color2.charAt(0) === "#") {
+      return decomposeColor(hexToRgb(color2));
+    }
+    const marker = color2.indexOf("(");
+    const type = color2.substring(0, marker);
+    if (!["rgb", "rgba", "hsl", "hsla", "color"].includes(type)) {
+      throw new Error(false ? `MUI: Unsupported \`${color2}\` color.
+The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` : formatMuiErrorMessage(9, color2));
+    }
+    let values2 = color2.substring(marker + 1, color2.length - 1);
+    let colorSpace;
+    if (type === "color") {
+      values2 = values2.split(" ");
+      colorSpace = values2.shift();
+      if (values2.length === 4 && values2[3].charAt(0) === "/") {
+        values2[3] = values2[3].slice(1);
+      }
+      if (!["srgb", "display-p3", "a98-rgb", "prophoto-rgb", "rec-2020"].includes(colorSpace)) {
+        throw new Error(false ? `MUI: unsupported \`${colorSpace}\` color space.
+The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.` : formatMuiErrorMessage(10, colorSpace));
+      }
+    } else {
+      values2 = values2.split(",");
+    }
+    values2 = values2.map((value) => parseFloat(value));
+    return {
+      type,
+      values: values2,
+      colorSpace
+    };
+  }
+  var colorChannel = (color2) => {
+    const decomposedColor = decomposeColor(color2);
+    return decomposedColor.values.slice(0, 3).map((val, idx) => decomposedColor.type.includes("hsl") && idx !== 0 ? `${val}%` : val).join(" ");
+  };
+  var private_safeColorChannel = (color2, warning) => {
+    try {
+      return colorChannel(color2);
+    } catch (error) {
+      if (warning && false) {
+        console.warn(warning);
+      }
+      return color2;
+    }
+  };
+  function recomposeColor(color2) {
+    const {
+      type,
+      colorSpace
+    } = color2;
+    let {
+      values: values2
+    } = color2;
+    if (type.includes("rgb")) {
+      values2 = values2.map((n, i) => i < 3 ? parseInt(n, 10) : n);
+    } else if (type.includes("hsl")) {
+      values2[1] = `${values2[1]}%`;
+      values2[2] = `${values2[2]}%`;
+    }
+    if (type.includes("color")) {
+      values2 = `${colorSpace} ${values2.join(" ")}`;
+    } else {
+      values2 = `${values2.join(", ")}`;
+    }
+    return `${type}(${values2})`;
+  }
+  function hslToRgb(color2) {
+    color2 = decomposeColor(color2);
+    const {
+      values: values2
+    } = color2;
+    const h = values2[0];
+    const s = values2[1] / 100;
+    const l = values2[2] / 100;
+    const a = s * Math.min(l, 1 - l);
+    const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    let type = "rgb";
+    const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+    if (color2.type === "hsla") {
+      type += "a";
+      rgb.push(values2[3]);
+    }
+    return recomposeColor({
+      type,
+      values: rgb
+    });
+  }
+  function getLuminance(color2) {
+    color2 = decomposeColor(color2);
+    let rgb = color2.type === "hsl" || color2.type === "hsla" ? decomposeColor(hslToRgb(color2)).values : color2.values;
+    rgb = rgb.map((val) => {
+      if (color2.type !== "color") {
+        val /= 255;
+      }
+      return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
+    });
+    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
+  }
+  function getContrastRatio(foreground, background) {
+    const lumA = getLuminance(foreground);
+    const lumB = getLuminance(background);
+    return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
+  }
+  function alpha(color2, value) {
+    color2 = decomposeColor(color2);
+    value = clampWrapper(value);
+    if (color2.type === "rgb" || color2.type === "hsl") {
+      color2.type += "a";
+    }
+    if (color2.type === "color") {
+      color2.values[3] = `/${value}`;
+    } else {
+      color2.values[3] = value;
+    }
+    return recomposeColor(color2);
+  }
+  function private_safeAlpha(color2, value, warning) {
+    try {
+      return alpha(color2, value);
+    } catch (error) {
+      if (warning && false) {
+        console.warn(warning);
+      }
+      return color2;
+    }
+  }
+  function darken(color2, coefficient) {
+    color2 = decomposeColor(color2);
+    coefficient = clampWrapper(coefficient);
+    if (color2.type.includes("hsl")) {
+      color2.values[2] *= 1 - coefficient;
+    } else if (color2.type.includes("rgb") || color2.type.includes("color")) {
+      for (let i = 0; i < 3; i += 1) {
+        color2.values[i] *= 1 - coefficient;
+      }
+    }
+    return recomposeColor(color2);
+  }
+  function private_safeDarken(color2, coefficient, warning) {
+    try {
+      return darken(color2, coefficient);
+    } catch (error) {
+      if (warning && false) {
+        console.warn(warning);
+      }
+      return color2;
+    }
+  }
+  function lighten(color2, coefficient) {
+    color2 = decomposeColor(color2);
+    coefficient = clampWrapper(coefficient);
+    if (color2.type.includes("hsl")) {
+      color2.values[2] += (100 - color2.values[2]) * coefficient;
+    } else if (color2.type.includes("rgb")) {
+      for (let i = 0; i < 3; i += 1) {
+        color2.values[i] += (255 - color2.values[i]) * coefficient;
+      }
+    } else if (color2.type.includes("color")) {
+      for (let i = 0; i < 3; i += 1) {
+        color2.values[i] += (1 - color2.values[i]) * coefficient;
+      }
+    }
+    return recomposeColor(color2);
+  }
+  function private_safeLighten(color2, coefficient, warning) {
+    try {
+      return lighten(color2, coefficient);
+    } catch (error) {
+      if (warning && false) {
+        console.warn(warning);
+      }
+      return color2;
+    }
+  }
+  function emphasize(color2, coefficient = 0.15) {
+    return getLuminance(color2) > 0.5 ? darken(color2, coefficient) : lighten(color2, coefficient);
+  }
+  function private_safeEmphasize(color2, coefficient, warning) {
+    try {
+      return emphasize(color2, coefficient);
+    } catch (error) {
+      if (warning && false) {
+        console.warn(warning);
+      }
+      return color2;
+    }
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/DefaultPropsProvider/DefaultPropsProvider.mjs
+  var React6 = __toESM(require_react(), 1);
+  var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
+  var PropsContext = /* @__PURE__ */ React6.createContext(void 0);
+  false ? DefaultPropsProvider.propTypes = {
+    // ┌────────────────────────────── Warning ──────────────────────────────┐
+    // │ These PropTypes are generated from the TypeScript type definitions. │
+    // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+    // └─────────────────────────────────────────────────────────────────────┘
+    /**
+     * @ignore
+     */
+    children: import_prop_types.default.node,
+    /**
+     * @ignore
+     */
+    value: import_prop_types.default.object
+  } : void 0;
+  function getThemeProps(params) {
+    const {
+      theme,
+      name,
+      props
+    } = params;
+    if (!theme || !theme.components || !theme.components[name]) {
+      return props;
+    }
+    const config = theme.components[name];
+    if (config.defaultProps) {
+      return resolveProps(config.defaultProps, props, theme.components.mergeClassNameAndStyle);
+    }
+    if (!config.styleOverrides && !config.variants) {
+      return resolveProps(config, props, theme.components.mergeClassNameAndStyle);
+    }
+    return props;
+  }
+  function useDefaultProps({
+    props,
+    name
+  }) {
+    const ctx = React6.useContext(PropsContext);
+    return getThemeProps({
+      props,
+      name,
+      theme: {
+        components: ctx
+      }
+    });
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/memoTheme.mjs
+  var arg = {
+    theme: void 0
+  };
+  function unstable_memoTheme(styleFn) {
+    let lastValue;
+    let lastTheme;
+    return function styleMemoized(props) {
+      let value = lastValue;
+      if (value === void 0 || props.theme !== lastTheme) {
+        arg.theme = props.theme;
+        value = preprocessStyles(styleFn(arg));
+        lastValue = value;
+        lastTheme = props.theme;
+      }
+      return value;
+    };
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/cssVars/createGetCssVar.mjs
+  function createGetCssVar(prefix2 = "") {
+    function appendVar(...vars) {
+      if (!vars.length) {
+        return "";
+      }
+      const value = vars[0];
+      if (typeof value === "string" && !value.match(/(#|\(|\)|(-?(\d*\.)?\d+)(px|em|%|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc))|^(-?(\d*\.)?\d+)$|(\d+ \d+ \d+)/)) {
+        return `, var(--${prefix2 ? `${prefix2}-` : ""}${value}${appendVar(...vars.slice(1))})`;
+      }
+      return `, ${value}`;
+    }
+    const getCssVar = (field, ...fallbacks) => {
+      return `var(--${prefix2 ? `${prefix2}-` : ""}${field}${appendVar(...fallbacks)})`;
+    };
+    return getCssVar;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/cssVars/cssVarsParser.mjs
+  var assignNestedKeys = (obj, keys, value, arrayKeys = []) => {
+    let temp = obj;
+    keys.forEach((k, index) => {
+      if (index === keys.length - 1) {
+        if (Array.isArray(temp)) {
+          temp[Number(k)] = value;
+        } else if (temp && typeof temp === "object") {
+          temp[k] = value;
+        }
+      } else if (temp && typeof temp === "object") {
+        if (!temp[k]) {
+          temp[k] = arrayKeys.includes(k) ? [] : {};
+        }
+        temp = temp[k];
+      }
+    });
+  };
+  var walkObjectDeep = (obj, callback, shouldSkipPaths) => {
+    function recurse(object, parentKeys = [], arrayKeys = []) {
+      Object.entries(object).forEach(([key, value]) => {
+        if (!shouldSkipPaths || shouldSkipPaths && !shouldSkipPaths([...parentKeys, key])) {
+          if (value !== void 0 && value !== null) {
+            if (typeof value === "object" && Object.keys(value).length > 0) {
+              recurse(value, [...parentKeys, key], Array.isArray(value) ? [...arrayKeys, key] : arrayKeys);
+            } else {
+              callback([...parentKeys, key], value, arrayKeys);
+            }
+          }
+        }
+      });
+    }
+    recurse(obj);
+  };
+  var getCssValue = (keys, value) => {
+    if (typeof value === "number") {
+      if (["lineHeight", "fontWeight", "opacity", "zIndex"].some((prop) => keys.includes(prop))) {
+        return value;
+      }
+      const lastKey = keys[keys.length - 1];
+      if (lastKey.toLowerCase().includes("opacity")) {
+        return value;
+      }
+      return `${value}px`;
+    }
+    return value;
+  };
+  function cssVarsParser(theme, options) {
+    const {
+      prefix: prefix2,
+      shouldSkipGeneratingVar: shouldSkipGeneratingVar2
+    } = options || {};
+    const css = {};
+    const vars = {};
+    const varsWithDefaults = {};
+    walkObjectDeep(
+      theme,
+      (keys, value, arrayKeys) => {
+        if (typeof value === "string" || typeof value === "number") {
+          if (!shouldSkipGeneratingVar2 || !shouldSkipGeneratingVar2(keys, value)) {
+            const cssVar = `--${prefix2 ? `${prefix2}-` : ""}${keys.join("-")}`;
+            const resolvedValue = getCssValue(keys, value);
+            Object.assign(css, {
+              [cssVar]: resolvedValue
+            });
+            assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
+            assignNestedKeys(varsWithDefaults, keys, `var(${cssVar}, ${resolvedValue})`, arrayKeys);
+          }
+        }
+      },
+      (keys) => keys[0] === "vars"
+      // skip 'vars/*' paths
+    );
+    return {
+      css,
+      vars,
+      varsWithDefaults
+    };
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/cssVars/prepareCssVars.mjs
+  function prepareCssVars(theme, parserConfig = {}) {
+    const {
+      getSelector = defaultGetSelector,
+      disableCssColorScheme,
+      colorSchemeSelector: selector,
+      enableContrastVars
+    } = parserConfig;
+    const {
+      colorSchemes = {},
+      components,
+      defaultColorScheme = "light",
+      ...otherTheme
+    } = theme;
+    const {
+      vars: rootVars,
+      css: rootCss,
+      varsWithDefaults: rootVarsWithDefaults
+    } = cssVarsParser(otherTheme, parserConfig);
+    let themeVars = rootVarsWithDefaults;
+    const colorSchemesMap = {};
+    const {
+      [defaultColorScheme]: defaultScheme,
+      ...otherColorSchemes
+    } = colorSchemes;
+    Object.entries(otherColorSchemes || {}).forEach(([key, scheme]) => {
+      const {
+        vars,
+        css,
+        varsWithDefaults
+      } = cssVarsParser(scheme, parserConfig);
+      themeVars = deepmerge(themeVars, varsWithDefaults);
+      colorSchemesMap[key] = {
+        css,
+        vars
+      };
+    });
+    if (defaultScheme) {
+      const {
+        css,
+        vars,
+        varsWithDefaults
+      } = cssVarsParser(defaultScheme, parserConfig);
+      themeVars = deepmerge(themeVars, varsWithDefaults);
+      colorSchemesMap[defaultColorScheme] = {
+        css,
+        vars
+      };
+    }
+    function defaultGetSelector(colorScheme, cssObject) {
+      let rule = selector;
+      if (selector === "class") {
+        rule = ".%s";
+      }
+      if (selector === "data") {
+        rule = "[data-%s]";
+      }
+      if (selector?.startsWith("data-") && !selector.includes("%s")) {
+        rule = `[${selector}="%s"]`;
+      }
+      if (colorScheme) {
+        if (rule === "media") {
+          if (theme.defaultColorScheme === colorScheme) {
+            return ":root";
+          }
+          const mode = colorSchemes[colorScheme]?.palette?.mode || colorScheme;
+          return {
+            [`@media (prefers-color-scheme: ${mode})`]: {
+              ":root": cssObject
+            }
+          };
+        }
+        if (rule) {
+          if (theme.defaultColorScheme === colorScheme) {
+            return `:root, ${rule.replace("%s", String(colorScheme))}`;
+          }
+          return rule.replace("%s", String(colorScheme));
+        }
+      }
+      return ":root";
+    }
+    const generateThemeVars = () => {
+      let vars = {
+        ...rootVars
+      };
+      Object.entries(colorSchemesMap).forEach(([, {
+        vars: schemeVars
+      }]) => {
+        vars = deepmerge(vars, schemeVars);
+      });
+      return vars;
+    };
+    const generateStyleSheets = () => {
+      const stylesheets = [];
+      const colorScheme = theme.defaultColorScheme || "light";
+      function insertStyleSheet(key, css) {
+        if (Object.keys(css).length) {
+          stylesheets.push(typeof key === "string" ? {
+            [key]: {
+              ...css
+            }
+          } : key);
+        }
+      }
+      insertStyleSheet(getSelector(void 0, {
+        ...rootCss
+      }), rootCss);
+      const {
+        [colorScheme]: defaultSchemeVal,
+        ...other
+      } = colorSchemesMap;
+      if (defaultSchemeVal) {
+        const {
+          css
+        } = defaultSchemeVal;
+        const cssColorSheme = colorSchemes[colorScheme]?.palette?.mode;
+        const finalCss = !disableCssColorScheme && cssColorSheme ? {
+          colorScheme: cssColorSheme,
+          ...css
+        } : {
+          ...css
+        };
+        insertStyleSheet(getSelector(colorScheme, {
+          ...finalCss
+        }), finalCss);
+      }
+      Object.entries(other).forEach(([key, {
+        css
+      }]) => {
+        const cssColorSheme = colorSchemes[key]?.palette?.mode;
+        const finalCss = !disableCssColorScheme && cssColorSheme ? {
+          colorScheme: cssColorSheme,
+          ...css
+        } : {
+          ...css
+        };
+        insertStyleSheet(getSelector(key, {
+          ...finalCss
+        }), finalCss);
+      });
+      if (enableContrastVars) {
+        stylesheets.push({
+          ":root": {
+            // use double underscore to indicate that these are private variables
+            "--__l-threshold": "0.7",
+            "--__l": "clamp(0, (l / var(--__l-threshold) - 1) * -infinity, 1)",
+            "--__a": "clamp(0.87, (l / var(--__l-threshold) - 1) * -infinity, 1)"
+            // 0.87 is the default alpha value for black text.
+          }
+        });
+      }
+      return stylesheets;
+    };
+    return {
+      vars: themeVars,
+      generateThemeVars,
+      generateStyleSheets
+    };
+  }
+  var prepareCssVars_default = prepareCssVars;
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/cssVars/getColorSchemeSelector.mjs
+  function createGetColorSchemeSelector(selector) {
+    return function getColorSchemeSelector(colorScheme) {
+      if (selector === "media") {
+        if (false) {
+          if (colorScheme !== "light" && colorScheme !== "dark") {
+            console.error(`MUI: @media (prefers-color-scheme) supports only 'light' or 'dark', but receive '${colorScheme}'.`);
+          }
+        }
+        return `@media (prefers-color-scheme: ${colorScheme})`;
+      }
+      if (selector) {
+        if (selector.startsWith("data-") && !selector.includes("%s")) {
+          return `[${selector}="${colorScheme}"] &`;
+        }
+        if (selector === "class") {
+          return `.${colorScheme} &`;
+        }
+        if (selector === "data") {
+          return `[data-${colorScheme}] &`;
+        }
+        return `${selector.replace("%s", colorScheme)} &`;
+      }
+      return "&";
+    };
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/common.mjs
+  var common = {
+    black: "#000",
+    white: "#fff"
+  };
+  var common_default = common;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/grey.mjs
+  var grey = {
+    50: "#fafafa",
+    100: "#f5f5f5",
+    200: "#eeeeee",
+    300: "#e0e0e0",
+    400: "#bdbdbd",
+    500: "#9e9e9e",
+    600: "#757575",
+    700: "#616161",
+    800: "#424242",
+    900: "#212121",
+    A100: "#f5f5f5",
+    A200: "#eeeeee",
+    A400: "#bdbdbd",
+    A700: "#616161"
+  };
+  var grey_default = grey;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/purple.mjs
+  var purple = {
+    50: "#f3e5f5",
+    100: "#e1bee7",
+    200: "#ce93d8",
+    300: "#ba68c8",
+    400: "#ab47bc",
+    500: "#9c27b0",
+    600: "#8e24aa",
+    700: "#7b1fa2",
+    800: "#6a1b9a",
+    900: "#4a148c",
+    A100: "#ea80fc",
+    A200: "#e040fb",
+    A400: "#d500f9",
+    A700: "#aa00ff"
+  };
+  var purple_default = purple;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/red.mjs
+  var red = {
+    50: "#ffebee",
+    100: "#ffcdd2",
+    200: "#ef9a9a",
+    300: "#e57373",
+    400: "#ef5350",
+    500: "#f44336",
+    600: "#e53935",
+    700: "#d32f2f",
+    800: "#c62828",
+    900: "#b71c1c",
+    A100: "#ff8a80",
+    A200: "#ff5252",
+    A400: "#ff1744",
+    A700: "#d50000"
+  };
+  var red_default = red;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/orange.mjs
+  var orange = {
+    50: "#fff3e0",
+    100: "#ffe0b2",
+    200: "#ffcc80",
+    300: "#ffb74d",
+    400: "#ffa726",
+    500: "#ff9800",
+    600: "#fb8c00",
+    700: "#f57c00",
+    800: "#ef6c00",
+    900: "#e65100",
+    A100: "#ffd180",
+    A200: "#ffab40",
+    A400: "#ff9100",
+    A700: "#ff6d00"
+  };
+  var orange_default = orange;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/blue.mjs
+  var blue = {
+    50: "#e3f2fd",
+    100: "#bbdefb",
+    200: "#90caf9",
+    300: "#64b5f6",
+    400: "#42a5f5",
+    500: "#2196f3",
+    600: "#1e88e5",
+    700: "#1976d2",
+    800: "#1565c0",
+    900: "#0d47a1",
+    A100: "#82b1ff",
+    A200: "#448aff",
+    A400: "#2979ff",
+    A700: "#2962ff"
+  };
+  var blue_default = blue;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/lightBlue.mjs
+  var lightBlue = {
+    50: "#e1f5fe",
+    100: "#b3e5fc",
+    200: "#81d4fa",
+    300: "#4fc3f7",
+    400: "#29b6f6",
+    500: "#03a9f4",
+    600: "#039be5",
+    700: "#0288d1",
+    800: "#0277bd",
+    900: "#01579b",
+    A100: "#80d8ff",
+    A200: "#40c4ff",
+    A400: "#00b0ff",
+    A700: "#0091ea"
+  };
+  var lightBlue_default = lightBlue;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/colors/green.mjs
+  var green = {
+    50: "#e8f5e9",
+    100: "#c8e6c9",
+    200: "#a5d6a7",
+    300: "#81c784",
+    400: "#66bb6a",
+    500: "#4caf50",
+    600: "#43a047",
+    700: "#388e3c",
+    800: "#2e7d32",
+    900: "#1b5e20",
+    A100: "#b9f6ca",
+    A200: "#69f0ae",
+    A400: "#00e676",
+    A700: "#00c853"
+  };
+  var green_default = green;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createPalette.mjs
+  function getLight() {
+    return {
+      // The colors used to style the text.
+      text: {
+        // The most important text.
+        primary: "rgba(0, 0, 0, 0.87)",
+        // Secondary text.
+        secondary: "rgba(0, 0, 0, 0.6)",
+        // Disabled text have even lower visual prominence.
+        disabled: "rgba(0, 0, 0, 0.38)"
+      },
+      // The color used to divide different elements.
+      divider: "rgba(0, 0, 0, 0.12)",
+      // The background colors used to style the surfaces.
+      // Consistency between these values is important.
+      background: {
+        paper: common_default.white,
+        default: common_default.white
+      },
+      // The colors used to style the action elements.
+      action: {
+        // The color of an active action like an icon button.
+        active: "rgba(0, 0, 0, 0.54)",
+        // The color of an hovered action.
+        hover: "rgba(0, 0, 0, 0.04)",
+        hoverOpacity: 0.04,
+        // The color of a selected action.
+        selected: "rgba(0, 0, 0, 0.08)",
+        selectedOpacity: 0.08,
+        // The color of a disabled action.
+        disabled: "rgba(0, 0, 0, 0.26)",
+        // The background color of a disabled action.
+        disabledBackground: "rgba(0, 0, 0, 0.12)",
+        disabledOpacity: 0.38,
+        focus: "rgba(0, 0, 0, 0.12)",
+        focusOpacity: 0.12,
+        activatedOpacity: 0.12
+      }
+    };
+  }
+  var light = getLight();
+  function getDark() {
+    return {
+      text: {
+        primary: common_default.white,
+        secondary: "rgba(255, 255, 255, 0.7)",
+        disabled: "rgba(255, 255, 255, 0.5)",
+        icon: "rgba(255, 255, 255, 0.5)"
+      },
+      divider: "rgba(255, 255, 255, 0.12)",
+      background: {
+        paper: "#121212",
+        default: "#121212"
+      },
+      action: {
+        active: common_default.white,
+        hover: "rgba(255, 255, 255, 0.08)",
+        hoverOpacity: 0.08,
+        selected: "rgba(255, 255, 255, 0.16)",
+        selectedOpacity: 0.16,
+        disabled: "rgba(255, 255, 255, 0.3)",
+        disabledBackground: "rgba(255, 255, 255, 0.12)",
+        disabledOpacity: 0.38,
+        focus: "rgba(255, 255, 255, 0.12)",
+        focusOpacity: 0.12,
+        activatedOpacity: 0.24
+      }
+    };
+  }
+  var dark = getDark();
+  function addLightOrDark(intent, direction, shade, tonalOffset) {
+    const tonalOffsetLight = tonalOffset.light || tonalOffset;
+    const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+    if (!intent[direction]) {
+      if (intent.hasOwnProperty(shade)) {
+        intent[direction] = intent[shade];
+      } else if (direction === "light") {
+        intent.light = lighten(intent.main, tonalOffsetLight);
+      } else if (direction === "dark") {
+        intent.dark = darken(intent.main, tonalOffsetDark);
+      }
+    }
+  }
+  function mixLightOrDark(colorSpace, intent, direction, shade, tonalOffset) {
+    const tonalOffsetLight = tonalOffset.light || tonalOffset;
+    const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+    if (!intent[direction]) {
+      if (intent.hasOwnProperty(shade)) {
+        intent[direction] = intent[shade];
+      } else if (direction === "light") {
+        intent.light = `color-mix(in ${colorSpace}, ${intent.main}, #fff ${(tonalOffsetLight * 100).toFixed(0)}%)`;
+      } else if (direction === "dark") {
+        intent.dark = `color-mix(in ${colorSpace}, ${intent.main}, #000 ${(tonalOffsetDark * 100).toFixed(0)}%)`;
+      }
+    }
+  }
+  function getDefaultPrimary(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: blue_default[200],
+        light: blue_default[50],
+        dark: blue_default[400]
+      };
+    }
+    return {
+      main: blue_default[700],
+      light: blue_default[400],
+      dark: blue_default[800]
+    };
+  }
+  function getDefaultSecondary(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: purple_default[200],
+        light: purple_default[50],
+        dark: purple_default[400]
+      };
+    }
+    return {
+      main: purple_default[500],
+      light: purple_default[300],
+      dark: purple_default[700]
+    };
+  }
+  function getDefaultError(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: red_default[500],
+        light: red_default[300],
+        dark: red_default[700]
+      };
+    }
+    return {
+      main: red_default[700],
+      light: red_default[400],
+      dark: red_default[800]
+    };
+  }
+  function getDefaultInfo(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: lightBlue_default[400],
+        light: lightBlue_default[300],
+        dark: lightBlue_default[700]
+      };
+    }
+    return {
+      main: lightBlue_default[700],
+      light: lightBlue_default[500],
+      dark: lightBlue_default[900]
+    };
+  }
+  function getDefaultSuccess(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: green_default[400],
+        light: green_default[300],
+        dark: green_default[700]
+      };
+    }
+    return {
+      main: green_default[800],
+      light: green_default[500],
+      dark: green_default[900]
+    };
+  }
+  function getDefaultWarning(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: orange_default[400],
+        light: orange_default[300],
+        dark: orange_default[700]
+      };
+    }
+    return {
+      main: "#ed6c02",
+      // closest to orange[800] that pass 3:1.
+      light: orange_default[500],
+      dark: orange_default[900]
+    };
+  }
+  function contrastColor(background) {
+    return `oklch(from ${background} var(--__l) 0 h / var(--__a))`;
+  }
+  function createPalette(palette2) {
+    const {
+      mode = "light",
+      contrastThreshold = 3,
+      tonalOffset = 0.2,
+      colorSpace,
+      ...other
+    } = palette2;
+    const primary = palette2.primary || getDefaultPrimary(mode);
+    const secondary = palette2.secondary || getDefaultSecondary(mode);
+    const error = palette2.error || getDefaultError(mode);
+    const info = palette2.info || getDefaultInfo(mode);
+    const success = palette2.success || getDefaultSuccess(mode);
+    const warning = palette2.warning || getDefaultWarning(mode);
+    function getContrastText(background) {
+      if (colorSpace) {
+        return contrastColor(background);
+      }
+      const contrastText = getContrastRatio(background, dark.text.primary) >= contrastThreshold ? dark.text.primary : light.text.primary;
+      if (false) {
+        const contrast = getContrastRatio(background, contrastText);
+        if (contrast < 3) {
+          console.error([`MUI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`, "falls below the WCAG recommended absolute minimum contrast ratio of 3:1.", "https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast"].join("\n"));
+        }
+      }
+      return contrastText;
+    }
+    const augmentColor = ({
+      color: color2,
+      name,
+      mainShade = 500,
+      lightShade = 300,
+      darkShade = 700
+    }) => {
+      color2 = {
+        ...color2
+      };
+      if (!color2.main && color2[mainShade]) {
+        color2.main = color2[mainShade];
+      }
+      if (!color2.hasOwnProperty("main")) {
+        throw new Error(false ? `MUI: The color${name ? ` (${name})` : ""} provided to augmentColor(color) is invalid.
+The color object needs to have a \`main\` property or a \`${mainShade}\` property.` : formatMuiErrorMessage(11, name ? ` (${name})` : "", mainShade));
+      }
+      if (typeof color2.main !== "string") {
+        throw new Error(false ? `MUI: The color${name ? ` (${name})` : ""} provided to augmentColor(color) is invalid.
+\`color.main\` should be a string, but \`${JSON.stringify(color2.main)}\` was provided instead.
+
+Did you intend to use one of the following approaches?
+
+import { green } from "@mui/material/colors";
+
+const theme1 = createTheme({ palette: {
+  primary: green,
+} });
+
+const theme2 = createTheme({ palette: {
+  primary: { main: green[500] },
+} });` : formatMuiErrorMessage(12, name ? ` (${name})` : "", JSON.stringify(color2.main)));
+      }
+      if (colorSpace) {
+        mixLightOrDark(colorSpace, color2, "light", lightShade, tonalOffset);
+        mixLightOrDark(colorSpace, color2, "dark", darkShade, tonalOffset);
+      } else {
+        addLightOrDark(color2, "light", lightShade, tonalOffset);
+        addLightOrDark(color2, "dark", darkShade, tonalOffset);
+      }
+      if (!color2.contrastText) {
+        color2.contrastText = getContrastText(color2.main);
+      }
+      return color2;
+    };
+    let modeHydrated;
+    if (mode === "light") {
+      modeHydrated = getLight();
+    } else if (mode === "dark") {
+      modeHydrated = getDark();
+    }
+    if (false) {
+      if (!modeHydrated) {
+        console.error(`MUI: The palette mode \`${mode}\` is not supported.`);
+      }
+    }
+    const paletteOutput = deepmerge({
+      // A collection of common colors.
+      common: {
+        ...common_default
+      },
+      // prevent mutable object.
+      // The palette mode, can be light or dark.
+      mode,
+      // The colors used to represent primary interface elements for a user.
+      primary: augmentColor({
+        color: primary,
+        name: "primary"
+      }),
+      // The colors used to represent secondary interface elements for a user.
+      secondary: augmentColor({
+        color: secondary,
+        name: "secondary",
+        mainShade: "A400",
+        lightShade: "A200",
+        darkShade: "A700"
+      }),
+      // The colors used to represent interface elements that the user should be made aware of.
+      error: augmentColor({
+        color: error,
+        name: "error"
+      }),
+      // The colors used to represent potentially dangerous actions or important messages.
+      warning: augmentColor({
+        color: warning,
+        name: "warning"
+      }),
+      // The colors used to present information to the user that is neutral and not necessarily important.
+      info: augmentColor({
+        color: info,
+        name: "info"
+      }),
+      // The colors used to indicate the successful completion of an action that user triggered.
+      success: augmentColor({
+        color: success,
+        name: "success"
+      }),
+      // The grey colors.
+      grey: grey_default,
+      // Used by `getContrastText()` to maximize the contrast between
+      // the background and the text.
+      contrastThreshold,
+      // Takes a background color and returns the text color that maximizes the contrast.
+      getContrastText,
+      // Generate a rich color object.
+      augmentColor,
+      // Used by the functions below to shift a color's luminance by approximately
+      // two indexes within its tonal palette.
+      // E.g., shift from Red 500 to Red 300 or Red 700.
+      tonalOffset,
+      // The light and dark mode object.
+      ...modeHydrated
+    }, other);
+    return paletteOutput;
+  }
+
+  // node_modules/.pnpm/@mui+system@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+st_b8840067a41eabdbb9bcf9c531638183/node_modules/@mui/system/cssVars/prepareTypographyVars.mjs
+  function prepareTypographyVars(typography) {
+    const vars = {};
+    const entries = Object.entries(typography);
+    entries.forEach((entry) => {
+      const [key, value] = entry;
+      if (typeof value === "object") {
+        vars[key] = `${value.fontStyle ? `${value.fontStyle} ` : ""}${value.fontVariant ? `${value.fontVariant} ` : ""}${value.fontWeight ? `${value.fontWeight} ` : ""}${value.fontStretch ? `${value.fontStretch} ` : ""}${value.fontSize || ""}${value.lineHeight ? `/${value.lineHeight} ` : ""}${value.fontFamily || ""}`;
+      }
+    });
+    return vars;
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createMixins.mjs
+  function createMixins(breakpoints, mixins) {
+    return {
+      toolbar: {
+        minHeight: 56,
+        [breakpoints.up("xs")]: {
+          "@media (orientation: landscape)": {
+            minHeight: 48
+          }
+        },
+        [breakpoints.up("sm")]: {
+          minHeight: 64
+        }
+      },
+      ...mixins
+    };
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createTypography.mjs
+  function round(value) {
+    return Math.round(value * 1e5) / 1e5;
+  }
+  var caseAllCaps = {
+    textTransform: "uppercase"
+  };
+  var defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
+  function createTypography(palette2, typography) {
+    const {
+      fontFamily = defaultFontFamily,
+      // The default font size of the Material Specification.
+      fontSize = 14,
+      // px
+      fontWeightLight = 300,
+      fontWeightRegular = 400,
+      fontWeightMedium = 500,
+      fontWeightBold = 700,
+      // Tell MUI what's the font-size on the html element.
+      // 16px is the default font-size used by browsers.
+      htmlFontSize = 16,
+      // Apply the CSS properties to all the variants.
+      allVariants,
+      pxToRem: pxToRem2,
+      ...other
+    } = typeof typography === "function" ? typography(palette2) : typography;
+    if (false) {
+      if (typeof fontSize !== "number") {
+        console.error("MUI: `fontSize` is required to be a number.");
+      }
+      if (typeof htmlFontSize !== "number") {
+        console.error("MUI: `htmlFontSize` is required to be a number.");
+      }
+    }
+    const coef = fontSize / 14;
+    const pxToRem = pxToRem2 || ((size) => `${size / htmlFontSize * coef}rem`);
+    const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
+      fontFamily,
+      fontWeight,
+      fontSize: pxToRem(size),
+      // Unitless following https://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+      lineHeight,
+      // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
+      // across font-families can cause issues with the kerning.
+      ...fontFamily === defaultFontFamily ? {
+        letterSpacing: `${round(letterSpacing / size)}em`
+      } : {},
+      ...casing,
+      ...allVariants
+    });
+    const variants2 = {
+      h1: buildVariant(fontWeightLight, 96, 1.167, -1.5),
+      h2: buildVariant(fontWeightLight, 60, 1.2, -0.5),
+      h3: buildVariant(fontWeightRegular, 48, 1.167, 0),
+      h4: buildVariant(fontWeightRegular, 34, 1.235, 0.25),
+      h5: buildVariant(fontWeightRegular, 24, 1.334, 0),
+      h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
+      subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
+      subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
+      body1: buildVariant(fontWeightRegular, 16, 1.5, 0.15),
+      body2: buildVariant(fontWeightRegular, 14, 1.43, 0.15),
+      button: buildVariant(fontWeightMedium, 14, 1.75, 0.4, caseAllCaps),
+      caption: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
+      overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps),
+      // TODO v6: Remove handling of 'inherit' variant from the theme as it is already handled in Material UI's Typography component. Also, remember to remove the associated types.
+      inherit: {
+        fontFamily: "inherit",
+        fontWeight: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
+        letterSpacing: "inherit"
+      }
+    };
+    return deepmerge({
+      htmlFontSize,
+      pxToRem,
+      fontFamily,
+      fontSize,
+      fontWeightLight,
+      fontWeightRegular,
+      fontWeightMedium,
+      fontWeightBold,
+      ...variants2
+    }, other, {
+      clone: false
+      // No need to clone deep
+    });
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/shadows.mjs
+  var shadowKeyUmbraOpacity = 0.2;
+  var shadowKeyPenumbraOpacity = 0.14;
+  var shadowAmbientShadowOpacity = 0.12;
+  function createShadow(...px) {
+    return [`${px[0]}px ${px[1]}px ${px[2]}px ${px[3]}px rgba(0,0,0,${shadowKeyUmbraOpacity})`, `${px[4]}px ${px[5]}px ${px[6]}px ${px[7]}px rgba(0,0,0,${shadowKeyPenumbraOpacity})`, `${px[8]}px ${px[9]}px ${px[10]}px ${px[11]}px rgba(0,0,0,${shadowAmbientShadowOpacity})`].join(",");
+  }
+  var shadows = ["none", createShadow(0, 2, 1, -1, 0, 1, 1, 0, 0, 1, 3, 0), createShadow(0, 3, 1, -2, 0, 2, 2, 0, 0, 1, 5, 0), createShadow(0, 3, 3, -2, 0, 3, 4, 0, 0, 1, 8, 0), createShadow(0, 2, 4, -1, 0, 4, 5, 0, 0, 1, 10, 0), createShadow(0, 3, 5, -1, 0, 5, 8, 0, 0, 1, 14, 0), createShadow(0, 3, 5, -1, 0, 6, 10, 0, 0, 1, 18, 0), createShadow(0, 4, 5, -2, 0, 7, 10, 1, 0, 2, 16, 1), createShadow(0, 5, 5, -3, 0, 8, 10, 1, 0, 3, 14, 2), createShadow(0, 5, 6, -3, 0, 9, 12, 1, 0, 3, 16, 2), createShadow(0, 6, 6, -3, 0, 10, 14, 1, 0, 4, 18, 3), createShadow(0, 6, 7, -4, 0, 11, 15, 1, 0, 4, 20, 3), createShadow(0, 7, 8, -4, 0, 12, 17, 2, 0, 5, 22, 4), createShadow(0, 7, 8, -4, 0, 13, 19, 2, 0, 5, 24, 4), createShadow(0, 7, 9, -4, 0, 14, 21, 2, 0, 5, 26, 4), createShadow(0, 8, 9, -5, 0, 15, 22, 2, 0, 6, 28, 5), createShadow(0, 8, 10, -5, 0, 16, 24, 2, 0, 6, 30, 5), createShadow(0, 8, 11, -5, 0, 17, 26, 2, 0, 6, 32, 5), createShadow(0, 9, 11, -5, 0, 18, 28, 2, 0, 7, 34, 6), createShadow(0, 9, 12, -6, 0, 19, 29, 2, 0, 7, 36, 6), createShadow(0, 10, 13, -6, 0, 20, 31, 3, 0, 8, 38, 7), createShadow(0, 10, 13, -6, 0, 21, 33, 3, 0, 8, 40, 7), createShadow(0, 10, 14, -6, 0, 22, 35, 3, 0, 8, 42, 7), createShadow(0, 11, 14, -7, 0, 23, 36, 3, 0, 9, 44, 8), createShadow(0, 11, 15, -7, 0, 24, 38, 3, 0, 9, 46, 8)];
+  var shadows_default = shadows;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createTransitions.mjs
+  var DEFAULT_TRANSITION_PROPS = ["all"];
+  var EMPTY_OPTIONS = {};
+  var easing = {
+    // This is the most common easing curve.
+    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+    // Objects enter the screen at full velocity from off-screen and
+    // slowly decelerate to a resting point.
+    easeOut: "cubic-bezier(0.0, 0, 0.2, 1)",
+    // Objects leave the screen at full velocity. They do not decelerate when off-screen.
+    easeIn: "cubic-bezier(0.4, 0, 1, 1)",
+    // The sharp curve is used by objects that may return to the screen at any time.
+    sharp: "cubic-bezier(0.4, 0, 0.6, 1)"
+  };
+  var duration = {
+    shortest: 150,
+    shorter: 200,
+    short: 250,
+    // most basic recommended timing
+    standard: 300,
+    // this is to be used in complex animations
+    complex: 375,
+    // recommended when something is entering screen
+    enteringScreen: 225,
+    // recommended when something is leaving screen
+    leavingScreen: 195
+  };
+  function formatMs(milliseconds) {
+    return `${Math.round(milliseconds)}ms`;
+  }
+  function getAutoHeightDuration(height2) {
+    if (!height2) {
+      return 0;
+    }
+    const constant = height2 / 36;
+    return Math.min(Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10), 3e3);
+  }
+  function createTransitions(inputTransitions) {
+    const transitions = {
+      ...inputTransitions
+    };
+    delete transitions.reducedMotion;
+    const mergedEasing = {
+      ...easing,
+      ...transitions.easing
+    };
+    const mergedDuration = {
+      ...duration,
+      ...transitions.duration
+    };
+    const createTransitionValue = (props = DEFAULT_TRANSITION_PROPS, options = EMPTY_OPTIONS) => {
+      const {
+        duration: durationOption = mergedDuration.standard,
+        easing: easingOption = mergedEasing.easeInOut,
+        delay = 0,
+        ...other
+      } = options;
+      if (false) {
+        const isString = (value) => typeof value === "string";
+        const isNumber = (value) => !Number.isNaN(parseFloat(value));
+        if (!isString(props) && !Array.isArray(props)) {
+          console.error('MUI: Argument "props" must be a string or Array.');
+        }
+        if (!isNumber(durationOption) && !isString(durationOption)) {
+          console.error(`MUI: Argument "duration" must be a number or a string but found ${durationOption}.`);
+        }
+        if (!isString(easingOption)) {
+          console.error('MUI: Argument "easing" must be a string.');
+        }
+        if (!isNumber(delay) && !isString(delay)) {
+          console.error('MUI: Argument "delay" must be a number or a string.');
+        }
+        if (typeof options !== "object") {
+          console.error(["MUI: Secong argument of transition.create must be an object.", "Arguments should be either `create('prop1', options)` or `create(['prop1', 'prop2'], options)`"].join("\n"));
+        }
+        if (Object.keys(other).length !== 0) {
+          console.error(`MUI: Unrecognized argument(s) [${Object.keys(other).join(",")}].`);
+        }
+      }
+      return (Array.isArray(props) ? props : [props]).map((animatedProp) => `${animatedProp} ${typeof durationOption === "string" ? durationOption : formatMs(durationOption)} ${easingOption} ${typeof delay === "string" ? delay : formatMs(delay)}`).join(",");
+    };
+    const create = transitions.create ?? createTransitionValue;
+    return {
+      getAutoHeightDuration,
+      create,
+      ...transitions,
+      easing: mergedEasing,
+      duration: mergedDuration
+    };
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createMotion.mjs
+  var EMPTY_MOTION = {};
+  function createMotion(inputMotion = EMPTY_MOTION) {
+    return {
+      reducedMotion: "never",
+      ...inputMotion
+    };
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/zIndex.mjs
+  var zIndex = {
+    mobileStepper: 1e3,
+    fab: 1050,
+    speedDial: 1050,
+    appBar: 1100,
+    drawer: 1200,
+    modal: 1300,
+    snackbar: 1400,
+    tooltip: 1500
+  };
+  var zIndex_default = zIndex;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/stringifyTheme.mjs
+  function isSerializable(val) {
+    return isPlainObject(val) || typeof val === "undefined" || typeof val === "string" || typeof val === "boolean" || typeof val === "number" || Array.isArray(val);
+  }
+  function stringifyTheme(baseTheme = {}) {
+    const serializableTheme = {
+      ...baseTheme
+    };
+    function serializeTheme(object) {
+      const array = Object.entries(object);
+      for (let index = 0; index < array.length; index++) {
+        const [key, value] = array[index];
+        if (!isSerializable(value) || key.startsWith("unstable_") || key.startsWith("internal_")) {
+          delete object[key];
+        } else if (isPlainObject(value)) {
+          object[key] = {
+            ...value
+          };
+          serializeTheme(object[key]);
+        }
+      }
+    }
+    serializeTheme(serializableTheme);
+    return `import { unstable_createBreakpoints as createBreakpoints, createTransitions } from '@mui/material/styles';
+
+const theme = ${JSON.stringify(serializableTheme, null, 2)};
+
+theme.breakpoints = createBreakpoints(theme.breakpoints || {});
+theme.motion = { reducedMotion: 'never', ...theme.motion };
+theme.transitions = createTransitions(theme.transitions || {});
+
+export default theme;`;
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createThemeNoVars.mjs
+  function coefficientToPercentage(coefficient) {
+    if (typeof coefficient === "number") {
+      return `${(coefficient * 100).toFixed(0)}%`;
+    }
+    return `calc((${coefficient}) * 100%)`;
+  }
+  var parseAddition = (str) => {
+    if (!Number.isNaN(+str)) {
+      return +str;
+    }
+    const numbers = str.match(/\d*\.?\d+/g);
+    if (!numbers) {
+      return 0;
+    }
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i += 1) {
+      sum += +numbers[i];
+    }
+    return sum;
+  };
+  function attachColorManipulators(theme) {
+    Object.assign(theme, {
+      alpha(color2, coefficient) {
+        const obj = this || theme;
+        if (obj.colorSpace) {
+          return `oklch(from ${color2} l c h / ${typeof coefficient === "string" ? `calc(${coefficient})` : coefficient})`;
+        }
+        if (obj.vars) {
+          return `rgba(${color2.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, "var(--$1Channel)")} / ${typeof coefficient === "string" ? `calc(${coefficient})` : coefficient})`;
+        }
+        return alpha(color2, parseAddition(coefficient));
+      },
+      lighten(color2, coefficient) {
+        const obj = this || theme;
+        if (obj.colorSpace) {
+          return `color-mix(in ${obj.colorSpace}, ${color2}, #fff ${coefficientToPercentage(coefficient)})`;
+        }
+        return lighten(color2, coefficient);
+      },
+      darken(color2, coefficient) {
+        const obj = this || theme;
+        if (obj.colorSpace) {
+          return `color-mix(in ${obj.colorSpace}, ${color2}, #000 ${coefficientToPercentage(coefficient)})`;
+        }
+        return darken(color2, coefficient);
+      }
+    });
+  }
+  function createThemeNoVars(options = {}, ...args) {
+    const {
+      breakpoints: breakpointsInput,
+      mixins: mixinsInput = {},
+      spacing: spacingInput,
+      palette: paletteInput = {},
+      motion: motionInput = {},
+      transitions: transitionsInput = {},
+      typography: typographyInput = {},
+      shape: shapeInput,
+      colorSpace,
+      ...other
+    } = options;
+    if (options.vars && // The error should throw only for the root theme creation because user is not allowed to use a custom node `vars`.
+    // `generateThemeVars` is the closest identifier for checking that the `options` is a result of `createTheme` with CSS variables so that user can create new theme for nested ThemeProvider.
+    options.generateThemeVars === void 0) {
+      throw new Error(false ? "MUI: `vars` is a private field used for CSS variables support.\nPlease use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature." : formatMuiErrorMessage(22));
+    }
+    const palette2 = createPalette({
+      ...paletteInput,
+      colorSpace
+    });
+    const systemTheme = createTheme_default(options);
+    let muiTheme = deepmerge(systemTheme, {
+      mixins: createMixins(systemTheme.breakpoints, mixinsInput),
+      palette: palette2,
+      // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
+      shadows: shadows_default.slice(),
+      typography: createTypography(palette2, typographyInput),
+      motion: createMotion(motionInput),
+      transitions: createTransitions(transitionsInput),
+      zIndex: {
+        ...zIndex_default
+      }
+    });
+    muiTheme = deepmerge(muiTheme, other);
+    muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
+    delete muiTheme.transitions.reducedMotion;
+    if (false) {
+      const stateClasses = ["active", "checked", "completed", "disabled", "error", "expanded", "focused", "focusVisible", "required", "selected"];
+      const traverse = (node2, component) => {
+        let key;
+        for (key in node2) {
+          const child = node2[key];
+          if (stateClasses.includes(key) && Object.keys(child).length > 0) {
+            if (false) {
+              const stateClass = generateUtilityClass("", key);
+              console.error([`MUI: The \`${component}\` component increases the CSS specificity of the \`${key}\` internal state.`, "You can not override it like this: ", JSON.stringify(node2, null, 2), "", `Instead, you need to use the '&.${stateClass}' syntax:`, JSON.stringify({
+                root: {
+                  [`&.${stateClass}`]: child
+                }
+              }, null, 2), "", "https://mui.com/r/state-classes-guide"].join("\n"));
+            }
+            node2[key] = {};
+          }
+        }
+      };
+      Object.keys(muiTheme.components).forEach((component) => {
+        const styleOverrides = muiTheme.components[component].styleOverrides;
+        if (styleOverrides && component.startsWith("Mui")) {
+          traverse(styleOverrides, component);
+        }
+      });
+    }
+    muiTheme.unstable_sxConfig = {
+      ...defaultSxConfig_default,
+      ...other?.unstable_sxConfig
+    };
+    muiTheme.unstable_sx = function sx(props) {
+      return styleFunctionSx_default({
+        sx: props,
+        theme: this
+      });
+    };
+    muiTheme.toRuntimeSource = stringifyTheme;
+    attachColorManipulators(muiTheme);
+    return muiTheme;
+  }
+  var createThemeNoVars_default = createThemeNoVars;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/getOverlayAlpha.mjs
+  function getOverlayAlpha(elevation) {
+    let alphaValue;
+    if (elevation < 1) {
+      alphaValue = 5.11916 * elevation ** 2;
+    } else {
+      alphaValue = 4.5 * Math.log(elevation + 1) + 2;
+    }
+    return Math.round(alphaValue * 10) / 1e3;
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createColorScheme.mjs
+  var defaultDarkOverlays = [...Array(25)].map((_, index) => {
+    if (index === 0) {
+      return "none";
+    }
+    const overlay = getOverlayAlpha(index);
+    return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
+  });
+  function getOpacity(mode) {
+    return {
+      inputPlaceholder: mode === "dark" ? 0.5 : 0.42,
+      inputUnderline: mode === "dark" ? 0.7 : 0.42,
+      switchTrackDisabled: mode === "dark" ? 0.2 : 0.12,
+      switchTrack: mode === "dark" ? 0.3 : 0.38
+    };
+  }
+  function getOverlays(mode) {
+    return mode === "dark" ? defaultDarkOverlays : [];
+  }
+  function createColorScheme(options) {
+    const {
+      palette: paletteInput = {
+        mode: "light"
+      },
+      // need to cast to avoid module augmentation test
+      opacity,
+      overlays,
+      colorSpace,
+      ...other
+    } = options;
+    const palette2 = createPalette({
+      ...paletteInput,
+      colorSpace
+    });
+    return {
+      palette: palette2,
+      opacity: {
+        ...getOpacity(palette2.mode),
+        ...opacity
+      },
+      overlays: overlays || getOverlays(palette2.mode),
+      ...other
+    };
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/shouldSkipGeneratingVar.mjs
+  function shouldSkipGeneratingVar(keys) {
+    return keys[0] === "motion" || !!keys[0].match(/(cssVarPrefix|colorSchemeSelector|modularCssLayers|rootSelector|typography|mixins|breakpoints|direction|transitions)/) || !!keys[0].match(/sxConfig$/) || // ends with sxConfig
+    keys[0] === "palette" && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/);
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/excludeVariablesFromRoot.mjs
+  var excludeVariablesFromRoot = (cssVarPrefix) => [...[...Array(25)].map((_, index) => `--${cssVarPrefix ? `${cssVarPrefix}-` : ""}overlays-${index}`), `--${cssVarPrefix ? `${cssVarPrefix}-` : ""}palette-AppBar-darkBg`, `--${cssVarPrefix ? `${cssVarPrefix}-` : ""}palette-AppBar-darkColor`];
+  var excludeVariablesFromRoot_default = excludeVariablesFromRoot;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createGetSelector.mjs
+  var createGetSelector_default = (theme) => (colorScheme, css) => {
+    const root = theme.rootSelector || ":root";
+    const selector = theme.colorSchemeSelector;
+    let rule = selector;
+    if (selector === "class") {
+      rule = ".%s";
+    }
+    if (selector === "data") {
+      rule = "[data-%s]";
+    }
+    if (selector?.startsWith("data-") && !selector.includes("%s")) {
+      rule = `[${selector}="%s"]`;
+    }
+    if (theme.defaultColorScheme === colorScheme) {
+      if (colorScheme === "dark") {
+        const excludedVariables = {};
+        excludeVariablesFromRoot_default(theme.cssVarPrefix).forEach((cssVar) => {
+          excludedVariables[cssVar] = css[cssVar];
+          delete css[cssVar];
+        });
+        if (rule === "media") {
+          return {
+            [root]: css,
+            [`@media (prefers-color-scheme: dark)`]: {
+              [root]: excludedVariables
+            }
+          };
+        }
+        if (rule) {
+          return {
+            [rule.replace("%s", colorScheme)]: excludedVariables,
+            [`${root}, ${rule.replace("%s", colorScheme)}`]: css
+          };
+        }
+        return {
+          [root]: {
+            ...css,
+            ...excludedVariables
+          }
+        };
+      }
+      if (rule && rule !== "media") {
+        return `${root}, ${rule.replace("%s", String(colorScheme))}`;
+      }
+    } else if (colorScheme) {
+      if (rule === "media") {
+        return {
+          [`@media (prefers-color-scheme: ${String(colorScheme)})`]: {
+            [root]: css
+          }
+        };
+      }
+      if (rule) {
+        return rule.replace("%s", String(colorScheme));
+      }
+    }
+    return root;
+  };
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createThemeWithVars.mjs
+  function assignNode(obj, keys) {
+    keys.forEach((k) => {
+      if (!obj[k]) {
+        obj[k] = {};
+      }
+    });
+  }
+  function setColor(obj, key, defaultValue) {
+    if (!obj[key] && defaultValue) {
+      obj[key] = defaultValue;
+    }
+  }
+  function toRgb(color2) {
+    if (typeof color2 !== "string" || !color2.startsWith("hsl")) {
+      return color2;
+    }
+    return hslToRgb(color2);
+  }
+  function setColorChannel(obj, key) {
+    if (!(`${key}Channel` in obj)) {
+      obj[`${key}Channel`] = private_safeColorChannel(toRgb(obj[key]), `MUI: Can't create \`palette.${key}Channel\` because \`palette.${key}\` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().
+To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, for example "12 12 12") or undefined if you want to remove the channel token.`);
+    }
+  }
+  function getSpacingVal(spacingInput) {
+    if (typeof spacingInput === "number") {
+      return `${spacingInput}px`;
+    }
+    if (typeof spacingInput === "string" || typeof spacingInput === "function" || Array.isArray(spacingInput)) {
+      return spacingInput;
+    }
+    return "8px";
+  }
+  var silent = (fn) => {
+    try {
+      return fn();
+    } catch (error) {
+    }
+    return void 0;
+  };
+  var createGetCssVar2 = (cssVarPrefix = "mui") => createGetCssVar(cssVarPrefix);
+  function attachColorScheme(colorSpace, colorSchemes, scheme, restTheme, colorScheme) {
+    if (!scheme) {
+      return void 0;
+    }
+    scheme = scheme === true ? {} : scheme;
+    const mode = colorScheme === "dark" ? "dark" : "light";
+    if (!restTheme) {
+      colorSchemes[colorScheme] = createColorScheme({
+        ...scheme,
+        palette: {
+          mode,
+          ...scheme?.palette
+        },
+        colorSpace
+      });
+      return void 0;
+    }
+    const {
+      palette: palette2,
+      ...muiTheme
+    } = createThemeNoVars_default({
+      ...restTheme,
+      palette: {
+        mode,
+        ...scheme?.palette
+      },
+      colorSpace
+    });
+    colorSchemes[colorScheme] = {
+      ...scheme,
+      palette: palette2,
+      opacity: {
+        ...getOpacity(mode),
+        ...scheme?.opacity
+      },
+      overlays: scheme?.overlays || getOverlays(mode)
+    };
+    return muiTheme;
+  }
+  function createThemeWithVars(options = {}, ...args) {
+    const {
+      colorSchemes: colorSchemesInput = {
+        light: true
+      },
+      defaultColorScheme: defaultColorSchemeInput,
+      disableCssColorScheme = false,
+      cssVarPrefix = "mui",
+      nativeColor = false,
+      shouldSkipGeneratingVar: shouldSkipGeneratingVar2 = shouldSkipGeneratingVar,
+      colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark ? "media" : void 0,
+      rootSelector = ":root",
+      ...input
+    } = options;
+    const firstColorScheme = Object.keys(colorSchemesInput)[0];
+    const defaultColorScheme = defaultColorSchemeInput || (colorSchemesInput.light && firstColorScheme !== "light" ? "light" : firstColorScheme);
+    const getCssVar = createGetCssVar2(cssVarPrefix);
+    const {
+      [defaultColorScheme]: defaultSchemeInput,
+      light: builtInLight,
+      dark: builtInDark,
+      ...customColorSchemes
+    } = colorSchemesInput;
+    const colorSchemes = {
+      ...customColorSchemes
+    };
+    let defaultScheme = defaultSchemeInput;
+    if (defaultColorScheme === "dark" && !("dark" in colorSchemesInput) || defaultColorScheme === "light" && !("light" in colorSchemesInput)) {
+      defaultScheme = true;
+    }
+    if (!defaultScheme) {
+      throw new Error(false ? `MUI: The \`colorSchemes.${defaultColorScheme}\` option is either missing or invalid.` : formatMuiErrorMessage(21, defaultColorScheme));
+    }
+    let colorSpace;
+    if (nativeColor) {
+      colorSpace = "oklch";
+    }
+    const muiTheme = attachColorScheme(colorSpace, colorSchemes, defaultScheme, input, defaultColorScheme);
+    if (builtInLight && !colorSchemes.light) {
+      attachColorScheme(colorSpace, colorSchemes, builtInLight, void 0, "light");
+    }
+    if (builtInDark && !colorSchemes.dark) {
+      attachColorScheme(colorSpace, colorSchemes, builtInDark, void 0, "dark");
+    }
+    let theme = {
+      defaultColorScheme,
+      ...muiTheme,
+      cssVarPrefix,
+      colorSchemeSelector: selector,
+      rootSelector,
+      getCssVar,
+      colorSchemes,
+      font: {
+        ...prepareTypographyVars(muiTheme.typography),
+        ...muiTheme.font
+      },
+      spacing: getSpacingVal(input.spacing)
+    };
+    Object.keys(theme.colorSchemes).forEach((key) => {
+      const palette2 = theme.colorSchemes[key].palette;
+      const setCssVarColor = (cssVar) => {
+        const tokens = cssVar.split("-");
+        const color2 = tokens[1];
+        const colorToken = tokens[2];
+        return getCssVar(cssVar, palette2[color2][colorToken]);
+      };
+      if (palette2.mode === "light") {
+        setColor(palette2.common, "background", "#fff");
+        setColor(palette2.common, "onBackground", "#000");
+      }
+      if (palette2.mode === "dark") {
+        setColor(palette2.common, "background", "#000");
+        setColor(palette2.common, "onBackground", "#fff");
+      }
+      function colorMix(method, color2, coefficient) {
+        if (colorSpace) {
+          let mixer;
+          if (method === private_safeAlpha) {
+            mixer = `transparent ${((1 - coefficient) * 100).toFixed(0)}%`;
+          }
+          if (method === private_safeDarken) {
+            mixer = `#000 ${(coefficient * 100).toFixed(0)}%`;
+          }
+          if (method === private_safeLighten) {
+            mixer = `#fff ${(coefficient * 100).toFixed(0)}%`;
+          }
+          return `color-mix(in ${colorSpace}, ${color2}, ${mixer})`;
+        }
+        return method(color2, coefficient);
+      }
+      assignNode(palette2, ["Alert", "AppBar", "Avatar", "Button", "Chip", "FilledInput", "LinearProgress", "Skeleton", "Slider", "SnackbarContent", "SpeedDialAction", "StepConnector", "StepContent", "Switch", "TableCell", "Tooltip"]);
+      if (palette2.mode === "light") {
+        setColor(palette2.Alert, "errorColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-error-light") : palette2.error.light, 0.6));
+        setColor(palette2.Alert, "infoColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-info-light") : palette2.info.light, 0.6));
+        setColor(palette2.Alert, "successColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-success-light") : palette2.success.light, 0.6));
+        setColor(palette2.Alert, "warningColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-warning-light") : palette2.warning.light, 0.6));
+        setColor(palette2.Alert, "errorFilledBg", setCssVarColor("palette-error-main"));
+        setColor(palette2.Alert, "infoFilledBg", setCssVarColor("palette-info-main"));
+        setColor(palette2.Alert, "successFilledBg", setCssVarColor("palette-success-main"));
+        setColor(palette2.Alert, "warningFilledBg", setCssVarColor("palette-warning-main"));
+        setColor(palette2.Alert, "errorFilledColor", silent(() => palette2.getContrastText(palette2.error.main)));
+        setColor(palette2.Alert, "infoFilledColor", silent(() => palette2.getContrastText(palette2.info.main)));
+        setColor(palette2.Alert, "successFilledColor", silent(() => palette2.getContrastText(palette2.success.main)));
+        setColor(palette2.Alert, "warningFilledColor", silent(() => palette2.getContrastText(palette2.warning.main)));
+        setColor(palette2.Alert, "errorStandardBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-error-light") : palette2.error.light, 0.9));
+        setColor(palette2.Alert, "infoStandardBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-info-light") : palette2.info.light, 0.9));
+        setColor(palette2.Alert, "successStandardBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-success-light") : palette2.success.light, 0.9));
+        setColor(palette2.Alert, "warningStandardBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-warning-light") : palette2.warning.light, 0.9));
+        setColor(palette2.Alert, "errorIconColor", setCssVarColor("palette-error-main"));
+        setColor(palette2.Alert, "infoIconColor", setCssVarColor("palette-info-main"));
+        setColor(palette2.Alert, "successIconColor", setCssVarColor("palette-success-main"));
+        setColor(palette2.Alert, "warningIconColor", setCssVarColor("palette-warning-main"));
+        setColor(palette2.AppBar, "defaultBg", setCssVarColor("palette-grey-100"));
+        setColor(palette2.Avatar, "defaultBg", setCssVarColor("palette-grey-400"));
+        setColor(palette2.Button, "inheritContainedBg", setCssVarColor("palette-grey-300"));
+        setColor(palette2.Button, "inheritContainedHoverBg", setCssVarColor("palette-grey-A100"));
+        setColor(palette2.Chip, "defaultBorder", setCssVarColor("palette-grey-400"));
+        setColor(palette2.Chip, "defaultAvatarColor", setCssVarColor("palette-grey-700"));
+        setColor(palette2.Chip, "defaultIconColor", setCssVarColor("palette-grey-700"));
+        setColor(palette2.FilledInput, "bg", "rgba(0, 0, 0, 0.06)");
+        setColor(palette2.FilledInput, "hoverBg", "rgba(0, 0, 0, 0.09)");
+        setColor(palette2.FilledInput, "disabledBg", "rgba(0, 0, 0, 0.12)");
+        setColor(palette2.LinearProgress, "primaryBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-primary-main") : palette2.primary.main, 0.62));
+        setColor(palette2.LinearProgress, "secondaryBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-secondary-main") : palette2.secondary.main, 0.62));
+        setColor(palette2.LinearProgress, "errorBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-error-main") : palette2.error.main, 0.62));
+        setColor(palette2.LinearProgress, "infoBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-info-main") : palette2.info.main, 0.62));
+        setColor(palette2.LinearProgress, "successBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-success-main") : palette2.success.main, 0.62));
+        setColor(palette2.LinearProgress, "warningBg", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-warning-light") : palette2.warning.main, 0.62));
+        setColor(palette2.Skeleton, "bg", colorSpace ? colorMix(private_safeAlpha, nativeColor ? getCssVar("palette-text-primary") : palette2.text.primary, 0.11) : `rgba(${setCssVarColor("palette-text-primaryChannel")} / 0.11)`);
+        setColor(palette2.Slider, "primaryTrack", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-primary-main") : palette2.primary.main, 0.62));
+        setColor(palette2.Slider, "secondaryTrack", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-secondary-main") : palette2.secondary.main, 0.62));
+        setColor(palette2.Slider, "errorTrack", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-error-main") : palette2.error.main, 0.62));
+        setColor(palette2.Slider, "infoTrack", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-info-main") : palette2.info.main, 0.62));
+        setColor(palette2.Slider, "successTrack", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-success-main") : palette2.success.main, 0.62));
+        setColor(palette2.Slider, "warningTrack", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-warning-main") : palette2.warning.main, 0.62));
+        const snackbarContentBackground = colorSpace ? colorMix(private_safeDarken, nativeColor ? getCssVar("palette-background-default") : palette2.background.default, 0.6825) : private_safeEmphasize(palette2.background.default, 0.8);
+        setColor(palette2.SnackbarContent, "bg", snackbarContentBackground);
+        setColor(palette2.SnackbarContent, "color", silent(() => colorSpace ? dark.text.primary : palette2.getContrastText(snackbarContentBackground)));
+        setColor(palette2.SpeedDialAction, "fabHoverBg", private_safeEmphasize(palette2.background.paper, 0.15));
+        setColor(palette2.StepConnector, "border", setCssVarColor("palette-grey-400"));
+        setColor(palette2.StepContent, "border", setCssVarColor("palette-grey-400"));
+        setColor(palette2.Switch, "defaultColor", setCssVarColor("palette-common-white"));
+        setColor(palette2.Switch, "defaultDisabledColor", setCssVarColor("palette-grey-100"));
+        setColor(palette2.Switch, "primaryDisabledColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-primary-main") : palette2.primary.main, 0.62));
+        setColor(palette2.Switch, "secondaryDisabledColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-secondary-main") : palette2.secondary.main, 0.62));
+        setColor(palette2.Switch, "errorDisabledColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-error-main") : palette2.error.main, 0.62));
+        setColor(palette2.Switch, "infoDisabledColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-info-main") : palette2.info.main, 0.62));
+        setColor(palette2.Switch, "successDisabledColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-success-main") : palette2.success.main, 0.62));
+        setColor(palette2.Switch, "warningDisabledColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-warning-main") : palette2.warning.main, 0.62));
+        setColor(palette2.TableCell, "border", colorMix(private_safeLighten, private_safeAlpha(nativeColor ? getCssVar("palette-divider") : palette2.divider, 1), 0.88));
+        setColor(palette2.Tooltip, "bg", colorMix(private_safeAlpha, nativeColor ? getCssVar("palette-grey-700") : palette2.grey[700], 0.92));
+      }
+      if (palette2.mode === "dark") {
+        setColor(palette2.Alert, "errorColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-error-light") : palette2.error.light, 0.6));
+        setColor(palette2.Alert, "infoColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-info-light") : palette2.info.light, 0.6));
+        setColor(palette2.Alert, "successColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-success-light") : palette2.success.light, 0.6));
+        setColor(palette2.Alert, "warningColor", colorMix(private_safeLighten, nativeColor ? getCssVar("palette-warning-light") : palette2.warning.light, 0.6));
+        setColor(palette2.Alert, "errorFilledBg", setCssVarColor("palette-error-dark"));
+        setColor(palette2.Alert, "infoFilledBg", setCssVarColor("palette-info-dark"));
+        setColor(palette2.Alert, "successFilledBg", setCssVarColor("palette-success-dark"));
+        setColor(palette2.Alert, "warningFilledBg", setCssVarColor("palette-warning-dark"));
+        setColor(palette2.Alert, "errorFilledColor", silent(() => palette2.getContrastText(palette2.error.dark)));
+        setColor(palette2.Alert, "infoFilledColor", silent(() => palette2.getContrastText(palette2.info.dark)));
+        setColor(palette2.Alert, "successFilledColor", silent(() => palette2.getContrastText(palette2.success.dark)));
+        setColor(palette2.Alert, "warningFilledColor", silent(() => palette2.getContrastText(palette2.warning.dark)));
+        setColor(palette2.Alert, "errorStandardBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-error-light") : palette2.error.light, 0.9));
+        setColor(palette2.Alert, "infoStandardBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-info-light") : palette2.info.light, 0.9));
+        setColor(palette2.Alert, "successStandardBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-success-light") : palette2.success.light, 0.9));
+        setColor(palette2.Alert, "warningStandardBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-warning-light") : palette2.warning.light, 0.9));
+        setColor(palette2.Alert, "errorIconColor", setCssVarColor("palette-error-main"));
+        setColor(palette2.Alert, "infoIconColor", setCssVarColor("palette-info-main"));
+        setColor(palette2.Alert, "successIconColor", setCssVarColor("palette-success-main"));
+        setColor(palette2.Alert, "warningIconColor", setCssVarColor("palette-warning-main"));
+        setColor(palette2.AppBar, "defaultBg", setCssVarColor("palette-grey-900"));
+        setColor(palette2.AppBar, "darkBg", setCssVarColor("palette-background-paper"));
+        setColor(palette2.AppBar, "darkColor", setCssVarColor("palette-text-primary"));
+        setColor(palette2.Avatar, "defaultBg", setCssVarColor("palette-grey-600"));
+        setColor(palette2.Button, "inheritContainedBg", setCssVarColor("palette-grey-800"));
+        setColor(palette2.Button, "inheritContainedHoverBg", setCssVarColor("palette-grey-700"));
+        setColor(palette2.Chip, "defaultBorder", setCssVarColor("palette-grey-700"));
+        setColor(palette2.Chip, "defaultAvatarColor", setCssVarColor("palette-grey-300"));
+        setColor(palette2.Chip, "defaultIconColor", setCssVarColor("palette-grey-300"));
+        setColor(palette2.FilledInput, "bg", "rgba(255, 255, 255, 0.09)");
+        setColor(palette2.FilledInput, "hoverBg", "rgba(255, 255, 255, 0.13)");
+        setColor(palette2.FilledInput, "disabledBg", "rgba(255, 255, 255, 0.12)");
+        setColor(palette2.LinearProgress, "primaryBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-primary-main") : palette2.primary.main, 0.5));
+        setColor(palette2.LinearProgress, "secondaryBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-secondary-main") : palette2.secondary.main, 0.5));
+        setColor(palette2.LinearProgress, "errorBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-error-main") : palette2.error.main, 0.5));
+        setColor(palette2.LinearProgress, "infoBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-info-main") : palette2.info.main, 0.5));
+        setColor(palette2.LinearProgress, "successBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-success-main") : palette2.success.main, 0.5));
+        setColor(palette2.LinearProgress, "warningBg", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-warning-main") : palette2.warning.main, 0.5));
+        setColor(palette2.Skeleton, "bg", colorSpace ? colorMix(private_safeAlpha, nativeColor ? getCssVar("palette-text-primary") : palette2.text.primary, 0.13) : `rgba(${setCssVarColor("palette-text-primaryChannel")} / 0.13)`);
+        setColor(palette2.Slider, "primaryTrack", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-primary-main") : palette2.primary.main, 0.5));
+        setColor(palette2.Slider, "secondaryTrack", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-secondary-main") : palette2.secondary.main, 0.5));
+        setColor(palette2.Slider, "errorTrack", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-error-main") : palette2.error.main, 0.5));
+        setColor(palette2.Slider, "infoTrack", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-info-main") : palette2.info.main, 0.5));
+        setColor(palette2.Slider, "successTrack", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-success-main") : palette2.success.main, 0.5));
+        setColor(palette2.Slider, "warningTrack", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-warning-light") : palette2.warning.main, 0.5));
+        const snackbarContentBackground = colorSpace ? colorMix(private_safeLighten, nativeColor ? getCssVar("palette-background-default") : palette2.background.default, 0.985) : private_safeEmphasize(palette2.background.default, 0.98);
+        setColor(palette2.SnackbarContent, "bg", snackbarContentBackground);
+        setColor(palette2.SnackbarContent, "color", silent(() => colorSpace ? light.text.primary : palette2.getContrastText(snackbarContentBackground)));
+        setColor(palette2.SpeedDialAction, "fabHoverBg", private_safeEmphasize(palette2.background.paper, 0.15));
+        setColor(palette2.StepConnector, "border", setCssVarColor("palette-grey-600"));
+        setColor(palette2.StepContent, "border", setCssVarColor("palette-grey-600"));
+        setColor(palette2.Switch, "defaultColor", setCssVarColor("palette-grey-300"));
+        setColor(palette2.Switch, "defaultDisabledColor", setCssVarColor("palette-grey-600"));
+        setColor(palette2.Switch, "primaryDisabledColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-primary-main") : palette2.primary.main, 0.55));
+        setColor(palette2.Switch, "secondaryDisabledColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-secondary-main") : palette2.secondary.main, 0.55));
+        setColor(palette2.Switch, "errorDisabledColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-error-main") : palette2.error.main, 0.55));
+        setColor(palette2.Switch, "infoDisabledColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-info-main") : palette2.info.main, 0.55));
+        setColor(palette2.Switch, "successDisabledColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-success-main") : palette2.success.main, 0.55));
+        setColor(palette2.Switch, "warningDisabledColor", colorMix(private_safeDarken, nativeColor ? getCssVar("palette-warning-light") : palette2.warning.main, 0.55));
+        setColor(palette2.TableCell, "border", colorMix(private_safeDarken, private_safeAlpha(nativeColor ? getCssVar("palette-divider") : palette2.divider, 1), 0.68));
+        setColor(palette2.Tooltip, "bg", colorMix(private_safeAlpha, nativeColor ? getCssVar("palette-grey-700") : palette2.grey[700], 0.92));
+      }
+      if (!nativeColor) {
+        setColorChannel(palette2.background, "default");
+        setColorChannel(palette2.background, "paper");
+        setColorChannel(palette2.common, "background");
+        setColorChannel(palette2.common, "onBackground");
+        setColorChannel(palette2, "divider");
+      }
+      Object.keys(palette2).forEach((color2) => {
+        const colors = palette2[color2];
+        if (color2 !== "tonalOffset" && !nativeColor && colors && typeof colors === "object") {
+          if (colors.main) {
+            setColor(palette2[color2], "mainChannel", private_safeColorChannel(toRgb(colors.main)));
+          }
+          if (colors.light) {
+            setColor(palette2[color2], "lightChannel", private_safeColorChannel(toRgb(colors.light)));
+          }
+          if (colors.dark) {
+            setColor(palette2[color2], "darkChannel", private_safeColorChannel(toRgb(colors.dark)));
+          }
+          if (colors.contrastText) {
+            setColor(palette2[color2], "contrastTextChannel", private_safeColorChannel(toRgb(colors.contrastText)));
+          }
+          if (color2 === "text") {
+            setColorChannel(palette2[color2], "primary");
+            setColorChannel(palette2[color2], "secondary");
+          }
+          if (color2 === "action") {
+            if (colors.active) {
+              setColorChannel(palette2[color2], "active");
+            }
+            if (colors.selected) {
+              setColorChannel(palette2[color2], "selected");
+            }
+          }
+        }
+      });
+    });
+    theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+    const parserConfig = {
+      prefix: cssVarPrefix,
+      disableCssColorScheme,
+      shouldSkipGeneratingVar: shouldSkipGeneratingVar2,
+      getSelector: createGetSelector_default(theme),
+      enableContrastVars: nativeColor
+    };
+    const {
+      vars,
+      generateThemeVars,
+      generateStyleSheets
+    } = prepareCssVars_default(theme, parserConfig);
+    theme.vars = vars;
+    Object.entries(theme.colorSchemes[theme.defaultColorScheme]).forEach(([key, value]) => {
+      theme[key] = value;
+    });
+    theme.generateThemeVars = generateThemeVars;
+    theme.generateStyleSheets = generateStyleSheets;
+    theme.generateSpacing = function generateSpacing() {
+      return createSpacing(input.spacing, createUnarySpacing(this));
+    };
+    theme.getColorSchemeSelector = createGetColorSchemeSelector(selector);
+    theme.spacing = theme.generateSpacing();
+    theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar2;
+    theme.unstable_sxConfig = {
+      ...defaultSxConfig_default,
+      ...input?.unstable_sxConfig
+    };
+    theme.unstable_sx = function sx(props) {
+      return styleFunctionSx_default({
+        sx: props,
+        theme: this
+      });
+    };
+    theme.internal_cache = {};
+    theme.toRuntimeSource = stringifyTheme;
+    return theme;
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/createTheme.mjs
+  function attachColorScheme2(theme, scheme, colorScheme) {
+    if (!theme.colorSchemes) {
+      return void 0;
+    }
+    if (colorScheme) {
+      theme.colorSchemes[scheme] = {
+        ...colorScheme !== true && colorScheme,
+        palette: createPalette({
+          ...colorScheme === true ? {} : colorScheme.palette,
+          mode: scheme
+        })
+        // cast type to skip module augmentation test
+      };
+    }
+  }
+  function createTheme2(options = {}, ...args) {
+    const {
+      palette: palette2,
+      cssVariables = false,
+      colorSchemes: initialColorSchemes = !palette2 ? {
+        light: true
+      } : void 0,
+      defaultColorScheme: initialDefaultColorScheme = palette2?.mode,
+      ...other
+    } = options;
+    const defaultColorSchemeInput = initialDefaultColorScheme || "light";
+    const defaultScheme = initialColorSchemes?.[defaultColorSchemeInput];
+    const colorSchemesInput = {
+      ...initialColorSchemes,
+      ...palette2 ? {
+        [defaultColorSchemeInput]: {
+          ...typeof defaultScheme !== "boolean" && defaultScheme,
+          palette: palette2
+        }
+      } : void 0
+    };
+    if (cssVariables === false) {
+      if (!("colorSchemes" in options)) {
+        return createThemeNoVars_default(options, ...args);
+      }
+      let paletteOptions = palette2;
+      if (!("palette" in options)) {
+        if (colorSchemesInput[defaultColorSchemeInput]) {
+          if (colorSchemesInput[defaultColorSchemeInput] !== true) {
+            paletteOptions = colorSchemesInput[defaultColorSchemeInput].palette;
+          } else if (defaultColorSchemeInput === "dark") {
+            paletteOptions = {
+              mode: "dark"
+            };
+          }
+        }
+      }
+      const theme = createThemeNoVars_default({
+        ...options,
+        palette: paletteOptions
+      }, ...args);
+      theme.defaultColorScheme = defaultColorSchemeInput;
+      theme.colorSchemes = colorSchemesInput;
+      if (theme.palette.mode === "light") {
+        theme.colorSchemes.light = {
+          ...colorSchemesInput.light !== true && colorSchemesInput.light,
+          palette: theme.palette
+        };
+        attachColorScheme2(theme, "dark", colorSchemesInput.dark);
+      }
+      if (theme.palette.mode === "dark") {
+        theme.colorSchemes.dark = {
+          ...colorSchemesInput.dark !== true && colorSchemesInput.dark,
+          palette: theme.palette
+        };
+        attachColorScheme2(theme, "light", colorSchemesInput.light);
+      }
+      return theme;
+    }
+    if (!palette2 && !("light" in colorSchemesInput) && defaultColorSchemeInput === "light") {
+      colorSchemesInput.light = true;
+    }
+    return createThemeWithVars({
+      ...other,
+      colorSchemes: colorSchemesInput,
+      defaultColorScheme: defaultColorSchemeInput,
+      ...typeof cssVariables !== "boolean" && cssVariables
+    }, ...args);
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/defaultTheme.mjs
+  var defaultTheme = createTheme2();
+  var defaultTheme_default = defaultTheme;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/identifier.mjs
+  var identifier_default = "$$material";
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/zero-styled/index.mjs
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/slotShouldForwardProp.mjs
+  function slotShouldForwardProp(prop) {
+    return prop !== "ownerState" && prop !== "theme" && prop !== "sx" && prop !== "as";
+  }
+  var slotShouldForwardProp_default = slotShouldForwardProp;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/rootShouldForwardProp.mjs
+  var rootShouldForwardProp = (prop) => slotShouldForwardProp_default(prop) && prop !== "classes";
+  var rootShouldForwardProp_default = rootShouldForwardProp;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/styled.mjs
+  var styled3 = createStyled3({
+    themeId: identifier_default,
+    defaultTheme: defaultTheme_default,
+    rootShouldForwardProp: rootShouldForwardProp_default
+  });
+  var styled_default = styled3;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/utils/memoTheme.mjs
+  var memoTheme = unstable_memoTheme;
+  var memoTheme_default = memoTheme;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/DefaultPropsProvider/DefaultPropsProvider.mjs
+  var React7 = __toESM(require_react(), 1);
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
+  false ? DefaultPropsProvider.propTypes = {
+    // ┌────────────────────────────── Warning ──────────────────────────────┐
+    // │ These PropTypes are generated from the TypeScript type definitions. │
+    // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+    // └─────────────────────────────────────────────────────────────────────┘
+    /**
+     * @ignore
+     */
+    children: import_prop_types.default.node,
+    /**
+     * @ignore
+     */
+    value: import_prop_types.default.object.isRequired
+  } : void 0;
+  function useDefaultProps2(params) {
+    return useDefaultProps(params);
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/SvgIcon/svgIconClasses.mjs
+  function getSvgIconUtilityClass(slot) {
+    return generateUtilityClass("MuiSvgIcon", slot);
+  }
+  var svgIconClasses = generateUtilityClasses("MuiSvgIcon", ["root", "colorPrimary", "colorSecondary", "colorAction", "colorError", "colorDisabled", "fontSizeInherit", "fontSizeSmall", "fontSizeMedium", "fontSizeLarge"]);
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/styles/reducedMotion.mjs
+  var defaultStyles = {
+    transition: "none"
+  };
+  function resolveReducedMotionStyles(reducedMotion, styles) {
+    if (reducedMotion === "always") {
+      return styles;
+    }
+    if (reducedMotion === "system") {
+      return {
+        "@media (prefers-reduced-motion: reduce)": styles
+      };
+    }
+    return null;
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/transitions/utils.mjs
+  var EMPTY_STYLE = {};
+  var DEFAULT_TRANSITION_PROPS2 = ["all"];
+  var EMPTY_OPTIONS2 = {};
+  function getReducedMotionStyles(theme, styles) {
+    const resolvedStyles = styles ?? defaultStyles;
+    return resolveReducedMotionStyles(theme.motion?.reducedMotion, resolvedStyles);
+  }
+  function getTransitionStyles(theme, props = DEFAULT_TRANSITION_PROPS2, options = EMPTY_OPTIONS2) {
+    const transition = theme.transitions?.create?.(props, options);
+    const reducedMotionStyles = getReducedMotionStyles(theme);
+    if (transition === void 0) {
+      return reducedMotionStyles ?? EMPTY_STYLE;
+    }
+    const transitionStyles = {
+      transition
+    };
+    return reducedMotionStyles ? {
+      ...transitionStyles,
+      ...reducedMotionStyles
+    } : transitionStyles;
+  }
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/SvgIcon/SvgIcon.mjs
+  var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
+  var useUtilityClasses = (ownerState) => {
+    const {
+      color: color2,
+      fontSize,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", color2 !== "inherit" && `color${capitalize_default(color2)}`, `fontSize${capitalize_default(fontSize)}`]
+    };
+    return composeClasses(slots, getSvgIconUtilityClass, classes);
+  };
+  var SvgIconRoot = styled_default("svg", {
+    name: "MuiSvgIcon",
+    slot: "Root",
+    overridesResolver: (props, styles) => {
+      const {
+        ownerState
+      } = props;
+      return [styles.root, ownerState.color !== "inherit" && styles[`color${capitalize_default(ownerState.color)}`], styles[`fontSize${capitalize_default(ownerState.fontSize)}`]];
+    }
+  })(memoTheme_default(({
+    theme
+  }) => ({
+    userSelect: "none",
+    width: "1em",
+    height: "1em",
+    display: "inline-block",
+    flexShrink: 0,
+    ...getTransitionStyles(theme, "fill", {
+      duration: (theme.vars ?? theme).transitions?.duration?.shorter
+    }),
+    variants: [
+      {
+        props: (props) => !props.hasSvgAsChild,
+        style: {
+          // the <svg> will define the property that has `currentColor`
+          // for example heroicons uses fill="none" and stroke="currentColor"
+          fill: "currentColor"
+        }
+      },
+      {
+        props: {
+          fontSize: "inherit"
+        },
+        style: {
+          fontSize: "inherit"
+        }
+      },
+      {
+        props: {
+          fontSize: "small"
+        },
+        style: {
+          fontSize: theme.typography?.pxToRem?.(20) || "1.25rem"
+        }
+      },
+      {
+        props: {
+          fontSize: "medium"
+        },
+        style: {
+          fontSize: theme.typography?.pxToRem?.(24) || "1.5rem"
+        }
+      },
+      {
+        props: {
+          fontSize: "large"
+        },
+        style: {
+          fontSize: theme.typography?.pxToRem?.(35) || "2.1875rem"
+        }
+      },
+      // TODO v5 deprecate color prop, v6 remove for sx
+      ...Object.entries((theme.vars ?? theme).palette).filter(([, value]) => value && value.main).map(([color2]) => ({
+        props: {
+          color: color2
+        },
+        style: {
+          color: (theme.vars ?? theme).palette?.[color2]?.main
+        }
+      })),
+      {
+        props: {
+          color: "action"
+        },
+        style: {
+          color: (theme.vars ?? theme).palette?.action?.active
+        }
+      },
+      {
+        props: {
+          color: "disabled"
+        },
+        style: {
+          color: (theme.vars ?? theme).palette?.action?.disabled
+        }
+      },
+      {
+        props: {
+          color: "inherit"
+        },
+        style: {
+          color: void 0
+        }
+      }
+    ]
+  })));
+  var SvgIcon = /* @__PURE__ */ React8.forwardRef(function SvgIcon2(inProps, ref) {
+    const props = useDefaultProps2({
+      props: inProps,
+      name: "MuiSvgIcon"
+    });
+    const {
+      children,
+      className,
+      color: color2 = "inherit",
+      component = "svg",
+      fontSize = "medium",
+      htmlColor,
+      inheritViewBox = false,
+      titleAccess,
+      viewBox = "0 0 24 24",
+      ...other
+    } = props;
+    const hasSvgAsChild = /* @__PURE__ */ React8.isValidElement(children) && children.type === "svg";
+    const ownerState = {
+      ...props,
+      color: color2,
+      component,
+      fontSize,
+      instanceFontSize: inProps.fontSize,
+      inheritViewBox,
+      viewBox,
+      hasSvgAsChild
+    };
+    const more = {};
+    if (!inheritViewBox) {
+      more.viewBox = viewBox;
+    }
+    const classes = useUtilityClasses(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(SvgIconRoot, {
+      as: component,
+      className: clsx_default(classes.root, className),
+      focusable: "false",
+      color: htmlColor,
+      "aria-hidden": titleAccess ? void 0 : true,
+      role: titleAccess ? "img" : void 0,
+      ref,
+      ...more,
+      ...other,
+      ...hasSvgAsChild && children.props,
+      ownerState,
+      children: [hasSvgAsChild ? children.props.children : children, titleAccess ? /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("title", {
+        children: titleAccess
+      }) : null]
+    });
+  });
+  false ? SvgIcon.propTypes = {
+    // ┌────────────────────────────── Warning ──────────────────────────────┐
+    // │ These PropTypes are generated from the TypeScript type definitions. │
+    // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+    // └─────────────────────────────────────────────────────────────────────┘
+    /**
+     * Node passed into the SVG element.
+     */
+    children: import_prop_types.default.node,
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes: import_prop_types.default.object,
+    /**
+     * @ignore
+     */
+    className: import_prop_types.default.string,
+    /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+     * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
+     * @default 'inherit'
+     */
+    color: import_prop_types.default.oneOfType([import_prop_types.default.oneOf(["inherit", "action", "disabled", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types.default.string]),
+    /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: import_prop_types.default.elementType,
+    /**
+     * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+     * @default 'medium'
+     */
+    fontSize: import_prop_types.default.oneOfType([import_prop_types.default.oneOf(["inherit", "large", "medium", "small"]), import_prop_types.default.string]),
+    /**
+     * Applies a color attribute to the SVG element.
+     */
+    htmlColor: import_prop_types.default.string,
+    /**
+     * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+     * prop will be ignored.
+     * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+     * `component`'s viewBox to the root node.
+     * @default false
+     */
+    inheritViewBox: import_prop_types.default.bool,
+    /**
+     * The shape-rendering attribute. The behavior of the different options is described on the
+     * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/shape-rendering).
+     * If you are having issues with blurry icons you should investigate this prop.
+     */
+    shapeRendering: import_prop_types.default.string,
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: import_prop_types.default.oneOfType([import_prop_types.default.arrayOf(import_prop_types.default.oneOfType([import_prop_types.default.func, import_prop_types.default.object, import_prop_types.default.bool])), import_prop_types.default.func, import_prop_types.default.object]),
+    /**
+     * Provides a human-readable title for the element that contains it.
+     * https://www.w3.org/TR/SVG-access/#Equivalent
+     */
+    titleAccess: import_prop_types.default.string,
+    /**
+     * Allows you to redefine what the coordinates without units mean inside an SVG element.
+     * For example, if the SVG element is 500 (width) by 200 (height),
+     * and you pass viewBox="0 0 50 20",
+     * this means that the coordinates inside the SVG will go from the top left corner (0,0)
+     * to bottom right (50,20) and each unit will be worth 10px.
+     * @default '0 0 24 24'
+     */
+    viewBox: import_prop_types.default.string
+  } : void 0;
+  SvgIcon.muiName = "SvgIcon";
+  var SvgIcon_default = SvgIcon;
+
+  // node_modules/.pnpm/@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2.17_react@19.2.4__@emotion+_12a940d4adadcf611e0a3a3aa5aec791/node_modules/@mui/material/SvgIcon/createSvgIcon.mjs
+  var React9 = __toESM(require_react(), 1);
+  var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
+  function createSvgIcon(path, displayName) {
+    function Component(props, ref) {
+      return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(SvgIcon_default, {
+        "data-testid": false ? `${displayName}Icon` : void 0,
+        ref,
+        ...props,
+        children: path
+      });
+    }
+    if (false) {
+      Component.displayName = `${displayName}Icon`;
+    }
+    Component.muiName = SvgIcon_default.muiName;
+    return /* @__PURE__ */ React9.memo(/* @__PURE__ */ React9.forwardRef(Component));
+  }
+
+  // node_modules/.pnpm/@mui+icons-material@9.1.1_@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2._588cdd0ca75b44edf2d698fe09308d1a/node_modules/@mui/icons-material/Mic.mjs
+  var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
+  var Mic_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime9.jsx)("path", {
+    d: "M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3m5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72z"
+  }), "Mic");
+
+  // node_modules/.pnpm/@mui+icons-material@9.1.1_@mui+material@9.1.2_@emotion+react@11.14.0_@types+react@19.2._588cdd0ca75b44edf2d698fe09308d1a/node_modules/@mui/icons-material/MicOff.mjs
+  var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
+  var MicOff_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime10.jsx)("path", {
+    d: "M19 11h-1.7c0 .74-.16 1.43-.43 2.05l1.23 1.23c.56-.98.9-2.09.9-3.28m-4.02.17c0-.06.02-.11.02-.17V5c0-1.66-1.34-3-3-3S9 3.34 9 5v.18zM4.27 3 3 4.27l6.01 6.01V11c0 1.66 1.33 3 2.99 3 .22 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c.91-.13 1.77-.45 2.54-.9L19.73 21 21 19.73z"
+  }), "MicOff");
+
+  // components/ui/pip-overlay/overlay.tsx
   var import_react4 = __toESM(require_react());
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
+  function Overlay({
+    audioLevel = 0,
+    elapsedTime,
+    hasStarted = false,
+    interviewerResponse = "",
+    interviewerStatus = "Ready",
+    isListening = false,
+    isMuted = false,
+    onClose,
+    onEnd,
+    onRequestHint,
+    onStartInterview,
+    onStartListening,
+    onStopListening,
+    onToggleMute,
+    transcript,
+    transcriptStatus = "Mic off"
+  }) {
+    const localElapsedTime = useElapsedTime();
+    const [isScreenPromptOpen, setIsScreenPromptOpen] = (0, import_react4.useState)(false);
+    const displayElapsedTime = elapsedTime ?? localElapsedTime;
+    const displayInterviewerResponse = interviewerResponse || getInterviewerPlaceholder(interviewerStatus);
+    function handleStartInterview(shareScreen) {
+      setIsScreenPromptOpen(false);
+      onStartInterview?.({ shareScreen });
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "w-[352px] rounded-[1.45rem] border border-white/10 bg-[#171717] p-3 text-zinc-50 shadow-[0_28px_80px_rgba(0,0,0,0.55)]", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "mb-3 flex items-center gap-3 px-1", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500", children: "Pip Overlay" }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "rounded-full bg-blue-500/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-blue-300", children: "Floats on Leetcode" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Card, { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(CardContent, { className: "p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex items-start justify-between gap-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex items-center gap-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Avatar, { className: "size-12", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(AvatarFallback, { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(UserIcon, {}) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h1", { className: "text-base font-bold leading-tight text-white", children: "Alex \u2014 Interviewer" }),
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "mt-0.5 text-sm font-semibold text-zinc-500", children: interviewerStatus })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("time", { className: "pt-2 text-base font-bold text-zinc-400", children: displayElapsedTime })
+        ] }),
+        hasStarted ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "mt-6 flex items-center justify-between gap-3 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_both]", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(AudioBars, { isActive: isListening && !isMuted, level: audioLevel }),
+            transcriptStatus
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              Button,
+              {
+                variant: "secondary",
+                className: "size-8 rounded-lg border-white/25 bg-[#2a2a28] p-0 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-[#343431]",
+                disabled: !isListening,
+                "aria-label": isMuted ? "Unmute microphone" : "Mute microphone",
+                title: isMuted ? "Unmute microphone" : "Mute microphone",
+                onClick: onToggleMute,
+                children: isMuted ? /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(MicOffIcon, {}) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(MicIcon, {})
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              Button,
+              {
+                variant: "secondary",
+                className: "h-8 rounded-lg px-3 text-xs",
+                onClick: isListening ? onStopListening : onStartListening,
+                children: isListening ? "Stop mic" : "Start mic"
+              }
+            )
+          ] })
+        ] }) : null,
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("blockquote", { className: "mt-4 rounded-xl bg-[#202020] px-4 py-3 text-[15px] font-semibold leading-6 text-zinc-200 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]", children: [
+          "\u201C",
+          displayInterviewerResponse,
+          "\u201D"
+        ] }),
+        hasStarted ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(import_jsx_runtime11.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("p", { className: "mt-4 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_80ms_both] text-[14px] font-medium italic leading-6 text-zinc-500", children: [
+            "You: \u201C",
+            transcript || "Start answering out loud.",
+            "\u201D"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "mt-4 grid grid-cols-2 gap-3 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_140ms_both]", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Button, { variant: "secondary", onClick: onRequestHint, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(BulbIcon, {}),
+              "Hint"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Button, { onClick: onEnd ?? onClose, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(StopIcon, {}),
+              "End"
+            ] })
+          ] })
+        ] }) : isScreenPromptOpen ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "mt-6 rounded-xl border border-white/10 bg-[#202020] p-4 animate-[interviewer-overlay-enter_420ms_cubic-bezier(.16,1,.3,1)_both]", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "text-sm font-bold leading-5 text-white", children: "Share your screen for better interview feedback?" }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "mt-2 text-xs font-medium leading-5 text-zinc-500", children: "Alex can use snapshots of your code as context. Chrome will ask for permission next if you choose to share." }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "mt-4 grid grid-cols-2 gap-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Button, { variant: "secondary", onClick: () => handleStartInterview(false), children: "Skip" }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Button, { onClick: () => handleStartInterview(true), children: "Share screen" })
+          ] })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Button, { className: "mt-6 h-11 w-full rounded-xl text-sm font-bold", onClick: () => setIsScreenPromptOpen(true), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(MicIcon, { className: "size-5 text-zinc-950" }),
+          "Start interview"
+        ] })
+      ] }) })
+    ] });
+  }
+  function getInterviewerPlaceholder(status) {
+    if (/connecting|thinking/i.test(status)) {
+      return "Alex is getting ready to respond...";
+    }
+    return "Start the interview when you're ready for Alex's first prompt.";
+  }
+  function useElapsedTime() {
+    const [elapsedSeconds, setElapsedSeconds] = (0, import_react4.useState)(0);
+    (0, import_react4.useEffect)(() => {
+      const interval = setInterval(() => {
+        setElapsedSeconds((seconds2) => seconds2 + 1);
+      }, 1e3);
+      return () => clearInterval(interval);
+    }, []);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+  function AudioBars({
+    isActive,
+    level
+  }) {
+    const bars = [5, 7, 9, 11, 12, 10, 8, 6];
+    const activeBars = isActive ? Math.min(bars.length, Math.max(1, Math.ceil(level * bars.length))) : 0;
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex h-3 items-center gap-1", "aria-label": "Speaking", children: bars.map((height2, index) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+      "span",
+      {
+        className: [
+          "w-1 rounded-full shadow-[0_0_10px_rgba(132,204,22,0.25)]",
+          index < activeBars ? "bg-lime-500" : "bg-zinc-700"
+        ].join(" "),
+        style: { height: height2 }
+      },
+      index
+    )) });
+  }
+  function UserIcon() {
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+      "svg",
+      {
+        "aria-hidden": "true",
+        className: "size-6",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        stroke: "currentColor",
+        strokeWidth: "1.8",
+        children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          "path",
+          {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            d: "M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a7.5 7.5 0 0 1 15 0"
+          }
+        )
+      }
+    );
+  }
+  function MicIcon({ className = "size-5 text-white" }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Mic_default, { "aria-hidden": "true", className });
+  }
+  function MicOffIcon() {
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(MicOff_default, { "aria-hidden": "true", className: "size-5 text-white" });
+  }
+  function BulbIcon() {
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+      "svg",
+      {
+        "aria-hidden": "true",
+        className: "size-4",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        stroke: "currentColor",
+        strokeWidth: "1.8",
+        children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          "path",
+          {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            d: "M9 18h6M10 21h4M8.25 14.25c-1.05-.96-1.75-2.3-1.75-3.75a5.5 5.5 0 1 1 11 0c0 1.45-.7 2.79-1.75 3.75-.61.56-.75.98-.75 1.75H9c0-.77-.14-1.19-.75-1.75ZM12 3v1.5M4.93 5.93l1.06 1.06M19.07 5.93l-1.06 1.06"
+          }
+        )
+      }
+    );
+  }
+  function StopIcon() {
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+      "svg",
+      {
+        "aria-hidden": "true",
+        className: "size-3.5",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        stroke: "currentColor",
+        strokeWidth: "2.2",
+        children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("rect", { x: "7", y: "7", width: "10", height: "10", rx: "1" })
+      }
+    );
+  }
+
+  // lib/extension-progress-sync.ts
+  var PENDING_INTERVIEW_RECORDS_KEY = "pendingInterviewRecords";
+  function getChromeStorageLocal() {
+    if (typeof chrome === "undefined") {
+      return null;
+    }
+    return chrome.storage?.local ?? null;
+  }
+  async function queuePendingInterviewRecord(record) {
+    const storage = getChromeStorageLocal();
+    if (!storage) {
+      return;
+    }
+    const stored = await storage.get([PENDING_INTERVIEW_RECORDS_KEY]);
+    const pendingRecords = normalizePendingRecords(stored[PENDING_INTERVIEW_RECORDS_KEY]);
+    const nextRecords = [
+      record,
+      ...pendingRecords.filter((entry) => entry.problemSlug !== record.problemSlug)
+    ].slice(0, 50);
+    await storage.set({
+      [PENDING_INTERVIEW_RECORDS_KEY]: nextRecords
+    });
+  }
+  function normalizePendingRecords(value) {
+    if (!Array.isArray(value)) {
+      return [];
+    }
+    return value.flatMap((entry) => {
+      if (!entry || typeof entry !== "object") {
+        return [];
+      }
+      const record = entry;
+      if (!record.problemSlug || !record.problemTitle || !record.completedAt) {
+        return [];
+      }
+      return [
+        {
+          category: typeof record.category === "string" ? record.category : void 0,
+          completedAt: record.completedAt,
+          elapsedSeconds: typeof record.elapsedSeconds === "number" ? record.elapsedSeconds : 0,
+          overallScore: typeof record.overallScore === "number" ? record.overallScore : null,
+          problemSlug: record.problemSlug,
+          problemTitle: record.problemTitle,
+          verdict: typeof record.verdict === "string" ? record.verdict : "Completed"
+        }
+      ];
+    });
+  }
 
   // lib/dashboard-progress.ts
   var DASHBOARD_PROGRESS_STORAGE_KEY = "dsa_interviewer_dashboard_progress_v1";
@@ -12792,6 +19142,7 @@
     );
   }
   async function recordCompletedInterview(record, apiBase = "") {
+    await queuePendingInterviewRecord(record).catch(() => null);
     if (!apiBase) {
       saveLocalDashboardProgress(record);
     }
@@ -12840,6 +19191,460 @@
     };
   }
 
+  // app/dashboard/problem-lists.ts
+  var leetcodeUrl = (slug) => `https://leetcode.com/problems/${slug}/`;
+  var neetcodeUrl = (slug) => `https://neetcode.io/problems/${slug}`;
+  function flattenProblems(sources) {
+    return sources.flatMap(
+      ({ category, problems }) => problems.map((problem) => ({
+        category,
+        neetcodeUrl: neetcodeUrl(problem.slug),
+        slug: problem.slug,
+        title: problem.title,
+        url: leetcodeUrl(problem.slug)
+      }))
+    );
+  }
+  var neetcode150Problems = flattenProblems([
+    {
+      category: "Arrays & Hashing",
+      problems: [
+        { title: "Contains Duplicate", slug: "contains-duplicate" },
+        { title: "Valid Anagram", slug: "valid-anagram" },
+        { title: "Two Sum", slug: "two-sum" },
+        { title: "Group Anagrams", slug: "group-anagrams" },
+        { title: "Top K Frequent Elements", slug: "top-k-frequent-elements" },
+        { title: "Product of Array Except Self", slug: "product-of-array-except-self" },
+        { title: "Valid Sudoku", slug: "valid-sudoku" },
+        { title: "Encode and Decode Strings", slug: "encode-and-decode-strings" },
+        { title: "Longest Consecutive Sequence", slug: "longest-consecutive-sequence" }
+      ]
+    },
+    {
+      category: "Two Pointers",
+      problems: [
+        { title: "Valid Palindrome", slug: "valid-palindrome" },
+        { title: "Two Sum II Input Array Is Sorted", slug: "two-sum-ii-input-array-is-sorted" },
+        { title: "3Sum", slug: "3sum" },
+        { title: "Container With Most Water", slug: "container-with-most-water" },
+        { title: "Trapping Rain Water", slug: "trapping-rain-water" }
+      ]
+    },
+    {
+      category: "Sliding Window",
+      problems: [
+        { title: "Best Time to Buy and Sell Stock", slug: "best-time-to-buy-and-sell-stock" },
+        {
+          title: "Longest Substring Without Repeating Characters",
+          slug: "longest-substring-without-repeating-characters"
+        },
+        {
+          title: "Longest Repeating Character Replacement",
+          slug: "longest-repeating-character-replacement"
+        },
+        { title: "Permutation in String", slug: "permutation-in-string" },
+        { title: "Minimum Window Substring", slug: "minimum-window-substring" },
+        { title: "Sliding Window Maximum", slug: "sliding-window-maximum" }
+      ]
+    },
+    {
+      category: "Stack",
+      problems: [
+        { title: "Valid Parentheses", slug: "valid-parentheses" },
+        { title: "Min Stack", slug: "min-stack" },
+        { title: "Evaluate Reverse Polish Notation", slug: "evaluate-reverse-polish-notation" },
+        { title: "Generate Parentheses", slug: "generate-parentheses" },
+        { title: "Daily Temperatures", slug: "daily-temperatures" },
+        { title: "Car Fleet", slug: "car-fleet" },
+        { title: "Largest Rectangle in Histogram", slug: "largest-rectangle-in-histogram" }
+      ]
+    },
+    {
+      category: "Binary Search",
+      problems: [
+        { title: "Binary Search", slug: "binary-search" },
+        { title: "Search a 2D Matrix", slug: "search-a-2d-matrix" },
+        { title: "Koko Eating Bananas", slug: "koko-eating-bananas" },
+        {
+          title: "Find Minimum in Rotated Sorted Array",
+          slug: "find-minimum-in-rotated-sorted-array"
+        },
+        { title: "Search in Rotated Sorted Array", slug: "search-in-rotated-sorted-array" },
+        { title: "Time Based Key Value Store", slug: "time-based-key-value-store" },
+        { title: "Median of Two Sorted Arrays", slug: "median-of-two-sorted-arrays" }
+      ]
+    },
+    {
+      category: "Linked List",
+      problems: [
+        { title: "Reverse Linked List", slug: "reverse-linked-list" },
+        { title: "Merge Two Sorted Lists", slug: "merge-two-sorted-lists" },
+        { title: "Linked List Cycle", slug: "linked-list-cycle" },
+        { title: "Reorder List", slug: "reorder-list" },
+        { title: "Remove Nth Node From End of List", slug: "remove-nth-node-from-end-of-list" },
+        { title: "Copy List with Random Pointer", slug: "copy-list-with-random-pointer" },
+        { title: "Add Two Numbers", slug: "add-two-numbers" },
+        { title: "Find the Duplicate Number", slug: "find-the-duplicate-number" },
+        { title: "LRU Cache", slug: "lru-cache" },
+        { title: "Merge K Sorted Lists", slug: "merge-k-sorted-lists" },
+        { title: "Reverse Nodes in K-Group", slug: "reverse-nodes-in-k-group" }
+      ]
+    },
+    {
+      category: "Trees",
+      problems: [
+        { title: "Invert Binary Tree", slug: "invert-binary-tree" },
+        { title: "Maximum Depth of Binary Tree", slug: "maximum-depth-of-binary-tree" },
+        { title: "Diameter of Binary Tree", slug: "diameter-of-binary-tree" },
+        { title: "Balanced Binary Tree", slug: "balanced-binary-tree" },
+        { title: "Same Tree", slug: "same-tree" },
+        { title: "Subtree of Another Tree", slug: "subtree-of-another-tree" },
+        {
+          title: "Lowest Common Ancestor of a Binary Search Tree",
+          slug: "lowest-common-ancestor-of-a-binary-search-tree"
+        },
+        { title: "Binary Tree Level Order Traversal", slug: "binary-tree-level-order-traversal" },
+        { title: "Binary Tree Right Side View", slug: "binary-tree-right-side-view" },
+        { title: "Count Good Nodes in Binary Tree", slug: "count-good-nodes-in-binary-tree" },
+        { title: "Validate Binary Search Tree", slug: "validate-binary-search-tree" },
+        { title: "Kth Smallest Element in a BST", slug: "kth-smallest-element-in-a-bst" },
+        {
+          title: "Construct Binary Tree from Preorder and Inorder Traversal",
+          slug: "construct-binary-tree-from-preorder-and-inorder-traversal"
+        },
+        { title: "Binary Tree Maximum Path Sum", slug: "binary-tree-maximum-path-sum" },
+        {
+          title: "Serialize and Deserialize Binary Tree",
+          slug: "serialize-and-deserialize-binary-tree"
+        }
+      ]
+    },
+    {
+      category: "Heap / Priority Queue",
+      problems: [
+        { title: "Kth Largest Element in a Stream", slug: "kth-largest-element-in-a-stream" },
+        { title: "Last Stone Weight", slug: "last-stone-weight" },
+        { title: "K Closest Points to Origin", slug: "k-closest-points-to-origin" },
+        { title: "Kth Largest Element in an Array", slug: "kth-largest-element-in-an-array" },
+        { title: "Task Scheduler", slug: "task-scheduler" },
+        { title: "Design Twitter", slug: "design-twitter" },
+        { title: "Find Median from Data Stream", slug: "find-median-from-data-stream" }
+      ]
+    },
+    {
+      category: "Backtracking",
+      problems: [
+        { title: "Subsets", slug: "subsets" },
+        { title: "Combination Sum", slug: "combination-sum" },
+        { title: "Permutations", slug: "permutations" },
+        { title: "Subsets II", slug: "subsets-ii" },
+        { title: "Combination Sum II", slug: "combination-sum-ii" },
+        { title: "Word Search", slug: "word-search" },
+        { title: "Palindrome Partitioning", slug: "palindrome-partitioning" },
+        {
+          title: "Letter Combinations of a Phone Number",
+          slug: "letter-combinations-of-a-phone-number"
+        },
+        { title: "N-Queens", slug: "n-queens" }
+      ]
+    },
+    {
+      category: "Tries",
+      problems: [
+        { title: "Implement Trie", slug: "implement-trie-prefix-tree" },
+        {
+          title: "Design Add and Search Words Data Structure",
+          slug: "design-add-and-search-words-data-structure"
+        },
+        { title: "Word Search II", slug: "word-search-ii" }
+      ]
+    },
+    {
+      category: "Graphs",
+      problems: [
+        { title: "Number of Islands", slug: "number-of-islands" },
+        { title: "Clone Graph", slug: "clone-graph" },
+        { title: "Max Area of Island", slug: "max-area-of-island" },
+        { title: "Pacific Atlantic Water Flow", slug: "pacific-atlantic-water-flow" },
+        { title: "Surrounded Regions", slug: "surrounded-regions" },
+        { title: "Rotting Oranges", slug: "rotting-oranges" },
+        { title: "Walls and Gates", slug: "walls-and-gates" },
+        { title: "Course Schedule", slug: "course-schedule" },
+        { title: "Course Schedule II", slug: "course-schedule-ii" },
+        { title: "Redundant Connection", slug: "redundant-connection" },
+        {
+          title: "Number of Connected Components in an Undirected Graph",
+          slug: "number-of-connected-components-in-an-undirected-graph"
+        },
+        { title: "Graph Valid Tree", slug: "graph-valid-tree" },
+        { title: "Word Ladder", slug: "word-ladder" }
+      ]
+    },
+    {
+      category: "Advanced Graphs",
+      problems: [
+        { title: "Reconstruct Itinerary", slug: "reconstruct-itinerary" },
+        { title: "Min Cost to Connect All Points", slug: "min-cost-to-connect-all-points" },
+        { title: "Network Delay Time", slug: "network-delay-time" },
+        { title: "Swim in Rising Water", slug: "swim-in-rising-water" },
+        { title: "Alien Dictionary", slug: "alien-dictionary" },
+        { title: "Cheapest Flights Within K Stops", slug: "cheapest-flights-within-k-stops" }
+      ]
+    },
+    {
+      category: "1-D Dynamic Programming",
+      problems: [
+        { title: "Climbing Stairs", slug: "climbing-stairs" },
+        { title: "Min Cost Climbing Stairs", slug: "min-cost-climbing-stairs" },
+        { title: "House Robber", slug: "house-robber" },
+        { title: "House Robber II", slug: "house-robber-ii" },
+        { title: "Longest Palindromic Substring", slug: "longest-palindromic-substring" },
+        { title: "Palindromic Substrings", slug: "palindromic-substrings" },
+        { title: "Decode Ways", slug: "decode-ways" },
+        { title: "Coin Change", slug: "coin-change" },
+        { title: "Maximum Product Subarray", slug: "maximum-product-subarray" },
+        { title: "Word Break", slug: "word-break" },
+        { title: "Longest Increasing Subsequence", slug: "longest-increasing-subsequence" },
+        { title: "Partition Equal Subset Sum", slug: "partition-equal-subset-sum" }
+      ]
+    },
+    {
+      category: "2-D Dynamic Programming",
+      problems: [
+        { title: "Unique Paths", slug: "unique-paths" },
+        { title: "Longest Common Subsequence", slug: "longest-common-subsequence" },
+        {
+          title: "Best Time to Buy and Sell Stock with Cooldown",
+          slug: "best-time-to-buy-and-sell-stock-with-cooldown"
+        },
+        { title: "Coin Change II", slug: "coin-change-ii" },
+        { title: "Target Sum", slug: "target-sum" },
+        { title: "Interleaving String", slug: "interleaving-string" },
+        {
+          title: "Longest Increasing Path in a Matrix",
+          slug: "longest-increasing-path-in-a-matrix"
+        },
+        { title: "Distinct Subsequences", slug: "distinct-subsequences" },
+        { title: "Edit Distance", slug: "edit-distance" },
+        { title: "Burst Balloons", slug: "burst-balloons" },
+        { title: "Regular Expression Matching", slug: "regular-expression-matching" }
+      ]
+    },
+    {
+      category: "Greedy",
+      problems: [
+        { title: "Maximum Subarray", slug: "maximum-subarray" },
+        { title: "Jump Game", slug: "jump-game" },
+        { title: "Jump Game II", slug: "jump-game-ii" },
+        { title: "Gas Station", slug: "gas-station" },
+        { title: "Hand of Straights", slug: "hand-of-straights" },
+        { title: "Merge Triplets to Form Target Triplet", slug: "merge-triplets-to-form-target-triplet" },
+        { title: "Partition Labels", slug: "partition-labels" },
+        { title: "Valid Parenthesis String", slug: "valid-parenthesis-string" }
+      ]
+    },
+    {
+      category: "Intervals",
+      problems: [
+        { title: "Insert Interval", slug: "insert-interval" },
+        { title: "Merge Intervals", slug: "merge-intervals" },
+        { title: "Non-overlapping Intervals", slug: "non-overlapping-intervals" },
+        { title: "Meeting Rooms", slug: "meeting-rooms" },
+        { title: "Meeting Rooms II", slug: "meeting-rooms-ii" },
+        { title: "Minimum Interval to Include Each Query", slug: "minimum-interval-to-include-each-query" }
+      ]
+    },
+    {
+      category: "Math & Geometry",
+      problems: [
+        { title: "Rotate Image", slug: "rotate-image" },
+        { title: "Spiral Matrix", slug: "spiral-matrix" },
+        { title: "Set Matrix Zeroes", slug: "set-matrix-zeroes" },
+        { title: "Happy Number", slug: "happy-number" },
+        { title: "Plus One", slug: "plus-one" },
+        { title: "Pow(x, n)", slug: "powx-n" },
+        { title: "Multiply Strings", slug: "multiply-strings" },
+        { title: "Detect Squares", slug: "detect-squares" }
+      ]
+    },
+    {
+      category: "Bit Manipulation",
+      problems: [
+        { title: "Single Number", slug: "single-number" },
+        { title: "Number of 1 Bits", slug: "number-of-1-bits" },
+        { title: "Counting Bits", slug: "counting-bits" },
+        { title: "Reverse Bits", slug: "reverse-bits" },
+        { title: "Missing Number", slug: "missing-number" },
+        { title: "Sum of Two Integers", slug: "sum-of-two-integers" },
+        { title: "Reverse Integer", slug: "reverse-integer" }
+      ]
+    }
+  ]);
+  var blind75Problems = flattenProblems([
+    {
+      category: "Array",
+      problems: [
+        { title: "Two Sum", slug: "two-sum" },
+        { title: "Best Time to Buy and Sell Stock", slug: "best-time-to-buy-and-sell-stock" },
+        { title: "Contains Duplicate", slug: "contains-duplicate" },
+        { title: "Product of Array Except Self", slug: "product-of-array-except-self" },
+        { title: "Maximum Subarray", slug: "maximum-subarray" },
+        { title: "Maximum Product Subarray", slug: "maximum-product-subarray" },
+        {
+          title: "Find Minimum in Rotated Sorted Array",
+          slug: "find-minimum-in-rotated-sorted-array"
+        },
+        { title: "Search in Rotated Sorted Array", slug: "search-in-rotated-sorted-array" },
+        { title: "3Sum", slug: "3sum" },
+        { title: "Container With Most Water", slug: "container-with-most-water" }
+      ]
+    },
+    {
+      category: "Binary",
+      problems: [
+        { title: "Sum of Two Integers", slug: "sum-of-two-integers" },
+        { title: "Number of 1 Bits", slug: "number-of-1-bits" },
+        { title: "Counting Bits", slug: "counting-bits" },
+        { title: "Missing Number", slug: "missing-number" },
+        { title: "Reverse Bits", slug: "reverse-bits" }
+      ]
+    },
+    {
+      category: "Dynamic Programming",
+      problems: [
+        { title: "Climbing Stairs", slug: "climbing-stairs" },
+        { title: "Coin Change", slug: "coin-change" },
+        { title: "Longest Increasing Subsequence", slug: "longest-increasing-subsequence" },
+        { title: "Longest Common Subsequence", slug: "longest-common-subsequence" },
+        { title: "Word Break", slug: "word-break" },
+        { title: "Combination Sum", slug: "combination-sum" },
+        { title: "House Robber", slug: "house-robber" },
+        { title: "House Robber II", slug: "house-robber-ii" },
+        { title: "Decode Ways", slug: "decode-ways" },
+        { title: "Unique Paths", slug: "unique-paths" },
+        { title: "Jump Game", slug: "jump-game" }
+      ]
+    },
+    {
+      category: "Graph",
+      problems: [
+        { title: "Clone Graph", slug: "clone-graph" },
+        { title: "Course Schedule", slug: "course-schedule" },
+        { title: "Pacific Atlantic Water Flow", slug: "pacific-atlantic-water-flow" },
+        { title: "Number of Islands", slug: "number-of-islands" },
+        { title: "Longest Consecutive Sequence", slug: "longest-consecutive-sequence" },
+        { title: "Alien Dictionary", slug: "alien-dictionary" },
+        { title: "Graph Valid Tree", slug: "graph-valid-tree" },
+        {
+          title: "Number of Connected Components in an Undirected Graph",
+          slug: "number-of-connected-components-in-an-undirected-graph"
+        }
+      ]
+    },
+    {
+      category: "Interval",
+      problems: [
+        { title: "Insert Interval", slug: "insert-interval" },
+        { title: "Merge Intervals", slug: "merge-intervals" },
+        { title: "Non-overlapping Intervals", slug: "non-overlapping-intervals" },
+        { title: "Meeting Rooms", slug: "meeting-rooms" },
+        { title: "Meeting Rooms II", slug: "meeting-rooms-ii" }
+      ]
+    },
+    {
+      category: "Linked List",
+      problems: [
+        { title: "Reverse Linked List", slug: "reverse-linked-list" },
+        { title: "Linked List Cycle", slug: "linked-list-cycle" },
+        { title: "Merge Two Sorted Lists", slug: "merge-two-sorted-lists" },
+        { title: "Merge K Sorted Lists", slug: "merge-k-sorted-lists" },
+        { title: "Remove Nth Node From End of List", slug: "remove-nth-node-from-end-of-list" },
+        { title: "Reorder List", slug: "reorder-list" }
+      ]
+    },
+    {
+      category: "Matrix",
+      problems: [
+        { title: "Set Matrix Zeroes", slug: "set-matrix-zeroes" },
+        { title: "Spiral Matrix", slug: "spiral-matrix" },
+        { title: "Rotate Image", slug: "rotate-image" },
+        { title: "Word Search", slug: "word-search" }
+      ]
+    },
+    {
+      category: "String",
+      problems: [
+        { title: "Longest Substring Without Repeating Characters", slug: "longest-substring-without-repeating-characters" },
+        { title: "Longest Repeating Character Replacement", slug: "longest-repeating-character-replacement" },
+        { title: "Minimum Window Substring", slug: "minimum-window-substring" },
+        { title: "Valid Anagram", slug: "valid-anagram" },
+        { title: "Group Anagrams", slug: "group-anagrams" },
+        { title: "Valid Parentheses", slug: "valid-parentheses" },
+        { title: "Valid Palindrome", slug: "valid-palindrome" },
+        { title: "Longest Palindromic Substring", slug: "longest-palindromic-substring" },
+        { title: "Palindromic Substrings", slug: "palindromic-substrings" },
+        { title: "Encode and Decode Strings", slug: "encode-and-decode-strings" }
+      ]
+    },
+    {
+      category: "Tree",
+      problems: [
+        { title: "Maximum Depth of Binary Tree", slug: "maximum-depth-of-binary-tree" },
+        { title: "Same Tree", slug: "same-tree" },
+        { title: "Invert Binary Tree", slug: "invert-binary-tree" },
+        { title: "Binary Tree Maximum Path Sum", slug: "binary-tree-maximum-path-sum" },
+        { title: "Binary Tree Level Order Traversal", slug: "binary-tree-level-order-traversal" },
+        {
+          title: "Serialize and Deserialize Binary Tree",
+          slug: "serialize-and-deserialize-binary-tree"
+        },
+        { title: "Subtree of Another Tree", slug: "subtree-of-another-tree" },
+        {
+          title: "Construct Binary Tree from Preorder and Inorder Traversal",
+          slug: "construct-binary-tree-from-preorder-and-inorder-traversal"
+        },
+        { title: "Validate Binary Search Tree", slug: "validate-binary-search-tree" },
+        { title: "Kth Smallest Element in a BST", slug: "kth-smallest-element-in-a-bst" },
+        {
+          title: "Lowest Common Ancestor of a Binary Search Tree",
+          slug: "lowest-common-ancestor-of-a-binary-search-tree"
+        },
+        { title: "Implement Trie", slug: "implement-trie-prefix-tree" },
+        {
+          title: "Design Add and Search Words Data Structure",
+          slug: "design-add-and-search-words-data-structure"
+        },
+        { title: "Word Search II", slug: "word-search-ii" }
+      ]
+    },
+    {
+      category: "Heap",
+      problems: [
+        { title: "Top K Frequent Elements", slug: "top-k-frequent-elements" },
+        { title: "Find Median from Data Stream", slug: "find-median-from-data-stream" }
+      ]
+    }
+  ]);
+
+  // lib/interview/problem-catalog.ts
+  var catalogBySlug = /* @__PURE__ */ new Map();
+  for (const problem of [...neetcode150Problems, ...blind75Problems]) {
+    catalogBySlug.set(problem.slug, problem);
+  }
+  function camelCaseToKebabSlug(slug) {
+    return slug.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/_/g, "-").toLowerCase();
+  }
+  function lookupProblemInCatalog(rawSlug) {
+    const candidates = [rawSlug, camelCaseToKebabSlug(rawSlug)];
+    for (const slug of candidates) {
+      const match2 = catalogBySlug.get(slug);
+      if (match2) {
+        return match2;
+      }
+    }
+    return null;
+  }
+
   // lib/interview/leetcode-launch.ts
   var LEETCODE_LAUNCH_HASH_PREFIX = "#__dsa_interviewer__=";
   function decodeLeetCodeLaunchConfig(encodedValue) {
@@ -12861,25 +19666,34 @@
       url: `https://leetcode.com/problems/${config.slug}/`
     };
   }
-  var LEETCODE_PROBLEM_PATH = /^\/problems\/([^/]+)/;
-  function parseProblemSlugFromLeetCodePath(pathname = "") {
-    return pathname.match(LEETCODE_PROBLEM_PATH)?.[1] ?? null;
+  var PROBLEM_PATH = /^\/problems\/([^/?#]+)/;
+  function parseProblemSlugFromPath(pathname = "") {
+    return pathname.match(PROBLEM_PATH)?.[1] ?? null;
   }
   function titleizeProblemSlug(slug) {
     return slug.split("-").filter(Boolean).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
   }
-  function buildLaunchConfigFromLeetCodePage({
+  function buildLaunchConfigFromProblemPage({
     appOrigin,
     pathname = ""
   }) {
-    const slug = parseProblemSlugFromLeetCodePath(pathname);
-    if (!slug) {
+    const rawSlug = parseProblemSlugFromPath(pathname);
+    if (!rawSlug) {
       return null;
+    }
+    const catalogMatch = lookupProblemInCatalog(rawSlug);
+    if (catalogMatch) {
+      return {
+        appOrigin,
+        category: catalogMatch.category,
+        slug: catalogMatch.slug,
+        title: catalogMatch.title
+      };
     }
     return {
       appOrigin,
-      slug,
-      title: titleizeProblemSlug(slug)
+      slug: camelCaseToKebabSlug(rawSlug),
+      title: titleizeProblemSlug(camelCaseToKebabSlug(rawSlug))
     };
   }
 
@@ -12895,15 +19709,15 @@
     problemTitle,
     transcript
   }) {
-    const normalizedTranscript = transcript.map((line) => ({
-      ...line,
-      text: normalizeSummaryText(line.text)
-    })).filter((line) => line.text);
+    const normalizedTranscript = transcript.map((line2) => ({
+      ...line2,
+      text: normalizeSummaryText(line2.text)
+    })).filter((line2) => line2.text);
     const candidateTranscript = normalizeSummaryText(
-      normalizedTranscript.filter((line) => line.speaker === "You").map((line) => line.text).join(" ")
+      normalizedTranscript.filter((line2) => line2.speaker === "You").map((line2) => line2.text).join(" ")
     );
     const conversationTranscript = normalizeSummaryText(
-      normalizedTranscript.map((line) => `${line.speaker}: ${line.text}`).join(" ")
+      normalizedTranscript.map((line2) => `${line2.speaker}: ${line2.text}`).join(" ")
     );
     const interviewerTranscript = normalizeSummaryText(
       interviewerResponse === INITIAL_INTERVIEWER_RESPONSE ? "" : interviewerResponse
@@ -13053,10 +19867,10 @@
   }
 
   // lib/interview/use-elapsed-seconds.ts
-  var import_react = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
   function useElapsedSeconds(isActive = true) {
-    const [elapsedSeconds, setElapsedSeconds] = (0, import_react.useState)(0);
-    (0, import_react.useEffect)(() => {
+    const [elapsedSeconds, setElapsedSeconds] = (0, import_react5.useState)(0);
+    (0, import_react5.useEffect)(() => {
       if (!isActive) {
         return;
       }
@@ -13074,7 +19888,7 @@
   }
 
   // lib/interview/use-realtime-interview-session.ts
-  var import_react2 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
 
   // lib/interview/realtime-utils.ts
   function getRealtimeClientSecret(payload) {
@@ -13116,45 +19930,81 @@
     return typeof value === "string" ? value : null;
   }
 
+  // lib/interview/remote-audio.ts
+  var REMOTE_AUDIO_ID = "dsa-interviewer-remote-audio";
+  function mountRemoteAudioElement() {
+    const existing = document.getElementById(REMOTE_AUDIO_ID);
+    if (existing) {
+      return existing;
+    }
+    const audio = document.createElement("audio");
+    audio.id = REMOTE_AUDIO_ID;
+    audio.autoplay = true;
+    audio.setAttribute("playsinline", "true");
+    audio.style.display = "none";
+    audio.volume = 1;
+    document.documentElement.appendChild(audio);
+    return audio;
+  }
+  async function playRemoteAudio(audio) {
+    audio.muted = false;
+    audio.volume = 1;
+    if (audio.paused) {
+      try {
+        await audio.play();
+      } catch {
+      }
+    }
+  }
+  function unmountRemoteAudioElement(audio) {
+    if (!audio) {
+      return;
+    }
+    audio.pause();
+    audio.srcObject = null;
+    audio.remove();
+  }
+
   // lib/interview/use-realtime-interview-session.ts
   function useRealtimeInterviewSession(problem, appOrigin = "") {
     const apiBase = appOrigin.replace(/\/$/, "");
-    const analyserRef = (0, import_react2.useRef)(null);
-    const audioContextRef = (0, import_react2.useRef)(null);
-    const audioSourceRef = (0, import_react2.useRef)(null);
-    const dataChannelRef = (0, import_react2.useRef)(null);
-    const frequencyDataRef = (0, import_react2.useRef)(null);
-    const meterAnimationRef = (0, import_react2.useRef)(null);
-    const peerConnectionRef = (0, import_react2.useRef)(null);
-    const remoteAudioRef = (0, import_react2.useRef)(null);
-    const inputTranscriptRef = (0, import_react2.useRef)("");
-    const sessionTranscriptRef = (0, import_react2.useRef)([]);
-    const isMutedRef = (0, import_react2.useRef)(false);
-    const isScreenSharingRef = (0, import_react2.useRef)(false);
-    const responseTranscriptRef = (0, import_react2.useRef)("");
-    const screenCanvasRef = (0, import_react2.useRef)(null);
-    const screenFrameIntervalRef = (0, import_react2.useRef)(null);
-    const screenStreamRef = (0, import_react2.useRef)(null);
-    const screenVideoRef = (0, import_react2.useRef)(null);
-    const streamRef = (0, import_react2.useRef)(null);
-    const [audioLevel, setAudioLevel] = (0, import_react2.useState)(0);
-    const [interviewerResponse, setInterviewerResponse] = (0, import_react2.useState)(
+    const analyserRef = (0, import_react6.useRef)(null);
+    const audioContextRef = (0, import_react6.useRef)(null);
+    const audioSourceRef = (0, import_react6.useRef)(null);
+    const dataChannelRef = (0, import_react6.useRef)(null);
+    const frequencyDataRef = (0, import_react6.useRef)(null);
+    const meterAnimationRef = (0, import_react6.useRef)(null);
+    const peerConnectionRef = (0, import_react6.useRef)(null);
+    const remoteAudioRef = (0, import_react6.useRef)(null);
+    const inputTranscriptRef = (0, import_react6.useRef)("");
+    const sessionTranscriptRef = (0, import_react6.useRef)([]);
+    const isMutedRef = (0, import_react6.useRef)(false);
+    const isScreenSharingRef = (0, import_react6.useRef)(false);
+    const responseTranscriptRef = (0, import_react6.useRef)("");
+    const screenCanvasRef = (0, import_react6.useRef)(null);
+    const screenFrameIntervalRef = (0, import_react6.useRef)(null);
+    const screenStreamRef = (0, import_react6.useRef)(null);
+    const screenVideoRef = (0, import_react6.useRef)(null);
+    const streamRef = (0, import_react6.useRef)(null);
+    const [audioLevel, setAudioLevel] = (0, import_react6.useState)(0);
+    const [interviewerResponse, setInterviewerResponse] = (0, import_react6.useState)(
       INITIAL_INTERVIEWER_RESPONSE
     );
-    const [interviewerStatus, setInterviewerStatus] = (0, import_react2.useState)("Ready");
-    const [exchangeCount, setExchangeCount] = (0, import_react2.useState)(0);
-    const [fullTranscript, setFullTranscript] = (0, import_react2.useState)([]);
-    const [hintsUsed, setHintsUsed] = (0, import_react2.useState)(0);
-    const [text, setText] = (0, import_react2.useState)("");
-    const [status, setStatus] = (0, import_react2.useState)("Mic off");
-    const [isListening, setIsListening] = (0, import_react2.useState)(false);
-    const [isMuted, setIsMuted] = (0, import_react2.useState)(false);
+    const [interviewerStatus, setInterviewerStatus] = (0, import_react6.useState)("Ready");
+    const [exchangeCount, setExchangeCount] = (0, import_react6.useState)(0);
+    const [fullTranscript, setFullTranscript] = (0, import_react6.useState)([]);
+    const [hintsUsed, setHintsUsed] = (0, import_react6.useState)(0);
+    const [text, setText] = (0, import_react6.useState)("");
+    const [status, setStatus] = (0, import_react6.useState)("Mic off");
+    const [isListening, setIsListening] = (0, import_react6.useState)(false);
+    const [isMuted, setIsMuted] = (0, import_react6.useState)(false);
     function startAudioMeter(stream) {
       const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
       if (!AudioContextConstructor) {
         return;
       }
       const audioContext = new AudioContextConstructor();
+      void audioContext.resume().catch(() => null);
       const analyser = audioContext.createAnalyser();
       const audioSource = audioContext.createMediaStreamSource(stream);
       analyser.fftSize = 256;
@@ -13242,7 +20092,7 @@
     function cleanupConnection() {
       dataChannelRef.current?.close();
       peerConnectionRef.current?.close();
-      remoteAudioRef.current?.pause();
+      unmountRemoteAudioElement(remoteAudioRef.current);
       streamRef.current?.getTracks().forEach((track) => track.stop());
       stopScreenContext();
       stopAudioMeter();
@@ -13340,8 +20190,8 @@
         return null;
       }
       const canvas = screenCanvasRef.current ?? document.createElement("canvas");
-      const maxWidth = 960;
-      const scale = Math.min(1, maxWidth / screenVideo.videoWidth);
+      const maxWidth2 = 960;
+      const scale = Math.min(1, maxWidth2 / screenVideo.videoWidth);
       canvas.width = Math.max(1, Math.round(screenVideo.videoWidth * scale));
       canvas.height = Math.max(1, Math.round(screenVideo.videoHeight * scale));
       try {
@@ -13512,18 +20362,18 @@
           throw new Error("Realtime session response did not include a client secret.");
         }
         const peerConnection = new RTCPeerConnection();
-        const remoteAudio = new Audio();
+        const remoteAudio = mountRemoteAudioElement();
         const dataChannel = peerConnection.createDataChannel("oai-events");
-        remoteAudio.autoplay = true;
         peerConnection.addTrack(audioTrack, stream);
         if (screenTrack && screenStream) {
           peerConnection.addTrack(screenTrack, screenStream);
         }
         peerConnection.addEventListener("track", (event) => {
           remoteAudio.srcObject = event.streams[0];
-          remoteAudio.play().catch(() => null);
+          void playRemoteAudio(remoteAudio);
         });
         dataChannel.addEventListener("open", () => {
+          void playRemoteAudio(remoteAudio);
           setStatus(getListeningStatus());
           setInterviewerStatus("Listening");
           if (isScreenSharingRef.current) {
@@ -13622,7 +20472,7 @@
         })
       );
     }
-    (0, import_react2.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       return () => {
         dataChannelRef.current?.close();
         peerConnectionRef.current?.close();
@@ -13676,36 +20526,24 @@
   }
 
   // components/interview/leetcode-extension-overlay.tsx
-  var import_react3 = __toESM(require_react());
-  var import_jsx_runtime = __toESM(require_jsx_runtime());
-  var shellStyle = {
-    bottom: "24px",
-    left: "24px",
-    pointerEvents: "auto",
-    position: "fixed",
-    touchAction: "none",
-    width: "352px",
-    zIndex: 2147483647
-  };
-  var cardStyle = {
-    background: "#171717",
-    border: "1px solid rgba(255,255,255,0.1)",
-    borderRadius: "1.45rem",
-    boxShadow: "0 28px 80px rgba(0,0,0,0.55)",
-    color: "#fafafa",
-    padding: "12px"
-  };
+  var import_react7 = __toESM(require_react());
+  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
   function LeetCodeExtensionOverlay({
     config
   }) {
     const problem = launchConfigToProblem(config);
-    const shellRef = (0, import_react3.useRef)(null);
-    const dragOffsetRef = (0, import_react3.useRef)({ x: 0, y: 0 });
-    const [position, setPosition] = (0, import_react3.useState)(null);
-    const [hasInterviewStarted, setHasInterviewStarted] = (0, import_react3.useState)(false);
+    const overlayRef = (0, import_react7.useRef)(null);
+    const dragOffsetRef = (0, import_react7.useRef)({ x: 0, y: 0 });
+    const finalElapsedSecondsRef = (0, import_react7.useRef)(0);
+    const [overlayPosition, setOverlayPosition] = (0, import_react7.useState)(
+      null
+    );
+    const [hasInterviewStarted, setHasInterviewStarted] = (0, import_react7.useState)(false);
+    const [isInterviewEnded, setIsInterviewEnded] = (0, import_react7.useState)(false);
+    const [isSavingInterview, setIsSavingInterview] = (0, import_react7.useState)(false);
     const elapsedSeconds = useElapsedSeconds(hasInterviewStarted);
     const interview = useRealtimeInterviewSession(problem, config.appOrigin);
-    function handlePointerDown(event) {
+    function handleOverlayPointerDown(event) {
       if (event.target.closest("button")) {
         return;
       }
@@ -13714,34 +20552,41 @@
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
       };
-      setPosition({ x: rect.left, y: rect.top });
+      setOverlayPosition({ x: rect.left, y: rect.top });
       event.currentTarget.setPointerCapture(event.pointerId);
     }
-    function handlePointerMove(event) {
+    function handleOverlayPointerMove(event) {
       if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
         return;
       }
       const rect = event.currentTarget.getBoundingClientRect();
-      const margin = 16;
-      const maxX = window.innerWidth - rect.width - margin;
-      const maxY = window.innerHeight - rect.height - margin;
-      setPosition({
-        x: Math.min(Math.max(event.clientX - dragOffsetRef.current.x, margin), maxX),
-        y: Math.min(Math.max(event.clientY - dragOffsetRef.current.y, margin), maxY)
+      const margin2 = 16;
+      const maxX = window.innerWidth - rect.width - margin2;
+      const maxY = window.innerHeight - rect.height - margin2;
+      setOverlayPosition({
+        x: Math.min(Math.max(event.clientX - dragOffsetRef.current.x, margin2), maxX),
+        y: Math.min(Math.max(event.clientY - dragOffsetRef.current.y, margin2), maxY)
       });
     }
-    function handlePointerUp(event) {
+    function handleOverlayPointerUp(event) {
       if (event.currentTarget.hasPointerCapture(event.pointerId)) {
         event.currentTarget.releasePointerCapture(event.pointerId);
       }
     }
     function handleStartInterview(options) {
+      setIsInterviewEnded(false);
       setHasInterviewStarted(true);
       void interview.start(options);
     }
     async function handleEndInterview() {
+      if (isSavingInterview || isInterviewEnded) {
+        return;
+      }
+      setIsSavingInterview(true);
+      finalElapsedSecondsRef.current = elapsedSeconds;
+      setHasInterviewStarted(false);
       const summary = createInterviewSummary({
-        elapsedSeconds,
+        elapsedSeconds: finalElapsedSecondsRef.current,
         exchangeCount: interview.exchangeCount,
         hintsUsed: interview.hintsUsed,
         interviewerResponse: interview.interviewerResponse,
@@ -13761,144 +20606,79 @@
         },
         config.appOrigin
       );
+      setIsInterviewEnded(true);
+      setIsSavingInterview(false);
       window.open(`${config.appOrigin}/dashboard`, "_blank", "noopener,noreferrer");
     }
-    const displayResponse = interview.interviewerResponse || (hasInterviewStarted ? "Alex is getting ready to respond..." : "Start the interview when you're ready for Alex's first prompt.");
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      "div",
-      {
-        ref: shellRef,
-        "aria-label": "DSA interviewer overlay",
-        onPointerCancel: handlePointerUp,
-        onPointerDown: handlePointerDown,
-        onPointerMove: handlePointerMove,
-        onPointerUp: handlePointerUp,
-        style: {
-          ...shellStyle,
-          ...position ? { bottom: "auto", left: position.x, top: position.y } : {}
-        },
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: cardStyle, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", gap: "12px", marginBottom: "12px", padding: "0 4px" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { style: { color: "#71717a", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em" }, children: "DSA INTERVIEWER" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-              "span",
+    const displayElapsedTime = formatElapsedClock(
+      isInterviewEnded ? finalElapsedSecondsRef.current : elapsedSeconds
+    );
+    if (isInterviewEnded) {
+      return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        "div",
+        {
+          "aria-label": "DSA interviewer overlay",
+          className: "pointer-events-auto fixed z-[2147483647] w-[352px] animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_both]",
+          style: overlayPosition ? { left: overlayPosition.x, top: overlayPosition.y } : { right: "2rem", top: "6rem" },
+          children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "rounded-[1.45rem] border border-white/10 bg-[#171717] p-6 text-zinc-50 shadow-[0_28px_80px_rgba(0,0,0,0.55)]", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500", children: "Interview complete" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h2", { className: "mt-3 text-lg font-bold text-white", children: problem.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("p", { className: "mt-2 text-sm font-medium text-zinc-400", children: [
+              "Finished in ",
+              displayElapsedTime,
+              ". Progress syncs when you open the dashboard."
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              "a",
               {
-                style: {
-                  background: "rgba(59,130,246,0.15)",
-                  borderRadius: "999px",
-                  color: "#93c5fd",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  padding: "4px 12px"
-                },
-                children: "On LeetCode"
+                className: "mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl bg-white text-sm font-bold text-zinc-950",
+                href: `${config.appOrigin}/dashboard`,
+                rel: "noreferrer",
+                target: "_blank",
+                children: "Open dashboard"
               }
             )
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-            "div",
-            {
-              style: {
-                background: "#202020",
-                borderRadius: "1rem",
-                padding: "20px"
-              },
-              children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { alignItems: "start", display: "flex", justifyContent: "space-between" }, children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { fontSize: "16px", fontWeight: 700 }, children: "Alex \u2014 Interviewer" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { color: "#71717a", fontSize: "14px", fontWeight: 600, marginTop: "2px" }, children: interview.interviewerStatus })
-                  ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("time", { style: { color: "#a1a1aa", fontSize: "16px", fontWeight: 700 }, children: formatElapsedClock(elapsedSeconds) })
-                ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-                  "blockquote",
-                  {
-                    style: {
-                      background: "#202020",
-                      borderRadius: "12px",
-                      fontSize: "15px",
-                      fontWeight: 600,
-                      lineHeight: 1.6,
-                      marginTop: "16px",
-                      padding: "12px 16px"
-                    },
-                    children: [
-                      "\u201C",
-                      displayResponse,
-                      "\u201D"
-                    ]
-                  }
-                ),
-                hasInterviewStarted ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-                    "p",
-                    {
-                      style: {
-                        color: "#71717a",
-                        fontSize: "14px",
-                        fontStyle: "italic",
-                        lineHeight: 1.6,
-                        marginTop: "16px"
-                      },
-                      children: [
-                        "You: \u201C",
-                        interview.text || "Start answering out loud.",
-                        "\u201D"
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "grid", gap: "12px", gridTemplateColumns: "1fr 1fr", marginTop: "16px" }, children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                      "button",
-                      {
-                        onClick: interview.requestHint,
-                        style: secondaryButtonStyle,
-                        type: "button",
-                        children: "Hint"
-                      }
-                    ),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { onClick: () => void handleEndInterview(), style: primaryButtonStyle, type: "button", children: "End" })
-                  ] })
-                ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                  "button",
-                  {
-                    onClick: () => handleStartInterview({ shareScreen: false }),
-                    style: { ...primaryButtonStyle, marginTop: "24px", width: "100%" },
-                    type: "button",
-                    children: "Start interview"
-                  }
-                )
-              ]
-            }
-          )
-        ] })
+          ] })
+        }
+      );
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+      "div",
+      {
+        ref: overlayRef,
+        "aria-label": "DSA interviewer overlay",
+        className: "pointer-events-auto fixed z-[2147483647] touch-none cursor-grab animate-[interviewer-overlay-enter_620ms_cubic-bezier(.16,1,.3,1)_420ms_both] active:cursor-grabbing",
+        onPointerCancel: handleOverlayPointerUp,
+        onPointerDown: handleOverlayPointerDown,
+        onPointerMove: handleOverlayPointerMove,
+        onPointerUp: handleOverlayPointerUp,
+        style: overlayPosition ? { left: overlayPosition.x, top: overlayPosition.y } : { right: "2rem", top: "6rem" },
+        children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+          Overlay,
+          {
+            audioLevel: interview.audioLevel,
+            elapsedTime: displayElapsedTime,
+            hasStarted: hasInterviewStarted,
+            interviewerResponse: interview.interviewerResponse,
+            interviewerStatus: isSavingInterview ? "Saving..." : interview.interviewerStatus,
+            isListening: interview.isListening,
+            isMuted: interview.isMuted,
+            onEnd: () => void handleEndInterview(),
+            onRequestHint: interview.requestHint,
+            onStartInterview: handleStartInterview,
+            onStartListening: interview.start,
+            onStopListening: interview.stop,
+            onToggleMute: interview.toggleMute,
+            transcript: interview.text,
+            transcriptStatus: interview.status
+          }
+        )
       }
     );
   }
-  var primaryButtonStyle = {
-    background: "#fafafa",
-    border: "none",
-    borderRadius: "12px",
-    color: "#18181b",
-    cursor: "pointer",
-    fontSize: "14px",
-    fontWeight: 700,
-    padding: "10px 14px"
-  };
-  var secondaryButtonStyle = {
-    background: "#2a2a28",
-    border: "1px solid rgba(255,255,255,0.15)",
-    borderRadius: "12px",
-    color: "#fafafa",
-    cursor: "pointer",
-    fontSize: "14px",
-    fontWeight: 700,
-    padding: "10px 14px"
-  };
 
   // extension/content-entry.tsx
-  var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
   var HOST_ID = "dsa-interviewer-host";
   var DEFAULT_APP_ORIGIN = "http://localhost:3000";
   var reactRoot = null;
@@ -13924,7 +20704,7 @@
       return hashConfig;
     }
     const appOrigin = await getAppOrigin();
-    return buildLaunchConfigFromLeetCodePage({
+    return buildLaunchConfigFromProblemPage({
       appOrigin,
       pathname: location.pathname
     });
@@ -13941,11 +20721,19 @@
       host.style.zIndex = "2147483647";
       document.documentElement.appendChild(host);
     }
-    let mountPoint = host.firstElementChild;
+    let shadowRoot = host.shadowRoot;
+    if (!shadowRoot) {
+      shadowRoot = host.attachShadow({ mode: "open" });
+      const style3 = document.createElement("style");
+      style3.textContent = OVERLAY_STYLES;
+      shadowRoot.appendChild(style3);
+    }
+    let mountPoint = shadowRoot.querySelector(".dsa-interviewer-root");
     if (!mountPoint) {
       mountPoint = document.createElement("div");
-      mountPoint.style.pointerEvents = "auto";
-      host.appendChild(mountPoint);
+      mountPoint.className = "dsa-interviewer-root";
+      mountPoint.style.pointerEvents = "none";
+      shadowRoot.appendChild(mountPoint);
     }
     return mountPoint;
   }
@@ -13959,7 +20747,7 @@
       reactRoot = (0, import_client.createRoot)(mountPoint);
     }
     reactRoot.render(
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react4.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LeetCodeExtensionOverlay, { config }) })
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_react8.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(LeetCodeExtensionOverlay, { config }) })
     );
   }
   function unmountOverlay() {

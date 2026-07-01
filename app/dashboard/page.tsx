@@ -20,7 +20,25 @@ export default function DashboardPage() {
   const [progress, setProgress] = useState<DashboardProgress>(EMPTY_DASHBOARD_PROGRESS);
 
   useEffect(() => {
-    void loadPersistedDashboardProgress().then(setProgress);
+    let isActive = true;
+
+    async function loadProgress() {
+      const nextProgress = await loadPersistedDashboardProgress();
+
+      if (isActive) {
+        setProgress(nextProgress);
+      }
+    }
+
+    void loadProgress();
+    const retryTimer = window.setTimeout(() => {
+      void loadProgress();
+    }, 1500);
+
+    return () => {
+      isActive = false;
+      window.clearTimeout(retryTimer);
+    };
   }, []);
 
   const dashboardStats = useMemo(() => getDashboardStats(progress), [progress]);
@@ -213,7 +231,8 @@ export default function DashboardPage() {
                   Problem lists
                 </h2>
                 <p className="mt-1 text-sm font-medium text-zinc-500">
-                  Browse the canonical prep lists and jump directly to LeetCode.
+                  Browse the NeetCode 150 and Blind 75 lists, then practice on LeetCode
+                  or NeetCode.
                 </p>
               </div>
               <span className="font-mono text-xs text-zinc-600">
@@ -462,18 +481,17 @@ function ProblemLink({
   const practiceHref = getPracticeHref(problem);
 
   return (
-    <Link
+    <div
       className="grid animate-[row-fade-in_380ms_cubic-bezier(.16,1,.3,1)_both] grid-cols-[40px_1fr_auto] items-center gap-3 py-3 text-sm transition-colors hover:text-white"
-      href={practiceHref}
       style={{ animationDelay: `${Math.min(index, 20) * 24}ms` }}
     >
       <span className="font-mono text-xs font-bold text-zinc-600">
         {String(index).padStart(3, "0")}
       </span>
       <span className="min-w-0">
-        <span className="block truncate font-semibold text-zinc-200">
+        <Link className="block truncate font-semibold text-zinc-200" href={practiceHref}>
           {problem.title}
-        </span>
+        </Link>
         <span className="mt-0.5 block truncate text-xs font-medium text-zinc-600">
           {problem.category}
         </span>
@@ -488,9 +506,24 @@ function ProblemLink({
             <CheckIcon />
           </span>
         ) : null}
-        Open -&gt;
+        <a
+          className="rounded-md px-2 py-1 transition-colors hover:bg-white/5 hover:text-white"
+          href={problem.url}
+          rel="noreferrer"
+          target="_blank"
+        >
+          LC
+        </a>
+        <a
+          className="rounded-md px-2 py-1 transition-colors hover:bg-white/5 hover:text-white"
+          href={problem.neetcodeUrl}
+          rel="noreferrer"
+          target="_blank"
+        >
+          NC
+        </a>
       </span>
-    </Link>
+    </div>
   );
 }
 

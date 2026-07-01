@@ -1,4 +1,5 @@
 import type { LeetCodeLaunchConfig, PracticeProblem } from "./types";
+import { camelCaseToKebabSlug, lookupProblemInCatalog } from "./problem-catalog";
 
 export const LEETCODE_LAUNCH_HASH_PREFIX = "#__dsa_interviewer__=";
 export const EXTENSION_DATASET_KEY = "dsaInterviewerExtension";
@@ -51,8 +52,20 @@ export function buildLeetCodeLaunchUrl(problem: PracticeProblem, appOrigin: stri
   return `${problem.url}${LEETCODE_LAUNCH_HASH_PREFIX}${payload}`;
 }
 
+export function buildNeetCodeLaunchUrl(problem: PracticeProblem, appOrigin: string) {
+  const payload = encodeLeetCodeLaunchConfig(
+    buildLeetCodeLaunchConfig(problem, appOrigin),
+  );
+
+  return `https://neetcode.io/problems/${problem.slug}${LEETCODE_LAUNCH_HASH_PREFIX}${payload}`;
+}
+
 export function launchInterviewOnLeetCode(problem: PracticeProblem) {
   window.location.assign(buildLeetCodeLaunchUrl(problem, window.location.origin));
+}
+
+export function launchInterviewOnNeetCode(problem: PracticeProblem) {
+  window.location.assign(buildNeetCodeLaunchUrl(problem, window.location.origin));
 }
 
 export function launchConfigToProblem(config: LeetCodeLaunchConfig): PracticeProblem {
@@ -64,10 +77,14 @@ export function launchConfigToProblem(config: LeetCodeLaunchConfig): PracticePro
   };
 }
 
-const LEETCODE_PROBLEM_PATH = /^\/problems\/([^/]+)/;
+const PROBLEM_PATH = /^\/problems\/([^/?#]+)/;
+
+export function parseProblemSlugFromPath(pathname = "") {
+  return pathname.match(PROBLEM_PATH)?.[1] ?? null;
+}
 
 export function parseProblemSlugFromLeetCodePath(pathname = "") {
-  return pathname.match(LEETCODE_PROBLEM_PATH)?.[1] ?? null;
+  return parseProblemSlugFromPath(pathname);
 }
 
 export function titleizeProblemSlug(slug: string) {
@@ -78,6 +95,37 @@ export function titleizeProblemSlug(slug: string) {
     .join(" ");
 }
 
+export function buildLaunchConfigFromProblemPage({
+  appOrigin,
+  pathname = "",
+}: {
+  appOrigin: string;
+  pathname?: string;
+}): LeetCodeLaunchConfig | null {
+  const rawSlug = parseProblemSlugFromPath(pathname);
+
+  if (!rawSlug) {
+    return null;
+  }
+
+  const catalogMatch = lookupProblemInCatalog(rawSlug);
+
+  if (catalogMatch) {
+    return {
+      appOrigin,
+      category: catalogMatch.category,
+      slug: catalogMatch.slug,
+      title: catalogMatch.title,
+    };
+  }
+
+  return {
+    appOrigin,
+    slug: camelCaseToKebabSlug(rawSlug),
+    title: titleizeProblemSlug(camelCaseToKebabSlug(rawSlug)),
+  };
+}
+
 export function buildLaunchConfigFromLeetCodePage({
   appOrigin,
   pathname = "",
@@ -85,15 +133,5 @@ export function buildLaunchConfigFromLeetCodePage({
   appOrigin: string;
   pathname?: string;
 }): LeetCodeLaunchConfig | null {
-  const slug = parseProblemSlugFromLeetCodePath(pathname);
-
-  if (!slug) {
-    return null;
-  }
-
-  return {
-    appOrigin,
-    slug,
-    title: titleizeProblemSlug(slug),
-  };
+  return buildLaunchConfigFromProblemPage({ appOrigin, pathname });
 }

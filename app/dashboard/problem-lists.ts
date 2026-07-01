@@ -1,5 +1,6 @@
 export type ProblemListItem = {
   category: string;
+  neetcodeUrl: string;
   slug: string;
   title: string;
   url: string;
@@ -14,11 +15,13 @@ type ProblemSource = {
 };
 
 const leetcodeUrl = (slug: string) => `https://leetcode.com/problems/${slug}/`;
+const neetcodeUrl = (slug: string) => `https://neetcode.io/problems/${slug}`;
 
 function flattenProblems(sources: ProblemSource[]) {
   return sources.flatMap(({ category, problems }) =>
     problems.map((problem) => ({
       category,
+      neetcodeUrl: neetcodeUrl(problem.slug),
       slug: problem.slug,
       title: problem.title,
       url: leetcodeUrl(problem.slug),

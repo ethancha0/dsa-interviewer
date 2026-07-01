@@ -1,12 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "DSA Interviewer for LeetCode",
-  "description": "Injects the DSA Interviewer overlay directly on LeetCode problem pages.",
+  "name": "DSA Interviewer for LeetCode & NeetCode",
+  "description": "Injects the DSA Interviewer overlay on LeetCode and NeetCode problem pages.",
   "version": "1.0.0",
   "content_scripts": [
     {
       "js": ["dist/content.js"],
-      "matches": ["https://leetcode.com/problems/*"],
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://neetcode.io/problems/*",
+        "https://www.neetcode.io/problems/*"
+      ],
       "run_at": "document_idle"
     },
     {
@@ -18,6 +22,8 @@
   "permissions": ["storage"],
   "host_permissions": [
     "https://leetcode.com/*",
+    "https://neetcode.io/*",
+    "https://www.neetcode.io/*",
     "http://localhost:*/*",
     "https://*/*"
   ]
